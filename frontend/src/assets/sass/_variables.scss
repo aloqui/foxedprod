@@ -1,0 +1,16 @@
+$white: darken(#FFF, 4%);
+$white-background: darken($white, 4%);
+$text-white: darken($white, 6%);
+$btn-positive: #2743e4;
+$primary-color: #f1862f;
+$black: #000;
+$black--light: lighten($black, 15%);
+$black--light--hover: lighten($black, 10%);
+$black--text--light: lighten($black, 40%);
+$font-color-primary: lighten(#535353, 4%);  
+
+
+$font--light: 300;
+$font--normal: 400;
+$font--bold: 700;
+$font--black: 900;
