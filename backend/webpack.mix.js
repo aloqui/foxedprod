@@ -11,5 +11,5 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('../frontend/src/main.js', 'public/js/build.js')
+mix.copy('../frontend/dis/build.js', 'public/js/build.js')
     .copy('../frontend/dist/css/app.min.css', 'public/css')
