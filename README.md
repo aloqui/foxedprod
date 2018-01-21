@@ -27,9 +27,10 @@ php artisan event:generate
 `cd backend`
 ###### on two(2) terminals, run these commands:
 
-```sh
-npm run watch
-php artisan serve
+###### Terminal/CMD #1:
+`npm run watch`
+###### Terminal/CMD #2:
+`php artisan serve`
 ```
 ## Production/Deployment
 
