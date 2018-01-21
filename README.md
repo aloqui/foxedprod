@@ -2,10 +2,10 @@
 
 ## Install:
 ### prerequisite(s)
-composer (latest)
-node npm (latest)
-xampp (latest)
-php (at least 7.1 up)
+- composer (latest)
+- node npm (latest)
+- xampp (latest)
+- php (at least 7.1 up)
 
 ### Installation proper:
 ```sh
