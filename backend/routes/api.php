@@ -50,6 +50,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/classroom/{classroom}/join', 'UserGroupController@membership');
     Route::post('/classroom/create/a','ClassroomController@create');
     Route::get('/classroom/{classroom}', 'ClassroomController@show');
+    Route::get('/{name}/codes/{id}','CodeController@showCertainCode');
  
     Route::get('/enrolledClass', 'ClassroomController@index');
     Route::get('/showTimeline', 'ClassroomController@showTimeline');
@@ -62,8 +63,12 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/activities/{Actid}', 'ClassroomController@showActs');
     Route::get('/activities/{Actid}/eval', 'ActivityController@evaluationCodes');
+    Route::put('/activities/timesup/{id}', 'ActivityController@updateTime');
     Route::post('/submitScore','ScoreController@create');
     Route::post('/replies/{reply}/favorites','FavoritesController@store');
+    Route::put('/activities/update/{id}', 'ActivityController@update');
+    Route::get('/activities/show/{id}', 'ActivityController@show');
+    Route::put('/eval/codescore/{id}', 'CodeController@updateEval');
     
 });
 Route::get('/community/{channel}/{thread}/replies', 'RepliesController@index');
@@ -89,5 +94,5 @@ Route::get('/community/{channel}', 'ThreadController@index');
 Route::get('/{user}/codes/', 'CodeController@showCodes');
 Route::get('/{user}/works/', 'ProfilesController@show');
 Route::get('/{user}/user', 'UserAvatarController@show');
-    
+Route::post('/auth/login', 'ProfilesController@authenticate');
 //Route::resource('threads', 'ThreadsController');

@@ -1,9 +1,10 @@
 <template>
   <div>
     <div >
-        <div class="code-card">
-      <div class="code-container" v-for="code in codes.codes">
-          <div class="card">
+        <div  >
+      <div class="code-card" >
+        <div class="code-container" v-for="code in codes.codes">
+          <div  class="card">
             <div class="card-body">
               <h4 class="card-title">{{ code.title }}</h4>
               <!-- <p class="card-text">{{ code.body }}</p> -->
@@ -17,6 +18,7 @@
             <p v-else>
               <router-link class="btn btn-secondary" :to="'codes/' + code.id">view</router-link>
             </p>
+          </div>
           </div>
         </div>
       

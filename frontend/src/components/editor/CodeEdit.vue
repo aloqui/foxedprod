@@ -28,11 +28,11 @@
 		<input type="text" v-model="codes.title">
 		<button class="btn btn-info" @click="update">save</button>
 		<button class="btn btn-danger" @click="deleteCodes">thrash</button>
-		<div v-show="act_id">
+		<div v-show="act_id && evaluated">
 			<button>resubmit</button>
 	</div>
 	</div>
-		<div v-show="authenticatedUser.prof">
+		<div v-show="authenticatedUser.prof && act_id && !eval">
 			<input v-model="score.body" type="number" placeholder="Score">
 			<button @click="submitScore">save</button>
 	</div>
@@ -57,11 +57,15 @@ export default {
 			},
 		id:"",
 		act_id:"",
+		eval:"",
 		score:{
 			body:"",
 			act_id:"",
 			user_id:""
-		}
+		},
+		evaluation:{
+			evaluated:true
+			}
 		}
 	},
     created (){
@@ -73,10 +77,16 @@ export default {
   methods: {
 		submitScore() {
           this.$http.post("api/submitScore", this.score).then(response => {
-            console.log(response);
-            swal("Succesfully created!", {
-              icon: "success"
-            });
+						console.log(response);
+
+								this.$http.put("api/eval/codescore/" + this.$route.params.id, this.evaluation).then(response => {
+								console.log(response);
+									swal("Succesfully created!", {
+										icon: "success"
+									});
+							});
+
+            
           });
       },
 		update () {
@@ -217,36 +227,32 @@ Split(['#code_editors','#output'], {
 	
     // css_editor.setValue('body { color: red; }');
 
-    this.$http.get('api/codes/'+ this.$route.params.id)
+    this.$http.get('api/'+this.$route.params.user+'/codes/'+ this.$route.params.id)
           .then(response => {
-						console.log(response)
+			  			console.log(response)
+						console.log(JSON.stringify(response.body.title) + '  THISSSSS')
 						//   this.codes = response.body[10]
 					// this.codes=response.body[1];
-							response.body.html ? html_editor.setValue(response.body.html):html_editor.setValue("");
-							response.body.css ? css_editor.setValue(response.body.css):css_editor.setValue("");
-							response.body.js ? js_editor.setValue(response.body.js):js_editor.setValue("");
+							response.body[0].html ? html_editor.setValue(response.body[0].html):html_editor.setValue("");
+							response.body[0].css ? css_editor.setValue(response.body[0].css):css_editor.setValue("");
+							response.body[0].js ? js_editor.setValue(response.body[0].js):js_editor.setValue("");
 
-              // html_editor.setValue(response.body.html);
-							// css_editor.setValue(response.body.css);
-							// js_editor.setValue(response.body.js);
+              // html_editor.setValue(response.body[0].html);
+							// css_editor.setValue(response.body[0].css);
+							// js_editor.setValue(response.body[0].js);
 							
-							this.codes.title = response.body.title;
-							this.id = response.body.user_id;
-							if(response.body.activity_id){
-								this.act_id = response.body.user_id;
-								this.score.act_id = response.body.activity_id;
-								if(response.body.user_id){
-									this.score.user_id = response.body.user_id;
+							this.codes.title = response.body[0].title;
+							this.id = response.body[0].user_id;
+							if(response.body[0].activity_id){
+								this.act_id = response.body[0].user_id;
+								this.score.act_id = response.body[0].activity_id;
+								if(response.body[0].user_id){
+									this.score.user_id = response.body[0].user_id;
+								}
+								if(response.body[0].evaluated){
+									this.eval = response.body[0].evaluated;
 								}
 							}
-							
-							// alert(response.body.user_id)
-							// console.log("this.codes.title")
-							// alert('asd')
-              // html_editor.setValue(" ");
-							// css_editor.setValue(" ");
-							// js_editor.setValue(" ");
-							// console.log(responses)
           })
 
 

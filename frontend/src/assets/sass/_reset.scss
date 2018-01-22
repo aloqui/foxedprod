@@ -193,3 +193,12 @@ button,
     trix-toolbar .trix-button {}
   }
 }
+.pagination {
+  .content__helper {
+    &:hover,
+    &:focus,
+    &:active {
+      color: $primary-color;
+    }
+  }
+}

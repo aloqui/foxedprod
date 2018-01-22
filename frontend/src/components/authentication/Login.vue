@@ -30,17 +30,10 @@
     methods: {
       login() {
         var data = {
-          client_id: 2,
-          client_secret: '8PuZ0uJChX65ooTybcoKVU1OU6tx5kaUQoNjDAQC',
-          grant_type: 'password',
           username: this.email,
           password: this.password
         }
-        this.$http.get("oauth/token")
-          .then(response => {
-            console.log(response);
-          })
-        this.$http.post("oauth/token", data)
+        this.$http.post("api/auth/login", data)
           .then(response => {
             this.$auth.setToken(response.body.access_token, response.body.expires_in + Date.now())
             location.reload()            

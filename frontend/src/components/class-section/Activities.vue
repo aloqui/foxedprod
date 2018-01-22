@@ -17,6 +17,11 @@ import swal from 'sweetalert'
         computed: {
             authenticatedUser () {
                 return this.$auth.getAuthenticatedUser()
+            },
+            datea(){
+                var date = new Date();
+                return console.log(date)
+
             }
         },
         components: {
@@ -26,6 +31,7 @@ import swal from 'sweetalert'
             this.$http.get(`api/activities/${this.$route.params.id}`)
             .then(response => {
                 this.activities = response.body
+                // console.log(response.body[0].due)
             })
         },
         methods: {

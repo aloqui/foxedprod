@@ -60,13 +60,7 @@
   word-spacing: 1px;
   color: darken($white, 28%);
 }
-.pagination {
-  .content__helper {
-    &:hover {
-      color: $primary-color;
-    }
-  }
-}
+
 .content__helper {
   color: darken($white, 28%);
   font-size: 12px;

@@ -60,7 +60,6 @@
                         </button>
                       </div>
                       <div class="ml-auto">
-
                         <button class="btn content__helper text-uppercase " @click="deleteThread">
                           <i class="far fa-trash-alt"></i>
                           <div class="content__helper-visual--delete">

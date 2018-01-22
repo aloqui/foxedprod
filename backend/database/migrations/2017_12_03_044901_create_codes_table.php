@@ -21,6 +21,8 @@ class CreateCodesTable extends Migration
             $table->text('html')->nullable();
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('activity_id')->nullable();
+            $table->boolean('submitted')->default(false);
+            $table->boolean('evaluated')->nullable();
             $table->timestamps();
         });
     }
