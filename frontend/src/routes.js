@@ -18,6 +18,7 @@ import CreateActivity from './components/class-section/CreateActivity.vue'
 import ViewActivity from './components/class-section/ViewActivity.vue'
 import Activity from './components/class-section/Activities.vue'
 import SubmittedActivity from './components/class-section/SubmittedActivities.vue'
+import UpdateActivity from './components/class-section/EditActivity.vue'
 import CreateClassroom from './components/class-section/CreateClassroom'
 import Forum from './views/forums.vue'
 import ForumCategory from './views/forum-topics.vue'
@@ -87,6 +88,13 @@ const router = new VueRouter({
         {
             path: "/activity/:activity",
             component: ViewActivity,
+            meta: {
+                forAuth: true
+            }
+        },
+        {
+            path: "/activity/:id/update",
+            component: UpdateActivity,
             meta: {
                 forAuth: true
             }

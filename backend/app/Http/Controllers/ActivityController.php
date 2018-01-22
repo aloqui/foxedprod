@@ -37,11 +37,6 @@ class ActivityController extends Controller
         else{
             $fileName = 'none';
         }
-        // $forums = Activity::create($request->except('image') + [
-        // 'user_id' => Auth::id(),
-        // 'image' => $fileName
-        // ]);
-
         $activity = Activity::create( $request->except('image') + [
             'user_id' => Auth::id(),
             'title' => request('title'),
@@ -52,15 +47,27 @@ class ActivityController extends Controller
         return $activity;
     }
     public function show($id){
-        $forum = Activity::find($id);
+        $activity = Activity::find($id);
         
-        if(count($forum) > 0)
+        if(count($activity) > 0)
             return response()->json(Activity::find($id));
 
         return response()->json(['error' => 'resource not found'],404);
     }
 
     public function update(Request $request, $id){
+        $activity = Activity::find($id);
+        if($activity->isProf || $activity->user_id == Auth::id()) {
+            $activity->update($request->all());
+            return response()->json($activity);
+        }
+        else{
+            return response()->json(['Unauthorized' => 'Not allowed to perform this operation'],404);
+        }
+        
+    }
+
+    public function updateTime(Request $request, $id){
         $forum = Activity::find($id);
 
         $forum->update($request->all());

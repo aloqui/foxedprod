@@ -39,7 +39,8 @@ export default {
 				title:"",
 				html:"",
 				css:"",
-				js: ""
+				js: "",
+				submitted:false
 			}
 		}
 	},
