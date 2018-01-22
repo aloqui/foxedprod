@@ -1,12 +1,12 @@
 <script>
-import Wysiwyg from './wysiwyg.vue';
-import SubscribeButton from './subscribe-button';
+  import Wysiwyg from './wysiwyg.vue';
+  import SubscribeButton from './subscribe-button';
   export default {
     components: {
       'wysiwyg': Wysiwyg,
       'subscribe-button': SubscribeButton
-    },  
-    props: ['attriThread'],
+    },
+    props: ['attriThread', 'owner'],
     name: 'thread',
     data() {
       return {
@@ -14,8 +14,11 @@ import SubscribeButton from './subscribe-button';
           body: this.attriThread.body,
           title: this.attriThread.title
         },
-         editingThread: false,
-         active: false
+        editingThread: false,
+        active: false,
+        isAuth: false,
+        authUser: {},
+        show: false
       }
     },
     methods: {
@@ -26,13 +29,12 @@ import SubscribeButton from './subscribe-button';
             swal("Deleted!", {
               icon: "success",
             });
-            console.log(response);
           }, function (response) {
-             this.$router.push(`/community/${this.$route.params.slug}`);
+            this.$router.push(`/community/${this.$route.params.slug}`);
             swal("Error!", {
-            icon: "error",
-          });
-         
+              icon: "error",
+            });
+
           });
       },
       editThread() {
@@ -47,35 +49,36 @@ import SubscribeButton from './subscribe-button';
             swal("Edited!", {
               icon: "success",
             });
-            console.log(data);
           }, function (response) {
-             //this.$router.push(`/community/${this.$route.params.slug}/${this.$route.params.id}`);
+            //this.$router.push(`/community/${this.$route.params.slug}/${this.$route.params.id}`);
             swal("Error!", {
-            icon: "error",
-          });
-         
+              icon: "error",
+            });
+
           });
       },
       fetch() {
-        this.active =this.attriThread.isSubscribedTo
+        this.active = this.attriThread.isSubscribedTo
+        this.$nextTick(function () {
+          this.isAuth = this.$auth.isAuthenticated();
+        })
+        this.$http.get('api/user')
+          .then(response => {
+            this.authUser = response.body
+            this.show = true
+          })
       }
     },
     mounted() {
-      this.fetch()
+      this.$nextTick(function () {
+        this.fetch()
+      })
     },
-    computed: {
-        authenticatedUser() {
-        return this.$auth.getAuthenticatedUser()
-        }
-    },
-    
   }
 
 </script>
 
 <style scoped lang="scss">
-  .picture-placeholder {
-    width: 50px;
-  }
+
 
 </style>

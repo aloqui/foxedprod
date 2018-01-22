@@ -40,8 +40,7 @@ class ThreadController extends Controller
 
     // $trending = array_map('json_decode', Redis::zrevrange('trending_threads', 0, 4));
     $threads = $threads->get()->load('channel', 'owner', 'replies');
-    return 
-        $threads
+    return ['thread' => $threads] + ['channel' => $channel];
         // $trending
 ;
     }

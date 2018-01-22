@@ -53,7 +53,8 @@
                 <ais-refinement-list attribute-name="channel.name">
                   
                 </ais-refinement-list>
-                <ais-results :results-per-page="1">
+                <!-- :results-per-page="1" -->
+                <ais-results >
                   <template slot-scope="{ result }" >
                     <p>
                       <router-link :to="result.path">
