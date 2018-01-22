@@ -105,18 +105,15 @@
       },
       login(user) {
         var data = {
-          client_id: 2,
-          client_secret: 'jP9ezNBEyQ9wXW6d1gB2E6wRFXe7Bv1cU7NHu9cu',
-          grant_type: 'password',
           username: this.user.email,
           password: this.user.password
         }
-        this.$http.post("oauth/token", data)
+        this.$http.post("api/auth/login", data)
           .then(response => {
-            // location.reload()
             this.$auth.setToken(response.body.access_token, response.body.expires_in + Date.now())
-            location.reload();
+            location.reload()            
             this.$router.push("/")
+
             console.log(response)
           })
       },

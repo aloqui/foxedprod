@@ -20,8 +20,8 @@ Vue.use(VueObserveVisibility)
 // Vue.use('/api/*', proxy({target: 'http://localhost:8000', secure: false, changeOrigin: true}))
 
 
-// Vue.http.options.root = `${location.protocol}//${location.hostname}:8000`;
-Vue.http.options.root = 'http://localhost:8000';
+Vue.http.options.root = `${location.protocol}//${location.hostname}:8000`;
+// Vue.http.options.root = 'http://localhost:8000';
 Vue.http.headers.common['Authorization'] = 'Bearer ' + Vue.auth.getToken();
 
 
