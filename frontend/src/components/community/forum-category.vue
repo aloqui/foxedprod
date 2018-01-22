@@ -1,12 +1,20 @@
 <template>
   <div class="forum-category">
-    <div class="forum-post__header section-block mt-2" v-for="category in categories" v-bind:key="category">
-      <a class="forum-post__title ">
-        <router-link class="nav-item forum__title" :to="`/community/${category.slug}`">
-          {{category.name}}
-        </router-link>
-      </a>
-      <div class="forum__sub-title p-1 text-center">{{category.title}} Has {{category.threads.length}} Discussions!</div>
+    <p class="font--bold mb-2">Community</p>
+    <div class="" v-for="category in categories" v-bind:key="category">
+
+      <router-link class="no-decoration" :to="`/community/${category.slug}`">
+        <div class="mb-3">
+
+          <p class="font--bold">
+            {{category.name}}
+          </p>
+          <p class="content__helper">
+            {{category.title}} Has {{category.threads.length}} Discussions!
+          </p>
+        </div>
+      </router-link>
+
     </div>
   </div>
 </template>

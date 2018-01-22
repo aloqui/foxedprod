@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="block-full-height d-flex justify-content-center align-items-start">
+          <div class="block-full-height d-flex align-items-start">
             <div class="section-block">
               <forum-category></forum-category>
             </div>

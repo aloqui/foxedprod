@@ -14,7 +14,6 @@
             }
         },
         mounted() {
-            this.fetch()
         },
         methods: {
             // fetch() {

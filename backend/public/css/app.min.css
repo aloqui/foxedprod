@@ -42,6 +42,10 @@ span.ais-highlight em {
   text-decoration: none !important;
 }
 
+.welcome .content p {
+  color: whitesmoke;
+}
+
 .content__username {
   color: #4d4c4c;
   font-family: 'Khula', sans-serif;
@@ -65,6 +69,7 @@ span.ais-highlight em {
 
 .content__helper,
 .content--paragraph pre,
+.help-block,
 .specific-thread__edit .trix__editor trix-editor pre,
 .specific-thread__edit .trix__edit trix-editor pre {
   color: #adadad;
@@ -73,51 +78,82 @@ span.ais-highlight em {
 
 .content__helper:hover > .content__helper-visual,
 .content--paragraph pre:hover > .content__helper-visual,
+.help-block:hover > .content__helper-visual,
 .specific-thread__edit .trix__editor trix-editor pre:hover > .content__helper-visual,
 .specific-thread__edit .trix__edit trix-editor pre:hover > .content__helper-visual,
 .content__helper:hover > .content__helper-visual--delete,
 .content--paragraph .content__helper pre:hover > .content__helper-visual--delete,
+.content__helper .help-block:hover > .content__helper-visual--delete,
 .specific-thread__edit .trix__editor trix-editor .content__helper pre:hover > .content__helper-visual--delete,
 .specific-thread__edit .trix__edit trix-editor .content__helper pre:hover > .content__helper-visual--delete,
 .content--paragraph pre .content__helper:hover > .content__helper-visual--delete,
 .content--paragraph pre:hover > .content__helper-visual--delete,
+.content--paragraph pre .help-block:hover > .content__helper-visual--delete,
+.help-block .content__helper:hover > .content__helper-visual--delete,
+.content--paragraph .help-block pre:hover > .content__helper-visual--delete,
+.help-block:hover > .content__helper-visual--delete,
+.specific-thread__edit .trix__editor trix-editor .help-block pre:hover > .content__helper-visual--delete,
+.specific-thread__edit .trix__edit trix-editor .help-block pre:hover > .content__helper-visual--delete,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper:hover > .content__helper-visual--delete,
+.specific-thread__edit .trix__editor trix-editor pre .help-block:hover > .content__helper-visual--delete,
 .specific-thread__edit .trix__editor trix-editor pre:hover > .content__helper-visual--delete,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper:hover > .content__helper-visual--delete,
+.specific-thread__edit .trix__edit trix-editor pre .help-block:hover > .content__helper-visual--delete,
 .specific-thread__edit .trix__edit trix-editor pre:hover > .content__helper-visual--delete,
 .content__helper:hover > .content__helper-visual--update,
 .content--paragraph
 .content__helper pre:hover > .content__helper-visual--update,
+.content__helper .help-block:hover > .content__helper-visual--update,
 .specific-thread__edit .trix__editor trix-editor
 .content__helper pre:hover > .content__helper-visual--update,
 .specific-thread__edit .trix__edit trix-editor
 .content__helper pre:hover > .content__helper-visual--update,
 .content--paragraph pre .content__helper:hover > .content__helper-visual--update,
 .content--paragraph pre:hover > .content__helper-visual--update,
+.content--paragraph pre .help-block:hover > .content__helper-visual--update,
+.help-block .content__helper:hover > .content__helper-visual--update,
+.content--paragraph .help-block pre:hover > .content__helper-visual--update,
+.help-block:hover > .content__helper-visual--update,
+.specific-thread__edit .trix__editor trix-editor .help-block pre:hover > .content__helper-visual--update,
+.specific-thread__edit .trix__edit trix-editor .help-block pre:hover > .content__helper-visual--update,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper:hover > .content__helper-visual--update,
+.specific-thread__edit .trix__editor trix-editor pre .help-block:hover > .content__helper-visual--update,
 .specific-thread__edit .trix__editor trix-editor pre:hover > .content__helper-visual--update,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper:hover > .content__helper-visual--update,
+.specific-thread__edit .trix__edit trix-editor pre .help-block:hover > .content__helper-visual--update,
 .specific-thread__edit .trix__edit trix-editor pre:hover > .content__helper-visual--update,
 .content__helper:hover > .content__helper-visual--cancel,
 .content--paragraph .content__helper pre:hover > .content__helper-visual--cancel,
+.content__helper .help-block:hover > .content__helper-visual--cancel,
 .specific-thread__edit .trix__editor trix-editor .content__helper pre:hover > .content__helper-visual--cancel,
 .specific-thread__edit .trix__edit trix-editor .content__helper pre:hover > .content__helper-visual--cancel,
 .content--paragraph pre .content__helper:hover > .content__helper-visual--cancel,
 .content--paragraph pre:hover > .content__helper-visual--cancel,
+.content--paragraph pre .help-block:hover > .content__helper-visual--cancel,
+.help-block .content__helper:hover > .content__helper-visual--cancel,
+.content--paragraph .help-block pre:hover > .content__helper-visual--cancel,
+.help-block:hover > .content__helper-visual--cancel,
+.specific-thread__edit .trix__editor trix-editor .help-block pre:hover > .content__helper-visual--cancel,
+.specific-thread__edit .trix__edit trix-editor .help-block pre:hover > .content__helper-visual--cancel,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper:hover > .content__helper-visual--cancel,
+.specific-thread__edit .trix__editor trix-editor pre .help-block:hover > .content__helper-visual--cancel,
 .specific-thread__edit .trix__editor trix-editor pre:hover > .content__helper-visual--cancel,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper:hover > .content__helper-visual--cancel,
+.specific-thread__edit .trix__edit trix-editor pre .help-block:hover > .content__helper-visual--cancel,
 .specific-thread__edit .trix__edit trix-editor pre:hover > .content__helper-visual--cancel,
 .content__helper:hover > .content__helper-visual--delete,
 .content--paragraph pre:hover > .content__helper-visual--delete,
+.help-block:hover > .content__helper-visual--delete,
 .specific-thread__edit .trix__editor trix-editor pre:hover > .content__helper-visual--delete,
 .specific-thread__edit .trix__edit trix-editor pre:hover > .content__helper-visual--delete,
 .content__helper:hover > .content__helper-visual--update,
 .content--paragraph pre:hover > .content__helper-visual--update,
+.help-block:hover > .content__helper-visual--update,
 .specific-thread__edit .trix__editor trix-editor pre:hover > .content__helper-visual--update,
 .specific-thread__edit .trix__edit trix-editor pre:hover > .content__helper-visual--update,
 .content__helper:hover > .content__helper-visual--cancel,
 .content--paragraph pre:hover > .content__helper-visual--cancel,
+.help-block:hover > .content__helper-visual--cancel,
 .specific-thread__edit .trix__editor trix-editor pre:hover > .content__helper-visual--cancel,
 .specific-thread__edit .trix__edit trix-editor pre:hover > .content__helper-visual--cancel {
   opacity: 0.8;
@@ -125,14 +161,17 @@ span.ais-highlight em {
 
 .content__helper i,
 .content--paragraph pre i,
+.help-block i,
 .specific-thread__edit .trix__editor trix-editor pre i,
 .specific-thread__edit .trix__edit trix-editor pre i,
 .content__helper .far,
 .content--paragraph pre .far,
+.help-block .far,
 .specific-thread__edit .trix__editor trix-editor pre .far,
 .specific-thread__edit .trix__edit trix-editor pre .far,
 .content__helper svg,
 .content--paragraph pre svg,
+.help-block svg,
 .specific-thread__edit .trix__editor trix-editor pre svg,
 .specific-thread__edit .trix__edit trix-editor pre svg {
   vertical-align: middle;
@@ -141,18 +180,22 @@ span.ais-highlight em {
 
 .content__helper .content__helper-visual,
 .content--paragraph pre .content__helper-visual,
+.help-block .content__helper-visual,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual,
 .content__helper .content__helper-visual--delete,
 .content--paragraph pre .content__helper-visual--delete,
+.help-block .content__helper-visual--delete,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete,
 .content__helper .content__helper-visual--update,
 .content--paragraph pre .content__helper-visual--update,
+.help-block .content__helper-visual--update,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update,
 .content__helper .content__helper-visual--cancel,
 .content--paragraph pre .content__helper-visual--cancel,
+.help-block .content__helper-visual--cancel,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel {
   position: absolute;
@@ -167,11 +210,14 @@ span.ais-highlight em {
 
 .content__helper .content__helper-visual .content__helper,
 .content--paragraph pre .content__helper-visual .content__helper,
+.help-block .content__helper-visual .content__helper,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual .content__helper,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual .content__helper,
 .content__helper .content__helper-visual--delete .content__helper,
 .content--paragraph pre .content__helper .content__helper-visual--delete .content__helper,
 .content__helper .content--paragraph pre .content__helper-visual--delete .content__helper,
+.help-block .content__helper .content__helper-visual--delete .content__helper,
+.content__helper .help-block .content__helper-visual--delete .content__helper,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete .content__helper,
 .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .content__helper,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--delete .content__helper,
@@ -180,15 +226,29 @@ span.ais-highlight em {
 .content__helper .content--paragraph pre .content__helper-visual--delete .content__helper,
 .content--paragraph pre .content__helper .content__helper-visual--delete .content__helper,
 .content--paragraph pre .content__helper-visual--delete .content__helper,
+.help-block .content--paragraph pre .content__helper-visual--delete .content__helper,
+.content--paragraph pre .help-block .content__helper-visual--delete .content__helper,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete .content__helper,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .content__helper,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete .content__helper,
 .content--paragraph
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .content__helper,
+.content__helper .help-block .content__helper-visual--delete .content__helper,
+.help-block .content__helper .content__helper-visual--delete .content__helper,
+.content--paragraph pre .help-block .content__helper-visual--delete .content__helper,
+.help-block .content--paragraph pre .content__helper-visual--delete .content__helper,
+.help-block .content__helper-visual--delete .content__helper,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--delete .content__helper,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .content__helper,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--delete .content__helper,
+.help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .content__helper,
 .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .content__helper,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete .content__helper,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .content__helper,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete .content__helper,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .content__helper,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--delete .content__helper,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .content__helper,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete .content__helper,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete .content__helper,
@@ -198,6 +258,9 @@ span.ais-highlight em {
 .content--paragraph
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .content__helper,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete .content__helper,
+.help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .content__helper,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--delete .content__helper,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete .content__helper,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete .content__helper,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .content__helper,
@@ -205,6 +268,9 @@ span.ais-highlight em {
 .content--paragraph pre
 .content__helper .content__helper-visual--update .content__helper,
 .content__helper .content--paragraph pre .content__helper-visual--update .content__helper,
+.help-block
+.content__helper .content__helper-visual--update .content__helper,
+.content__helper .help-block .content__helper-visual--update .content__helper,
 .specific-thread__edit .trix__editor trix-editor pre
 .content__helper .content__helper-visual--update .content__helper,
 .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .content__helper,
@@ -215,15 +281,29 @@ span.ais-highlight em {
 .content__helper .content--paragraph pre .content__helper-visual--update .content__helper,
 .content--paragraph pre .content__helper .content__helper-visual--update .content__helper,
 .content--paragraph pre .content__helper-visual--update .content__helper,
+.help-block .content--paragraph pre .content__helper-visual--update .content__helper,
+.content--paragraph pre .help-block .content__helper-visual--update .content__helper,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update .content__helper,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .content__helper,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update .content__helper,
 .content--paragraph
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .content__helper,
+.content__helper .help-block .content__helper-visual--update .content__helper,
+.help-block .content__helper .content__helper-visual--update .content__helper,
+.content--paragraph pre .help-block .content__helper-visual--update .content__helper,
+.help-block .content--paragraph pre .content__helper-visual--update .content__helper,
+.help-block .content__helper-visual--update .content__helper,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--update .content__helper,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .content__helper,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--update .content__helper,
+.help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .content__helper,
 .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .content__helper,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--update .content__helper,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .content__helper,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update .content__helper,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .content__helper,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--update .content__helper,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .content__helper,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update .content__helper,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update .content__helper,
@@ -233,12 +313,17 @@ span.ais-highlight em {
 .content--paragraph
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .content__helper,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update .content__helper,
+.help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .content__helper,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--update .content__helper,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update .content__helper,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update .content__helper,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .content__helper,
 .content__helper .content__helper-visual--cancel .content__helper,
 .content--paragraph pre .content__helper .content__helper-visual--cancel .content__helper,
 .content__helper .content--paragraph pre .content__helper-visual--cancel .content__helper,
+.help-block .content__helper .content__helper-visual--cancel .content__helper,
+.content__helper .help-block .content__helper-visual--cancel .content__helper,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel .content__helper,
 .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content__helper,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--cancel .content__helper,
@@ -247,15 +332,29 @@ span.ais-highlight em {
 .content__helper .content--paragraph pre .content__helper-visual--cancel .content__helper,
 .content--paragraph pre .content__helper .content__helper-visual--cancel .content__helper,
 .content--paragraph pre .content__helper-visual--cancel .content__helper,
+.help-block .content--paragraph pre .content__helper-visual--cancel .content__helper,
+.content--paragraph pre .help-block .content__helper-visual--cancel .content__helper,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel .content__helper,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content__helper,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel .content__helper,
 .content--paragraph
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .content__helper,
+.content__helper .help-block .content__helper-visual--cancel .content__helper,
+.help-block .content__helper .content__helper-visual--cancel .content__helper,
+.content--paragraph pre .help-block .content__helper-visual--cancel .content__helper,
+.help-block .content--paragraph pre .content__helper-visual--cancel .content__helper,
+.help-block .content__helper-visual--cancel .content__helper,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--cancel .content__helper,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content__helper,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--cancel .content__helper,
+.help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .content__helper,
 .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content__helper,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel .content__helper,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content__helper,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel .content__helper,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content__helper,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--cancel .content__helper,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content__helper,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content__helper,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel .content__helper,
@@ -265,12 +364,17 @@ span.ais-highlight em {
 .content--paragraph
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .content__helper,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel .content__helper,
+.help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .content__helper,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--cancel .content__helper,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel .content__helper,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content__helper,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .content__helper,
 .content__helper .content__helper-visual .content--paragraph pre,
 .content--paragraph .content__helper .content__helper-visual pre,
 .content--paragraph pre .content__helper-visual pre,
+.help-block .content__helper-visual .content--paragraph pre,
+.content--paragraph .help-block .content__helper-visual pre,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual .content--paragraph pre,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual pre,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual .content--paragraph pre,
@@ -280,6 +384,10 @@ span.ais-highlight em {
 .content--paragraph .content__helper .content__helper-visual--delete pre,
 .content--paragraph pre .content__helper .content__helper-visual--delete pre,
 .content__helper .content--paragraph pre .content__helper-visual--delete pre,
+.help-block .content__helper .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .help-block .content__helper .content__helper-visual--delete pre,
+.content__helper .help-block .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .content__helper .help-block .content__helper-visual--delete pre,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete .content--paragraph pre,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete pre,
 .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .content--paragraph pre,
@@ -294,10 +402,31 @@ span.ais-highlight em {
 .content__helper .content--paragraph pre .content__helper-visual--delete pre,
 .content--paragraph pre .content__helper .content__helper-visual--delete pre,
 .content--paragraph pre .content__helper-visual--delete pre,
+.help-block .content--paragraph pre .content__helper-visual--delete pre,
+.content--paragraph pre .help-block .content__helper-visual--delete pre,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete pre,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete pre,
 .content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.content__helper .help-block .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .content__helper .help-block .content__helper-visual--delete pre,
+.help-block .content__helper .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .help-block .content__helper .content__helper-visual--delete pre,
+.content--paragraph pre .help-block .content__helper-visual--delete pre,
+.help-block .content--paragraph pre .content__helper-visual--delete pre,
+.help-block .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .help-block .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--delete pre,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--delete pre,
+.help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .help-block
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete pre,
 .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .content--paragraph pre,
 .content--paragraph .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
@@ -305,6 +434,10 @@ span.ais-highlight em {
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete pre,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--delete pre,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .content--paragraph pre,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete .content--paragraph pre,
@@ -321,6 +454,13 @@ span.ais-highlight em {
 .content--paragraph
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--delete pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete .content--paragraph pre,
 .content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete .content--paragraph pre,
@@ -332,6 +472,13 @@ span.ais-highlight em {
 .content--paragraph pre
 .content__helper .content__helper-visual--update pre,
 .content__helper .content--paragraph pre .content__helper-visual--update pre,
+.help-block
+.content__helper .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .help-block
+.content__helper .content__helper-visual--update pre,
+.content__helper .help-block .content__helper-visual--update .content--paragraph pre,
+.content--paragraph
+.content__helper .help-block .content__helper-visual--update pre,
 .specific-thread__edit .trix__editor trix-editor pre
 .content__helper .content__helper-visual--update .content--paragraph pre,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre
@@ -352,10 +499,31 @@ span.ais-highlight em {
 .content__helper .content--paragraph pre .content__helper-visual--update pre,
 .content--paragraph pre .content__helper .content__helper-visual--update pre,
 .content--paragraph pre .content__helper-visual--update pre,
+.help-block .content--paragraph pre .content__helper-visual--update pre,
+.content--paragraph pre .help-block .content__helper-visual--update pre,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update pre,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update pre,
 .content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update pre,
+.content__helper .help-block .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .content__helper .help-block .content__helper-visual--update pre,
+.help-block .content__helper .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .help-block .content__helper .content__helper-visual--update pre,
+.content--paragraph pre .help-block .content__helper-visual--update pre,
+.help-block .content--paragraph pre .content__helper-visual--update pre,
+.help-block .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .help-block .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--update pre,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--update .content--paragraph pre,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--update pre,
+.help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .help-block
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update pre,
 .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .content--paragraph pre,
 .content--paragraph .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
@@ -363,6 +531,10 @@ span.ais-highlight em {
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--update pre,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--update pre,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .content--paragraph pre,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update .content--paragraph pre,
@@ -379,6 +551,13 @@ span.ais-highlight em {
 .content--paragraph
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--update .content--paragraph pre,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--update pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update .content--paragraph pre,
 .content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update .content--paragraph pre,
@@ -389,6 +568,10 @@ span.ais-highlight em {
 .content--paragraph .content__helper .content__helper-visual--cancel pre,
 .content--paragraph pre .content__helper .content__helper-visual--cancel pre,
 .content__helper .content--paragraph pre .content__helper-visual--cancel pre,
+.help-block .content__helper .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .help-block .content__helper .content__helper-visual--cancel pre,
+.content__helper .help-block .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .content__helper .help-block .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel .content--paragraph pre,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel pre,
 .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
@@ -403,10 +586,31 @@ span.ais-highlight em {
 .content__helper .content--paragraph pre .content__helper-visual--cancel pre,
 .content--paragraph pre .content__helper .content__helper-visual--cancel pre,
 .content--paragraph pre .content__helper-visual--cancel pre,
+.help-block .content--paragraph pre .content__helper-visual--cancel pre,
+.content--paragraph pre .help-block .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
 .content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.content__helper .help-block .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .content__helper .help-block .content__helper-visual--cancel pre,
+.help-block .content__helper .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .help-block .content__helper .content__helper-visual--cancel pre,
+.content--paragraph pre .help-block .content__helper-visual--cancel pre,
+.help-block .content--paragraph pre .content__helper-visual--cancel pre,
+.help-block .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .help-block .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--cancel pre,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--cancel pre,
+.help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .help-block
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel pre,
 .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
 .content--paragraph .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
@@ -414,6 +618,10 @@ span.ais-highlight em {
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel pre,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
@@ -430,16 +638,187 @@ span.ais-highlight em {
 .content--paragraph
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
 .content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
 .content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
 .content--paragraph .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.content__helper .content__helper-visual .help-block,
+.content--paragraph pre .content__helper-visual .help-block,
+.help-block .content__helper-visual .help-block,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual .help-block,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual .help-block,
+.content__helper .content__helper-visual--delete .help-block,
+.content--paragraph pre .content__helper .content__helper-visual--delete .help-block,
+.content__helper .content--paragraph pre .content__helper-visual--delete .help-block,
+.help-block .content__helper .content__helper-visual--delete .help-block,
+.content__helper .help-block .content__helper-visual--delete .help-block,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete .help-block,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .help-block,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--delete .help-block,
+.content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .help-block,
+.content__helper .content--paragraph pre .content__helper-visual--delete .help-block,
+.content--paragraph pre .content__helper .content__helper-visual--delete .help-block,
+.content--paragraph pre .content__helper-visual--delete .help-block,
+.help-block .content--paragraph pre .content__helper-visual--delete .help-block,
+.content--paragraph pre .help-block .content__helper-visual--delete .help-block,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete .help-block,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .help-block,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete .help-block,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .help-block,
+.content__helper .help-block .content__helper-visual--delete .help-block,
+.help-block .content__helper .content__helper-visual--delete .help-block,
+.content--paragraph pre .help-block .content__helper-visual--delete .help-block,
+.help-block .content--paragraph pre .content__helper-visual--delete .help-block,
+.help-block .content__helper-visual--delete .help-block,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--delete .help-block,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .help-block,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--delete .help-block,
+.help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .help-block,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .help-block,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete .help-block,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .help-block,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete .help-block,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .help-block,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--delete .help-block,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .help-block,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete .help-block,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete .help-block,
+.content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .help-block,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--delete .help-block,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .help-block,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete .help-block,
+.help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .help-block,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--delete .help-block,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete .help-block,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete .help-block,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .help-block,
+.content__helper .content__helper-visual--update .help-block,
+.content--paragraph pre
+.content__helper .content__helper-visual--update .help-block,
+.content__helper .content--paragraph pre .content__helper-visual--update .help-block,
+.help-block
+.content__helper .content__helper-visual--update .help-block,
+.content__helper .help-block .content__helper-visual--update .help-block,
+.specific-thread__edit .trix__editor trix-editor pre
+.content__helper .content__helper-visual--update .help-block,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .help-block,
+.specific-thread__edit .trix__edit trix-editor pre
+.content__helper .content__helper-visual--update .help-block,
+.content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .help-block,
+.content__helper .content--paragraph pre .content__helper-visual--update .help-block,
+.content--paragraph pre .content__helper .content__helper-visual--update .help-block,
+.content--paragraph pre .content__helper-visual--update .help-block,
+.help-block .content--paragraph pre .content__helper-visual--update .help-block,
+.content--paragraph pre .help-block .content__helper-visual--update .help-block,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update .help-block,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .help-block,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update .help-block,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .help-block,
+.content__helper .help-block .content__helper-visual--update .help-block,
+.help-block .content__helper .content__helper-visual--update .help-block,
+.content--paragraph pre .help-block .content__helper-visual--update .help-block,
+.help-block .content--paragraph pre .content__helper-visual--update .help-block,
+.help-block .content__helper-visual--update .help-block,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--update .help-block,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .help-block,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--update .help-block,
+.help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .help-block,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .help-block,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--update .help-block,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .help-block,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update .help-block,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .help-block,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--update .help-block,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .help-block,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update .help-block,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update .help-block,
+.content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .help-block,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--update .help-block,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .help-block,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update .help-block,
+.help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .help-block,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--update .help-block,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update .help-block,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update .help-block,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .help-block,
+.content__helper .content__helper-visual--cancel .help-block,
+.content--paragraph pre .content__helper .content__helper-visual--cancel .help-block,
+.content__helper .content--paragraph pre .content__helper-visual--cancel .help-block,
+.help-block .content__helper .content__helper-visual--cancel .help-block,
+.content__helper .help-block .content__helper-visual--cancel .help-block,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel .help-block,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .help-block,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--cancel .help-block,
+.content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .help-block,
+.content__helper .content--paragraph pre .content__helper-visual--cancel .help-block,
+.content--paragraph pre .content__helper .content__helper-visual--cancel .help-block,
+.content--paragraph pre .content__helper-visual--cancel .help-block,
+.help-block .content--paragraph pre .content__helper-visual--cancel .help-block,
+.content--paragraph pre .help-block .content__helper-visual--cancel .help-block,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel .help-block,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .help-block,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel .help-block,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .help-block,
+.content__helper .help-block .content__helper-visual--cancel .help-block,
+.help-block .content__helper .content__helper-visual--cancel .help-block,
+.content--paragraph pre .help-block .content__helper-visual--cancel .help-block,
+.help-block .content--paragraph pre .content__helper-visual--cancel .help-block,
+.help-block .content__helper-visual--cancel .help-block,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--cancel .help-block,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .help-block,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--cancel .help-block,
+.help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .help-block,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .help-block,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel .help-block,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .help-block,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel .help-block,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .help-block,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--cancel .help-block,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .help-block,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel .help-block,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel .help-block,
+.content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .help-block,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--cancel .help-block,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .help-block,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel .help-block,
+.help-block
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .help-block,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--cancel .help-block,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel .help-block,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel .help-block,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .help-block,
 .content__helper .content__helper-visual .specific-thread__edit .trix__editor trix-editor pre,
 .specific-thread__edit .trix__editor trix-editor .content__helper .content__helper-visual pre,
 .content--paragraph pre .content__helper-visual .specific-thread__edit .trix__editor trix-editor pre,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual pre,
+.help-block .content__helper-visual .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .help-block .content__helper-visual pre,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual pre,
@@ -449,6 +828,10 @@ span.ais-highlight em {
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper .content__helper-visual--delete pre,
 .content__helper .content--paragraph pre .content__helper-visual--delete .specific-thread__edit .trix__editor trix-editor pre,
 .specific-thread__edit .trix__editor trix-editor .content__helper .content--paragraph pre .content__helper-visual--delete pre,
+.help-block .content__helper .content__helper-visual--delete .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .help-block .content__helper .content__helper-visual--delete pre,
+.content__helper .help-block .content__helper-visual--delete .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content__helper .help-block .content__helper-visual--delete pre,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete pre,
 .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete pre,
@@ -461,16 +844,38 @@ span.ais-highlight em {
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper .content__helper-visual--delete pre,
 .content--paragraph pre .content__helper-visual--delete .specific-thread__edit .trix__editor trix-editor pre,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.help-block .content--paragraph pre .content__helper-visual--delete .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .help-block .content--paragraph pre .content__helper-visual--delete pre,
+.content--paragraph pre .help-block .content__helper-visual--delete .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .help-block .content__helper-visual--delete pre,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete pre,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete pre,
 .content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
 .content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.content__helper .help-block .content__helper-visual--delete .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content__helper .help-block .content__helper-visual--delete pre,
+.help-block .content__helper .content__helper-visual--delete .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .help-block .content__helper .content__helper-visual--delete pre,
+.content--paragraph pre .help-block .content__helper-visual--delete .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .help-block .content__helper-visual--delete pre,
+.help-block .content--paragraph pre .content__helper-visual--delete .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .help-block .content--paragraph pre .content__helper-visual--delete pre,
+.help-block .content__helper-visual--delete .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .help-block .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--delete pre,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .help-block .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .help-block .content__helper-visual--delete pre,
+.help-block .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.help-block .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
 .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete pre,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--delete pre,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
@@ -482,6 +887,10 @@ span.ais-highlight em {
 .content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.help-block .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.help-block .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .help-block .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .help-block .content__helper-visual--delete pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
@@ -495,6 +904,13 @@ span.ais-highlight em {
 .content__helper .content--paragraph pre .content__helper-visual--update .specific-thread__edit .trix__editor trix-editor pre,
 .specific-thread__edit .trix__editor trix-editor
 .content__helper .content--paragraph pre .content__helper-visual--update pre,
+.help-block
+.content__helper .content__helper-visual--update .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .help-block
+.content__helper .content__helper-visual--update pre,
+.content__helper .help-block .content__helper-visual--update .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor
+.content__helper .help-block .content__helper-visual--update pre,
 .specific-thread__edit .trix__editor trix-editor pre
 .content__helper .content__helper-visual--update pre,
 .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
@@ -510,16 +926,38 @@ span.ais-highlight em {
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper .content__helper-visual--update pre,
 .content--paragraph pre .content__helper-visual--update .specific-thread__edit .trix__editor trix-editor pre,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.help-block .content--paragraph pre .content__helper-visual--update .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .help-block .content--paragraph pre .content__helper-visual--update pre,
+.content--paragraph pre .help-block .content__helper-visual--update .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .help-block .content__helper-visual--update pre,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update pre,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update pre,
 .content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
 .content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
+.content__helper .help-block .content__helper-visual--update .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content__helper .help-block .content__helper-visual--update pre,
+.help-block .content__helper .content__helper-visual--update .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .help-block .content__helper .content__helper-visual--update pre,
+.content--paragraph pre .help-block .content__helper-visual--update .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .help-block .content__helper-visual--update pre,
+.help-block .content--paragraph pre .content__helper-visual--update .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .help-block .content--paragraph pre .content__helper-visual--update pre,
+.help-block .content__helper-visual--update .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .help-block .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--update pre,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .help-block .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .help-block .content__helper-visual--update pre,
+.help-block .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.help-block .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
 .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--update pre,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--update pre,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
@@ -531,6 +969,10 @@ span.ais-highlight em {
 .content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.help-block .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.help-block .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .help-block .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .help-block .content__helper-visual--update pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
@@ -541,6 +983,10 @@ span.ais-highlight em {
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper .content__helper-visual--cancel pre,
 .content__helper .content--paragraph pre .content__helper-visual--cancel .specific-thread__edit .trix__editor trix-editor pre,
 .specific-thread__edit .trix__editor trix-editor .content__helper .content--paragraph pre .content__helper-visual--cancel pre,
+.help-block .content__helper .content__helper-visual--cancel .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .help-block .content__helper .content__helper-visual--cancel pre,
+.content__helper .help-block .content__helper-visual--cancel .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content__helper .help-block .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel pre,
 .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel pre,
@@ -553,16 +999,38 @@ span.ais-highlight em {
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper .content__helper-visual--cancel pre,
 .content--paragraph pre .content__helper-visual--cancel .specific-thread__edit .trix__editor trix-editor pre,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.help-block .content--paragraph pre .content__helper-visual--cancel .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .help-block .content--paragraph pre .content__helper-visual--cancel pre,
+.content--paragraph pre .help-block .content__helper-visual--cancel .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .help-block .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
 .content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
 .content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.content__helper .help-block .content__helper-visual--cancel .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content__helper .help-block .content__helper-visual--cancel pre,
+.help-block .content__helper .content__helper-visual--cancel .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .help-block .content__helper .content__helper-visual--cancel pre,
+.content--paragraph pre .help-block .content__helper-visual--cancel .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .help-block .content__helper-visual--cancel pre,
+.help-block .content--paragraph pre .content__helper-visual--cancel .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .help-block .content--paragraph pre .content__helper-visual--cancel pre,
+.help-block .content__helper-visual--cancel .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .help-block .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--cancel pre,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .help-block .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .help-block .content__helper-visual--cancel pre,
+.help-block .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.help-block .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
 .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel pre,
 .content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.help-block .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor trix-editor pre .help-block .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
@@ -574,6 +1042,10 @@ span.ais-highlight em {
 .content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.help-block .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.help-block .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .help-block .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .help-block .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
@@ -584,6 +1056,9 @@ span.ais-highlight em {
 .content--paragraph pre .content__helper-visual
 .specific-thread__edit .trix__edit trix-editor pre,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual pre,
+.help-block .content__helper-visual
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .help-block .content__helper-visual pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual pre,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual pre,
@@ -596,6 +1071,12 @@ span.ais-highlight em {
 .content__helper .content--paragraph pre .content__helper-visual--delete
 .specific-thread__edit .trix__edit trix-editor pre,
 .specific-thread__edit .trix__edit trix-editor .content__helper .content--paragraph pre .content__helper-visual--delete pre,
+.help-block .content__helper .content__helper-visual--delete
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .help-block .content__helper .content__helper-visual--delete pre,
+.content__helper .help-block .content__helper-visual--delete
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content__helper .help-block .content__helper-visual--delete pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper .content__helper-visual--delete pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete pre,
 .content__helper .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
@@ -611,12 +1092,39 @@ span.ais-highlight em {
 .content--paragraph pre .content__helper-visual--delete
 .specific-thread__edit .trix__edit trix-editor pre,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.help-block .content--paragraph pre .content__helper-visual--delete
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .help-block .content--paragraph pre .content__helper-visual--delete pre,
+.content--paragraph pre .help-block .content__helper-visual--delete
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .help-block .content__helper-visual--delete pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete pre,
 .content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
 .content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete pre,
 .content--paragraph .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.content__helper .help-block .content__helper-visual--delete
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content__helper .help-block .content__helper-visual--delete pre,
+.help-block .content__helper .content__helper-visual--delete
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .help-block .content__helper .content__helper-visual--delete pre,
+.content--paragraph pre .help-block .content__helper-visual--delete
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .help-block .content__helper-visual--delete pre,
+.help-block .content--paragraph pre .content__helper-visual--delete
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .help-block .content--paragraph pre .content__helper-visual--delete pre,
+.help-block .content__helper-visual--delete
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .help-block .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .help-block .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .help-block .content__helper-visual--delete pre,
+.help-block .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.help-block .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--delete pre,
+.help-block .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete pre,
 .content__helper .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
 .content__helper .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper .content__helper-visual--delete pre,
@@ -625,6 +1133,10 @@ span.ais-highlight em {
 .content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.help-block .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.help-block .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .help-block .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .help-block .content__helper-visual--delete pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
@@ -633,6 +1145,8 @@ span.ais-highlight em {
 .specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--delete pre,
 .content--paragraph .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.help-block .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--delete pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete pre,
@@ -648,6 +1162,15 @@ span.ais-highlight em {
 .specific-thread__edit .trix__edit trix-editor pre,
 .specific-thread__edit .trix__edit trix-editor
 .content__helper .content--paragraph pre .content__helper-visual--update pre,
+.help-block
+.content__helper .content__helper-visual--update
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .help-block
+.content__helper .content__helper-visual--update pre,
+.content__helper .help-block .content__helper-visual--update
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor
+.content__helper .help-block .content__helper-visual--update pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre
 .content__helper .content__helper-visual--update pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre
@@ -666,12 +1189,39 @@ span.ais-highlight em {
 .content--paragraph pre .content__helper-visual--update
 .specific-thread__edit .trix__edit trix-editor pre,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.help-block .content--paragraph pre .content__helper-visual--update
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .help-block .content--paragraph pre .content__helper-visual--update pre,
+.content--paragraph pre .help-block .content__helper-visual--update
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .help-block .content__helper-visual--update pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update pre,
 .content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
 .content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update pre,
 .content--paragraph .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update pre,
+.content__helper .help-block .content__helper-visual--update
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content__helper .help-block .content__helper-visual--update pre,
+.help-block .content__helper .content__helper-visual--update
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .help-block .content__helper .content__helper-visual--update pre,
+.content--paragraph pre .help-block .content__helper-visual--update
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .help-block .content__helper-visual--update pre,
+.help-block .content--paragraph pre .content__helper-visual--update
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .help-block .content--paragraph pre .content__helper-visual--update pre,
+.help-block .content__helper-visual--update
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .help-block .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .help-block .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .help-block .content__helper-visual--update pre,
+.help-block .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
+.help-block .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--update pre,
+.help-block .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update pre,
 .content__helper .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
 .content__helper .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper .content__helper-visual--update pre,
@@ -680,6 +1230,10 @@ span.ais-highlight em {
 .content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.help-block .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
+.help-block .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .help-block .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .help-block .content__helper-visual--update pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
@@ -688,6 +1242,8 @@ span.ais-highlight em {
 .specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--update pre,
 .content--paragraph .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.help-block .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--update pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update pre,
@@ -700,6 +1256,12 @@ span.ais-highlight em {
 .content__helper .content--paragraph pre .content__helper-visual--cancel
 .specific-thread__edit .trix__edit trix-editor pre,
 .specific-thread__edit .trix__edit trix-editor .content__helper .content--paragraph pre .content__helper-visual--cancel pre,
+.help-block .content__helper .content__helper-visual--cancel
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .help-block .content__helper .content__helper-visual--cancel pre,
+.content__helper .help-block .content__helper-visual--cancel
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content__helper .help-block .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel pre,
 .content__helper .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
@@ -715,12 +1277,39 @@ span.ais-highlight em {
 .content--paragraph pre .content__helper-visual--cancel
 .specific-thread__edit .trix__edit trix-editor pre,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.help-block .content--paragraph pre .content__helper-visual--cancel
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .help-block .content--paragraph pre .content__helper-visual--cancel pre,
+.content--paragraph pre .help-block .content__helper-visual--cancel
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .help-block .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
 .content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
 .content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
 .content--paragraph .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.content__helper .help-block .content__helper-visual--cancel
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content__helper .help-block .content__helper-visual--cancel pre,
+.help-block .content__helper .content__helper-visual--cancel
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .help-block .content__helper .content__helper-visual--cancel pre,
+.content--paragraph pre .help-block .content__helper-visual--cancel
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .help-block .content__helper-visual--cancel pre,
+.help-block .content--paragraph pre .content__helper-visual--cancel
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .help-block .content--paragraph pre .content__helper-visual--cancel pre,
+.help-block .content__helper-visual--cancel
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .help-block .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .help-block .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .help-block .content__helper-visual--cancel pre,
+.help-block .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.help-block .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--cancel pre,
+.help-block .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel pre,
 .content__helper .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
 .content__helper .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper .content__helper-visual--cancel pre,
@@ -729,6 +1318,10 @@ span.ais-highlight em {
 .content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.help-block .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.help-block .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .help-block .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .help-block .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
@@ -737,6 +1330,8 @@ span.ais-highlight em {
 .specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--cancel pre,
 .content--paragraph .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.help-block .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit trix-editor pre .help-block .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel pre {
@@ -745,10 +1340,12 @@ span.ais-highlight em {
 
 .content__helper .content__helper-visual--delete,
 .content--paragraph pre .content__helper-visual--delete,
+.help-block .content__helper-visual--delete,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete,
 .content__helper .content__helper-visual--update,
 .content--paragraph pre .content__helper-visual--update,
+.help-block .content__helper-visual--update,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update {
   -webkit-transform: translate(-24px, -40px);
@@ -757,6 +1354,7 @@ span.ais-highlight em {
 
 .content__helper .content__helper-visual--cancel,
 .content--paragraph pre .content__helper-visual--cancel,
+.help-block .content__helper-visual--cancel,
 .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel,
 .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel {
   -webkit-transform: translate(-26px, -40px);
@@ -841,8 +1439,8 @@ span.ais-highlight em {
 
 .picture-placeholder {
   border-radius: 40px;
-  width: 40px;
-  height: 40px;
+  max-width: 40px;
+  max-height: 40px;
 }
 
 .section-fixed {
@@ -903,6 +1501,12 @@ span.ais-highlight em {
   opacity: 0;
   -webkit-transition: all .15s ease-out;
   transition: all .15s ease-out;
+}
+
+.help-block {
+  color: #e65757 !important;
+  text-shadow: none;
+  text-align: left;
 }
 
 body {
@@ -985,10 +1589,12 @@ a p {
 .btn:disabled {
   -webkit-transition: all .15s ease-out;
   transition: all .15s ease-out;
-  background-color: #f68b34;
   opacity: 1;
-  color: whitesmoke;
+  border: none;
+  background-color: white;
+  color: #262626;
   font-weight: 700;
+  opacity: 0.8;
 }
 
 :disabled:hover,
@@ -997,10 +1603,6 @@ a p {
   cursor: not-allowed;
   -webkit-transform: scale(0.95);
           transform: scale(0.95);
-}
-
-.btn {
-  background-color: transparent;
 }
 
 button:active,
@@ -1090,6 +1692,7 @@ button:focus,
 .topics .topic__results:hover > div .content__helper .content__helper-highlight,
 .topics .topic__results:hover > div .content--paragraph pre .content__helper-highlight,
 .content--paragraph .topics .topic__results:hover > div pre .content__helper-highlight,
+.topics .topic__results:hover > div .help-block .content__helper-highlight,
 .topics .topic__results:hover > div .specific-thread__edit .trix__editor trix-editor pre .content__helper-highlight,
 .specific-thread__edit .trix__editor trix-editor .topics .topic__results:hover > div pre .content__helper-highlight,
 .topics .topic__results:hover > div
@@ -1132,6 +1735,7 @@ button:focus,
 .pagination .content__helper:hover,
 .pagination .content--paragraph pre:hover,
 .content--paragraph .pagination pre:hover,
+.pagination .help-block:hover,
 .pagination .specific-thread__edit .trix__editor trix-editor pre:hover,
 .specific-thread__edit .trix__editor trix-editor .pagination pre:hover,
 .pagination
@@ -1140,6 +1744,7 @@ button:focus,
 .pagination .content__helper:focus,
 .pagination .content--paragraph pre:focus,
 .content--paragraph .pagination pre:focus,
+.pagination .help-block:focus,
 .pagination .specific-thread__edit .trix__editor trix-editor pre:focus,
 .specific-thread__edit .trix__editor trix-editor .pagination pre:focus,
 .pagination
@@ -1148,12 +1753,17 @@ button:focus,
 .pagination .content__helper:active,
 .pagination .content--paragraph pre:active,
 .content--paragraph .pagination pre:active,
+.pagination .help-block:active,
 .pagination .specific-thread__edit .trix__editor trix-editor pre:active,
 .specific-thread__edit .trix__editor trix-editor .pagination pre:active,
 .pagination
 .specific-thread__edit .trix__edit trix-editor pre:active,
 .specific-thread__edit .trix__edit trix-editor .pagination pre:active {
   color: #f1862f;
+}
+
+.specific-thread .btn {
+  background-color: transparent;
 }
 
 .navbar {
@@ -1231,13 +1841,6 @@ button:focus,
   background-color: #0b305c;
   font-size: 22px;
   color: whitesmoke;
-}
-
-.registration .help-block {
-  color: #e65757;
-  font-size: 18px;
-  text-shadow: none;
-  text-align: left;
 }
 
 .registration .card {

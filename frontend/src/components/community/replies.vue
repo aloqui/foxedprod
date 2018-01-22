@@ -11,7 +11,7 @@
         <new-reply :dataSet="dataSet" @created="add" @changed="fetch"></new-reply>
       </div>
       <div v-else>
-        <p>Please sign in to reply to this topic.</p>
+        <p class="text-center m-5 content__helper text">Please sign in to reply to this topic.</p>
       </div>
     </div>
   </div>

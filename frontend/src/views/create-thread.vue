@@ -37,7 +37,6 @@
       </div>
     </div>
   </div>
-  </div>
 </template>
 
 <script>
@@ -77,7 +76,7 @@
         this.$http.post(`api/community/${this.$route.params.slug}`,
           this.createThread)
           .then(function (response) { // do something 
-          this.$router.push(`/community/${this.$route.params.slug}`);
+          this.$router.push(`/community/${this.$route.params.slug}/${response.body.id}`);
           swal("Discussion posted!", {
             icon: "success",
           });

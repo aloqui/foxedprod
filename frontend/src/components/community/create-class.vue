@@ -1,4 +1,4 @@
-<template >
+<template>
   <div class="join-class">
     <b-btn class="form__button--register-dark m-0" v-b-modal.modalPrevent>Create Classroom</b-btn>
     <!-- Main UI -->
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import swal from "sweetalert";
+  import swal from "sweetalert";
   export default {
     name: 'join-class',
     data() {
@@ -44,6 +44,7 @@ import swal from "sweetalert";
           });
         });
       },
+
       authenticatedUser() {
         return this.$auth.getAuthenticatedUser();
       }

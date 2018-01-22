@@ -12,14 +12,14 @@ class ChannelController extends Controller
         request()->validate([
             'name' => 'required|unique:channels,name',
             'slug' => 'required|unique:channels,slug',
-            'description' => 'required:channels,description'
+            'description' => 'required:channels,description|max:280'
         ]); 
-        Channel::Create([
+        $response = Channel::Create([
             'user_id' => Auth::id(),
             'name' => request('name'),
             'slug' => request('slug'),
             'description' => request('description'),
         ]);
+        return $response;
         }
-    
 }

@@ -7,9 +7,9 @@
       <create-class @enroll="enroll"></create-class>
     </div>
     <p class="text-left font--bold text-uppercase mt-3">Classes</p>
-    <div v-if="user.classes_count">
-        {{user.classroom_count}}
-      <div class="forum-post__header text-left font--light ml-1" v-for="room in classes" v-bind:key="room.id">
+      
+    <div v-if="true">
+      <div class="forum-post__header text-left font--light" v-for="room in classes" v-bind:key="room.id">
         <router-link class="nav-item content__sub-title" :to="`/class/${room.id}`">
           <li>
             {{room.name}}

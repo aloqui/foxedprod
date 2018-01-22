@@ -17,9 +17,9 @@
                   <router-link :to="`/${user.username}/threads`" v-if="isAuth">
                     <button class="btn form__button--passive-dark " type="submit">View posted topics</button>
                   </router-link>
-                  <router-link :to="`/threads/search`">
+                  <!-- <router-link :to="`/threads/search`">
                     <button class="btn form__button--passive-dark" type="submit">Global thread search</button>
-                  </router-link>
+                  </router-link> -->
                 </div>
                 <div class="section-block mb-2">
                   <p class="content__helper">Search for topic</p>
@@ -39,7 +39,11 @@
                               </ais-highlight>
                             </div>
                             <p class="content__helper text-uppercase">Description:</p>
-                            <p>{{result.description}}</p>
+                            <p class="content--paragraph">
+
+                            <ais-highlight :result="result" attribute-name="description">
+                            </ais-highlight>
+                            </p>
                           </div>
                           <div class="ml-auto  category__owner">
                             <p class="ml-auto font--light">{{result.owner.name}}</p>

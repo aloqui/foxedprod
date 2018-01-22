@@ -28,12 +28,14 @@
                         <div class="form-group mt-2 ">
                           <input class="form-control content__input--dark mb-2" name="title" id="title" cols="100" rows="1" width="100%" v-model="createCategory.name"
                             placeholder="Category name">
-                          <p class="help-block mb-2 mt-2" v-for="error in errorHandling.name">{{error}}</p>
+                          <p class="content__helper help-block mb-2 mt-2" v-for="error in errorHandling.name">{{error}}</p>
                           <input class="form-control content__input--dark mb-2" name="body" id="body" cols="100" rows="1" width="100%" v-model="createCategory.slug"
                             placeholder="Assign unique key to your new category. (Can only be assigned once.)">
                           <p class="help-block mb-2 mt-2" v-for="error in errorHandling.slug">{{error}}</p>
                           <textarea class="form-control content__input--dark mb-2" name="body" id="body" cols="100" rows="3" width="100%" v-model="createCategory.description"
                             placeholder="A brief description about your topic."></textarea>
+                            <p class="content__helper">{{charactersLeft}} <span v-if="createCategory.description.length >= 0">characters left</span></p>
+
                           <p class="help-block mb-2 mt-2" v-for="error in errorHandling.description">{{error}}</p>
                           <button type="submit" class="btn form__button--register-dark">
                             Publish
@@ -59,7 +61,6 @@
       </div>
     </div>
   </div>
-  </div>
 </template>
 
 <script>
@@ -84,7 +85,11 @@
     // ],
     data() {
       return {
-        createCategory: {},
+        createCategory: {
+          name: '',
+          slug: '',
+          description: ''
+        },
         errorHandling: {},
         loading: false
       }
@@ -92,7 +97,12 @@
     computed: {
       authenticatedUser() {
         return this.$auth.getAuthenticatedUser()
+      },
+      charactersLeft() {
+        let left = 280 - this.createCategory.description.length;
+        return left;
       }
+
     },
     filters: {
       removespace(str) {
@@ -113,29 +123,24 @@
         this.loading = true;
         this.$http.post(`api/community/create`, this.createCategory)
           .then(function (response) { // do something 
+          console.log(response)
             this.loading = false;
             swal("Discussion posted!", {
               icon: "success",
             });
-            this.$router.push(`/community/`);
+            this.$router.push(`/community/${response.body.slug}`);
           })
           .catch(response => {
             this.loading = false;
-            console.log(response.body.errors)
-            this.errorHandling = response.body.errors;
+            swal(response.body.message, {
+              icon: "error",
+            });
+            if (response.body.errors) {
+              this.errorHandling = response.body.errors;
+            }
           })
       }
-    },
-    created() {
-      // this.$http.get(`api/currentChannel/${this.$route.params.slug}`)
-      //   .then(function (data) {
-      //     this.createThread.channel_id = data.body.id;
-      //   })
     }
-    // },
-    // authenticatedUser() {
-    //     return this.$auth.getAuthenticatedUser()
-    //   }
   }
 
 </script>

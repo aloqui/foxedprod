@@ -14,7 +14,7 @@
               <div>
                 <p class="content__helper text-uppercase">Search</p>
                 <ais-search-box autofocus v-on:click="resetPage">
-                  <ais-input class="" placeholder="I can help!" autofocus v-on:click="resetPage"></ais-input>
+                  <ais-input class="" placeholder="Search..." autofocus v-on:click="resetPage"></ais-input>
                 </ais-search-box>
               </div>
               <div class="ml-auto">

@@ -49,7 +49,7 @@ class User extends Authenticatable
     }
     public function getAvatarPathAttribute($avatar)
     {
-        return asset('storage/' . $avatar ?: '/avatars/default.png');
+        return asset($avatar ? 'storage/' . $avatar : 'storage/avatars/default.jpg');
     }
     public function threads() {
         return $this->hasMany(Thread::class)->latest();

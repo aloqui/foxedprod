@@ -87,10 +87,12 @@ a {
 :disabled,
 .btn:disabled {
   transition: all .15s ease-out;
-  background-color: saturate(lighten($primary-color, 2%), 4%);
   opacity: 1;
-  color: $white;
+  border: none;
+  background-color: lighten($white, 4%);
+  color: $black--light;
   font-weight: $font--bold;
+  opacity: 0.8;
   &:hover {
     opacity: 0.8;
     cursor: not-allowed;
@@ -98,9 +100,7 @@ a {
   }
 }
 
-.btn {
-  background-color: transparent;
-}
+
 
 button,
 .btn {
@@ -200,5 +200,11 @@ button,
     &:active {
       color: $primary-color;
     }
+  }
+}
+
+.specific-thread {
+  .btn {
+    background-color: transparent;
   }
 }

@@ -12,8 +12,8 @@
             <span class="content__helper">@{{reply.owner.username}} said {{reply.created_at | formatDate}}</span>
           </div>
         </div>
-        <button class="btn btn-default ml-auto" @click="favorite" :disabled="reply.isFavorited" v-if="isAuthenticated">{{reply.favorites_count}}
-          <i class="far fa-star"></i>
+        <button class="btn content__button--passive ml-auto mt-auto mb-auto" @click="favorite" :disabled="reply.isFavorited" v-if="isAuthenticated"><span class="font--light">{{reply.favorites_count}}</span>
+          <i class="fas fa-star"></i>
         </button>
       </div>
 
