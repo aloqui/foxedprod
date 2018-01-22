@@ -1,33 +1,69 @@
 <template>
-  <div class="forum-post__header full-block__post m-2 p-3" :id="`reply-${reply.id}`">
-    <div>
-      <p>
-        
-      </p>
-      <div class=" d-flex flex-row justify-content-start  align-items-center mt-3">
+  <div class="forum-post__header mt-2 " :id="`reply-${reply.id}`">
+    <div class="mt-4">
+      <div class=" d-flex">
         <!-- <p class="mb-0 ml-1"> posted this 2 minutes ago</p> -->
-        <img class="picture-placeholder mr-3" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
-          alt="">
-        <a class="nav-link" href="">{{reply.owner.name}}</a> said
-        <span v-text="ago"></span>
-        <button class="btn btn-default ml-auto" @click="favorite" :disabled="reply.isFavorited" v-if="isAuthenticated">{{reply.favorites_count}} <i class="far fa-star"></i></button>
+        <div class="d-flex">
+          <div>
+            <img class="picture-placeholder mr-3" :src="reply.owner.avatar_path" alt="">
+          </div>
+          <div class="d-flex flex-column">
+            <a class="m-0 content__username" href="">{{reply.owner.name}}</a>
+            <span class="content__helper">@{{reply.owner.username}} said {{reply.created_at | formatDate}}</span>
+          </div>
+        </div>
+        <button class="btn btn-default ml-auto" @click="favorite" :disabled="reply.isFavorited" v-if="isAuthenticated">{{reply.favorites_count}}
+          <i class="far fa-star"></i>
+        </button>
       </div>
-      <hr>
+
       <div v-if="editing">
-        <div class="form-group">
+        <div class="form-group mt-3">
           <wysiwyg v-model="body" :value="body"></wysiwyg>
           <!-- <textarea class="form-control" v-model="body"></textarea> -->
         </div>
-        <button class="btn btn-xs btn-primary" @click="update">Update</button>
-        <button class="btn btn-xs btn-link" @click="editing = false; body = attributes.reply.body">Cancel</button>
-      </div>
-      <div class="forum__topic-content" v-else v-html="body"></div>
+        <div class="level d-flex">
+          <div>
+            <button class="btn content__helper text-uppercase" @click="update">
+              <i class="fas fa-check"></i>
+              <div class="content__helper-visual--update">
+                <p class="content__helper">Update</p>
+              </div>
+            </button>
 
-      <hr>
-      <div class="level d-flex panel-footer" v-if="authenticatedUser.id == reply.user_id">
-        <button class=" btn btn-xs mr-2" @click="editing = true">Edit</button>
-        <button class=" btn btn-xs btn-danger mr-2" @click="destroy">Delete</button>
+            <button class="btn content__helper text-uppercase" @click="editing = false; body = attributes.reply.body">
+              <i class="fas fa-times"></i>
+              <div class="content__helper-visual--cancel">
+                <p class="content__helper">Cancel</p>
+              </div>
+            </button>
+          </div>
+          <div class="ml-auto">
+            <button class="btn content__helper text-uppercase " @click="destroy">
+              <i class="far fa-trash-alt"></i>
+              <div class="content__helper-visual--delete">
+                <p class="content__helper">Delete</p>
+              </div>
+            </button>
+          </div>
+        </div>
       </div>
+      <div class="content--paragraph mt-4 mb-4" v-else v-html="body"></div>
+      <div class="level d-flex panel-footer" v-if="user.id == attributes.reply.user_id && !editing">
+        <button class="btn content__helper text-uppercase" @click="editing = true">
+          <i class="far fa-file-alt"></i>
+          <div class="content__helper-visual">
+            <p class="content__helper">Edit</p>
+          </div>
+        </button>
+        <button class="btn content__helper text-uppercase" @click="destroy">
+          <i class="far fa-trash-alt"></i>
+          <div class="content__helper-visual--delete">
+            <p class="content__helper">Delete</p>
+          </div>
+        </button>
+      </div>
+      <hr>
     </div>
   </div>
 </template>
@@ -45,11 +81,7 @@
         editing: false,
         reply: this.attributes.reply,
         body: this.attributes.reply.body,
-      }
-    },
-    computed: {
-      favoriteClasses() {
-        return ['btn']
+        user: {}
       }
     },
     methods: {
@@ -60,7 +92,7 @@
           .then(data => {
             this.attributes.reply.body = this.body;
             this.editing = false,
-            this.threads = data.body
+              this.threads = data.body
             swal("Edited!", {
               icon: "success",
             });
@@ -84,7 +116,7 @@
       },
       favorite() {
         this.$http.post(`api/replies/${this.attributes.reply.id}/favorites`)
-          .then(this.pushFavorite) 
+          .then(this.pushFavorite)
           .catch(response => {
             alert(response.body.message)
           })
@@ -92,6 +124,12 @@
       pushFavorite() {
         this.reply.favorites_count++;
         this.reply.isFavorited = true;
+      },
+      fetch() {
+        this.$http.get('api/user')
+          .then(response => {
+            this.user = response.data
+          }) 
       }
     },
     computed: {
@@ -103,18 +141,19 @@
       },
       ago() {
         return moment(this.attributes.reply.created_at).fromNow() + '...';
+      },
+      favoriteClasses() {
+        return ['btn']
       }
     },
-    created: {
-
+    mounted() {
+      this.fetch()
     }
   }
 
 </script>
 
 <style lang="scss">
-  .picture-placeholder {
-    width: 50px;
-  }
+
 
 </style>

@@ -98,7 +98,6 @@
     computed: {
       isAuth() {
         return this.user.id == this.Auth.id
-
       }
     }
 

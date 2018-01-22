@@ -1,13 +1,13 @@
 <template v-cloak>
-  <div>
-    <div v-if="authenticatedUser" class="full-block__post m-2 p-3">
+  <div class="new-reply">
+    <div v-if="authenticatedUser" class="">
       <div class="forum-post__form">
         <form @submit.prevent="addReply">
 
           <div class="form-group">
             <wysiwyg v-model="newReply.body" :value="newReply.body"></wysiwyg>
             <!-- <textarea class="form-control mb-1" name="body" id="body" cols="100" rows="5" width="100%" placeholder="Have something to say?" v-model="reply.body" required></textarea> -->
-            <button type="submit" class="btn btn-primary">Post Reply</button>
+            <button type="submit" class="btn content__helper content__button--passive mt-3">Post Reply</button>
           </div>
         </form>
       </div>

@@ -1,14 +1,18 @@
 <template>
-  <div>
-    <div v-for="(reply, index) in replies" :key="reply.id">
-      <reply :attributes="{reply}" v-cloak @deleted="remove(index)"></reply>
-    </div>
-    <paginator :dataSet="dataSet" @changed="fetch"></paginator>
-    <div v-if="user.id">
-      <new-reply :dataSet="dataSet" @created="add" @changed="fetch"></new-reply>
-    </div>
-    <div v-else>
-      <p>Please sign in to reply to this topic.</p>
+  <div class="section-block mt-2">
+    <div class="content m-auto">
+      <span class="content__helper text-uppercase mb-4">Responses</span>
+      <div v-for="(reply, index) in replies" :key="reply.id">
+        <reply :attributes="{reply}" v-cloak @deleted="remove(index)"></reply>
+      </div>
+      <paginator :dataSet="dataSet" @changed="fetch"></paginator>
+      
+      <div class="" v-if="user.id">
+        <new-reply :dataSet="dataSet" @created="add" @changed="fetch"></new-reply>
+      </div>
+      <div v-else>
+        <p>Please sign in to reply to this topic.</p>
+      </div>
     </div>
   </div>
 
@@ -33,7 +37,7 @@
         dataSet: false,
         pageQuery: this.$route.query.page,
         endpoint: `api${this.$route.path}/replies`,
-        user: null
+        user: {}
       }
 
     },
@@ -53,10 +57,9 @@
         return `${this.endpoint}?page=${page}`;
       },
       refresh(data) {
-        console.log(data.body.data);
+        this.user = this.$auth.getAuthenticatedUser();
         this.dataSet = data.body;
         this.replies = data.body.data;
-        this.user = this.$auth.getAuthenticatedUser();
       }
 
     },

@@ -48,11 +48,13 @@ p {
     }
   }
 }
+
 a {
   p {
     color: $black--text--light;
   }
 }
+
 .dropdown-menu {
   right: 0;
   left: auto;
@@ -96,6 +98,18 @@ a {
   }
 }
 
+.btn {
+  background-color: transparent;
+}
+
+button,
+.btn {
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+
 .ais-results {
   .ais-results__header {
     background-color: $black--light;
@@ -114,6 +128,7 @@ a {
     }
   }
 }
+
 .forums,
 .topics {
   .ais-input,
@@ -124,21 +139,57 @@ a {
     font-size: 34px;
     font-weight: 900;
     color: lighten($black--light, 8%);
-    text-transform: uppercase;
-    // border-bottom: 1px solid $white-background;
+    text-transform: uppercase; // border-bottom: 1px solid $white-background;
     transition: all .15s ease-out;
     &:hover,
     &:active,
     &:focus {
       border: none;
-      outline: none;
-      // border-bottom: 1px solid rgba($black--light, 0.6);
+      outline: none; // border-bottom: 1px solid rgba($black--light, 0.6);
     }
-    ::placeholder {
+     ::placeholder {
       font-size: 30px;
     }
   }
 }
+
+.topics {
+  .topic__results {
+    &:hover {
+      &>div .content__helper .content__helper-highlight {
+        color: $primary-color;
+      }
+    }
+  }
+}
+
 .ais-powered-by {
   transform: scale(0.8);
+}
+
+.specific-thread__edit {
+  .trix__editor,
+  .trix__edit {
+    input,
+    trix-editor {
+      border: none;
+      outline: none;
+      color: lighten($black--light, 30%);
+    }
+    trix-editor {
+      padding: 0;
+      font-family: 'Crimson Text', sans-serif;
+      font-size: 21px;
+      color: lighten($black--light, 30%);
+      pre {
+        @extend .content__helper;
+        color: darken($white, 38%);
+        font-size: 13px;
+        padding: 15px;
+        background-color: $white;
+        line-height: 20px;
+      }
+    }
+    trix-toolbar .trix-button {}
+  }
 }
