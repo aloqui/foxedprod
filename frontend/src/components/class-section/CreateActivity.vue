@@ -6,7 +6,7 @@
           <form @submit.prevent="create">
             <div class="form-group">
               <label>Image</label>
-              <input type="file" accept="image/*" class="form-control" @change="imageChanged">
+              <input type="file" class="form-control" @change="imageChanged">
             </div>
             <div class="form-group">
               <label>Title</label>
@@ -28,6 +28,12 @@
                   <option value="image">Image</option>
                 </select>
             </div>
+            <div class="form-group row">
+              <label for="" class="col-2 col-form-label">Date and time</label>
+                <div class="col-10">
+                  <input class="form-control" type="datetime-local" v-model="tomorrow" id="datePicker" :min="limit">
+                </div>
+              </div>
             <input type="submit" class="btn btn-success" v-if="activity.title && activity.body" value="submit">
           </form>
         </div>
@@ -37,6 +43,7 @@
 </template>
 <script>
   import swal from "sweetalert";
+  import moment from 'moment';
   export default {
     data() {
       return {
@@ -45,8 +52,11 @@
           body: "",
           image: "",
           classroom_id: JSON.parse(this.$route.params.id),
-          type: "code"
-        }
+          type: "code",
+          due:""
+        },
+        tomorrow:'',
+        limit:''
       };
     },
     methods: {
@@ -62,19 +72,49 @@
         console.log(this.activity);
       },
       create() {
-        // this.$validator.validateAll().then(() => {
+        var time = new Date();
+        var checkTime = moment(time).format("YYYY-MM-DD HH:mm:ss");
+        this.activity.due = moment(this.tomorrow).format("YYYY-MM-DD HH:mm:ss");
+
+        if(this.activity.due >= checkTime){
           this.$http.post("api/activity", this.activity).then(response => {
             console.log(response);
             swal("Succesfully created!", {
               icon: "success"
             });
-            // this.$router.push("/feed");
+            this.$router.push("/activity/"+response.body.id);
           });
+        }
+        else{
+          swal("Invalid Date", {
+              icon: "error"
+            });
+        }
+        // this.$validator.validateAll().then(() => {
+          // this.$http.post("api/activity", this.activity).then(response => {
+          //   console.log(response);
+          //   swal("Succesfully created!", {
+          //     icon: "success"
+          //   });
+          //   this.$router.push("/activity/"+response.body.id);
+          // });
         // });
       },
       authenticatedUser() {
         return this.$auth.getAuthenticatedUser();
-      }
+      },
+
+    },
+    mounted(){
+      // var dateControl = document.querySelector('input[type="datetime-local"]');
+      // dateControl.value = Date.now();
+      var tom = new Date();
+      this.limit = tom;
+      var calendarTom = tom.getFullYear() +'-'+ tom.getDate() +'-'+(tom.getMonth() + 1)+'T'+(tom.getHours()+ 1)+':'+(tom.getMinutes()+ 1);
+      moment(tom.getMilliseconds())
+      this.activity.due = '2017-06-01T08:30';
+
+      console.log(tom + "asdas")
     }
   };
 

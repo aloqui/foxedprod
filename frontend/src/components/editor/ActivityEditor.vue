@@ -39,8 +39,9 @@ export default {
 				title:"",
 				html:"",
 				css:"",
-                js: "",
-                activity_id: JSON.parse(this.$route.params.id)
+				js: "",
+				activity_id: JSON.parse(this.$route.params.id),
+				submitted: true
 			}
 		}
 	},

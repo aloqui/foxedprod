@@ -20,7 +20,9 @@ class CreateActivitiesTable extends Migration
             $table->string('title');
             $table->text('body');
             $table->string('type');
+            $table->boolean('enabled')->default(true);
             $table->string('image')->nullable();
+            $table->dateTime('due');
             $table->timestamps();
         });
     }

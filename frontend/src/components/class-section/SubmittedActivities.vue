@@ -19,7 +19,7 @@
                     <tr v-for="act in submitted.userAct">
                     <td>{{act.title}}</td>
                     <td>
-                        <router-link  :to="'/'+act.user.name +'/codes/' + act.id"><span>{{act.user.name}}</span></router-link>
+                        <router-link  :to="'/'+act.user.username +'/codes/' + act.id"><span>{{act.user.name}}</span></router-link>
                     </td>
                     <td>
                         <span v-for="sco in submitted.score">

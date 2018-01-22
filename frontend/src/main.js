@@ -21,6 +21,7 @@ Vue.use(VueObserveVisibility)
 
 
 // Vue.http.options.root = `${location.protocol}//${location.hostname}:8000`;
+Vue.http.options.root = 'http://localhost:8000';
 Vue.http.headers.common['Authorization'] = 'Bearer ' + Vue.auth.getToken();
 
 
