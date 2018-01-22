@@ -4,67 +4,121 @@
     <div class="container pt-4">
       <div class="row mt-2">
         <div class="col-12">
-          <div class="forum-post">
+          <div class="section-block">
+
             <!-- <div v-for="thread in threads" v-bind:thread="thread" :key="thread.id"> -->
             <!-- Editing Thread -->
             <div v-bind:threads="threads" :key="threads.id">
               <thread :attriThread="threads" inline-template>
-                <div v-if="editingThread">
-                  <div class="forum-post__header full-block__post m-2 p-3">
-                    <div>
-                      <h1>
-                        <div class="form-group">
-                          <h5>Title</h5>
-                          <input class="form-control" type="text" v-model="editThread.title">
-                        </div>
-                      </h1>
-                      <hr>
+
+                <div class="content m-auto specific-thread__edit" v-if="editingThread">
+
+                  <div class="mt-4">
+                    <div class="trix__edit">
+                      <div class="mb-4 d-flex">
+                        <router-link class="no-decoration" :to="`/${attriThread.owner.username}/threads`">
+                          <div class="d-flex align-items-center ">
+                            <img class="picture-placeholder mr-3" :src="attriThread.owner.avatar_path" alt="">
+                            <div class="d-flex flex-column">
+                              <a class="m-0 content__username" href="">{{attriThread.owner.name}}</a>
+                              <span class="content__helper">@{{attriThread.owner.username}} - {{attriThread.created_at | formatDate}}</span>
+                              <!-- <p5 class="mb-0 ml-1"> posted this 2 minutes ago</p> -->
+                            </div>
+                          </div>
+                        </router-link>
+                      </div>
                       <div class="form-group">
-                        <h5>Body</h5>
+                        <!-- <h5 class="content__helper">Title</h5> -->
+                        <h1>
+                          <input class="font--semi-bold " type="text" v-model="editThread.title">
+                        </h1>
+                        <a href="#" class="content__helper">{{attriThread.created_at | formatDateFormal}}</a>
+                      </div>
+                      <div class="form-group">
+
                         <wysiwyg v-model="editThread.body" :value="editThread.body"></wysiwyg>
                         <!-- <textarea class="form-control" name="" id="" cols="30" rows="10" v-model="editThread.body"></textarea> -->
                       </div>
+                      <a href="#" class="content__helper">{{attriThread.created_at | formatDateFormal}}</a>
                       <hr>
                     </div>
                     <div class="level d-flex">
-                      <button class=" btn btn-xs btn-primary mr-2" @click="update" v-if="editingThread = true">Submit</button>
-                      <button class=" btn btn-xs mr-2" @click="editingThread = false; editThread.body = attriThread.body" v-if="editingThread = true">Cancel</button>
-                      <form @submit.prevent="deleteThread">
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                      </form>
+                      <div>
+                        <button class="btn content__helper text-uppercase" @click="update">
+                          <i class="fas fa-check"></i>
+                          <div class="content__helper-visual--update">
+                            <p class="content__helper">Update</p>
+                          </div>
+                        </button>
+
+                        <button class="btn content__helper text-uppercase" @click="editingThread = false; editThread.body = attriThread.body; editThread.title = attriThread.title"
+                          v-if="editingThread = true">
+                          <i class="fas fa-times"></i>
+                          <div class="content__helper-visual--cancel">
+                            <p class="content__helper">Cancel</p>
+                          </div>
+                        </button>
+                      </div>
+                      <div class="ml-auto">
+                        <button class="btn content__helper text-uppercase " @click="deleteThread">
+                          <i class="far fa-trash-alt"></i>
+                          <div class="content__helper-visual--delete">
+                            <p class="content__helper">Delete</p>
+                          </div>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <!-- thread -->
-                <div v-else>
-                  <div class="forum-post__header full-block__post m-2 p-3 pt-0">
-                    <h1>
-                      <a class="forum-post__title mb-5">{{attriThread.title}}</a>
-                    </h1>
-                    <div class="d-flex align-items-center mt-3">
-                      <img class="picture-placeholder mr-3" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
-                        alt="">
-                      <router-link class="" :to="`/${attriThread.owner.username}/threads`">
-                        <a class="m-0" href="">{{attriThread.owner.name}}</a>
-                      </router-link>
-                      {{attriThread.created_at | formatDate}}
-                      <!-- <p5 class="mb-0 ml-1"> posted this 2 minutes ago</p> -->
+                <div class="content m-auto" v-else>
+                  <div class="mt-4">
+                    <div class="d-flex flex-column ">
+                      <div class="mb-4 d-flex">
+                        <router-link class="no-decoration" :to="`/${attriThread.owner.username}/threads`">
+                          <div class="d-flex align-items-center ">
+                            <img class="picture-placeholder mr-3" :src="attriThread.owner.avatar_path" alt="">
+                            <div class="d-flex flex-column">
+                              <a class="m-0 content__username" href="">{{attriThread.owner.name}}</a>
+                              <span class="content__helper">@{{attriThread.owner.username}} - {{attriThread.created_at | formatDate}}</span>
+                              <!-- <p5 class="mb-0 ml-1"> posted this 2 minutes ago</p> -->
+                            </div>
+                          </div>
+                        </router-link>
+                        <div class="ml-auto" v-if="attriThread.owner.id != authUser.id && show">
+                          <subscribe-button :active="active"></subscribe-button>
+                        </div>
+                      </div>
+                      <div>
+                        <h1 class="font--semi-bold">
+                          <a class="content__title">{{attriThread.title}}</a>
+                        </h1>
+                        <a href="#" class="content__helper">{{attriThread.created_at | formatDateFormal}}</a>
+                      </div>
                     </div>
+                    <div class="mt-4 mb-4 content--paragraph">
+                      <p v-html="attriThread.body"></p>
+                    </div>
+                    <a href="#" class="content__helper">{{attriThread.created_at | formatDateFormal}}</a>
                     <hr>
-                    <div class="forum__topic-content" v-html="attriThread.body"></div>
-                    <hr>
 
-                    <subscribe-button :active="active"></subscribe-button>
-                    <div class="panel-footer level d-flex" v-if="authenticatedUser.id == attriThread.user_id">
-                      <button class=" btn btn-xs mr-2" @click="editingThread = true">Edit</button>
-                      <form @submit.prevent="deleteThread">
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                      </form>
-
-
+                    <div class="panel-footer level d-flex" v-if="attriThread.owner.id == authUser.id">
+                      <button class="btn content__helper text-uppercase" @click="editingThread = true">
+                        <i class="far fa-file-alt"></i>
+                        <div class="content__helper-visual">
+                          <p class="content__helper">Edit</p>
+                        </div>
+                      </button>
+                      <button class="btn content__helper text-uppercase" @click="deleteThread">
+                        <i class="far fa-trash-alt"></i>
+                        <div class="content__helper-visual--delete">
+                          <p class="content__helper">Delete</p>
+                        </div>
+                      </button>
+                      <div class="ml-auto">
+                      </div>
                     </div>
                   </div>
-
                 </div>
               </thread>
             </div>
@@ -73,10 +127,8 @@
           <!-- reply -->
           <!-- <replies > -->
           <div>
-
             <replies></replies>
           </div>
-
           <!-- </replies> -->
 
 
@@ -131,22 +183,12 @@
       },
       refresh(data) {
         this.threads = data.body
+
       }
     },
     mounted() {
       this.fetch()
-      console.log(this.$route.path);
-      console.log(this.pageQuery)
-    },
-    computed: {
-      authenticatedUser() {
-        return this.$auth.getAuthenticatedUser()
-      }
-    },
-    // },
-    // authenticatedUser() {
-    //     return this.$auth.getAuthenticatedUser()
-    //   }
+    }
   }
 
 </script>

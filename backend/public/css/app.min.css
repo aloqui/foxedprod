@@ -7,6 +7,10 @@ span.ais-highlight em {
   font-weight: 900;
 }
 
+.font--semi-bold {
+  font-weight: 700;
+}
+
 .font--medium {
   font-weight: 400;
 }
@@ -19,13 +23,33 @@ span.ais-highlight em {
   background-color: whitesmoke;
 }
 
+.content__limit-characters {
+  max-height: 200px;
+  width: 80%;
+  overflow-y: hidden;
+}
+
 .content {
-  max-width: 650px;
+  max-width: 680px;
+}
+
+.content p {
+  color: #404040;
 }
 
 .content h1:hover,
 .content p:hover {
   text-decoration: none !important;
+}
+
+.content__username {
+  color: #4d4c4c;
+  font-family: 'Khula', sans-serif;
+}
+
+.content__username:hover {
+  color: #000;
+  text-decoration: none;
 }
 
 .content__title {
@@ -39,9 +63,729 @@ span.ais-highlight em {
   color: #adadad;
 }
 
-.content__helper {
+.content__helper,
+.content--paragraph pre,
+.specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor pre {
   color: #adadad;
   font-size: 12px;
+}
+
+.content__helper:hover > .content__helper-visual,
+.content--paragraph pre:hover > .content__helper-visual,
+.specific-thread__edit .trix__editor trix-editor pre:hover > .content__helper-visual,
+.specific-thread__edit .trix__edit trix-editor pre:hover > .content__helper-visual,
+.content__helper:hover > .content__helper-visual--delete,
+.content--paragraph .content__helper pre:hover > .content__helper-visual--delete,
+.specific-thread__edit .trix__editor trix-editor .content__helper pre:hover > .content__helper-visual--delete,
+.specific-thread__edit .trix__edit trix-editor .content__helper pre:hover > .content__helper-visual--delete,
+.content--paragraph pre .content__helper:hover > .content__helper-visual--delete,
+.content--paragraph pre:hover > .content__helper-visual--delete,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper:hover > .content__helper-visual--delete,
+.specific-thread__edit .trix__editor trix-editor pre:hover > .content__helper-visual--delete,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper:hover > .content__helper-visual--delete,
+.specific-thread__edit .trix__edit trix-editor pre:hover > .content__helper-visual--delete,
+.content__helper:hover > .content__helper-visual--update,
+.content--paragraph
+.content__helper pre:hover > .content__helper-visual--update,
+.specific-thread__edit .trix__editor trix-editor
+.content__helper pre:hover > .content__helper-visual--update,
+.specific-thread__edit .trix__edit trix-editor
+.content__helper pre:hover > .content__helper-visual--update,
+.content--paragraph pre .content__helper:hover > .content__helper-visual--update,
+.content--paragraph pre:hover > .content__helper-visual--update,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper:hover > .content__helper-visual--update,
+.specific-thread__edit .trix__editor trix-editor pre:hover > .content__helper-visual--update,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper:hover > .content__helper-visual--update,
+.specific-thread__edit .trix__edit trix-editor pre:hover > .content__helper-visual--update,
+.content__helper:hover > .content__helper-visual--cancel,
+.content--paragraph .content__helper pre:hover > .content__helper-visual--cancel,
+.specific-thread__edit .trix__editor trix-editor .content__helper pre:hover > .content__helper-visual--cancel,
+.specific-thread__edit .trix__edit trix-editor .content__helper pre:hover > .content__helper-visual--cancel,
+.content--paragraph pre .content__helper:hover > .content__helper-visual--cancel,
+.content--paragraph pre:hover > .content__helper-visual--cancel,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper:hover > .content__helper-visual--cancel,
+.specific-thread__edit .trix__editor trix-editor pre:hover > .content__helper-visual--cancel,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper:hover > .content__helper-visual--cancel,
+.specific-thread__edit .trix__edit trix-editor pre:hover > .content__helper-visual--cancel,
+.content__helper:hover > .content__helper-visual--delete,
+.content--paragraph pre:hover > .content__helper-visual--delete,
+.specific-thread__edit .trix__editor trix-editor pre:hover > .content__helper-visual--delete,
+.specific-thread__edit .trix__edit trix-editor pre:hover > .content__helper-visual--delete,
+.content__helper:hover > .content__helper-visual--update,
+.content--paragraph pre:hover > .content__helper-visual--update,
+.specific-thread__edit .trix__editor trix-editor pre:hover > .content__helper-visual--update,
+.specific-thread__edit .trix__edit trix-editor pre:hover > .content__helper-visual--update,
+.content__helper:hover > .content__helper-visual--cancel,
+.content--paragraph pre:hover > .content__helper-visual--cancel,
+.specific-thread__edit .trix__editor trix-editor pre:hover > .content__helper-visual--cancel,
+.specific-thread__edit .trix__edit trix-editor pre:hover > .content__helper-visual--cancel {
+  opacity: 0.8;
+}
+
+.content__helper i,
+.content--paragraph pre i,
+.specific-thread__edit .trix__editor trix-editor pre i,
+.specific-thread__edit .trix__edit trix-editor pre i,
+.content__helper .far,
+.content--paragraph pre .far,
+.specific-thread__edit .trix__editor trix-editor pre .far,
+.specific-thread__edit .trix__edit trix-editor pre .far,
+.content__helper svg,
+.content--paragraph pre svg,
+.specific-thread__edit .trix__editor trix-editor pre svg,
+.specific-thread__edit .trix__edit trix-editor pre svg {
+  vertical-align: middle;
+  font-size: 18px;
+}
+
+.content__helper .content__helper-visual,
+.content--paragraph pre .content__helper-visual,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual,
+.content__helper .content__helper-visual--delete,
+.content--paragraph pre .content__helper-visual--delete,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete,
+.content__helper .content__helper-visual--update,
+.content--paragraph pre .content__helper-visual--update,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update,
+.content__helper .content__helper-visual--cancel,
+.content--paragraph pre .content__helper-visual--cancel,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel {
+  position: absolute;
+  -webkit-transform: translate(-17px, -40px);
+          transform: translate(-17px, -40px);
+  padding: 4px 10px;
+  border-radius: 4px;
+  opacity: 0;
+  -webkit-transition: all .1s ease-out;
+  transition: all .1s ease-out;
+}
+
+.content__helper .content__helper-visual .content__helper,
+.content--paragraph pre .content__helper-visual .content__helper,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual .content__helper,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual .content__helper,
+.content__helper .content__helper-visual--delete .content__helper,
+.content--paragraph pre .content__helper .content__helper-visual--delete .content__helper,
+.content__helper .content--paragraph pre .content__helper-visual--delete .content__helper,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete .content__helper,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .content__helper,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--delete .content__helper,
+.content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .content__helper,
+.content__helper .content--paragraph pre .content__helper-visual--delete .content__helper,
+.content--paragraph pre .content__helper .content__helper-visual--delete .content__helper,
+.content--paragraph pre .content__helper-visual--delete .content__helper,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete .content__helper,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .content__helper,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete .content__helper,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .content__helper,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .content__helper,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete .content__helper,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .content__helper,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete .content__helper,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .content__helper,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete .content__helper,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete .content__helper,
+.content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .content__helper,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--delete .content__helper,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .content__helper,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete .content__helper,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete .content__helper,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete .content__helper,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .content__helper,
+.content__helper .content__helper-visual--update .content__helper,
+.content--paragraph pre
+.content__helper .content__helper-visual--update .content__helper,
+.content__helper .content--paragraph pre .content__helper-visual--update .content__helper,
+.specific-thread__edit .trix__editor trix-editor pre
+.content__helper .content__helper-visual--update .content__helper,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .content__helper,
+.specific-thread__edit .trix__edit trix-editor pre
+.content__helper .content__helper-visual--update .content__helper,
+.content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .content__helper,
+.content__helper .content--paragraph pre .content__helper-visual--update .content__helper,
+.content--paragraph pre .content__helper .content__helper-visual--update .content__helper,
+.content--paragraph pre .content__helper-visual--update .content__helper,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update .content__helper,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .content__helper,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update .content__helper,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .content__helper,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .content__helper,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--update .content__helper,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .content__helper,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update .content__helper,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .content__helper,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update .content__helper,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update .content__helper,
+.content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .content__helper,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--update .content__helper,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .content__helper,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update .content__helper,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update .content__helper,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update .content__helper,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .content__helper,
+.content__helper .content__helper-visual--cancel .content__helper,
+.content--paragraph pre .content__helper .content__helper-visual--cancel .content__helper,
+.content__helper .content--paragraph pre .content__helper-visual--cancel .content__helper,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel .content__helper,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content__helper,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--cancel .content__helper,
+.content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .content__helper,
+.content__helper .content--paragraph pre .content__helper-visual--cancel .content__helper,
+.content--paragraph pre .content__helper .content__helper-visual--cancel .content__helper,
+.content--paragraph pre .content__helper-visual--cancel .content__helper,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel .content__helper,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content__helper,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel .content__helper,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .content__helper,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content__helper,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel .content__helper,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content__helper,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel .content__helper,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content__helper,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content__helper,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel .content__helper,
+.content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .content__helper,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--cancel .content__helper,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .content__helper,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel .content__helper,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel .content__helper,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content__helper,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .content__helper,
+.content__helper .content__helper-visual .content--paragraph pre,
+.content--paragraph .content__helper .content__helper-visual pre,
+.content--paragraph pre .content__helper-visual pre,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual pre,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual .content--paragraph pre,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual pre,
+.content__helper .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .content__helper .content__helper-visual--delete pre,
+.content--paragraph pre .content__helper .content__helper-visual--delete pre,
+.content__helper .content--paragraph pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete pre,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--delete pre,
+.content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.content__helper .content--paragraph pre .content__helper-visual--delete pre,
+.content--paragraph pre .content__helper .content__helper-visual--delete pre,
+.content--paragraph pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--delete pre,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.content__helper .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .content__helper .content__helper-visual--update pre,
+.content--paragraph pre
+.content__helper .content__helper-visual--update pre,
+.content__helper .content--paragraph pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor trix-editor pre
+.content__helper .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre
+.content__helper .content__helper-visual--update pre,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .content--paragraph pre,
+.content--paragraph
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit trix-editor pre
+.content__helper .content__helper-visual--update .content--paragraph pre,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre
+.content__helper .content__helper-visual--update pre,
+.content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .content--paragraph pre,
+.content--paragraph
+.content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update pre,
+.content__helper .content--paragraph pre .content__helper-visual--update pre,
+.content--paragraph pre .content__helper .content__helper-visual--update pre,
+.content--paragraph pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update pre,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--update pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
+.content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--update .content--paragraph pre,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--update pre,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update pre,
+.content__helper .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .content__helper .content__helper-visual--cancel pre,
+.content--paragraph pre .content__helper .content__helper-visual--cancel pre,
+.content__helper .content--paragraph pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel pre,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--cancel pre,
+.content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.content__helper .content--paragraph pre .content__helper-visual--cancel pre,
+.content--paragraph pre .content__helper .content__helper-visual--cancel pre,
+.content--paragraph pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .content__helper
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--cancel pre,
+.content--paragraph
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel .content--paragraph pre,
+.content--paragraph .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.content__helper .content__helper-visual .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content__helper .content__helper-visual pre,
+.content--paragraph pre .content__helper-visual .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual pre,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual pre,
+.content__helper .content__helper-visual--delete .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content__helper .content__helper-visual--delete pre,
+.content--paragraph pre .content__helper .content__helper-visual--delete .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper .content__helper-visual--delete pre,
+.content__helper .content--paragraph pre .content__helper-visual--delete .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content__helper .content--paragraph pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete pre,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper .content__helper-visual--delete pre,
+.content__helper .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.content__helper .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.content__helper .content--paragraph pre .content__helper-visual--delete .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content__helper .content--paragraph pre .content__helper-visual--delete pre,
+.content--paragraph pre .content__helper .content__helper-visual--delete .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper .content__helper-visual--delete pre,
+.content--paragraph pre .content__helper-visual--delete .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.content__helper .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.content__helper .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper .content__helper-visual--delete pre,
+.content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.content__helper .content__helper-visual--update .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content__helper .content__helper-visual--update pre,
+.content--paragraph pre
+.content__helper .content__helper-visual--update .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre
+.content__helper .content__helper-visual--update pre,
+.content__helper .content--paragraph pre .content__helper-visual--update .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor
+.content__helper .content--paragraph pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor trix-editor pre
+.content__helper .content__helper-visual--update pre,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre
+.content__helper .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre
+.content__helper .content__helper-visual--update pre,
+.content__helper .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.content__helper .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
+.content__helper .content--paragraph pre .content__helper-visual--update .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content__helper .content--paragraph pre .content__helper-visual--update pre,
+.content--paragraph pre .content__helper .content__helper-visual--update .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper .content__helper-visual--update pre,
+.content--paragraph pre .content__helper-visual--update .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--update pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
+.content__helper .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.content__helper .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper .content__helper-visual--update pre,
+.content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
+.content__helper .content__helper-visual--cancel .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content__helper .content__helper-visual--cancel pre,
+.content--paragraph pre .content__helper .content__helper-visual--cancel .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper .content__helper-visual--cancel pre,
+.content__helper .content--paragraph pre .content__helper-visual--cancel .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content__helper .content--paragraph pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel pre,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper .content__helper-visual--cancel pre,
+.content__helper .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.content__helper .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.content__helper .content--paragraph pre .content__helper-visual--cancel .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content__helper .content--paragraph pre .content__helper-visual--cancel pre,
+.content--paragraph pre .content__helper .content__helper-visual--cancel .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper .content__helper-visual--cancel pre,
+.content--paragraph pre .content__helper-visual--cancel .specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.content__helper .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel pre,
+.content--paragraph .specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.content__helper .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.content__helper .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper .content__helper-visual--cancel pre,
+.content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.content__helper .content__helper-visual
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content__helper .content__helper-visual pre,
+.content--paragraph pre .content__helper-visual
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual pre,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual pre,
+.content__helper .content__helper-visual--delete
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content__helper .content__helper-visual--delete pre,
+.content--paragraph pre .content__helper .content__helper-visual--delete
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper .content__helper-visual--delete pre,
+.content__helper .content--paragraph pre .content__helper-visual--delete
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content__helper .content--paragraph pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete pre,
+.content__helper .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.content__helper .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--delete pre,
+.content__helper .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.content__helper .content--paragraph pre .content__helper-visual--delete
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content__helper .content--paragraph pre .content__helper-visual--delete pre,
+.content--paragraph pre .content__helper .content__helper-visual--delete
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper .content__helper-visual--delete pre,
+.content--paragraph pre .content__helper-visual--delete
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.content--paragraph .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.content__helper .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.content__helper .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--delete pre,
+.content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.content__helper .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--delete pre,
+.content--paragraph .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--delete pre,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete pre,
+.content__helper .content__helper-visual--update
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content__helper .content__helper-visual--update pre,
+.content--paragraph pre
+.content__helper .content__helper-visual--update
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre
+.content__helper .content__helper-visual--update pre,
+.content__helper .content--paragraph pre .content__helper-visual--update
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor
+.content__helper .content--paragraph pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre
+.content__helper .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre
+.content__helper .content__helper-visual--update pre,
+.content__helper .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
+.content__helper .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit trix-editor pre
+.content__helper .content__helper-visual--update pre,
+.content__helper .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update pre,
+.content__helper .content--paragraph pre .content__helper-visual--update
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content__helper .content--paragraph pre .content__helper-visual--update pre,
+.content--paragraph pre .content__helper .content__helper-visual--update
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper .content__helper-visual--update pre,
+.content--paragraph pre .content__helper-visual--update
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
+.content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.content--paragraph .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update pre,
+.content__helper .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
+.content__helper .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--update pre,
+.content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
+.content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
+.content__helper .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--update pre,
+.content--paragraph .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--update pre,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update pre,
+.content__helper .content__helper-visual--cancel
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content__helper .content__helper-visual--cancel pre,
+.content--paragraph pre .content__helper .content__helper-visual--cancel
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper .content__helper-visual--cancel pre,
+.content__helper .content--paragraph pre .content__helper-visual--cancel
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content__helper .content--paragraph pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel pre,
+.content__helper .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.content__helper .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--cancel pre,
+.content__helper .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.content__helper .content--paragraph pre .content__helper-visual--cancel
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content__helper .content--paragraph pre .content__helper-visual--cancel pre,
+.content--paragraph pre .content__helper .content__helper-visual--cancel
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper .content__helper-visual--cancel pre,
+.content--paragraph pre .content__helper-visual--cancel
+.specific-thread__edit .trix__edit trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.content--paragraph .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.content__helper .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.content__helper .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper .content__helper-visual--cancel pre,
+.content--paragraph .specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.content--paragraph .specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.content__helper .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper .content__helper-visual--cancel pre,
+.content--paragraph .specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit trix-editor .content--paragraph pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__editor .trix__edit trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit .trix__editor trix-editor pre .content__helper-visual--cancel pre,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel pre {
+  color: #c2c2c2;
+}
+
+.content__helper .content__helper-visual--delete,
+.content--paragraph pre .content__helper-visual--delete,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--delete,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--delete,
+.content__helper .content__helper-visual--update,
+.content--paragraph pre .content__helper-visual--update,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--update,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--update {
+  -webkit-transform: translate(-24px, -40px);
+          transform: translate(-24px, -40px);
+}
+
+.content__helper .content__helper-visual--cancel,
+.content--paragraph pre .content__helper-visual--cancel,
+.specific-thread__edit .trix__editor trix-editor pre .content__helper-visual--cancel,
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-visual--cancel {
+  -webkit-transform: translate(-26px, -40px);
+          transform: translate(-26px, -40px);
+}
+
+.content--paragraph {
+  font-family: 'Crimson Text', sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.content--paragraph pre {
+  color: #949494;
+  font-size: 13px;
+  padding: 15px;
+  background-color: whitesmoke;
+  line-height: 20px;
+}
+
+.content--paragraph a,
+.content--paragraph div a {
+  color: #595959;
+  border-bottom: 1px solid #8c8c8c;
+}
+
+.content--paragraph a:hover,
+.content--paragraph div a:hover {
+  text-decoration: none;
 }
 
 .block-full-height {
@@ -83,10 +827,6 @@ span.ais-highlight em {
   color: #666666;
 }
 
-.content {
-  width: 600px;
-}
-
 .box-shadow {
   -webkit-box-shadow: 0px 1px 8px 0px rgba(50, 50, 50, 0.34);
   box-shadow: 0px 1px 8px 0px rgba(50, 50, 50, 0.34);
@@ -100,7 +840,9 @@ span.ais-highlight em {
 }
 
 .picture-placeholder {
-  border-radius: 50px;
+  border-radius: 40px;
+  width: 40px;
+  height: 40px;
 }
 
 .section-fixed {
@@ -112,20 +854,10 @@ span.ais-highlight em {
   cursor: pointer;
 }
 
-.forum__topic-content pre {
-  background-color: white;
-  padding: 5px 10px;
-  margin: 10px 2px;
-  color: #535353;
-  max-width: 800px;
-  border-radius: 6px;
-  border: 1px dotted #dbdbdb;
-}
-
 .forum__title {
   color: #262626;
   font-weight: bold;
-  font-size: 40px;
+  font-size: 30px;
   margin: 0;
   -webkit-transition: all .15s ease-out;
   transition: all .15s ease-out;
@@ -167,6 +899,7 @@ span.ais-highlight em {
 
 .forums .ais-results div .d-flex .category__owner,
 .topics .ais-results div .d-flex .category__owner {
+  min-width: 140px;
   opacity: 0;
   -webkit-transition: all .15s ease-out;
   transition: all .15s ease-out;
@@ -266,6 +999,17 @@ a p {
           transform: scale(0.95);
 }
 
+.btn {
+  background-color: transparent;
+}
+
+button:active,
+button:focus,
+.btn:active,
+.btn:focus {
+  outline: none;
+}
+
 .ais-results .ais-results__header {
   background-color: #262626;
   color: whitesmoke;
@@ -343,9 +1087,73 @@ a p {
   font-size: 30px;
 }
 
+.topics .topic__results:hover > div .content__helper .content__helper-highlight,
+.topics .topic__results:hover > div .content--paragraph pre .content__helper-highlight,
+.content--paragraph .topics .topic__results:hover > div pre .content__helper-highlight,
+.topics .topic__results:hover > div .specific-thread__edit .trix__editor trix-editor pre .content__helper-highlight,
+.specific-thread__edit .trix__editor trix-editor .topics .topic__results:hover > div pre .content__helper-highlight,
+.topics .topic__results:hover > div
+.specific-thread__edit .trix__edit trix-editor pre .content__helper-highlight,
+.specific-thread__edit .trix__edit trix-editor .topics .topic__results:hover > div pre .content__helper-highlight {
+  color: #f1862f;
+}
+
 .ais-powered-by {
   -webkit-transform: scale(0.8);
           transform: scale(0.8);
+}
+
+.specific-thread__edit .trix__editor input,
+.specific-thread__edit .trix__editor trix-editor,
+.specific-thread__edit .trix__edit input,
+.specific-thread__edit .trix__edit trix-editor {
+  border: none;
+  outline: none;
+  color: #737373;
+}
+
+.specific-thread__edit .trix__editor trix-editor,
+.specific-thread__edit .trix__edit trix-editor {
+  padding: 0;
+  font-family: 'Crimson Text', sans-serif;
+  font-size: 21px;
+  color: #737373;
+}
+
+.specific-thread__edit .trix__editor trix-editor pre,
+.specific-thread__edit .trix__edit trix-editor pre {
+  color: #949494;
+  font-size: 13px;
+  padding: 15px;
+  background-color: whitesmoke;
+  line-height: 20px;
+}
+
+.pagination .content__helper:hover,
+.pagination .content--paragraph pre:hover,
+.content--paragraph .pagination pre:hover,
+.pagination .specific-thread__edit .trix__editor trix-editor pre:hover,
+.specific-thread__edit .trix__editor trix-editor .pagination pre:hover,
+.pagination
+.specific-thread__edit .trix__edit trix-editor pre:hover,
+.specific-thread__edit .trix__edit trix-editor .pagination pre:hover,
+.pagination .content__helper:focus,
+.pagination .content--paragraph pre:focus,
+.content--paragraph .pagination pre:focus,
+.pagination .specific-thread__edit .trix__editor trix-editor pre:focus,
+.specific-thread__edit .trix__editor trix-editor .pagination pre:focus,
+.pagination
+.specific-thread__edit .trix__edit trix-editor pre:focus,
+.specific-thread__edit .trix__edit trix-editor .pagination pre:focus,
+.pagination .content__helper:active,
+.pagination .content--paragraph pre:active,
+.content--paragraph .pagination pre:active,
+.pagination .specific-thread__edit .trix__editor trix-editor pre:active,
+.specific-thread__edit .trix__editor trix-editor .pagination pre:active,
+.pagination
+.specific-thread__edit .trix__edit trix-editor pre:active,
+.specific-thread__edit .trix__edit trix-editor .pagination pre:active {
+  color: #f1862f;
 }
 
 .navbar {
@@ -810,6 +1618,17 @@ a p {
   background-color: #fff;
   padding: 20px 20px;
   width: 100%;
+}
+
+.content__button--passive,
+.content__button--danger {
+  background-color: whitesmoke;
+  border: 1px solid #c2c2c2;
+  color: #262626;
+}
+
+.content__button--danger {
+  color: #c2c2c2;
 }
 
 .confirm-account .confirm-account-block {

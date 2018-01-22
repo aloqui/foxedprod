@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="trix__editor">
+    
     <input id="trix" type="hidden" :value="value">
     <trix-editor ref="trix" input="trix"></trix-editor>
   </div>

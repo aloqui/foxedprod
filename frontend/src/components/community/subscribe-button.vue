@@ -1,6 +1,6 @@
-<template>
+<template v-cloak>
   <div v-if="authenticatedUser">
-    <button :class="classes" @click="subscribe" v-text="subscribed"></button>
+    <button :class="classes" @click="subscribe" v-text="subscribed" v-cloak></button>
   </div>
 </template>
 <script>
@@ -13,7 +13,7 @@
     },
     computed: {
       classes() {
-        return ['btn', this.active ? 'btn-danger' : 'btn-primary'];
+        return ['btn content__helper text-uppercase', this.active ? 'content__button--danger' : 'content__button--passive'];
       },
       authenticatedUser() {
         return this.$auth.isAuthenticated()
@@ -24,15 +24,15 @@
     },
     methods: {
       subscribe() {
-
-        this.$http[(this.active ? 'delete' : 'post')](`api${this.$route.path}/subscriptions`)
-          .then(() => {
-            this.active = !this.active;
-
-          })
-          .catch(() => {
-            alert("failed");
-          })
+        setTimeout(() => {
+          this.$http[(this.active ? 'delete' : 'post')](`api${this.$route.path}/subscriptions`)
+            .then(() => {
+              this.active = !this.active;
+            })
+            .catch(() => {
+              alert("failed");
+            })
+        }, 2000)
       }
     },
     mounted() {
@@ -41,3 +41,9 @@
   };
 
 </script>
+
+<style lang="scss" scoped>
+  [v-cloak] {
+    display: none;
+  }
+</style>

@@ -7,8 +7,7 @@
             <div>
               <ais-index app-id="TN5MR9QHP4" api-key="a933713f38f230be88643278a41c7281" :query="q" index-name="channels" :query-parameters="{'page': page} ">
                 <!-- <ais-results-per-page-selector :options="[10, 20, 30]"></ais-results-per-page-selector> -->
-
-                <div class="section-block mt-2 mb-3">
+                <div class="section-block mt-2 mb-2">
                   <router-link to="/community/create" v-if="isAuth">
                     <button class="btn form__button--positive-dark ml-1 mr-1" type="submit">
                       <i class="fas fa-expand"></i>
@@ -22,7 +21,7 @@
                     <button class="btn form__button--passive-dark" type="submit">Global thread search</button>
                   </router-link>
                 </div>
-                <div class="section-block mb-3">
+                <div class="section-block mb-2">
                   <p class="content__helper">Search for topic</p>
                   <ais-search-box autofocus v-on:click="resetPage">
                     <ais-input class="" placeholder="Need help?" autofocus v-on:click="resetPage"></ais-input>
