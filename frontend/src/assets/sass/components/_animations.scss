@@ -1,0 +1,44 @@
+@keyframes squeeze-in-out {
+    0% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 0.55;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    20% {
+        transform: translateY(0);
+    }
+    60% {
+        transform: translateY(10px);
+    }
+    90% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0)
+    }
+    30% {
+        transform: rotate(300deg)
+    }
+
+    60% {
+        transform: translateY(360deg);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}

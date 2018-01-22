@@ -1,0 +1,210 @@
+body {
+  background-color: $white-background;
+}
+
+span.ais-highlight em {
+  //background-color: $primary-color;
+  color: $black--light;
+  opacity: 0.8;
+  padding: 1px;
+  font-style: normal;
+  @extend .font--bold;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  margin: 0;
+}
+
+.enrolled-class {
+  li {
+    list-style: none;
+  }
+}
+
+.no-decoration {
+  &:hover {
+    text-decoration: none !important;
+  }
+}
+
+.navbar {
+  a,
+  li {
+    color: $text-white;
+    list-style: none;
+    text-decoration: none;
+    &:hover {
+      color: $primary-color;
+    }
+  }
+  .algolia-search {
+    input {
+      color: $white;
+    }
+  }
+}
+
+a {
+  p {
+    color: $black--text--light;
+  }
+}
+
+.dropdown-menu {
+  right: 0;
+  left: auto;
+}
+
+.dropdown-menu li,
+.dropdown-menu a {
+  font-size: 14px;
+  cursor: pointer;
+  color: lighten($black, 24%);
+  transition: all .14s ease-out;
+  &:hover {
+    background-color: rgba($primary-color, 0.2);
+    color: $black;
+  }
+}
+
+.algolia-search {
+  .dropdown {
+    .dropdown-menu {
+      width: 100%;
+      left: 0;
+      right: 0;
+      max-height: 70vh;
+      border-radius: 0;
+    }
+  }
+}
+
+:disabled,
+.btn:disabled {
+  transition: all .15s ease-out;
+  opacity: 1;
+  border: none;
+  background-color: lighten($white, 4%);
+  color: $black--light;
+  font-weight: $font--bold;
+  opacity: 0.8;
+  &:hover {
+    opacity: 0.8;
+    cursor: not-allowed;
+    transform: scale(0.95);
+  }
+}
+
+
+
+button,
+.btn {
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+
+.ais-results {
+  .ais-results__header {
+    background-color: $black--light;
+    color: $white;
+    p {
+      font-size: 12px;
+      letter-spacing: 0.6px;
+    }
+  }
+  li {
+    border-bottom: 1px dotted rgba($black, 0.1);
+  }
+  a:last-child {
+    li {
+      border-bottom: none;
+    }
+  }
+}
+
+.forums,
+.topics {
+  .ais-input,
+  .ais-input[value] {
+    border: none;
+    padding: 10px;
+    padding-left: 0;
+    font-size: 34px;
+    font-weight: 900;
+    color: lighten($black--light, 8%);
+    text-transform: uppercase; // border-bottom: 1px solid $white-background;
+    transition: all .15s ease-out;
+    &:hover,
+    &:active,
+    &:focus {
+      border: none;
+      outline: none; // border-bottom: 1px solid rgba($black--light, 0.6);
+    }
+     ::placeholder {
+      font-size: 30px;
+    }
+  }
+}
+
+.topics {
+  .topic__results {
+    &:hover {
+      &>div .content__helper .content__helper-highlight {
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+.ais-powered-by {
+  transform: scale(0.8);
+}
+
+.specific-thread__edit {
+  .trix__editor,
+  .trix__edit {
+    input,
+    trix-editor {
+      border: none;
+      outline: none;
+      color: lighten($black--light, 30%);
+    }
+    trix-editor {
+      padding: 0;
+      font-family: 'Crimson Text', sans-serif;
+      font-size: 21px;
+      color: lighten($black--light, 30%);
+      pre {
+        @extend .content__helper;
+        color: darken($white, 38%);
+        font-size: 13px;
+        padding: 15px;
+        background-color: $white;
+        line-height: 20px;
+      }
+    }
+    trix-toolbar .trix-button {}
+  }
+}
+.pagination {
+  .content__helper {
+    &:hover,
+    &:focus,
+    &:active {
+      color: $primary-color;
+    }
+  }
+}
+
+.specific-thread {
+  .btn {
+    background-color: transparent;
+  }
+}

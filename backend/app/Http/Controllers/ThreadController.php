@@ -40,8 +40,7 @@ class ThreadController extends Controller
 
     // $trending = array_map('json_decode', Redis::zrevrange('trending_threads', 0, 4));
     $threads = $threads->get()->load('channel', 'owner', 'replies');
-    return 
-        $threads
+    return ['thread' => $threads] + ['channel' => $channel];
         // $trending
 ;
     }
@@ -70,21 +69,7 @@ class ThreadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
-    {
-        // request()->validate([
-        //     'title' => 'required',
-        //     'body' => 'required',
-        //     'channel_id' => 'required|exists:channels,id'
-        // ]);
-        // Thread::Create([
-        //     'user_id' => Auth::id(),
-        //     'title' => request('title'),
-        //     'channel_id' => 23,
-        //     'body' => request('body')
-        // ]);
-      
-    }
+
     public function storeThreadOnChannel(Request $request, Channel $channel) {
 
         
@@ -93,13 +78,13 @@ class ThreadController extends Controller
             'body' => 'required',
             'channel_id' => 'required|exists:channels,id'
         ]); 
-        Thread::Create([
+        $response = Thread::Create([
             'user_id' => Auth::id(),
             'title' => request('title'),
             'channel_id' => request('channel_id') ,
             'body' => request('body')
         ]);
-        
+        return $response;
         
     }
     

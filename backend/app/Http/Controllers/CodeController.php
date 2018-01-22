@@ -26,7 +26,8 @@ class CodeController extends Controller
             'html' => request('html'),
             'js' => request('js'),
             'css' => request('css'),
-            'activity_id' => request('activity_id')
+            'activity_id' => request('activity_id'),
+            'submitted' => request('submitted')
         ]);
         
     }
@@ -37,6 +38,22 @@ class CodeController extends Controller
             return response()->json(Code::find($id));
 
         return response()->json(['error' => 'resource not found'],404);
+    }
+
+    public function showCertainCode($name,$id){
+        $user = User::where('username', $name)->first();
+        
+        return $user->project()->latest()->where('id',$id)->get();
+    }
+
+    public function updateEval($id){
+        $code = Code::find($id);
+        
+        $code->update([
+            'evaluated' => 1
+        ]);
+        
+     return $code;
     }
     
     public function update(Code $code){
@@ -65,6 +82,6 @@ class CodeController extends Controller
         }
     }
     public function showCodes(User $user){
-        return [$profileUser = $user, 'codes' => $user->project()->latest()->get()];
+        return [$profileUser = $user, 'codes' => $user->project()->latest()->where('activity_id', null)->orWhere('evaluated', true)->get()];
     }
 }
