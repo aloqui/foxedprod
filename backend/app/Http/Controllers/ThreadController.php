@@ -92,13 +92,14 @@ class ThreadController extends Controller
             'body' => 'required',
             'channel_id' => 'required|exists:channels,id'
         ]); 
-        Thread::Create([
+        $response = Thread::Create([
             'user_id' => Auth::id(),
             'title' => request('title'),
             'channel_id' => request('channel_id') ,
             'body' => request('body')
         ]);
-        
+        $response->subscribe();
+        return $response;
         
     }
     
