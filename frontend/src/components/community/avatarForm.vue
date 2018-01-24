@@ -1,15 +1,15 @@
 <template>
   <div>
     <form action="POST" enctype="multipart/form-data">
-      <div class="d-flex mt-5">
+      <div class="d-flex mt-3">
         <img :src="avatar" class="picture mr-4" alt="">
         <div class="d-flex flex-column justify-content-start">
-          <h1 class="font--bold">{{user.name}}</h1>
+          <h1 class="font--semi-bold">{{user.name}}</h1>
           <div>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn content__button--passive content__helper" data-toggle="modal" data-target="#exampleModal">
               Edit Profile
             </button>
-            
+
           </div>
           <!-- <button type="submit" class="btn">Add Avatar</button> -->
         </div>
@@ -25,13 +25,15 @@
             </button>
           </div>
           <div class="modal-body">
-            <img :src="avatar" class="picture mr-4" alt="">
-            <input type="file" name="avatar" accept="image/*" @change="onChange" v-if="isAuth">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+              <img :src="avatar" class="picture mr-4" alt="">
+              <input class="mt-5 content__helper" type="file" name="avatar" accept="image/*" @change="onChange" v-if="isAuth">
+            </div>
           </div>
-          <div class="modal-footer">
+          <!-- <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
+            <button type="button" class="btn btn-primary" @click="onChange">Save changes</button>
+          </div> -->
         </div>
       </div>
     </div>

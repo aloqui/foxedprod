@@ -35,7 +35,7 @@
                 <div>
                   <router-link class="no-decoration" :to="`/community/${endpoint}/${result.id}`">
                     <div class="d-flex align-items-center topic__results">
-                      <div>
+                      <div class="topic__results-block">
                         <div class="forum__title">
                           <ais-highlight :result="result" attribute-name="title">
                           </ais-highlight>

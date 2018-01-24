@@ -129,6 +129,9 @@
       text-decoration: none;
     }
   }
+  h1 {
+    font-family: 'Lato', sans-serif;
+  }
 }
 
 .block-full-height {
@@ -182,6 +185,11 @@
   border-radius: 40px;
   max-width: 40px;
   max-height: 40px;
+}
+.picture-placeholder--notification {
+  border-radius: 30px;
+  max-width: 30px;
+  max-height: 340px;
 }
 
 .section-fixed {

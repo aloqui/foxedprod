@@ -2,42 +2,33 @@
 
   <div class="home">
     <!-- BELONGS TO -->
-    <div class="container-fluid">
-      <div class="row d-flex justify-content-sm-center">
-        <div class="col-xl-8 col-md-10">
-          <div class="row">
-            <div class="col-12 d-flex flex-column align-items-center justify-content-center ">
-              <avatarForm :user="user"></avatarForm>
-              <h1>{{user.name}}</h1>
-            </div>
-            <div>
-              <div class="forum-post__header full-block__post m-2 p-3" v-for="thread in threads">
-                <a class="forum-post__title mb-5">
-                  <router-link class="nav-item" :to="`/community/${thread.channel.slug}/${thread.id}`">
-                    <a class="nav-link" href="">{{thread.title}}</a>
-                  </router-link>
-                </a>
-                <div class=" d-flex flex-row justify-content-start  align-items-center mt-3">
-                  <!-- <img class="picture-placeholder mr-3" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" -->
-                  <!-- alt=""> -->
-                  <!-- <a class="mb-0" href="">{{thread.owner.name}} </a> said {{thread.created_at}} -->
-                  <!-- <p class="mb-0 ml-1"> posted this 2 minutes ago</p> -->
-                </div>
-                <!-- <hr> {{thread.body}} -->
-                <hr> Replies: {{thread.replies.length}}
-              </div>
-            </div>
-          </div>
-
+    <div class="container">
+      <div class="row ">
+        <div class="col-12 section-block mt-5">
+          <avatarForm :user="user"></avatarForm>
         </div>
-
+        <div class="section-block topic__results">
+          <span class="content__helper text-uppercase">Threads posted</span>
+          <div class="topic__results-block" v-for="thread in threads">
+            <router-link class="nav-item no-decoration" :to="`/community/${thread.channel.slug}/${thread.id}`">
+              <a class="forum__title" href="">{{thread.title}}</a>
+              <p class="content__helper">Replies: {{thread.replies.length}}</p>
+              <p class="content__limit-characters  content--paragraph" v-html="thread.body"></p>
+              <p class="content__helper mt-3">
+                <span class="content__helper-highlight">Read more..</span>
+              </p>
+              <hr>
+            </router-link>
+            <!-- <hr> {{thread.body}} -->
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import avatarForm from '../components/community/avatarForm.vue';
+  import avatarForm from '../components/community/avatarForm.vue';
   export default {
     components: {
       'avatarForm': avatarForm

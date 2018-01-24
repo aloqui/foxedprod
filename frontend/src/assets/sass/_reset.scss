@@ -160,6 +160,9 @@ button,
         color: $primary-color;
       }
     }
+    .topic__results-block {
+      width: 100%;
+    }
   }
 }
 
@@ -188,6 +191,9 @@ button,
         padding: 15px;
         background-color: $white;
         line-height: 20px;
+      }
+      h1 {
+        font-family: 'Lato', sans-serif;
       }
     }
     trix-toolbar .trix-button {}

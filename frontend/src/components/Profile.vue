@@ -1,25 +1,23 @@
 <template>
   <div class="home mt-5">
-    <div class="container-fluid">
-      <div class="row d-flex justify-content-sm-center">
-        <div class="col-xl-8 col-md-10">
-          <div class="row">
-            <div class="col-12 ">
-              <avatarForm :user="user"></avatarForm>
-            </div>
-            <div class="col-12 d-flex justify-content-center mb-5">
-              <router-link class="btn btn-default" :to="'/'+ authenticatedUser.name + '/editor'">new code</router-link>
-              <router-link class="btn btn-default" :to="'/settings'">settings</router-link>
-              <i class="fa fa-print" aria-hidden="true"></i>
-              <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-            </div>
-            <div class="col-12">
-              <code-works></code-works>
-            </div>
+    <div class="container">
+      <div class="row d-flex justify-content-sm-center section-block mt-5">
+        <div class="col-12">
+          <avatarForm :user="user"></avatarForm>
+          <div class="col-12 d-flex mb-5">
+            <router-link class="btn btn-default" :to="'/'+ authenticatedUser.name + '/editor'">new code</router-link>
+            <router-link class="btn btn-default" :to="'/settings'">settings</router-link>
+            <i class="fa fa-print" aria-hidden="true"></i>
+            <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
           </div>
+        </div>
+        <div class="col-12">
+          <code-works></code-works>
         </div>
       </div>
     </div>
+  </div>
+  </div>
   </div>
 </template>
 
