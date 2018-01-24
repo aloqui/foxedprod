@@ -1,0 +1,15 @@
+.enrolled-class {
+    .content__sub-title {
+        &:hover {
+            color: $primary-color;
+        }
+    }
+    a {
+        text-decoration: none;
+    }
+    .join-class {
+        button {
+            padding: 10px 20px;
+        }
+    }
+}
