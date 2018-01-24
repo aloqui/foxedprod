@@ -84,6 +84,7 @@ class ThreadController extends Controller
             'channel_id' => request('channel_id') ,
             'body' => request('body')
         ]);
+        $response->subscribe();
         return $response;
         
     }

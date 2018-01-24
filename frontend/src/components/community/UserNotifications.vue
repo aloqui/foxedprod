@@ -51,10 +51,10 @@
       markAsRead(notification) {
         this.$http.delete(`api/profiles/${this.user.username}/notifications/${notification.id}`)
           .then(() => {
-            alert("success")
+            
           })
           .catch(() => {
-            alert("failed");
+            
           })
       }
 

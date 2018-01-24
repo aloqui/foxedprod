@@ -113,7 +113,6 @@
             this.$auth.setToken(response.body.access_token, response.body.expires_in + Date.now())
             location.reload()            
             this.$router.push("/")
-
             console.log(response)
           })
       },

@@ -19,7 +19,6 @@ class RegisterController extends Controller
      */
     protected function create(RegisterRequest $request)
     {
-        
         event(new Registered($user = User::forceCreate([
             'name' => $request['name'],
             'email' => $request['email'],
