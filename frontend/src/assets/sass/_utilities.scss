@@ -1,0 +1,255 @@
+[v-cloak] {
+  display: none;
+}
+
+.font--bold {
+  font-weight: 900;
+}
+
+.font--semi-bold {
+  font-weight: 700;
+}
+
+.font--medium {
+  font-weight: 400;
+}
+
+.font--light {
+  font-weight: 300;
+}
+
+.card-body {
+  background-color: $white;
+}
+
+.content__limit-characters {
+  max-height: 200px;
+  width: 80%;
+  overflow-y: hidden;
+}
+
+.content {
+  max-width: 680px;
+  p {
+    color: lighten($black--light, 10%);
+  }
+  h1,
+  p {
+    &:hover {
+      text-decoration: none !important;
+    }
+  }
+}
+.welcome {
+  .content {
+    p {
+      color: $white;
+    }
+  }
+}
+
+.content__username {
+  color: lighten($black--light, 15%);
+  font-family: 'Khula', sans-serif;
+  &:hover {
+    color: $black;
+    text-decoration: none;
+  }
+}
+
+.content__title {
+  color: $font-color-primary;
+}
+
+.content__sub-title {
+  font-size: 16px;
+  line-height: 35px;
+  word-spacing: 1px;
+  color: darken($white, 28%);
+}
+
+.content__helper {
+  color: darken($white, 28%);
+  font-size: 12px;
+  &:hover {
+    
+    &>.content__helper-visual,
+    &>.content__helper-visual--delete,
+    &>.content__helper-visual--update,
+    &>.content__helper-visual--cancel {
+      opacity: 0.8;
+    }
+  }
+  i,
+  .far,
+  svg {
+    vertical-align: middle;
+    font-size: 18px;
+  }
+    .content__helper-visual {
+      position: absolute;
+      transform: translate(-17px, -40px);
+      padding: 4px 10px;
+      border-radius: 4px;
+      opacity: 0;
+      transition: all .1s ease-out;
+      .content__helper {
+        color: $white-contrast;
+      }
+    }
+    .content__helper-visual--delete,
+    .content__helper-visual--update {
+      @extend .content__helper-visual;
+      transform: translate(-24px, -40px);
+    }
+    .content__helper-visual--cancel {
+      @extend .content__helper-visual;
+      transform: translate(-26px, -40px);
+    }
+  }
+
+
+.content--paragraph {
+  font-family: 'Crimson Text', sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+  pre {
+    @extend .content__helper;
+    color: darken($white, 38%);
+    font-size: 13px;
+    padding: 15px;
+    background-color: $white;
+    line-height: 20px;
+  }
+  a,
+  div a {
+    color: lighten($black--light--hover, 25%);
+    border-bottom: 1px solid lighten($black--light--hover, 45%);
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  h1 {
+    font-family: 'Lato', sans-serif;
+  }
+}
+
+.block-full-height {
+  min-height: 100vh;
+}
+
+.block-half-height {
+  min-height: 45vh;
+}
+
+.full-block__post {
+  width: 100%;
+  background-color: $white;
+  border: 1px solid darken($white, 10%);
+}
+
+.spinner {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  bottom: 0;
+  font-size: 19px;
+  i {
+    background-color: transparent !important;
+  }
+}
+
+.animate__spin {
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-name: spin;
+}
+
+.animate__spin--dark {
+  color: $black--text--light;
+}
+
+.box-shadow {
+  -webkit-box-shadow: 0px 1px 8px 0px rgba(50, 50, 50, 0.34);
+  -moz-box-shadow: 0px 1px 8px 0px rgba(50, 50, 50, 0.34);
+  box-shadow: 0px 1px 8px 0px rgba(50, 50, 50, 0.34);
+}
+
+.forum-post__title {
+  font-size: 28px;
+  color: $black--light;
+  transition: all .15s ease-out;
+}
+
+.picture-placeholder {
+  border-radius: 40px;
+  max-width: 40px;
+  max-height: 40px;
+}
+.picture-placeholder--notification {
+  border-radius: 30px;
+  max-width: 30px;
+  max-height: 340px;
+}
+
+.section-fixed {
+  position: fixed;
+  width: 100%;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+
+.forum__title {
+  color: $black--light;
+  font-weight: bold;
+  font-size: 30px;
+  margin: 0;
+  transition: all .15s ease-out;
+  &:hover {
+    text-decoration: none;
+    color: $black--light--hover;
+  }
+  a {
+    font-size: 40px;
+  }
+}
+
+.forum__sub-title {
+  background-color: darken($white, 4%);
+  border: 1px solid darken($white, 8%);
+  width: 180px;
+  color: darken($white, 48%);
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+.forums,
+.topics {
+  .ais-results div .d-flex {
+    &:hover {
+      &>div .forum__title {
+        transform: translateX(5px);
+      }
+      &>div .result__slug {
+        color: $primary-color;
+      }
+      &>.category__owner {
+        opacity: 1;
+      }
+    }
+    .category__owner {
+      min-width: 140px;
+      opacity: 0;
+      transition: all .15s ease-out;
+    }
+  }
+}
+.help-block {
+  @extend .content__helper;
+  color: #e65757 !important;
+  text-shadow: none;
+  text-align: left;
+}

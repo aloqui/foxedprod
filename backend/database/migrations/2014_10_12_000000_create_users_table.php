@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('username')->unique();
             $table->boolean('prof')->default(false);
-            $table->boolean('confirmed')->default(true);
+            $table->boolean('confirmed')->default(false);
             $table->string('confirmation_token', 25)->nullable()->unique();
             $table->string('reset_password_token', 24)->nullable()->unique();
             $table->string('avatar_path')->nullable();
