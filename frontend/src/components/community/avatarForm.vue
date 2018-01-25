@@ -2,7 +2,9 @@
   <div>
     <form action="POST" enctype="multipart/form-data">
       <div class="d-flex mt-3">
-        <img :src="avatar" class="picture mr-4" alt="">
+        <div class="picture mr-4">
+          <img :src="avatar" class=" " alt="">
+        </div>
         <div class="d-flex flex-column justify-content-start">
           <h1 class="font--semi-bold">{{user.name}}</h1>
           <div>
@@ -26,7 +28,10 @@
           </div>
           <div class="modal-body">
             <div class="d-flex flex-column justify-content-center align-items-center">
-              <img :src="avatar" class="picture mr-4" alt="">
+              <div class="picture mr-4">
+
+                <img :src="avatar" class="" alt="">
+              </div>
               <input class="mt-5 content__helper" type="file" name="avatar" accept="image/*" @change="onChange" v-if="isAuth">
             </div>
           </div>
@@ -104,14 +109,20 @@
     }
 
   }
+//$is_args$args
 
 </script>
 <style scoped lang="scss">
   .picture {
     background-color: #efefef;
-    width: 160px;
-    height: 160px;
-    border-radius: 100%;
+    max-width: 130px;
+    max-height: 130px;
+    border-radius: 130px;
+    overflow: hidden;
+    img {
+      width: 110%;
+      transform: translateX(-4px);
+    }
   }
 
 </style>
