@@ -5,15 +5,15 @@
       <div class="row mt-2">
         <div class="col-12">
           <div class="section-block">
-
             <!-- <div v-for="thread in threads" v-bind:thread="thread" :key="thread.id"> -->
             <!-- Editing Thread -->
             <div v-bind:threads="threads" :key="threads.id">
               <thread :attriThread="threads" inline-template>
-
                 <div class="content m-auto specific-thread__edit" v-if="editingThread">
-
                   <div class="mt-4">
+
+
+
                     <div class="trix__edit">
                       <div class="mb-4 d-flex">
                         <router-link class="no-decoration" :to="`/${attriThread.owner.username}/threads`">
@@ -35,13 +35,15 @@
                         <a href="#" class="content__helper">{{attriThread.created_at | formatDateFormal}}</a>
                       </div>
                       <div class="form-group">
-
                         <wysiwyg v-model="editThread.body" :value="editThread.body"></wysiwyg>
                         <!-- <textarea class="form-control" name="" id="" cols="30" rows="10" v-model="editThread.body"></textarea> -->
                       </div>
                       <a href="#" class="content__helper">{{attriThread.created_at | formatDateFormal}}</a>
                       <hr>
                     </div>
+
+
+
                     <div class="level d-flex">
                       <div>
                         <button class="btn content__helper text-uppercase" @click="update">

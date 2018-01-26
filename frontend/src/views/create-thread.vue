@@ -1,39 +1,40 @@
 <template>
-  <div class="home ">
+  <div class="create-thread ">
     <!-- <nav-list></nav-list> -->
-    <div class="container-fluid">
-      <div class="row no-gutters justify-content-sm-center ">
-        <div class="col-10">
-          <div class="row mt-2">
-            <div class="col-12 ">
-              <div class="forum-post ">
-                <div class="forum-post__form block-half-height d-flex flex-column align-items-around justify-content-center">
-                  <div class="m-5">
-                    <h2 class="content__title text-center font--bold">Create a Discussion</h2>
-                    <p class="content__sub-title text-center">Explore and learn from other developers around you.</p>
-                  </div>
-                  <form class="content ml-auto mr-auto section-block" @submit.prevent="addThread">
-                    <div class="form-group mt-2 full-block__post p-3">
-                      <h5 class="content__helper mb-2 text-uppercase">Title</h5>
-                      <input class="form-control mb-2" name="title" id="title" cols="100" rows="1" width="100%" v-model="createThread.title" placeholder="Awesome title"
-                        required>
-                      <hr>
-                      <h5 class="content__helper mb-2 text-uppercase">Body</h5>
-                      <wysiwyg name="body" v-model="createThread.body"></wysiwyg>
-
-                      <!-- <textarea class="form-control mb-2" name="body" id="body" cols="100" rows="5" width="100%" v-model="createThread.body" placeholder="Have something to say?" required></textarea> -->
-                      <button type="submit" class="btn form__button--positive-dark mt-3 form-control"><i class="fas fa-align-left"></i><span class="ml-2">Publish</span></button>
-                    </div>
-                  </form>
-                </div>
-
-
+    <div class="container">
+      <div class="row mt-2">
+        <div class="col-12 ">
+          <div class="">
+            <div class="block-full-height d-flex flex-column  section-block mt-4 mb-3 ">
+              <div class="m-5">
+                <h2 class="content__title text-center font--bold">Create a Discussion</h2>
+                <p class="content__sub-title text-center">Explore and learn from other developers around you.</p>
               </div>
+              <form class="content ml-auto mr-auto card box-shadow p-5" @submit.prevent="addThread">
+                <div class="form-group mt-2 p-3 trix__edit ">
+                  <h5 class="content__helper mb-2 text-uppercase">Title</h5>
+                  <h1 class="mb-5">
+                    <input class="font--semi-bold" name="title" id="title" cols="100" rows="1" width="100%" v-model="createThread.title" placeholder="Your Title here"
+                      required>
+                  </h1>
+                  <h5 class="content__helper mb-2 text-uppercase">Body</h5>
+                  <wysiwyg name="body" v-model="createThread.body"></wysiwyg>
+                  <p class="help-block" v-if="inputError" v-for="error in inputError">{{error}}</p>
+                  <!-- <textarea class="form-control mb-2" name="body" id="body" cols="100" rows="5" width="100%" v-model="createThread.body" placeholder="Have something to say?" required></textarea> -->
+                  <button type="submit" class="btn form__button--register-dark mt-5">
+                    <i class="fas fa-align-left"></i>
+                    <span class="ml-2">Publish</span>
+                    <div class="spinner p-1 d-flex align-items-center" v-if="loading">
+                      <i class="animate__spin fas fa-circle-notch m-auto"></i>
+                    </div>
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
-          <div class="col">
-          </div>
         </div>
+      </div>
+      <div class="col">
       </div>
     </div>
   </div>
@@ -63,7 +64,9 @@
     // ],
     data() {
       return {
-        createThread: {}
+        createThread: {},
+        inputError: {},
+        loading: false
       }
     },
     computed: {
@@ -73,19 +76,21 @@
     },
     methods: {
       addThread() {
+        this.loading = true;
         this.$http.post(`api/community/${this.$route.params.slug}`,
-          this.createThread)
+            this.createThread)
           .then(function (response) { // do something 
-          this.$router.push(`/community/${this.$route.params.slug}/${response.body.id}`);
-          swal("Discussion posted!", {
-            icon: "success",
-          });
-        })
-        .catch(function(error) {
-          swal("Please Confirm Email Address", {
-            icon: "error",
-          });
-        })
+            this.loading = false;
+            this.$router.push(`/community/${this.$route.params.slug}/${response.body.id}`);
+            swal("Discussion posted!", {
+              icon: "success",
+            });
+          })
+          .catch(function (error) {
+            this.loading = false;
+            this.inputError = error.body.errors.body;
+            console.log(error.body.errors.body)
+          })
       }
     },
 
