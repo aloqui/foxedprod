@@ -8,10 +8,11 @@
         <div v-if="notifications.length">
           <div class="" v-for="notification in notifications">
             <div @click="markAsRead(notification)">
-
               <router-link :to="notification.data.link">
-                <li class="p-2">
+                <li class="p-2 d-flex align-items-center">
+                  <img class="picture-placeholder--notification" :src="notification.data.owner.avatar_path" alt="">
                   <p class="content__helper">{{notification.data.message}}</p>
+                <hr>
                 </li>
               </router-link>
             </div>
@@ -19,7 +20,7 @@
         </div>
         <div v-else>
           <li>
-            <p class="p-2">No current notifications.</p>
+            <p class="p-2 content__helper">No current notifications.</p>
           </li>
         </div>
       </ul>
@@ -51,10 +52,10 @@
       markAsRead(notification) {
         this.$http.delete(`api/profiles/${this.user.username}/notifications/${notification.id}`)
           .then(() => {
-            alert("success")
+           
           })
           .catch(() => {
-            alert("failed");
+           
           })
       }
 

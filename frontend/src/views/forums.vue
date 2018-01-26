@@ -45,7 +45,7 @@
                             </ais-highlight>
                             </p>
                           </div>
-                          <div class="ml-auto  category__owner">
+                          <div class="ml-auto category__owner">
                             <p class="ml-auto font--light">{{result.owner.name}}</p>
                             <p class="content__helper">@{{result.owner.username}}</p>
                           </div>

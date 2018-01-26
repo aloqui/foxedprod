@@ -105,19 +105,23 @@
                     <hr>
 
                     <div class="panel-footer level d-flex" v-if="attriThread.owner.id == authUser.id">
-                      <button class="btn content__helper text-uppercase" @click="editingThread = true">
-                        <i class="far fa-file-alt"></i>
-                        <div class="content__helper-visual">
-                          <p class="content__helper">Edit</p>
-                        </div>
-                      </button>
-                      <button class="btn content__helper text-uppercase" @click="deleteThread">
-                        <i class="far fa-trash-alt"></i>
-                        <div class="content__helper-visual--delete">
-                          <p class="content__helper">Delete</p>
-                        </div>
-                      </button>
+                      <div>
+
+                        <button class="btn content__helper text-uppercase" @click="editingThread = true">
+                          <i class="far fa-file-alt"></i>
+                          <div class="content__helper-visual">
+                            <p class="content__helper">Edit</p>
+                          </div>
+                        </button>
+                      </div>
                       <div class="ml-auto">
+
+                        <button class="btn content__helper text-uppercase " @click="deleteThread">
+                          <i class="far fa-trash-alt"></i>
+                          <div class="content__helper-visual--delete">
+                            <p class="content__helper">Delete</p>
+                          </div>
+                        </button>
                       </div>
                     </div>
                   </div>
