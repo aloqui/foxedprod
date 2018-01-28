@@ -63,16 +63,14 @@ class Thread extends Model
         return $this->hasMany(Reply::class)->withCount('favorites');
     }
     public function addReply($reply) {
-        $reply = $this->replies()->create($reply);
-
-        $this->subscriptions
+       $reply = $this->replies()->create($reply);
+       $response = $this->subscriptions
             ->filter(function ($sub) use ($reply) {
                 return $sub->user_id != $reply->user_id;
             })
             ->each->notify($reply);
-
-
-     
+            $redis = Redis::connection();
+        $redis->publish('notify', $response);
         return $reply;
     }
     public function channel() {

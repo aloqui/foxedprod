@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Favorite;
 use App\Reply;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class FavoritesController extends Controller
 {
@@ -12,7 +13,9 @@ class FavoritesController extends Controller
         $this->middleware('auth');
     }
     public function store(Reply $reply) {
-        return $reply->favorite();
-       
+        $response = $reply->favorite();
+        $redis = Redis::connection();
+        $redis->publish('favoriteReply', $response);
+        return $response;
     }
 }

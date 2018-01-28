@@ -74,6 +74,7 @@
         this.fetch()
       })
     },
+    
   }
 
 </script>
