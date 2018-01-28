@@ -68,9 +68,6 @@
                 <ais-no-results class="text-center"></ais-no-results>
               </ais-index>
             </div>
-
-            <!-- <forum-category></forum-category> -->
-            <!-- <hot-topics></hot-topics> -->
           </div>
         </div>
         <div class="col">
@@ -83,7 +80,6 @@
 <script>
   //import Navigation from '../components/community/navigation.vue';
   import classFeedBlock from '../components/community/class-feed-block.vue';
-  import hotTopics from '../components/community/hot-topics.vue';
   import forumCategories from '../components/community/forum-category.vue';
   export default {
     data() {
@@ -99,7 +95,6 @@
     components: {
       //'nav-list': Navigation,
       'class-feed-block': classFeedBlock,
-      'hot-topics': hotTopics,
       'forum-category': forumCategories
     },
     methods: {

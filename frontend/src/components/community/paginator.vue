@@ -24,14 +24,17 @@
         page: 1,
         prevUrl: false,
         nextUrl: false,
-        currentState: `${this.$route.path}`
+        currentState: `${this.$route.path}`,
+        paginatorLoad: false
       }
     },
     watch: {
       dataSet() {
-        this.page = this.dataSet.current_page;
-        this.prevUrl = this.dataSet.prev_page_url;
-        this.nextUrl = this.dataSet.next_page_url;
+        this.page = this.dataSet.current_page
+        this.prevUrl = this.dataSet.prev_page_url
+        this.nextUrl = this.dataSet.next_page_url
+        if (this.page > this.dataSet.last_page)
+          this.page = this.dataSet.last_page
       },
       page() {
         this.broadcast();
@@ -51,7 +54,7 @@
         this.$emit('changed', this.page);
       },
       updateUrl() {
-         this.$router.replace(`${this.currentState}?page=${this.page}`);
+        this.$router.replace(`${this.currentState}?page=${this.page}`);
       },
       dataSet() {
         this.page = this.dataSet.current_page;

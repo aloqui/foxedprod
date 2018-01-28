@@ -7,7 +7,7 @@ use App\Thread;
 use App\Reply;
 use App\User;
 use Auth;
-
+use Illuminate\Support\Facades\Redis;
 
 class RepliesController extends Controller
 {
@@ -23,10 +23,18 @@ class RepliesController extends Controller
     }
     public function store($channelId, Thread $thread, Request $request) {
         $this->validate($request, ['body' => 'required']);
-        return $thread->addReply([
+        
+        $response = $thread->addReply([
             'body' => request('body'),
             'user_id' => Auth::id()
         ])->load('owner');
+        
+        $user = auth()->user();
+        $redis = Redis::connection();
+        $redis->publish('message', $response);
+        
+        
+        return $response;
 
         // preg_match_all('/\@([^\s\.]+)/', $reply->body, $matches);
         // $names = $matches[0];

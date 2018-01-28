@@ -1,0 +1,14 @@
+.user-notifications {
+    .notification-count {
+        position: absolute;
+        background-color: $primary-color;
+        top: 0;
+        border-radius: 2px;
+        color: $white;
+        right: 0;
+        transform: translate(7px, -3px);
+        padding: 0 3px;
+        margin: 0;
+        font-size: 11px;
+    }
+}
