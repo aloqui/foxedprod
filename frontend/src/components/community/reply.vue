@@ -7,10 +7,12 @@
           <div>
             <img class="picture-placeholder mr-3" :src="reply.owner.avatar_path" alt="">
           </div>
+          <router-link :to="`/${reply.owner.username}/threads`" class="no-decoration">
           <div class="d-flex flex-column">
             <a class="m-0 content__username" href="">{{reply.owner.name}}</a>
             <span class="content__helper">@{{reply.owner.username}} said {{reply.created_at | formatDate}}</span>
           </div>
+          </router-link>
         </div>
         <button class="btn content__button--passive ml-auto mt-auto mb-auto" @click="favorite" :disabled="reply.isFavorited" v-if="isAuthenticated">
           <span class="font--light">{{reply.favorites_count}}</span>
@@ -126,16 +128,10 @@
         this.reply.isFavorited = true;
       },
       fetch() {
-        this.$http.get('api/user')
-          .then(response => {
-            this.user = response.data
-          })
+        this.user = this.$auth.getAuthenticatedUser()
       }
     },
     computed: {
-      authenticatedUser() {
-        return this.$auth.getAuthenticatedUser()
-      },
       isAuthenticated() {
         return this.$auth.isAuthenticated()
       },

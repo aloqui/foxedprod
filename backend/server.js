@@ -11,6 +11,7 @@ io.on('connection', function (socket) {
     redisClient.subscribe('message');
     redisClient.subscribe('favoriteReply');
     redisClient.subscribe('notify');
+    redisClient.subscribe('removeNotification');
 
     redisClient.on('message', function (channel, message) {
         console.log('new event' + channel + message);
@@ -23,6 +24,10 @@ io.on('connection', function (socket) {
     redisClient.on('notify', function (channel, notification) {
         console.log('New Notification: ' + channel + notification);
         socket.emit(channel, notification)
+    })
+    redisClient.on('removeNotification', function (channel, message) {
+        console.log('Seen Notification: ' + channel + message);
+        socket.emit(channel, message)
     })
 
     redisClient.on('disconnect', function () {

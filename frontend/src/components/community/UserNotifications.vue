@@ -46,8 +46,6 @@
       },
       refresh(data) {
         this.notifications = data.data
-        console.log('notif')
-        console.log(this.notifications)
       },
       markAsRead(notification) {
         this.$http.delete(`api/profiles/${this.user.username}/notifications/${notification.id}`)
@@ -56,12 +54,11 @@
       },
     },
     sockets: {
-      notify(notification) {
-        var notificationData = JSON.parse(notification)
-        console.log("new not")
-        console.log(notificationData)
+      notify() {
         this.fetch()
-        
+      },
+      removeNotification() {
+        this.fetch()
       }
     }
   }
