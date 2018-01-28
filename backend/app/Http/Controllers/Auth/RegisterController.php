@@ -19,8 +19,8 @@ class RegisterController extends Controller
      */
     protected function create(RegisterRequest $request)
     {
-        // event(new Registered(
-        $user = User::forceCreate([
+        
+        event(new Registered($user = User::forceCreate([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => bcrypt($request['password']),
@@ -28,7 +28,7 @@ class RegisterController extends Controller
             'prof' => $request['prof'],
             'confirmation_token' => str_limit(md5($request['email'] . str_random()), 25, ''),
             'reset_password_token' => null
-        ]);
+        ])));
 
         // return response()->json([
         //     'success' => true,
