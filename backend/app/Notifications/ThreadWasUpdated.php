@@ -5,7 +5,7 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
+use Illuminate\Support\Facades\Redis;
 class ThreadWasUpdated extends Notification
 {
     use Queueable;
@@ -57,10 +57,12 @@ class ThreadWasUpdated extends Notification
      */
     public function toArray($notifiable)
     {
-        return [
+        $response = [
             'message' => $this->reply->owner->name . ' replied to ' . $this->thread->title,
             'link' => $this->reply->path(),
             'owner' => $this->reply->owner
         ];
+        
+        return $response;
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Notifications\ThreadWasUpdated;
 use App\Thread;
 use App\User;
-
+use Illuminate\Support\Facades\Redis;
 use App\ThreadSubscription;
 use Auth;
 
@@ -25,6 +25,9 @@ class ThreadSubscription extends Model
     }
     
     public function notify($reply) {
-        $this->user->notify(new ThreadWasUpdated($this->thread, $reply));
+       
+       $this->user->notify(new ThreadWasUpdated($this->thread, $reply));
+       
+       
     }
 }

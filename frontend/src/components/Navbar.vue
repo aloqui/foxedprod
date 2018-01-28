@@ -66,7 +66,6 @@
         <router-link class="ml-2 mr-2" tag="li" to="/community">
           <a>Community</a>
         </router-link>
-
         <user-notifications :user="user"></user-notifications>
         <li>
           <div class="dropdown ml-1 d-flex flex-column align-items-end justify-content-end">

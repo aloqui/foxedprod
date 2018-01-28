@@ -40,7 +40,6 @@
                 <div class="content text-center">
                   <h2 class="text-center font--bold pl-4 pr-4">We help you learn and collaborate!</h2>
                   <p class="content__sub-title font--medium">With other developers in the community. Come join along!</p>
-
                 </div>
                 <div class="content text-center">
                   <register></register>

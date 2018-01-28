@@ -1,63 +1,59 @@
 <template>
   <div class="create-category ">
     <!-- <nav-list></nav-list> -->
-    <div class="container-fluid">
-      <div class="row no-gutters justify-content-sm-center">
-        <div class="col-10">
-          <div class="row mt-2">
-            <div class="col-6 block-full-height d-flex align-items-center">
-              <div class="card ">
-                <div class="card-body p-5">
-                  <div class="forum-post">
-                    <div class="forum-post__form">
-
-                      <p class="mb-2 font--medium text-center">This is how we'll call you:
-                        <div class="url pt-2 pb-2">
-                          <span class="https font--light ssl  pl-2 pt-2 pb-2">
-                            <i class="fa fa-lock mr-2" aria-hidden="true"></i>FoxedFolio Devs
-                            <span class="font--light pl-1 divider">|</span>
-                          </span>
-
-                          <span class="https font--light"> https://</span>foxedfolio.com/community/
-                          <span class="font--medium endpoint" v-bind:class="createCategory.slug | removespace">{{createCategory.slug | removespace}}</span>
-                        </div>
-                      </p>
-
-                      <form @submit.prevent="addCategory">
-
-                        <div class="form-group mt-2 ">
-                          <input class="form-control content__input--dark mb-2" name="title" id="title" cols="100" rows="1" width="100%" v-model="createCategory.name"
-                            placeholder="Category name">
-                          <p class="content__helper help-block mb-2 mt-2" v-for="error in errorHandling.name">{{error}}</p>
-                          <input class="form-control content__input--dark mb-2" name="body" id="body" cols="100" rows="1" width="100%" v-model="createCategory.slug"
-                            placeholder="Assign unique key to your new category. (Can only be assigned once.)">
-                          <p class="help-block mb-2 mt-2" v-for="error in errorHandling.slug">{{error}}</p>
-                          <textarea class="form-control content__input--dark mb-2" name="body" id="body" cols="100" rows="3" width="100%" v-model="createCategory.description"
-                            placeholder="A brief description about your topic."></textarea>
-                            <p class="content__helper">{{charactersLeft}} <span v-if="createCategory.description.length >= 0">characters left</span></p>
-
-                          <p class="help-block mb-2 mt-2" v-for="error in errorHandling.description">{{error}}</p>
-                          <button type="submit" class="btn form__button--register-dark">
-                            Publish
-                            <div class="spinner p-1 d-flex align-items-center" v-if="loading">
-                              <i class="animate__spin fas fa-circle-notch m-auto"></i>
-                            </div>
-                          </button>
-                        </div>
-                      </form>
-                    </div>
+    <div class="container">
+      <div class="row mt-2">
+        <div class="col-12 section-block block-full-height d-flex align-items-center mt-4 mb-3">
+          <div class="card box-shadow m-auto">
+            <div class="p-5">
+              <div class="forum-post">
+                <div class="content">
+                  <p class="mb-2 font--medium text-center content__helper">This is how we'll call you:</p>
+                  <div class="url pt-2 pb-2">
+                    <span class="https font--light ssl  pl-2 pt-2 pb-2">
+                      <i class="fa fa-lock mr-2" aria-hidden="true"></i>FoxedFolio Devs
+                      <span class="font--light pl-1 divider">|</span>
+                    </span>
+                    <span class="https font--light"> https://</span>foxedfolio.com/community/
+                    <span class="font--medium endpoint" v-bind:class="createCategory.slug | removespace">{{createCategory.slug | removespace}}</span>
                   </div>
+                  <form class="trix__edit " @submit.prevent="addCategory">
+                    <div class="form-group mt-5 ">
+                      <div class="mb-5 ">
+
+                        <span class="content__helper text-uppercase">Category Name</span>
+                        <h1 class="">
+                          <input class="font--semi-bold" name="title" id="title" cols="100" rows="1" width="100%" v-model="createCategory.name" placeholder="Your Category name">
+                        </h1>
+                        <p class="content__helper help-block mt-2" v-for="error in errorHandling.name">{{error}}</p>
+                      </div>
+                      <div class="mb-5 ">
+                        <span class="content__helper text-uppercase">Category Username</span>
+                        <input class="font--normal " name="body" id="body" cols="100" rows="1" width="100%" v-model="createCategory.slug" placeholder="YourCategoryName">
+                        <p class="help-block mb-5" v-for="error in errorHandling.slug">{{error}}</p>
+                      </div>
+                      <span class="content__helper text-uppercase">Description</span>
+                      <textarea class="form-control" name="body" id="body" cols="100" rows="3" width="100%" v-model="createCategory.description"
+                        placeholder="A brief description about your topic."></textarea>
+                      <span class="content__helper" v-if="createCategory.description.length >= 0">{{charactersLeft}} characters left</span>
+
+                      <p class="help-block mb-2 mt-2" v-for="error in errorHandling.description">{{error}}</p>
+                      <button type="submit" class="btn form__button--register-dark mt-5">
+                        <i class="fas fa-align-left"></i>
+                        <span class="ml-2">Publish</span>
+                        <div class="spinner p-1 d-flex align-items-center" v-if="loading">
+                          <i class="animate__spin fas fa-circle-notch m-auto"></i>
+                        </div>
+                      </button>
+                    </div>
+                  </form>
                 </div>
               </div>
-
             </div>
-            <div class="col-6">
-              Did you know?
-            </div>
-          </div>
-          <div class="col">
           </div>
         </div>
+      </div>
+      <div class="col">
       </div>
     </div>
   </div>
@@ -123,7 +119,7 @@
         this.loading = true;
         this.$http.post(`api/community/create`, this.createCategory)
           .then(function (response) { // do something 
-          console.log(response)
+            console.log(response)
             this.loading = false;
             swal("Discussion posted!", {
               icon: "success",
@@ -132,9 +128,6 @@
           })
           .catch(response => {
             this.loading = false;
-            swal(response.body.message, {
-              icon: "error",
-            });
             if (response.body.errors) {
               this.errorHandling = response.body.errors;
             }

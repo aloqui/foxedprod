@@ -1,17 +1,21 @@
 <template>
   <div class="login">
 
-    <div class="form-group m-auto  d-flex align-items-center ">
+    <div class="form-group m-auto  ">
+      <form @submit.prevent="login" class="d-flex align-items-center ">
+
       <input v-model="email" class="form-control mr-2 content__input" type="email" placeholder="Email">
 
       <input v-model="password" class="form-control mr-2 content__input" type="password" placeholder="Password">
 
-      <button @click="login" class="btn pull-right form__button--submit font--light">
+      <button class="btn pull-right form__button--submit font--light">
         &nbsp;<span class="ml-1">Login</span>
       </button>
       <router-link to="/account/forgot_password">
         <a class="btn">Forgot Password?</a>
       </router-link>
+
+      </form>
 
     </div>
 

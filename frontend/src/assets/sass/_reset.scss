@@ -72,7 +72,8 @@ a {
   }
 }
 
-.algolia-search {
+.algolia-search,
+.user-notifications {
   .dropdown {
     .dropdown-menu {
       width: 100%;
@@ -149,6 +150,7 @@ button,
     }
      ::placeholder {
       font-size: 30px;
+      color: $white-contrast;
     }
   }
 }
