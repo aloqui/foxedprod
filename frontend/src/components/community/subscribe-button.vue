@@ -30,7 +30,6 @@
               this.active = !this.active;
             })
             .catch(() => {
-              alert("failed");
             })
         }, 2000)
       }
