@@ -3,6 +3,9 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var redis = require('redis');
 
+server.listen(8000, function() {
+    console.log("port 8000")
+});
 
 io.on('connection', function (socket) {
     console.log('Client connected.');
@@ -35,6 +38,3 @@ io.on('connection', function (socket) {
         redisClient.quit();
     })
 })
-server.listen(3000, function () {
-    console.log('listening on *:3000');
-});
