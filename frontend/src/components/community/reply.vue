@@ -128,7 +128,12 @@
         this.reply.isFavorited = true;
       },
       fetch() {
-        this.user = this.$auth.getAuthenticatedUser()
+        this.$http.get(`api/user`)
+          .catch(response => {
+            this.user = response.body
+            consolg.log("useruseruiser")
+            consol.log(this.user)
+          })
       }
     },
     computed: {

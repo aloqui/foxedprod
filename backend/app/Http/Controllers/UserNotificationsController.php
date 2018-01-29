@@ -17,7 +17,6 @@ class UserNotificationsController extends Controller
         return $notification;
     }
     public function destroy(User $user, $notificationId) {
-        
         $response = auth()->user()->notifications()->findOrFail($notificationId)->markAsRead();
         $redis = Redis::connection();
         $redis->publish('removeNotification', $response);

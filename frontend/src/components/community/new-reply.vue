@@ -43,7 +43,7 @@
         .then(({
           data
         }) => {
-          //this.$router.push(`${this.$route.path}?page=${this.dataSet.last_page}`)
+          this.$router.push(`${this.$route.path}?page=${this.dataSet.last_page}`)
           this.completed = true
           swal("Replied!", {
             icon: "success",
@@ -58,11 +58,10 @@
 
     },
     sockets: {
-      message(response) {
-        var replyData = JSON.parse(response)
-        this.$emit('created', replyData)
+      message(response) {        
+        this.$emit('created', this.newReply)
         this.$emit('changed', this.dataSet.last_page)
-        console.log('replied ', replyData)
+        console.log('replied ')
       }
     },
     created() {

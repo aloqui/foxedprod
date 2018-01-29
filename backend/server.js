@@ -17,7 +17,8 @@ io.on('connection', function (socket) {
     redisClient.subscribe('removeNotification');
 
     redisClient.on('message', function (channel, message) {
-        console.log('new event' + channel + message);
+        console.log("----");
+        console.log('New event sent');
         socket.emit(channel, message)
     })
     redisClient.on('favoriteReply', function (channel, message) {

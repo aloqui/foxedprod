@@ -30,9 +30,9 @@
     },
     watch: {
       dataSet() {
-        this.page = this.dataSet.current_page
         this.prevUrl = this.dataSet.prev_page_url
         this.nextUrl = this.dataSet.next_page_url
+        this.page = this.dataSet.current_page
         if (this.page > this.dataSet.last_page)
           this.page = this.dataSet.last_page
       },
