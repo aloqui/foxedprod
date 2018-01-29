@@ -7,10 +7,13 @@
             <ul>
                 <li v-for="act in room.class_posts">
                     <h2>{{act.title}}</h2>
+                    <p  class="posted">{{from(act.created_at)}}</p>
                     <span v-if="act.image != 'none'">
-                        <img :src="'http://localhost:8000/' + act.image">
+                        <img :src="'http://localhost:8000/images/' + act.image">
                     </span>
                     <p>{{act.body}}</p>
+                    <p class="expire">Until: {{momentize(act.due)}}</p>
+                    <hr>
                 </li>
                 
             </ul>
@@ -19,6 +22,7 @@
     </div>
 </template>
 <script>
+import moment from 'moment';
 export default {    
         data() {
         return {
@@ -35,14 +39,36 @@ export default {
             console.log(response.body)
         })
     },
+    methods:{
+        momentize(date){
+           return moment(date).calendar()
+        },
+        from(date){
+           return moment(date).fromNow();  
+        }
+    }
 }
 </script>
 
 <style lang="scss" scoped>
+ul{
+    padding: 0;
+}
 li{
+    list-style: none;
+    h2{
+        font-size: 17px;
+    }
     padding: 20px;
     img{
-        width: 200px;
+        width:100%;
+        margin:20px 0 20px 0;
+    }
+    .expire{
+        font-size: 14px;
+    }
+    .posted{
+        font-size: 13px;
     }
 }
 </style>

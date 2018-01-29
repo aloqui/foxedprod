@@ -46,9 +46,6 @@ class ProfilesController extends Controller
 
         return ['user' => $user, $user->threads()->latest()->get()->load('channel', 'replies')];
     }
-    public function showSecret(){
-        return ['secret_id' => DB::table('oauth_clients')->where('id', 2)->first()];
-    }
 
     
 

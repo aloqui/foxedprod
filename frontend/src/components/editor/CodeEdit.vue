@@ -28,9 +28,9 @@
 		<input type="text" v-model="codes.title">
 		<button class="btn btn-info" @click="update">save</button>
 		<button class="btn btn-danger" @click="deleteCodes">thrash</button>
-		<div v-show="act_id && evaluated">
+		<!-- <div v-show="act_id && evaluated">
 			<button>resubmit</button>
-	</div>
+	</div> -->
 	</div>
 		<div v-show="authenticatedUser.prof && act_id && !eval">
 			<input v-model="score.body" type="number" placeholder="Score">
@@ -192,7 +192,9 @@ Split(['#code_editors','#output'], {
 		lineNumbers: true,
 		theme:"twilight",
 		extraKeys:{"Ctrl-Space":"autocomplete"},
-        autoCloseTags:true,
+		autoCloseTags:true,
+		matchBrackets: true,
+		autoCloseBrackets: true,
 		
 		onChange: function () {
 			console.log('1')

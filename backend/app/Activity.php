@@ -15,6 +15,9 @@ class Activity extends Model
     public function CodesSubmitted() {
         return $this->hasMany(Code::class);
     }
+    public function ImageSubmitted() {
+        return $this->hasMany(ImagesPortfolio::class);
+    }
     public function ScoresSubmitted() {
         return $this->hasMany(Score::class);
     }

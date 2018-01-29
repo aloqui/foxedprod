@@ -17,6 +17,15 @@
                         <input class="form-control" type="datetime-local" v-model="newTime" id="datePicker" min="2018-01-04T08:30">
                         </div>
                     </div>
+                        <span v-if="activity.image != 'none' || this.img">
+                            <img :src="'http://localhost:8000/images/' + activity.image">
+                        </span>
+                        <div class="form-group">
+
+                        <label>UPDATE IMAGE</label>
+                            <input type="file" class="form-control" @change="imageChanged">
+                            {{activity.oldImage}}
+                        </div>
                     <button @click="update" class="btn btn-success">Update</button>
                 </div>
             </div>
@@ -29,19 +38,41 @@ import moment from 'moment'
 export default {
         created (){
             this.getActivity();
+            // this.setOldImage();
+            
         },
         data () {
             return {
                 activity: {},
-                newTime:''
+                newImage:'',
+                newTime:'',
+                oldImage:'',
+                img:''
             }
         },
         methods: {
+                    imageChanged(e) {
+                console.log(e.target.files[0]);
+                var fileReader = new FileReader();
+
+                fileReader.readAsDataURL(e.target.files[0]);
+                console.log(e.target.files[0])
+                
+                fileReader.onload = e => {
+                this.activity.newImage = e.target.result;
+                };
+                
+            },
+            setOldImage(){
+                this.newImage = this.activity.image;
+                // console.log(this.activity.image + ' asdasdasd')
+            },
             getActivity (){
                 
                 this.$http.get('api/activities/show/' + this.$route.params.id)
                 .then(response => {
                     this.activity = response.body
+                    this.activity.oldImage = response.body.image;
                 })
             },
             update () {
@@ -71,3 +102,8 @@ export default {
         },
     }
 </script>
+<style lang="scss" scoped>
+img{
+    width: 150px;
+}
+</style>

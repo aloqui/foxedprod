@@ -69,6 +69,12 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/activities/update/{id}', 'ActivityController@update');
     Route::get('/activities/show/{id}', 'ActivityController@show');
     Route::put('/eval/codescore/{id}', 'CodeController@updateEval');
+
+    Route::put('/eval/imagecore/{id}', 'ImagesPortfolioController@updateEval');
+    
+
+    Route::resource('imageport','ImagesPortfolioController');
+    Route::put('/imageport/update/{id}', 'ImagesPortfolioController@update');
     
 });
 Route::get('/community/{channel}/{thread}/replies', 'RepliesController@index');

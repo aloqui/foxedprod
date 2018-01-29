@@ -7,6 +7,7 @@ use App\Activity;
 use App\Classroom;
 use App\Code;
 use App\Score;
+use App\ImagesPortfolio;
 use Auth;
 
 class ActivityController extends Controller
@@ -20,19 +21,22 @@ class ActivityController extends Controller
 
     public function store(Request $request){
         if($request->image){
+
+
             $exploded = explode(',', $request->image);
 
             $decoded = base64_decode($exploded[1]);
+
             if(str_contains($exploded[0],'jpeg'))
                 $extension = 'jpg';
             else
                 $extension ='png';
 
             $fileName = str_random().'.'.$extension;
-            $path = public_path().'/'.$fileName;
-
+            $path = public_path().'/images/'.$fileName;
+            
             file_put_contents($path, $decoded);
-
+            
         }
         else{
             $fileName = 'none';
@@ -58,8 +62,37 @@ class ActivityController extends Controller
     public function update(Request $request, $id){
         $activity = Activity::find($id);
         if($activity->isProf || $activity->user_id == Auth::id()) {
-            $activity->update($request->all());
-            return response()->json($activity);
+            if($request->newImage){
+                if(file_exists(public_path("images/{$request->oldImage}"))){
+                    unlink((public_path('images/' . $request->oldImage)));
+                }
+            }
+            if($request->newImage){
+                    $exploded = explode(',', $request->newImage);
+                    $decoded = base64_decode($exploded[1]);
+        
+                    if(str_contains($exploded[0],'jpeg'))
+                        $extension = 'jpg';
+                    else
+                        $extension ='png';
+        
+                    $fileName = str_random().'.'.$extension;
+                    $path = public_path().'/images/'.$fileName;
+                    file_put_contents($path, $decoded);
+                }
+                else{
+                    $fileName = $request->oldImage;
+                }
+
+                $activity->update( $request->except('image','oldImage','newImage') + [
+                        'title' => request('title'),
+                        'body' => request('body'),
+                        'due' => request('due'),
+                        'image' => $fileName
+                    ]
+                );
+                return response()->json($activity);
+            
         }
         else{
             return response()->json(['Unauthorized' => 'Not allowed to perform this operation'],404);
@@ -75,6 +108,12 @@ class ActivityController extends Controller
     }
 
     public function destroy($id){
+        $file = Activity::find($id);
+            if($file->image){
+                if(file_exists(public_path("images/{$file->image}"))){
+                    unlink((public_path('images/' . $file->image)));
+                }
+            }
         try {
             Activity::destroy($id);
             return response([],204);
@@ -94,7 +133,7 @@ class ActivityController extends Controller
 
         // $codes->CodesSubmitted->load('user');
         // $codes->ScoresSubmitted->load('user');
-        return ['userAct' => $codes->CodesSubmitted->load('user'), 'score' => $codes->ScoresSubmitted->load('user'),'class'=> $codes];
+        return ['userAct' => $codes->CodesSubmitted->load('user'),'userImage' => $codes->ImageSubmitted->load('user'), 'score' => $codes->ScoresSubmitted->load('user'),'class'=> $codes];
         // return $codes->ScoresSubmitted->load('owner');
         return $codes;
     }

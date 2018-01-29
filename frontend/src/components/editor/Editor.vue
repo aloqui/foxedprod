@@ -31,6 +31,23 @@
 
 <script>
 import Split from 'split.js'
+
+// import 'codemirror/lib/codemirror.css'
+// import 'codemirror/lib/codemirror.js'
+// import 'codemirror/theme/twilight.css'
+// import 'codemirror/addon/hint/show-hint.css'
+// import 'codemirror/mode/xml/xml'
+// import 'codemirror/mode/htmlmixed/htmlmixed'
+// import 'codemirror/mode/css/css.js'
+// import 'codemirror/addon/hint/css-hint'
+// import 'codemirror/addon/hint/show-hint'
+// import 'codemirror/addon/hint/html-hint'
+// import 'codemirror/addon/hint/javascript-hint.js'
+// import 'codemirror/addon/hint/xml-hint'
+// import 'codemirror/addon/edit/closetag'
+// import 'codemirror/addon/edit/closebrackets.js' 
+// import 'codemirror/addon/edit/matchbrackets.js' 
+// import 'codemirror/mode/javascript/javascript'
 		var x = {};
 export default {
 	data () {
@@ -136,6 +153,8 @@ Split(['#code_editors','#output'], {
         theme:"twilight",
         extraKeys:{"Ctrl-Space":"autocomplete"},
         autoCloseTags:true,
+				matchBrackets: true,
+				autoCloseBrackets: true,
         
 		onChange: function () {
 			console.log('1')
@@ -277,5 +296,7 @@ Split(['#code_editors','#output'], {
 	width: 100%; height: 100%;
 	border: 0;
 }
+
+
 
 </style>

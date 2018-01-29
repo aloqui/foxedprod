@@ -13,6 +13,7 @@ import proxy from 'http-proxy-middleware'
 import VueSocketIo from 'vue-socket.io' 
 
 
+
 Vue.use(VueResource)
 Vue.use(Auth)
 Vue.use(VeeValidate)

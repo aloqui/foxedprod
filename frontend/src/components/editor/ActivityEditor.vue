@@ -136,7 +136,9 @@ Split(['#code_editors','#output'], {
 		lineNumbers: true,
         theme:"twilight",
         extraKeys:{"Ctrl-Space":"autocomplete"},
-        autoCloseTags:true,
+				autoCloseTags:true,
+				matchBrackets: true,
+				autoCloseBrackets: true,
         
 		onChange: function () {
 			console.log('1')
