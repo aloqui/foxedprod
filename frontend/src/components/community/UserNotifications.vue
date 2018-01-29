@@ -44,7 +44,6 @@
         this.$http.get(`api/profiles/${this.user.username}/notifications`)
           .then(this.refresh)
           .catch(() => {
-            alert("failed")
           })
       },
       refresh(data) {
