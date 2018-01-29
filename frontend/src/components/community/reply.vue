@@ -52,6 +52,7 @@
         </div>
       </div>
       <div class="content--paragraph mt-4 mb-4" v-else v-html="body"></div>
+      user id : {{user.id}}, owner id: {{attributes.reply.user_id}}
       <div class="level d-flex panel-footer" v-if="user.id == attributes.reply.user_id && !editing">
         <button class="btn content__helper text-uppercase" @click="editing = true">
           <i class="far fa-file-alt"></i>
@@ -77,14 +78,13 @@
     components: {
       'wysiwyg': Wysiwyg,
     },
-    props: ['attributes'],
+    props: ['attributes', 'user'],
     name: 'reply',
     data() {
       return {
         editing: false,
         reply: this.attributes.reply,
-        body: this.attributes.reply.body,
-        user: {}
+        body: this.attributes.reply.body
       }
     },
     methods: {
@@ -126,14 +126,6 @@
       },
       pushFavorite() {
         this.reply.isFavorited = true;
-      },
-      fetch() {
-        this.$http.get(`api/user`)
-          .catch(response => {
-            this.user = response.body
-            consolg.log("useruseruiser")
-            consol.log(this.user)
-          })
       }
     },
     computed: {
@@ -148,7 +140,6 @@
       }
     },
     mounted() {
-      this.fetch()
     },
     sockets: {
       favoriteReply(response) {
