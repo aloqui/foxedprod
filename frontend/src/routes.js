@@ -219,10 +219,10 @@ const router = new VueRouter({
             }
         },
         {
-            path: "/:name/editor",
+            path: "/editor",
             component: Editor,
             meta: {
-                forAuth: true
+                forAuth: false
             }
         },
         {

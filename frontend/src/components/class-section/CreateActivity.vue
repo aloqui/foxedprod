@@ -16,7 +16,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label>Question</label>
+              <label>Instructions</label>
               <textarea name="question" type="text" class="form-control" v-model="activity.body" v-validate="'required'"></textarea>
               <div class="help-block alert alert-danger" v-show="errors.has('question')">
                 {{errors.first('question')}}

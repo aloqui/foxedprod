@@ -3,7 +3,7 @@
     <!-- <nav-list></nav-list> -->
     <div class="container-fluid">
       <div class="row justify-content-sm-center mt-5"  v-cloak>
-        <div class="col-10">
+        <div class="col-11">
           <div v-if="isMember">
             <div class="row">
               <div class="col-2 mt-5">
@@ -16,13 +16,6 @@
                     <hr>
                     <a class="btn btn-success text-center mb-2" type="submit">Code Play</a>
                     <br>
-                    <a class="content__sub-title" href="">Announcements</a>
-                    <br>
-                    <a class="content__sub-title" href="">Assignments</a>
-                    <br>
-                    <a class="content__sub-title" href="">Members</a>
-                    <br>
-                    <a class="content__sub-title" href="">Files</a>
                     <hr>
                     <div>
                       <h5>Members:</h5>
@@ -37,11 +30,12 @@
                 </div>
               </div>
               <div class="col-7 mt-5">
-                <div class="block-full-height d-flex justify-content-center align-items-start">
+                <div class="block-full-height d-flex justify-content-center flex-column align-items-stretch">
                   <!-- <class-feed-block></class-feed-block> -->
                   <create-activity v-show="authenticatedUser.prof"></create-activity>
+                  <view-activities></view-activities>
                 </div>
-                <view-activities></view-activities>
+                
               </div>
               <div class="col-3 mt-5">
                 <div class="block-full-height">

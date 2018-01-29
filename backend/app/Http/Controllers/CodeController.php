@@ -82,6 +82,8 @@ class CodeController extends Controller
         }
     }
     public function showCodes(User $user){
-        return [$profileUser = $user, 'codes' => $user->project()->latest()->where('activity_id', null)->orWhere('evaluated', true)->get()];
+        return [$profileUser = $user, 'codes' => $user->project()->latest()->where('activity_id', null)->orWhere('evaluated', true)->get(), 
+        'images' => $user->imagesport()->latest()->where('activity_id', null)->orWhere('evaluated', true)->get()
+    ];
     }
 }

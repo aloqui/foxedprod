@@ -66,6 +66,9 @@ class User extends Authenticatable
     public function project() {
         return $this->hasMany(Code::class)->latest();
     }
+    public function imagesport() {
+        return $this->hasMany(ImagesPortfolio::class)->latest();
+    }
     public function getIsProfAttribute() {
         return $this->prof()
             ->where('user_id', auth()->id())
