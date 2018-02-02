@@ -29,6 +29,20 @@
         </div>
       </div>
     </div>
+    <!-- <div class="container-fluid">
+      <div class="row">
+        <div class="col full-block__post">
+          <div class="d-flex">
+            <div>
+              One
+            </div>
+            <div>
+              Two
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
   </div>
 </template>
 
