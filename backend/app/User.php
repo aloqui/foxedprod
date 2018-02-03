@@ -47,8 +47,7 @@ class User extends Authenticatable
         $this->confirmation_token = null;
         $this->save();
     }
-    public function getAvatarPathAttribute($avatar)
-    {
+    public function getAvatarPathAttribute($avatar){
         return asset($avatar ? 'storage/' . $avatar : 'storage/avatars/default.jpg');
     }
     public function threads() {
@@ -65,6 +64,9 @@ class User extends Authenticatable
     }
     public function project() {
         return $this->hasMany(Code::class)->latest();
+    }
+    public function imagesport() {
+        return $this->hasMany(ImagesPortfolio::class)->latest();
     }
     public function getIsProfAttribute() {
         return $this->prof()

@@ -20,7 +20,7 @@
         this.$http.post(`api${this.$route.path}?token=${this.token}`, this.token)
           .then(function (response) {
             this.$router.push(`/community`);
-            swal("Account Confirmed!", {
+            swal(`${this.$route.path}`, {
               icon: "success",
             });
           })
@@ -33,6 +33,7 @@
       }
     },
     mounted() {
+      alert(`${this.token}`);
       this.fetch();
     },
     computed: {

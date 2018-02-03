@@ -39,8 +39,19 @@ class Thread extends Model
         return $this->hasMany(ThreadSubscription::class);
     }
     
-    public function getIsSubscribedToAttribute()
-    {
+    public function replies() {
+        return $this->hasMany(Reply::class)->withCount('favorites');
+    }
+    public function channel() {
+        return $this->belongsTo(Channel::class, 'channel_id');
+    }
+    public function owner() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function subscribers() {
+        return $this->hasMany(ThreadSubscription::class);
+    }
+    public function getIsSubscribedToAttribute(){
        
         return $this->subscriptions()
         ->where('user_id', Auth::guard('api')->id())
@@ -59,9 +70,6 @@ class Thread extends Model
     public function ownerVal() {
         return $this->owner;
     }
-    public function replies() {
-        return $this->hasMany(Reply::class)->withCount('favorites');
-    }
     public function addReply($reply) {
        $reply = $this->replies()->create($reply);
        $response = $this->subscriptions
@@ -73,15 +81,7 @@ class Thread extends Model
         $redis->publish('notify', $response);
         return $reply;
     }
-    public function channel() {
-        return $this->belongsTo(Channel::class, 'channel_id');
-    }
-    public function owner() {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-    public function subscribers() {
-        return $this->hasMany(ThreadSubscription::class);
-    }
+
     public function scopeFilter($query, $filters) {
         return $filters->apply($query);
     }
