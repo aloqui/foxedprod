@@ -10,7 +10,7 @@ import InstantSearch from 'vue-instantsearch'
 import VueObserveVisibility from 'vue-observe-visibility'
 import moment from 'moment'
 import proxy from 'http-proxy-middleware'
-import VueSocketIo from 'vue-socket.io' 
+import VueSocketIo from 'vue-socket.io'
 
 
 Vue.use(VueResource)
@@ -49,11 +49,12 @@ Vue.http.interceptors.push((request, next) => {
         icon: "error",
       });
     } else if (response.status == 500)
-      swal("Succesfully Updated!", {
-        title: 'Error ' + response.status,
-        text: "There's a problem in the server",
-        icon: "error",
-      });
+      console.log("There's a problem in the server")
+    // swal("Succesfully Updated!", {
+    //   title: 'Error ' + response.status,
+    //   text: "There's a problem in the server",
+    //   icon: "error",
+    // });
   })
 })
 

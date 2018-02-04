@@ -38,6 +38,17 @@
                       <span class="content__helper" v-if="createCategory.description.length >= 0">{{charactersLeft}} characters left</span>
 
                       <p class="help-block mb-2 mt-2" v-for="error in errorHandling.description">{{error}}</p>
+                      
+                      <div class="form-group ">
+                        <vue-recaptcha 
+                        ref="recaptcha"
+                        @verify="onVerify"
+                        :sitekey="'6LdNMUQUAAAAANCzAoEF4rLP5xK4zOk-nsneku70'">
+                        
+                        </vue-recaptcha>
+                      </div>
+                      <p class="help-block mb-2 mt-2" v-for="error in errorHandling.recaptcha">Recaptcha Error.</p>
+                      
                       <button type="submit" class="btn form__button--register-dark mt-5">
                         <i class="fas fa-align-left"></i>
                         <span class="ml-2">Publish</span>
@@ -45,7 +56,6 @@
                           <i class="animate__spin fas fa-circle-notch m-auto"></i>
                         </div>
                       </button>
-                      <p class="help-block mb-2 mt-2" >{{emailHandling}}</p>
                     </div>
                   </form>
                 </div>
@@ -57,6 +67,7 @@
       <div class="col">
       </div>
     </div>
+
   </div>
 </template>
 
@@ -65,6 +76,7 @@
   import classFeedBlock from '../components/community/class-feed-block.vue';
   import hotTopics from '../components/community/hot-topics.vue';
   import swal from 'sweetalert';
+  import VueRecaptcha from 'vue-recaptcha';
   // import forumReplies from '../components/forum-replies.vue';
   //import Thread from '../models/thread';
 
@@ -73,7 +85,8 @@
     components: {
       //'nav-list': Navigation,
       'class-feed-block': classFeedBlock,
-      'hot-topics': hotTopics
+      'hot-topics': hotTopics,
+      VueRecaptcha
       // 'forum-replies': forumReplies
     },
     // props: [
@@ -110,15 +123,19 @@
       }
     },
     methods: {
+      onVerify(response) {
+        this.createCategory.recaptcha = response
+      },
       removeSpace() {
         if (this.createCategory.slug) {
           this.createCategory.slug = this.createCategory.slug.replace(/\s+/g, '');
         }
       },
       addCategory() {
-        this.removeSpace();
-        this.errorHandling = "";
-        this.loading = true;
+        this.errorHandling = {}
+        this.removeSpace()
+        this.errorHandling = ""
+        this.loading = true
         this.$http.post(`api/community/create`, this.createCategory)
           .then(function (response) { // do something 
             console.log(response)
@@ -131,11 +148,9 @@
           .catch(response => {
             console.log(response)
             this.loading = false;
-            if (response.body.errors) {
+            if (response.body.errors) 
               this.errorHandling = response.body.errors;
-            }
-            if(response.body.message)
-              this.emailHandling = response.body.message;
+
           })
       }
     }
