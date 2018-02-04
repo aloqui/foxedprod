@@ -12,12 +12,12 @@
   export default {
     data() {
       return {
-        token: this.$route.query.token
+        token: {token: this.$route.query.token}
       }
     },
     methods: {
       fetch() {
-        this.$http.post(`api${this.$route.path}?token=${this.token}`, this.token)
+        this.$http.post(`api${this.$route.path}`, this.token)
           .then(function (response) {
             this.$router.push(`/community`);
             swal(`${this.$route.path}`, {
@@ -33,7 +33,6 @@
       }
     },
     mounted() {
-      alert(`${this.token}`);
       this.fetch();
     },
     computed: {
