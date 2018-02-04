@@ -45,6 +45,7 @@
                           <i class="animate__spin fas fa-circle-notch m-auto"></i>
                         </div>
                       </button>
+                      <p class="help-block mb-2 mt-2" >{{emailHandling}}</p>
                     </div>
                   </form>
                 </div>
@@ -87,6 +88,7 @@
           description: ''
         },
         errorHandling: {},
+        emailHandling: null,
         loading: false
       }
     },
@@ -127,10 +129,13 @@
             this.$router.push(`/community/${response.body.slug}`);
           })
           .catch(response => {
+            console.log(response)
             this.loading = false;
             if (response.body.errors) {
               this.errorHandling = response.body.errors;
             }
+            if(response.body.message)
+              this.emailHandling = response.body.message;
           })
       }
     }
