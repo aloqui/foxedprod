@@ -26,7 +26,7 @@ class RegisterController extends Controller
             'password' => bcrypt($request['password']),
             'username' => $request['username'],
             'prof' => $request['prof'],
-            'confirmation_token' => str_limit(md5($request['email'] . str_random()), 25, ''),
+            'confirmation_token' => str_limit(md5($request['email'] . str_random()), 6, ''),
             'reset_password_token' => null
         ])));
 
