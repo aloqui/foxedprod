@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
     crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/0.11.1/trix.css">
-  <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.css"> -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/theme/twilight.css">
   <script defer src="https://use.fontawesome.com/releases/v5.0.3/js/all.js"></script>
   <link rel="stylesheet" href="./css/app.min.css">
@@ -35,7 +35,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/addon/hint/javascript-hint.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/addon/hint/xml-hint.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/addon/edit/closetag.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.33.0/addon/edit/closebrackets.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.33.0/addon/edit/matchbrackets.min.js"></script>
+  
   <!-- For JS -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/mode/javascript/javascript.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/addon/hint/show-hint.min.js"></script>

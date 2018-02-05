@@ -1,5 +1,5 @@
 <template>
-<section>
+<section class="editor__page">
   <div id="wrap">
 
   <section id="code_editors" class="cm-s-twilight" >
@@ -22,15 +22,36 @@
   </section>
   
 </div>
-    <router-link class="nav-item" to="/evaluation"> <a class="nav-link" href="">Save and Submit</a> </router-link>
-	<input type="text" v-model="codes.title">
-	<button class="btn btn-info" @click="submitCodes">save</button>
+  <div class="editor__footer">
+		<div>
+				<input type="text" v-model="codes.title">
+				<button class="btn btn-info" @click="submitCodes">save</button>
+		</div>
+	</div>
+
 	<!-- <input type="text" v-model="codes.html"> -->
 </section>
 </template>
 
 <script>
 import Split from 'split.js'
+
+// import 'codemirror/lib/codemirror.css'
+// import 'codemirror/lib/codemirror.js'
+// import 'codemirror/theme/twilight.css'
+// import 'codemirror/addon/hint/show-hint.css'
+// import 'codemirror/mode/xml/xml'
+// import 'codemirror/mode/htmlmixed/htmlmixed'
+// import 'codemirror/mode/css/css.js'
+// import 'codemirror/addon/hint/css-hint'
+// import 'codemirror/addon/hint/show-hint'
+// import 'codemirror/addon/hint/html-hint'
+// import 'codemirror/addon/hint/javascript-hint.js'
+// import 'codemirror/addon/hint/xml-hint'
+// import 'codemirror/addon/edit/closetag'
+// import 'codemirror/addon/edit/closebrackets.js' 
+// import 'codemirror/addon/edit/matchbrackets.js' 
+// import 'codemirror/mode/javascript/javascript'
 		var x = {};
 export default {
 	data () {
@@ -41,14 +62,14 @@ export default {
 				css:"",
 				js: "",
 				submitted:false
-			}
+			},
 		}
 	},
     created (){
 		// this.getCode();
 		// this.submitCodes();
-
     },
+		
   
   methods: {
       getCode (){
@@ -65,13 +86,18 @@ export default {
 					this.codes.js = x.js
 				  this.$http.post('api/codes/', this.codes)
                 .then(response => {
-                    console.log(response)
+                    console.log(response.body[1])
                             swal("Succesfully created!", {
                         icon: "success",
-                        });   swal("Succesfully created!", {
-                        icon: "success",
                         });
-                })
+												
+												this.$router.push(`/${response.body[1]}/codes/${response.body[0].id}`)
+                }).catch(asd =>{
+									swal("Login Required", {
+												icon: "error",
+												body:'asd'
+                        });
+								})
 		},
   },
   mounted: function() {
@@ -136,6 +162,8 @@ Split(['#code_editors','#output'], {
         theme:"twilight",
         extraKeys:{"Ctrl-Space":"autocomplete"},
         autoCloseTags:true,
+				matchBrackets: true,
+				autoCloseBrackets: true,
         
 		onChange: function () {
 			console.log('1')
@@ -193,7 +221,42 @@ Split(['#code_editors','#output'], {
 
 * {
 }
+.editor__page{
+	.editor__footer{
+		// max-height: 80px;
+		display: flex;
 
+		height: 35px;
+		width: 100%;
+		background: rgb(22, 22, 22);
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		z-index: 1;
+		justify-content: flex-end;
+		align-items: center;
+		padding: 0 7px 0 7px;
+		h1{
+			font-size:18px;
+			font-weight: 900;
+			color: #ffffff;
+		}
+		button{
+			padding: 0 5px 0 5px;
+			font-size: 10px;
+			margin: 0 4px 0 4px;
+			background: #555;
+			color: #ffffff;
+		}
+		input{
+			font-size: 12px;
+			color: #555;
+			padding: 0px 5px 0px 5px;
+			border-radius: 5px;
+			box-shadow: none;
+		}
+	}
+}
 #wrap {
     display: flex;
     flex-direction: column;
@@ -211,15 +274,13 @@ Split(['#code_editors','#output'], {
 		justify-content: flex-start;
 
 		.code_box{
-			padding-top: 25px;
+			padding-top: 12px;
 			width: 100%;
 			overflow: hidden;
 			background: #000;
 			display: flex;
 			flex-direction: column;
 			justify-content: flex-start;
-
-			
 		}
 }
 .gutter {
@@ -247,13 +308,14 @@ Split(['#code_editors','#output'], {
 // 		justify-content: flex-start;
 // }
 .code_box h3 {
-	font-size: 13px;
+	font-size: 15px;
 	height: 30px;
 	padding: 5px 10px; margin: 0;
 	background: linear-gradient(#707070, #555);
 	color: white;
 	border-top: 1px solid #8F8F8F;
 	border-bottom: 1px solid #202020;
+	font-weight:600;
 }
 .code_box textarea {
 	resize: none; 
@@ -268,14 +330,16 @@ Split(['#code_editors','#output'], {
 }
 
 #output {
-	border: 5px solid #444;
 	border-left-width: 10px;
 	overflow: hidden;
+	padding-bottom: 35px;
 }
 
 #output iframe {
 	width: 100%; height: 100%;
 	border: 0;
 }
+
+
 
 </style>

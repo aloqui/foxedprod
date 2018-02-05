@@ -10,28 +10,6 @@
         <span class="font--light">Folio</span>
       </a>
       <login v-if="! isAuth"></login>
-      <!-- <router-link tag="li" to="/login" v-if="! isAuth">
-        <a>login</a>
-      </router-link> -->
-      <!-- <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">
-          Channels
-        </button>
-         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-
-        <div>
-          <div v-for="channel in channels">
-            <div class="dropdown-item">
-              <router-link :to="`/community/${channel.slug}`">
-                <a href="">{{channel.slug}}</a>
-              </router-link>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div> -->
       <div class="form-group mt-auto mb-auto " v-if="isAuth">
         <div class="algolia-search">
           <div class="dropdown ">
@@ -73,7 +51,6 @@
               <div class="round-block mr-2 ">
                 <img class="" :src="user.avatar_path" alt="">
               </div>
-              <!-- <i class="fas fa-angle-down"></i> -->
             </div>
             <ul class="dropdown-menu font--light  mr-auto" aria-labelledby="dropdownMenuButton">
               <router-link class="" :to="'/'+user.username+'/codes'">

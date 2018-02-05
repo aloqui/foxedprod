@@ -1,24 +1,21 @@
 <template>
-  <div class="row">
-      <div class="col-md-8 col-md-offser-2">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="form-group">
-                        <h1> {{activity.title}}</h1>
-                        <!-- <input type="text" class="form-control" v-model="activity.title"> -->
-                        
-                    </div>
-                    <div class="form-group">
-                        <p>{{activity.body}}</p>
-                        <span v-if="activity.image != 'none'">
-        <img  :src="'http://localhost:8000/' + activity.image">
-    </span>
-                        <!-- <textarea type="text" class="form-control" v-model="activity.body"></textarea> -->
-                    </div>
-                    <!-- <button @click="update" class="btn btn-success" v-if="activity.body && activity.title">Update</button> -->
-                </div>
-            </div>
-      </div>
+<div class="container">
+
+
+  <div class="row pt-5">
+      
+            
+
+            <div class="col-md-5">
+            <span v-if="activity.image != 'none'"> <img  :src="'http://localhost:3000/images/' + activity.image"> </span>
+            <span v-else> <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt=""> </span>
+        </div>
+        <div class="col-md-7">
+          <h3>{{activity.title}}</h3>
+            <p>{{activity.body}}</p>
+          <router-link class="btn btn-primary" :to="'/activity/' + activity.id +'/evaluate'">evaluation</router-link>
+        </div>
+  </div>
   </div>
 </template>
 <script>
@@ -52,3 +49,18 @@ export default {
   },
 }
 </script>
+<style lang="scss" scoped>
+.panel{
+    width: 100%;
+    .form-group{
+            img{
+                width: 100%;
+        }
+    }
+    
+}
+img{
+    width: 100%
+}
+    
+</style>

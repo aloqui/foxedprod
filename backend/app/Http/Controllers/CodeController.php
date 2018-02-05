@@ -20,7 +20,7 @@ class CodeController extends Controller
     
     public function store(Request $request){
        
-        Code::create([
+        $code = Code::create([
             'user_id' => Auth::id(),
             'title' => request('title'),
             'html' => request('html'),
@@ -29,7 +29,10 @@ class CodeController extends Controller
             'activity_id' => request('activity_id'),
             'submitted' => request('submitted')
         ]);
+        $user = User::find($code->user_id);
         
+        return [$code , $user->username];
+
     }
     public function show($id){
         $code = Code::find($id);
@@ -82,6 +85,17 @@ class CodeController extends Controller
         }
     }
     public function showCodes(User $user){
-        return [$profileUser = $user, 'codes' => $user->project()->latest()->where('activity_id', null)->orWhere('evaluated', true)->get()];
+
+        $usercodes = $user->project()->whereNull('activity_id')->get();
+        $usercodess = $user->project()->where('evaluated', true)->get();
+        $cods = $usercodes->merge($usercodess);
+
+        $userimage = $user->imagesport()->whereNull('activity_id')->get();
+        $userimages = $user->imagesport()->where('evaluated', true)->get();
+        $imgs = $userimage->merge($userimages);
+
+        return [$profileUser = $user, 'codes' => $cods, 'images' => $imgs ];
     }
 }
+// return [$profileUser = $user, 'codes' => $user->project()->latest()->where('activity_id', null)->orWhere('evaluated', true)->get(), 
+//         'images' => $user->imagesport()->latest()->where('activity_id', null)->orWhere('evaluated', true)->get()
