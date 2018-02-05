@@ -1,7 +1,7 @@
 <template>
-<section>
+<section class="editor__page">
 	
-	<h1>{{codes.title}}</h1>
+	
   <div id="wrap">
 
   <section id="code_editors" class="cm-s-twilight" >
@@ -24,19 +24,23 @@
 		
   </section>
 	
-  <div v-show="authenticatedUser.id == id">
-		<input type="text" v-model="codes.title">
-		<button class="btn btn-info" @click="update">save</button>
-		<button class="btn btn-danger" @click="deleteCodes">thrash</button>
-		<!-- <div v-show="act_id && evaluated">
-			<button>resubmit</button>
-	</div> -->
-	</div>
-		<div v-show="authenticatedUser.prof && act_id && !eval">
-			<input v-model="score.body" type="number" placeholder="Score">
-			<button @click="submitScore">save</button>
-	</div>
 </div>
+  <div class="editor__footer">
+		<h1>{{codes.title}}</h1>
+		<div v-show="authenticatedUser.id == id">
+			<!-- <div> -->
+				<input type="text" v-model="codes.title">
+				<button class="btn" @click="update">Save</button>
+				<button class="btn btn--red" @click="deleteCodes">Thrash</button>
+				<!-- <div v-show="act_id && evaluated">
+					<button>resubmit</button>
+			</div> -->
+			</div>
+				<div v-show="authenticatedUser.prof && act_id && !eval">
+					<input v-model="score.body" type="number" placeholder="Score">
+					<button class="btn" @click="submitScore">save</button>
+			</div>
+  </div>
     <!-- <router-link class="nav-item" to="/evaluation"> <a class="nav-link" href="">Save and Submit</a> </router-link> -->
 	
 	<!-- <input type="text" v-model="codes.html"> -->
@@ -273,6 +277,47 @@ Split(['#code_editors','#output'], {
 }
 </script>
 <style lang="scss"> 
+.editor__page{
+	.editor__footer{
+		// max-height: 80px;
+		display: flex;
+
+		height: 35px;
+		width: 100%;
+		background: rgb(22, 22, 22);
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		z-index: 1;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 7px 0 7px;
+		h1{
+			font-size:18px;
+			font-weight: 900;
+			color: #ffffff;
+		}
+		button{
+			padding: 0 5px 0 5px;
+			font-size: 10px;
+			margin: 0 4px 0 4px;
+			background: #555;
+			color: #ffffff;
+			
+			
+		}
+		.btn--red{
+					
+			}
+		input{
+			font-size: 12px;
+			color: #555;
+			padding: 0px 5px 0px 5px;
+			border-radius: 5px;
+			box-shadow: none;
+		}
+	}
+}
 #wrap {
     display: flex;
     flex-direction: column;
@@ -280,7 +325,6 @@ Split(['#code_editors','#output'], {
 		height: 100vh;
 		justify-content: flex-start;
 }
-
 
 #code_editors {
     width: 100%;
@@ -290,7 +334,7 @@ Split(['#code_editors','#output'], {
 		justify-content: flex-start;
 
 		.code_box{
-			padding-top: 25px;
+			padding-top: 12px;
 			width: 100%;
 			overflow: hidden;
 			background: #000;
@@ -326,20 +370,21 @@ Split(['#code_editors','#output'], {
 // 		justify-content: flex-start;
 // }
 .code_box h3 {
-	font-size: 13px;
+	font-size: 15px;
 	height: 30px;
 	padding: 5px 10px; margin: 0;
 	background: linear-gradient(#707070, #555);
 	color: white;
 	border-top: 1px solid #8F8F8F;
 	border-bottom: 1px solid #202020;
+	font-weight:600;
 }
 .code_box textarea {
 	resize: none; 
 	border: 0;
 	padding: 15px;
 	font-family: monospace;
-	
+	overflow-wrap: break-word!important;
 }
 .code_box textarea:focus {
 	outline: none;
@@ -347,9 +392,10 @@ Split(['#code_editors','#output'], {
 }
 
 #output {
-	border: 5px solid #444;
+	// border: 5px solid #444;
 	border-left-width: 10px;
 	overflow: hidden;
+	padding-bottom: 35px;
 }
 
 #output iframe {

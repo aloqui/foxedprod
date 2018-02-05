@@ -7,7 +7,7 @@
             
 
             <div class="col-md-5">
-            <span v-if="activity.image != 'none'"> <img  :src="'http://localhost:8000/images/' + activity.image"> </span>
+            <span v-if="activity.image != 'none'"> <img  :src="'http://localhost:3000/images/' + activity.image"> </span>
             <span v-else> <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt=""> </span>
         </div>
         <div class="col-md-7">

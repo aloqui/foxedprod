@@ -58,7 +58,7 @@ class ImagesPortfolioController extends Controller
     public function update(Request $request, $id){
         $imageportfolio = ImagesPortfolio::find($id);
         if($imageportfolio->user_id == Auth::id()) {
-            if($request->oldImage){
+            if($request->newImage){
                 if(file_exists(public_path("images/{$request->oldImage}"))){
                     unlink((public_path('images/' . $request->oldImage)));
                 }
@@ -77,7 +77,7 @@ class ImagesPortfolioController extends Controller
                     file_put_contents($path, $decoded);
                 }
                 else{
-                    $fileName = 'none';
+                    $fileName = $request->oldImage;
                 }
 
                 $imageportfolio->update( $request->except('image','oldImage','newImage') + [

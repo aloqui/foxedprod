@@ -2,9 +2,11 @@
   <div class="home mt-5">
     <div class="container">
       <div class="row d-flex justify-content-sm-center section-block mt-5">
-        <div class="col-12">
+        <div class="col-12 d-flex justify-content-center align-items-center">
+          
           <avatarForm :user="user"></avatarForm>
-          <div class="col-12 d-flex mb-5">
+          <div class="" v-if="user.id === userMe.id">
+            
             <router-link class="btn content__button--passive content__helper" :to="'/editor'">new code</router-link>
             <!-- <router-link class="btn btn-default" :to="'/settings'">settings</router-link> -->
             <button type="button" class="btn content__button--passive content__helper" data-toggle="modal" data-target="#imageport">
@@ -15,7 +17,7 @@
           </div>
         </div>
         <div class="col-12">
-          <code-works></code-works>
+          <code-works :userMe="userMe"></code-works>
         </div>
       </div>
     </div>
@@ -29,9 +31,10 @@
             </button>
           </div>
           <div class="modal-body">
+            <img :src="image" />
             <div class="d-flex flex-column justify-content-center align-items-center">
             </div>
-            <input type="file" class="form-control" @change="imageChanged">
+            <input type="file" accept="image/*" class="form-control  content__helper" @change="imageChanged">
                         <div  class="d-flex flex-column justify-content-center align-items-center">
                             <input v-model="imageport.title"  type="text" placeholder="title">
                             <button @click="submitImage">save</button>
@@ -62,17 +65,30 @@
         // profile: {},
         user: {},
         imageport: {},
-        authenticatedUser: {}
+        image:"",
+        userMe:'',
+        
       }
+    },
+    computed: {
+            authenticatedUser () {
+                return this.$auth.getAuthenticatedUser()
+            }
     },
     methods: {
       fetch() {
         this.$http.get(`api/${this.$route.params.user}/user`)
-          .then(this.refresh)
+          .then(this.refresh);
       },
       refresh(data) {
-        this.authenticatedUser = this.$auth.getAuthenticatedUser();
+        // this.authenticatedUser = this.$auth.getAuthenticatedUser();
         this.user = data.body;
+        console.log(data.body.id) 
+
+        this.$http.get(`api/user`)
+        .then(mes => this.userMe = mes.body)
+        .catch()
+        
       },
       imageChanged(e) {
                     console.log(e.target.files[0]);
@@ -81,6 +97,7 @@
                     fileReader.readAsDataURL(e.target.files[0]);
 
                     fileReader.onload = e => {
+                    this.image = e.target.result;
                     this.imageport.image = e.target.result;
                     };
                     console.log(this.activity);
@@ -115,6 +132,8 @@
 
   img {
     width: 100%;
+    /* min-width:700px;
+    max-width: 700px; */
   }
 
 

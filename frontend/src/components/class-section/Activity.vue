@@ -5,14 +5,14 @@
       
     <h4 class="card-title"><router-link  :to="'/activity/' + activity.id">{{ activity.title }}</router-link></h4>
     <span v-if="activity.image != 'none'">
-        <img :src="'http://localhost:8000/images/' + activity.image">
+        <img :src="'http://localhost:3000/images/' + activity.image">
     </span>
     
     <p class="card-text">{{ activity.body }}</p>
     <span v-if="activity.enabled">
-        <router-link v-if="activity.type == 'code'" v-show="activity.user_id != authenticatedUser.id" class="btn content__button--passive content__helper" :to="'/'+ activity.id + '/activity'">Start</router-link>
+        <router-link v-if="activity.type == 'code'" v-show="activity.user_id != user.id" class="btn content__button--passive content__helper" :to="'/'+ activity.id + '/activity'">Start</router-link>
         
-        <button  v-if="activity.type == 'image'" v-show="activity.user_id != authenticatedUser.id"  @click="$emit('cons')" type="button" class="btn content__button--passive content__helper" data-toggle="modal" data-target="#exampleModal">
+        <button  v-if="activity.type == 'image'" v-show="activity.user_id != user.id"  @click="$emit('cons')" type="button" class="btn content__button--passive content__helper" data-toggle="modal" data-target="#exampleModal">
                                         submit
                             </button>
        
@@ -20,12 +20,12 @@
             until: {{momentize(activity.due)}} 
         </p>
     </span>
-    <span v-if="!activity.enabled && activity.user_id != authenticatedUser.id">
+    <span v-if="!activity.enabled && activity.user_id != user.id">
         <p>
             Closed
         </p>
     </span>
-    <span  v-if="!activity.enabled && activity.user_id == authenticatedUser.id">
+    <span  v-if="!activity.enabled && activity.user_id == user.id">
         <p>
             Already ended
         </p>
@@ -33,7 +33,7 @@
         
   </div>
   <hr>
-  <p  v-if="activity.user_id == authenticatedUser.id">
+  <p  v-if="activity.user_id == user.id"> 
       <a class="btn btn-danger" role="button" @click="$emit('delete-activity')"> delete </a>
       <router-link class="btn btn-secondary" :to="'/activity/' + activity.id + '/update'">edit</router-link>
   </p>
@@ -59,7 +59,8 @@
         props: [
             'activity',
             'authenticatedUser',
-            'datea'
+            'datea',
+            'user'
         ],
         mounted(){
             // this.activity.due = moment(this.activity.due).format('LLLL');
