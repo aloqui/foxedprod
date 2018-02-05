@@ -50,7 +50,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/classroom/{classroom}/join', 'UserGroupController@membership');
     Route::post('/classroom/create/a','ClassroomController@create');
     Route::get('/classroom/{classroom}', 'ClassroomController@show');
-    Route::get('/{name}/codes/{id}','CodeController@showCertainCode');
+
  
     Route::get('/enrolledClass', 'ClassroomController@index');
     Route::get('/showTimeline', 'ClassroomController@showTimeline');
@@ -102,3 +102,4 @@ Route::get('/{user}/works/', 'ProfilesController@show');
 Route::get('/{user}/user', 'UserAvatarController@show');
 Route::post('/auth/login', 'ProfilesController@authenticate');
 //Route::resource('threads', 'ThreadsController');
+Route::get('/{name}/codes/{id}','CodeController@showCertainCode');

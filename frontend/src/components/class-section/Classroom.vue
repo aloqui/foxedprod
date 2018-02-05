@@ -1,20 +1,20 @@
 <template v-cloak>
   <div class="classroom mt-5">
     <!-- <nav-list></nav-list> -->
-    <div class="container-fluid">
+    <div class="container">
       <div class="row justify-content-sm-center mt-5"  v-cloak>
-        <div class="col-11">
+        <div >
           <div v-if="isMember">
             <div class="row">
-              <div class="col-2 mt-5">
-                <div class="block-full-height d-flex justify-content-center align-items-start ">
+              <div class="col-2 mt-5 p-0">
+                <div class="block-full-height d-flex justify-content-center align-items-start  pop-dis">
 
                   <div class="text-left">
                     <a href="">
                       <h3 class="classroom__title">{{classDetails.name}}</h3>
                     </a>
                     <hr>
-                    <a class="btn btn-success text-center mb-2" type="submit">Code Play</a>
+                    <p>{{classDetails.body}}</p>
                     <br>
                     <hr>
                     <div>
@@ -32,16 +32,15 @@
               <div class="col-7 mt-5">
                 <div class="block-full-height d-flex justify-content-center flex-column align-items-stretch">
                   <!-- <class-feed-block></class-feed-block> -->
-                  <create-activity v-show="authenticatedUser.prof"></create-activity>
-                  <view-activities></view-activities>
+                  <create-activity v-show="user.prof"></create-activity>
+                  <view-activities :user="user"></view-activities>
                 </div>
                 
               </div>
-              <div class="col-3 mt-5">
+              <div class="col-2 mt-5 p-0">
                 <div class="block-full-height">
-                  <div class="row">
-                    <p class=" ml-3">Popular discussions</p>
-                    <hr>
+                  <div class="d-flex flex-column pop-dis">
+                    <!-- <p class="">Popular discussions</p> -->
                     <forum-category></forum-category>
                   </div>
                 </div>
@@ -73,7 +72,8 @@
         classDetails: {},
         isMember: false,
         authenticatedUser: this.$auth.getAuthenticatedUser(),
-        notMember: 'You are not a member of this class.'
+        notMember: 'You are not a member of this class.',
+        user:{}
       }
     },
     components: {
@@ -86,6 +86,9 @@
     },
     mounted() {
       this.getData();
+      this.$http.get(`api/user`)
+        .then(mes => this.user = mes.body)
+        .catch()
     },
     methods: {
       getData() {
@@ -113,7 +116,11 @@
   form input {
     width: 100%;
   }
-
+  .pop-dis{
+    background: #ffffff;
+    padding: 12px;
+    align-items: center;
+  }
   .green {
     background-color: green;
   }

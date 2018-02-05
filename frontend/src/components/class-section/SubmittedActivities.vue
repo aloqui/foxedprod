@@ -8,7 +8,7 @@
             
 
             <div class="col-md-5">
-            <span v-if="submitted.class.image != 'none'"> <img  :src="'http://localhost:8000/images/' + submitted.class.image"> </span>
+            <span v-if="submitted.class.image != 'none'"> <img  :src="'http://localhost:3000/images/' + submitted.class.image"> </span>
             <span v-else> <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt=""> </span>
         </div>
         <div class="col-md-7">
@@ -73,10 +73,10 @@
                     </div>
                     <div class="modal-body">
                         <span v-if="modal.image != 'none'">
-                            <img :src="'http://localhost:8000/images/' + modal.image">
+                            <img :src="'http://localhost:3000/images/' + modal.image">
                         </span>
                             
-                        <div  class="d-flex flex-column justify-content-center align-items-center">
+                        <div  class="d-flex justify-content-center align-items-center">
                             <input v-model="score.body" type="number" placeholder="score">
                             <button @click="submitscore">save</button>
                         </div>

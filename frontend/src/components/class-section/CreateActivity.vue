@@ -1,6 +1,6 @@
 <template>
-  <div class="row">
-    <div class="col-md-8 col-md-offser-2">
+  <div class="row create--activity">
+    <div class="col-md-12 p-0">
       <div class="panel panel-default">
         <div class="panel-body">
           <form @submit.prevent="create">
@@ -22,16 +22,24 @@
                 {{errors.first('question')}}
               </div>
             </div>
-            <div class="form-group mr-0 text-left">
+            <div class="form-group mr-0 text-left row">
+              <div class="col-4">
+                <label>Type</label><br>
                 <select v-model="activity.type">
                   <option value="code" default>Code</option>
                   <option value="image">Image</option>
                 </select>
+              </div>
+              
+              <div class="col-8">
+                <label>Date and time</label>
+                <input class="form-control" type="datetime-local" v-model="tomorrow" id="datePicker" :min="limit">
+              </div>
             </div>
             <div class="form-group row">
-              <label for="" class="col-2 col-form-label">Date and time</label>
-                <div class="col-10">
-                  <input class="form-control" type="datetime-local" v-model="tomorrow" id="datePicker" :min="limit">
+              
+                <div class="col-8">
+                 
                 </div>
               </div>
             <input type="submit" class="btn btn-success" v-if="activity.title && activity.body" value="submit">
@@ -119,3 +127,19 @@
   };
 
 </script>
+<style lang="scss">
+.create--activity{
+}
+.panel{
+  padding: 10px;
+}
+  .form{
+    
+    input{
+      width: 100%;
+    }
+    .btn{
+
+    }
+  }
+</style>

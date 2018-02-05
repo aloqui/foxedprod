@@ -193,7 +193,7 @@ const router = new VueRouter({
             path: "/:user/codes/:id",
             component: EditEditor,
             meta: {
-                forAuth: true
+                forAuth: false
             }
         },
         {

@@ -1,23 +1,32 @@
 <template>
       <div>
-        <activity v-for="activity in activities" @delete-activity="deleteActivity(activity)" @cons="conss(activity)"  :authenticatedUser="authenticatedUser" :activity="activity"></activity>
+        <activity v-for="activity in activities" @delete-activity="deleteActivity(activity)" @cons="conss(activity)"  :authenticatedUser="authenticatedUser" :activity="activity" :user="user"></activity>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{modal.title}}</h5>
+                        <h5 class="modal-title center" id="exampleModalLabel">{{modal.title}}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <span v-if="modal.image != 'none'">
-                            <img :src="'http://localhost:8000/images/' + modal.image">
+                            <img :src="'http://localhost:3000/images/' + modal.image">
                         </span>
-                            <input type="file" class="form-control" @change="imageChanged">
-                        <div v-show="authenticatedUser.prof && act_id && !eval" class="d-flex flex-column justify-content-center align-items-center">
-                            <input v-model="imageport.title" type="text" placeholder="title">
-                            <button @click="submitImage">save</button>
+                        <div>
+                            <h5>Instruction: </h5>
+                            <p> &nbsp; {{modal.body}}</p>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label>Submit to this activity</label>
+                            <input  type="file" accept="image/*" class="form-control content__helper" @change="imageChanged">
+                            <div v-show="authenticatedUser.prof && act_id && !eval" class="d-flex justify-content-end align-items-center pt-2">
+                                
+                                <input v-model="imageport.title" type="text" placeholder="title" class="input-sm">
+                                <button class="btn content__button--passive content__helper" @click="submitImage">save</button>
+                            </div>
                         </div>
                     </div>
                     </div>
@@ -39,6 +48,10 @@ import swal from 'sweetalert'
                 imageport:{},
             }
         },
+        
+        props: [
+            'user'
+        ],
         computed: {
             authenticatedUser () {
                 return this.$auth.getAuthenticatedUser()
@@ -114,6 +127,10 @@ import swal from 'sweetalert'
 </script>
 <style lang="scss" scoped>
 img{
-    width:100px;
+    width:100%;
+}
+
+.modal-body{
+
 }
 </style>

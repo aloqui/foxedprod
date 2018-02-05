@@ -18,7 +18,7 @@
                         </div>
                     </div>
                         <span v-if="activity.image != 'none' || this.img">
-                            <img :src="'http://localhost:8000/images/' + activity.image">
+                            <img :src="'http://localhost:3000/images/' + activity.image">
                         </span>
                         <div class="form-group">
 
