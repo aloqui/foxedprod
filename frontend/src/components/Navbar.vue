@@ -104,9 +104,6 @@
     // },
     mounted() {
       this.isAuth = this.$auth.isAuthenticated()
-      this.$nextTick(function () {
-        this.setAuthenticatedUser()
-      });
     },
     watch: {
       $route: function () {

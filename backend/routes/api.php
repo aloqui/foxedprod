@@ -87,8 +87,8 @@ Route::get('/community/{channel}/{thread}', 'ThreadController@show');
 
 //Route::get('/community', 'ThreadController@index');
 //Route::get('/community/{thread}', 'ThreadController@show');
-Route::post('/register', 'Auth\RegisterController@create');
 Route::post('/register/confirm', 'Api\RegisterConfirmationController@index');
+Route::post('/register', 'Auth\RegisterController@create');
 Route::get('/threads/search', 'SearchController@show');
 Route::get('/channel/search', 'SearchController@showChannel');
 Route::get('/community', 'ThreadController@index');

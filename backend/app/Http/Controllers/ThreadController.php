@@ -8,7 +8,9 @@ use App\Filters\ThreadFilters;
 use App\Filters;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
+use App\Rules\Recaptcha;
 use Auth;
+
 
 
 class ThreadController extends Controller
@@ -70,22 +72,24 @@ class ThreadController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function storeThreadOnChannel(Request $request, Channel $channel) {
+    public function storeThreadOnChannel(Request $request, Channel $channel, Recaptcha $recaptcha) {
 
         
         request()->validate([
             'title' => 'required',
             'body' => 'required',
-            'channel_id' => 'required|exists:channels,id'
+            'channel_id' => 'required|exists:channels,id',
+            'recaptcha' => ['required', $recaptcha]
         ]); 
-        $response = Thread::Create([
+
+        $postThread = Thread::Create([
             'user_id' => Auth::id(),
             'title' => request('title'),
             'channel_id' => request('channel_id') ,
             'body' => request('body')
         ]);
-        $response->subscribe();
-        return $response;
+        $postThread->subscribe();
+        return $postThread;
         
     }
     

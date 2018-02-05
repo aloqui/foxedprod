@@ -4,7 +4,7 @@
       <div class="forum-post__form">
         <form @submit.prevent="addReply">
           <div class="form-group">
-            <wysiwyg v-model="newReply.body" :value="newReply.body" placeholder="Have something to say?" :shouldClear="completed" ></wysiwyg>
+            <wysiwyg v-model="newReply.body" :value="newReply.body" placeholder="Have something to say?" :shouldClear="completed"></wysiwyg>
             <!-- <textarea class="form-control mb-1" name="body" id="body" cols="100" rows="5" width="100%" placeholder="Have something to say?" v-model="reply.body" required></textarea> -->
             <button type="submit" class="btn content__helper content__button--passive mt-3">Post Reply</button>
           </div>
@@ -38,27 +38,27 @@
     methods: {
       addReply() {
         this.$http.post(`api/community/${this.$route.params.slug}/${this.$route.params.id}/replies`,
-          this.newReply
-        )
-        .then(({
-          data
-        }) => {
-          this.$router.push(`${this.$route.path}?page=${this.dataSet.last_page}`)
-          this.completed = true
-          swal("Replied!", {
-            icon: "success",
-          });
+            this.newReply
+          )
+          .then(({
+            data
+          }) => {
+            this.$router.push(`${this.$route.path}?page=${this.dataSet.last_page}`)
+            this.completed = true
+            swal("Replied!", {
+              icon: "success",
+            });
 
-        }, function (response) { // do something t
-          swal("Error!", {
-            icon: "error",
+          }, function (response) { // do something t
+            swal("Error!", {
+              icon: "error",
+            });
           });
-        });
       },
 
     },
     sockets: {
-      message(response) {        
+      message(response) {
         this.$emit('created', this.newReply)
         this.$emit('changed', this.dataSet.last_page)
         console.log('replied ')
