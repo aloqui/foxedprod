@@ -12,8 +12,8 @@ class ChannelController extends Controller
     //                        
     public function store(Request $request, Channel $channel, Recaptcha $recaptcha) {
         request()->validate([
-            'name' => 'required|unique:channels,name',
-            'slug' => 'required|unique:channels,slug',
+            'name' => 'required|unique:channels,name|max:30',
+            'slug' => 'required|unique:channels,slug|max:30',
             'description' => 'required:channels,description|max:280',
             'recaptcha' => ['required', $recaptcha]
         ]); 

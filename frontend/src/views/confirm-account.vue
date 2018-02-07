@@ -20,7 +20,7 @@
         this.$http.post(`api${this.$route.path}`, this.token)
           .then(function (response) {
             this.$router.push(`/community`);
-            swal(`${this.$route.path}`, {
+            swal(`Hoorray! Email is confirmed!`, {
               icon: "success",
             });
           })

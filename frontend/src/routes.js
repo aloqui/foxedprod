@@ -31,13 +31,14 @@ import Welcome from './views/welcome.vue'
 import ConfirmAccount from './views/confirm-account.vue'
 import SearchThreads from './views/search-threads.vue'
 import PasswordReset from './views/reset-password.vue'
+import PasswordResetOn from './views/reset/reset-password-on.vue'
 
 
 Vue.use(VueRouter)
 window.axios = require('axios');
 const router = new VueRouter({
     routes: [{
-            path: "/login",
+            path: "/discover",
             component: Welcome,
             meta: {
                 forVisitors: true
@@ -57,13 +58,6 @@ const router = new VueRouter({
                 forVisitors: false
             }
         },
-        // {
-        //     path: "/feed",
-        //     component: Feed,
-        //     meta: {
-        //         forAuth: true
-        //     }
-        // },
         {
             path: "/activity/:id/evaluate",
             component: SubmittedActivity,
@@ -203,14 +197,6 @@ const router = new VueRouter({
                 forAuth: false
             }
         },
-        // {
-        //     path: "/works/:id",
-        //     component: ViewEditor,
-        //     meta: {
-        //         forAuth: true
-        //     }
-        // },
-        // },
         {
             path: "/class/:id",
             component: Class,
@@ -249,6 +235,13 @@ const router = new VueRouter({
         {
             path: "/account/forgot_password",
             component: PasswordReset,
+            meta: {
+                forAuth: false
+            }
+        },
+        {
+            path: "/reset/account",
+            component: PasswordResetOn,
             meta: {
                 forAuth: false
             }

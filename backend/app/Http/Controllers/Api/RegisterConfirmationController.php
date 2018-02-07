@@ -16,11 +16,4 @@ class RegisterConfirmationController extends Controller
             ->confirm();
         //return redirect('/#/register/confirmation?token=' . request('token'));
     }
-    public function resetPassword() {
-        User::where('reset_password_token', request('token'))
-             ->get()
-             ->reset();
- 
-        //  return redirect('/#/register/confirmation?token=' . request('token'));
-     }
 }

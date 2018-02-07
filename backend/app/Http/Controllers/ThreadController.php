@@ -76,8 +76,8 @@ class ThreadController extends Controller
 
         
         request()->validate([
-            'title' => 'required',
-            'body' => 'required',
+            'title' => 'required|max:60',
+            'body' => 'required|min:10|max:1600',
             'channel_id' => 'required|exists:channels,id',
             'recaptcha' => ['required', $recaptcha]
         ]); 
@@ -142,8 +142,8 @@ class ThreadController extends Controller
         //update the thread
         $this->authorize('update', $thread);
         $thread->update(request()->validate([
-            'title' => 'required',
-            'body' => 'required'
+            'title' => 'required|max:60',
+            'body' => 'required|max:1600'
         ]));
         return $thread;
     }

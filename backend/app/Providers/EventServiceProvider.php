@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Auth\Events\Registered;
+use App\Events\ResetPassword;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -25,7 +26,7 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             'App\Listeners\SendEmailConfirmationRequest'
         ],
-        Reset::class => [
+        ResetPassword::class => [
             'App\Listeners\SendResetConfirmationRequest'
         ]
 
