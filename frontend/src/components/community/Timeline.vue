@@ -9,7 +9,7 @@
                     <h2>{{act.title}}</h2>
                     <p  class="posted">{{from(act.created_at)}}</p>
                     <span v-if="act.image != 'none'">
-                        <img :src="'http://localhost:3000/images/' + act.image">
+                        <img :src="imagePath + act.image">
                     </span>
                     <p>{{act.body}}</p>
                     <p class="expire">Until: {{momentize(act.due)}}</p>
