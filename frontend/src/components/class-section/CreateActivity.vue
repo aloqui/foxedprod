@@ -6,7 +6,7 @@
           <form @submit.prevent="create">
             <div class="form-group">
               <label>Image</label>
-              <input type="file" class="form-control" @change="imageChanged">
+              <input type="file" class="form-control" accept="image/*" @change="imageChanged">
             </div>
             <div class="form-group">
               <label>Title</label>
@@ -91,7 +91,10 @@
               icon: "success"
             });
             this.$router.push("/activity/"+response.body.id);
-          });
+          })
+          .catch(response => {
+            console.log(response)
+          })
         }
         else{
           swal("Invalid Date", {
