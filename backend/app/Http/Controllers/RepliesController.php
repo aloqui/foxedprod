@@ -22,7 +22,7 @@ class RepliesController extends Controller
         return $thread->replies()->with('owner')->paginate(5);
     }
     public function store($channelId, Thread $thread, Request $request) {
-        $this->validate($request, ['body' => 'required']);
+        $this->validate($request, ['body' => 'required|max:800']);
         $response = $thread->addReply([
             'body' => request('body'),
             'user_id' => Auth::id()

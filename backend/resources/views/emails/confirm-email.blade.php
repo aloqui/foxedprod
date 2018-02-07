@@ -12,5 +12,5 @@ Confirm Email
 @endcomponent
 
 Yours Securely,<br>
-FoxedFolio Dev Team
+FoxedFolio Dev. Team
 @endcomponent

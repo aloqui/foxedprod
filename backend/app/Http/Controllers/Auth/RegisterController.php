@@ -29,30 +29,12 @@ class RegisterController extends Controller
             'confirmation_token' => str_limit(md5($request['email'] . str_random()), 6, ''),
             'reset_password_token' => null
         ])));
-
+ 
         // return response()->json([
         //     'success' => true,
         //     'message' => 'succesfully registered',
         // ]);
         
     }
-    protected function reset(RegisterRequest $request)
-    {
-        
-        event(new Reset($user = User::forceCreate([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => bcrypt($request['password']),
-            'username' => $request['username'],
-            'prof' => $request['prof'],
-            'confirmation_token' => $request['confirmation_token'],
-            'reset_password_token' => str_limit(md5($data['email'] . str_random()), 25, '')
-        ])));
-
-        // return response()->json([
-        //     'success' => true,
-        //     'message' => 'succesfully registered',
-        // ]);
-        
-    }
+    
 }
