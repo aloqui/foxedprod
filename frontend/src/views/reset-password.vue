@@ -25,17 +25,27 @@
       return {
           email: '',
           loading: false,
+          
           resetData: {}
       }
     },
     methods: {
       resetPassword() {
+        this.loading = true
         this.$http.post(`api/passwordReset/confirm`, this.resetData) 
           .then(response => {
+            swal(`A mail has been sent to your email!`, {
+              icon: "success",
+            });
             console.log(response)
+            this.loading = false
           })
           .catch(response => {
+            this.loading = false
             console.log(response)
+            swal(`Error.`, {
+              icon: "error",
+            });
           })
         
       }

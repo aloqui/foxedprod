@@ -24,7 +24,7 @@
               icon: "success",
             });
           })
-          .catch(() => {
+          .catch(response => {
             this.$router.push(`/community`);
             swal("Please contact the Administrator", {
               icon: "error",
