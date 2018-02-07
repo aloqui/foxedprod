@@ -1,13 +1,8 @@
 <template>
 <div class="container">
-
-
   <div class="row pt-5">
-      
-            
-
             <div class="col-md-5">
-            <span v-if="activity.image != 'none'"> <img  :src="'http://localhost:3000/images/' + activity.image"> </span>
+            <span v-if="activity.image != 'none'"> <img :src="imagePath + activity.image"> </span>
             <span v-else> <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt=""> </span>
         </div>
         <div class="col-md-7">
@@ -26,10 +21,19 @@ export default {
     },
   data () {
       return {
-          activity: {}
+          activity: {},
+           imagePath: ""
       }
   },
+  mounted() {
+      this.getImagePath()
+  },
   methods: {
+      getImagePath() {
+        this.imagePath = `${location.protocol}//${location.hostname}/images/`
+        if (location.port)
+          this.imagePath = `${location.protocol}//${location.hostname}:${location.port}/images/`
+      },
       getActivity (){
           this.$http.get('api/activity/'+ this.$route.params.activity)
           .then(response => {

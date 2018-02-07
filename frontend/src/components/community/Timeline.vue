@@ -27,10 +27,12 @@ export default {
         data() {
         return {
             classes: {},
-            hasClass: false
+            hasClass: false,
+            imagePath: ''
         }
     },
         mounted() {
+            this.getImagePath()
             this.$http.get('api/showTimeline')
             .then(response => {
             this.classes = response.body
@@ -40,6 +42,11 @@ export default {
         })
     },
     methods:{
+        getImagePath() {
+        this.imagePath = `${location.protocol}//${location.hostname}/images/`
+        if (location.port)
+          this.imagePath = `${location.protocol}//${location.hostname}:${location.port}/images/`
+      },
         momentize(date){
            return moment(date).calendar()
         },
