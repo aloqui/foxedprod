@@ -22,6 +22,15 @@
     methods: {
       resendCode() {
         this.$http.post('api/user/email/resend-code')
+            .then(response => {
+              swal("A mail has been sent to your Email!", {
+                icon: "success",
+              });
+            })
+            .catch(response => {
+              
+            })
+            
       },
       confirm() {
         if (this.token.token.length > 0) {

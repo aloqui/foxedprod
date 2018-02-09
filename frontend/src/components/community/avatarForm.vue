@@ -2,8 +2,8 @@
   <div>
     <form action="POST" enctype="multipart/form-data">
       <div class="d-flex mt-3">
-        <div class="picture mr-4">
-          <img :src="avatar" class=" " alt="">
+        <div class="picture-placeholder--large mr-4">
+          <img :src="avatar" class="picture" alt="" id="picture">
         </div>
         <div class="d-flex flex-column justify-content-start">
           <h1 class="font--semi-bold">{{user.name}}</h1>
@@ -27,11 +27,11 @@
           </div>
           <div class="modal-body">
             <div class="d-flex flex-column justify-content-center align-items-start">
-              <div class="picture mr-4">
-                <img :src="avatar" class="" alt="">
+              <div class="picture-placeholder--large mr-4">
+                <img :src="avatar" class="picture" alt="" id="picture">
               </div>
               <input class="mt-3 content__helper" type="file" name="avatar" accept="image/*" @change="onChange" v-if="isAuth">
-              <router-link class="no-decoration mt-5" :to="`/${user.username}/account`">
+              <router-link class="no-decoration mt-5" :to="`/account`">
                 <p class="content__helper text-left text-uppercase" data-toggle="modal" data-target="#exampleModal">Advanced Options</p>
               </router-link>
             </div>
@@ -46,8 +46,10 @@
   </div>
 </template>
 <script>
+import PictureMixin from '../../mixins/pictureMixin.js';
   export default {
     name: 'avatarForm',
+    mixins: [PictureMixin],
     data() {
       return {
         avatar: '',
@@ -55,7 +57,14 @@
         user: {}
       }
     },
+    mounted() {
+      this.fetchAuth()
+      this.fetchProfile()
+      this.fixPicture()
+     
+    },
     methods: {
+     
       onChange(e) {
 
         if (!e.target.files.length) return;
@@ -79,7 +88,7 @@
         data.append('avatar', avatar);
         this.$http.post(`api/${this.$route.params.user}/avatar`, data)
           .then(() => {
-            alert("success");
+            this.fixPicture()
           })
       },
       fetchAuth() {
@@ -96,13 +105,11 @@
       refresh(data) {
         this.user = data.body.user
         this.avatar = data.body.user.avatar_path
+    
       },
-
+      
     },
-    mounted() {
-      this.fetchAuth();
-      this.fetchProfile();
-    },
+    
     computed: {
       isAuth() {
         return this.user.id == this.Auth.id
@@ -114,16 +121,6 @@
 
 </script>
 <style scoped lang="scss">
-  .picture {
-    background-color: #efefef;
-    max-width: 130px;
-    max-height: 130px;
-    border-radius: 130px;
-    overflow: hidden;
-    img {
-      width: 110%;
-      transform: translateX(-4px);
-    }
-  }
+  
 
 </style>

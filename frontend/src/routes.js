@@ -248,7 +248,7 @@ const router = new VueRouter({
             }
         },
         {
-            path: "/:user/account",
+            path: "/account",
             component: ProfileEdit,
             meta: {
                 forAuth: true
