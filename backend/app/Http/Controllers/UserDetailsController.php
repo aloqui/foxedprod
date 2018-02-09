@@ -50,8 +50,11 @@ class UserDetailsController extends Controller
             $user->confirmation_token = str_limit(md5($user->email . str_random()), 6, '');
             $user->save();
             event(new Registered($user));
+            return $user;
         }
-        return $user;
+        else {
+            abort(401, 'Error.');
+        }
     }
     /**
      * Show the form for creating a new resource.

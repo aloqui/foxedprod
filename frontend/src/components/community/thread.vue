@@ -1,12 +1,15 @@
 <script>
   import Wysiwyg from './wysiwyg.vue';
   import SubscribeButton from './subscribe-button';
+  import PictureMixin from '../../mixins/pictureMixin.js';
   export default {
     components: {
       'wysiwyg': Wysiwyg,
       'subscribe-button': SubscribeButton
     },
+
     props: ['attriThread', 'owner'],
+    mixins: [PictureMixin],
     name: 'thread',
     data() {
       return {
@@ -20,6 +23,12 @@
         authUser: {},
         show: false
       }
+    },
+    mounted() {
+      this.$nextTick(function () {
+        this.fetch()
+        this.fixPicture()
+      })
     },
     methods: {
       deleteThread() {
@@ -36,9 +45,6 @@
             });
 
           });
-      },
-      editThread() {
-        this.editingThread = true;
       },
       update() {
         this.$http.patch(`api/community/${this.$route.params.slug}/${this.$route.params.id}`, this.editThread)
@@ -69,11 +75,7 @@
           })
       }
     },
-    mounted() {
-      this.$nextTick(function () {
-        this.fetch()
-      })
-    },
+    
     
   }
 
