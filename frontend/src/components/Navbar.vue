@@ -71,6 +71,11 @@
                 </li>
               </router-link>
               <div class="dropdown-divider"></div>
+              <router-link class="" :to="'/'+user.username+'/account'">
+                <li class="p-2">
+                  <p>Settings</p>
+                </li>
+              </router-link>
               <li class="p-2" @click="logout">
                 <p class="" href="#">Logout</p>
               </li>
@@ -104,6 +109,7 @@
     // },
     mounted() {
       this.isAuth = this.$auth.isAuthenticated()
+      this.setAuthenticatedUser()
     },
     watch: {
       $route: function () {
@@ -124,7 +130,7 @@
       },
       refresh(data) {
         this.$auth.setAuthenticatedUser(data.body)
-        this.user = this.$auth.getAuthenticatedUser()
+        this.user = data.body
         console.log(this.$auth.getAuthenticatedUser())
       },
       logout() {

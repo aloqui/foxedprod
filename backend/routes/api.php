@@ -31,6 +31,9 @@ Route::get('/test', function() {
 
 Route::middleware('auth:api')->group(function () {
     // Route::resource('forums','ForumsController'); 
+    Route::get('/user/profile/', 'UserDetailsController@index');
+    Route::post('/user/profile/basic', 'UserDetailsController@basicUpdate');
+    Route::post('/user/email/resend-code', 'UserDetailsController@resendCode');
     Route::post('/community/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@store');
     Route::delete('/community/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@destroy');
     Route::resource('replies','RepliesController');
@@ -58,6 +61,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/activities/{id}/show/', 'ActivityController@showActivities');
     Route::get('/profiles/{user}/notifications/', 'UserNotificationsController@index');
     Route::delete('/profiles/{user}/notifications/{notification}', 'UserNotificationsController@destroy');
+    Route::post('/profiles/language','UserLanguagesController@store');
     Route::post('/{user}/avatar', 'UserAvatarController@store');
     Route::resource('/community/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController');
 

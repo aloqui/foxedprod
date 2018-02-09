@@ -8,10 +8,9 @@
         <div class="d-flex flex-column justify-content-start">
           <h1 class="font--semi-bold">{{user.name}}</h1>
           <div>
-            <button type="button" class="btn content__button--passive content__helper" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn content__button--passive content__helper" data-toggle="modal" data-target="#exampleModal" v-show="user.id == Auth.id">
               Edit Profile
             </button>
-
           </div>
           <!-- <button type="submit" class="btn">Add Avatar</button> -->
         </div>
@@ -21,18 +20,20 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Upload Image</h5>
+            <h5 class="content__helper text-uppercase mt-auto mb-auto" id="exampleModalLabel">Quick Settings</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <div class="d-flex flex-column justify-content-center align-items-center">
+            <div class="d-flex flex-column justify-content-center align-items-start">
               <div class="picture mr-4">
-
                 <img :src="avatar" class="" alt="">
               </div>
-              <input class="mt-5 content__helper" type="file" name="avatar" accept="image/*" @change="onChange" v-if="isAuth">
+              <input class="mt-3 content__helper" type="file" name="avatar" accept="image/*" @change="onChange" v-if="isAuth">
+              <router-link class="no-decoration mt-5" :to="`/${user.username}/account`">
+                <p class="content__helper text-left text-uppercase" data-toggle="modal" data-target="#exampleModal">Advanced Options</p>
+              </router-link>
             </div>
           </div>
           <!-- <div class="modal-footer">
@@ -109,7 +110,7 @@
     }
 
   }
-//$is_args$args
+  //$is_args$args
 
 </script>
 <style scoped lang="scss">

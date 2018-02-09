@@ -7,11 +7,12 @@
           <p class="mt-3 mb-2">New Password:</p>
           <form @submit.prevent="reset">
             <div class="form-group">
-              
+
               <input class="form-control" type="password" v-model="resetData.password" placeholder="Password">
               <p class="help-block mb-2 mt-2" v-for="error in errorHandling.password">{{error}}</p>
               <input class="form-control mt-3" type="password" v-model="resetData.passwordConfirm" placeholder="Confirm Password">
               <p class="help-block mb-2 mt-2" v-for="error in errorHandling.passwordConfirm">{{error}}</p>
+              <p class="help-block mb-2 mt-2">{{ backEndError.message }}</p>
             </div>
             <button class="btn mb-2 form__button--register-dark">
               Reset Password
@@ -31,6 +32,7 @@
       return {
         resetData: {},
         errorHandling: {},
+        backEndError: {},
         loading: false
       }
     },
@@ -39,6 +41,8 @@
       reset() {
         this.loading = true;
         this.resetData.token = this.$route.query.token;
+        this.backEndError = {};
+        this.errorHandling = {};
         this.$http.post(`api/passwordReset`, this.resetData)
           .then(response => {
             this.loading = false;
@@ -49,7 +53,10 @@
           })
           .catch(response => {
             this.loading = false;
-            this.errorHandling = response.body.errors
+            if (response.body.errors)
+              this.errorHandling = response.body.errors
+            if (response.body.message)
+              this.backEndError = response.body
           })
       }
     }
