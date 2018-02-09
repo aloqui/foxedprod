@@ -27,7 +27,9 @@
   width: 80%;
   overflow-y: hidden;
 }
-
+.hover-pointer {
+  cursor: pointer;
+}
 .content {
   max-width: 680px;
   p {
@@ -107,7 +109,12 @@
       transform: translate(-26px, -40px);
     }
   }
-
+.content__helper--positive {
+  color: #27b46d;
+}
+.content__helper--negative {
+  color: #e43636;
+}
 
 .content--paragraph {
   font-family: 'Crimson Text', sans-serif;

@@ -32,6 +32,7 @@ import ConfirmAccount from './views/confirm-account.vue'
 import SearchThreads from './views/search-threads.vue'
 import PasswordReset from './views/reset-password.vue'
 import PasswordResetOn from './views/reset/reset-password-on.vue'
+import ProfileEdit from './views/user-profile/user-edit-profile.vue'
 
 
 Vue.use(VueRouter)
@@ -244,6 +245,13 @@ const router = new VueRouter({
             component: PasswordResetOn,
             meta: {
                 forAuth: false
+            }
+        },
+        {
+            path: "/:user/account",
+            component: ProfileEdit,
+            meta: {
+                forAuth: true
             }
         },
         {
