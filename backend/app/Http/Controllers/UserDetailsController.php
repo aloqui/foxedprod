@@ -20,7 +20,23 @@ class UserDetailsController extends Controller
         $email = User::where('id', auth()->id())->firstOrFail()->email;
         return ['user' => $response , 'email' => $email];
     }
-
+    public function changePassword(Request $request) {
+        $response = $this->validate($request, [
+            'old_password' => 'required|string|min:6',
+            'password' => 'required|string|min:6',
+            'confirm_password' => 'required|same:password',
+           ]);
+        $user = User::where('id', auth()->id())->firstOrFail();
+        
+        if(\Hash::check($request->input('old_password'), $user->password)) {
+            $user->password = \Hash::make($request->input('password'));
+            $user->save();
+            return ['response' => 'Successfully changed your password!'];
+        }
+        else {
+            return response()->json(['response' => 'Old password does not match our data.'], 401);
+        }
+    }
     public function basicUpdate(Request $request) {
         $user = User::where('id', auth()->id())->firstOrFail();
         $newEmail = false;
