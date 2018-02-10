@@ -5,10 +5,9 @@
         <div class="panel-body">
            <div class="row">
               <div class="col-12">
-            <input type="submit" class="btn content__button--passive content__helper pull-right m-0" value="Post">
-              </div>
-            </div>
-          <form @submit.prevent="create"> 
+                
+                <img :src="image" class=""/>
+            <form @submit.prevent="create">  
             <div class="form-group">
               <label>Title</label>
               <input name="title" type="text" class="form-control" v-model="activity.title" v-validate="'required'">
@@ -42,9 +41,16 @@
               <label for="files" class="btn content__button--passive content__helper m-0"><i class="far fa-image" aria-hidden="true"></i></label>
               <input id="files" type="file" accept="image/*" class="form-control  content__helper pull-right" @change="imageChanged" style="visibility:hidden;">
             </div>
+            <div class="col-12">
+            <input type="submit" class="btn content__button--passive content__helper pull-right m-0" value="Post Activity">
+            </div>
             </div>
            
           </form>
+              </div>
+            </div>
+            
+          
         </div>
       </div>
     </div>
@@ -65,7 +71,8 @@
           due:""
         },
         tomorrow:'',
-        limit:''
+        limit:'',
+        image:''
       };
     },
     methods: {
@@ -77,6 +84,7 @@
 
         fileReader.onload = e => {
           this.activity.image = e.target.result;
+          this.image = e.target.result;
         };
         console.log(this.activity);
       },
@@ -136,7 +144,11 @@
 <style lang="scss">
 .create--activity{
 }
+img{
+      width: 100%;
+    }
   .form{
+    width: 100%;
     
     input{
       width: 100%;

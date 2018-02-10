@@ -39,7 +39,7 @@ class ClassroomController extends Controller
             // $class = Activity::all()->where('classroom_id',Auth::id());
             // $classroom->classPosts->load('activities');
             $classrooms->classPosts->load('owner');
-            return $classroom;
+            return response()->json($classroom);
         }
             $classroom = Classroom::all()->where('isMember', true)->load('classPosts');
             return $classroom;

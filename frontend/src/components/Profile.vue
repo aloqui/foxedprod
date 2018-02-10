@@ -35,7 +35,7 @@
             <img :src="image" />
             <div class="d-flex flex-column justify-content-center align-items-center">
             </div>
-            <input type="file" accept="image/*" class="form-control  content__helper" @change="imageChanged">
+            <input type="file" accept="image/*" class="form-control  content__helper file__remove" @change="imageChanged">
                         <div  class="d-flex flex-column justify-content-center align-items-center">
                             <input v-model="imageport.title"  type="text" placeholder="title">
                             <button @click="submitImage">save</button>
@@ -125,15 +125,27 @@
         
       },
       imageChanged(e) {
-                    console.log(e.target.files[0]);
-                    var fileReader = new FileReader();
+                    console.log(e.target.files[0].size);
+                    if(e.target.files[0].size <= 10485760 ){
+                      var fileReader = new FileReader();
 
                     fileReader.readAsDataURL(e.target.files[0]);
 
                     fileReader.onload = e => {
                     this.image = e.target.result;
                     this.imageport.image = e.target.result;
-                    };
+                    }
+                    
+                    }
+                    else{
+                      swal("File image exceeds 10mb", {
+                        icon: "warning",
+                      }).then((value) => {
+                        location.reload()
+                      });
+                      
+
+                    }
                     console.log(this.activity);
                 },
       submitImage(){

@@ -28,10 +28,10 @@
                 </div>
               </div>
               <div class="col-6">
-                <div class="section-block">
+                <div>
                   <!-- <class-feed-block></class-feed-block> -->
-                  <create-activity v-show="user.prof"></create-activity>
-                  <view-activities :user="user"></view-activities> 
+                  <create-activity  class="section-block" v-show="user.prof"></create-activity>
+                  <view-activities  class="section-block mt-3" :user="user"></view-activities> 
                 </div>
                 
               </div>

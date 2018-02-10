@@ -1,6 +1,6 @@
 <template>
       <div>
-        <activity v-for="activity in activities" @delete-activity="deleteActivity(activity)" @cons="conss(activity)"  :authenticatedUser="authenticatedUser" :activity="activity" :user="user"></activity>
+        <activity v-for="activity in orederedDate" @delete-activity="deleteActivity(activity)" @cons="conss(activity)"  :authenticatedUser="authenticatedUser" :activity="activity" :user="user"></activity>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -60,7 +60,10 @@
         var date = new Date();
         return console.log(date)
 
-      }
+      },
+      orederedDate: function () {
+                return _.orderBy(this.activities, 'created_at',['desc'])
+            }
     },
     components: {
       'activity': Activity
@@ -104,14 +107,26 @@
           });
       },
       imageChanged(e) {
-        console.log(e.target.files[0]);
-        var fileReader = new FileReader();
+        console.log(e.target.files[0].size);
+                    if(e.target.files[0].size <= 10485760 ){
+                      var fileReader = new FileReader();
 
-        fileReader.readAsDataURL(e.target.files[0]);
+                    fileReader.readAsDataURL(e.target.files[0]);
 
-        fileReader.onload = e => {
-          this.imageport.image = e.target.result;
-        };
+                    fileReader.onload = e => {
+                    this.imageport.image = e.target.result;
+                    }
+                    
+                    }
+                    else{
+                      swal("File image exceeds 10mb", {
+                        icon: "warning",
+                      }).then((value) => {
+  location.reload()
+});
+                      
+
+                    }
       },
       conss(a) {
         console.log(a)

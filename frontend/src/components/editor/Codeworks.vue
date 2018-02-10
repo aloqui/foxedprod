@@ -94,7 +94,8 @@
         codes: {},
         modal: {},
         newImage: '',
-        oldImage: ''
+        oldImage: '',
+        imagePath:''
       }
     },
     props: [
