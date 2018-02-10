@@ -99,7 +99,8 @@ class ImagesPortfolioController extends Controller
         $code = ImagesPortfolio::find($id);
         
         $code->update([
-            'evaluated' => 1
+            'evaluated' => 1,
+            'score_id' =>  request('score_id')
         ]);
         
      return $code;

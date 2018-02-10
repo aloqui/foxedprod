@@ -13,4 +13,7 @@ class Code extends Model
     public function scores() {
         return $this->hasMany(Score::class,'user_id');
     }
+    public function score() {
+        return $this->belongsTo(Score::class);
+    }
 }

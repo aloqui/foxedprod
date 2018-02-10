@@ -1,8 +1,17 @@
 <template>
-  <div class="row">
-      <div class="col-md-8 col-md-offser-2">
+<div class="container">
+  <div class="row pt-5">
+      <div class="col-md-12 edit-form pb-3">
             <div class="panel panel-default">
                 <div class="panel-body">
+                    <span v-if="activity.image != 'none' || this.img">
+                            <img :src="'http://localhost:3000/images/' + activity.image">
+                        </span>
+                        <div class="form-group ">
+                        <label for="files" class="btn content__button--passive content__helper pull-right m-0">Change Image</label>
+                        <input id="files" type="file" accept="image/*" class="form-control  content__helper pull-right" @change="imageChanged" style="visibility:hidden;">
+                            
+                        </div>
                     <div class="form-group">
                         <label>Title</label>
                         <input type="text" class="form-control" v-model="activity.title">
@@ -11,25 +20,16 @@
                         <label>Question</label>
                         <textarea type="text" class="form-control" v-model="activity.body"></textarea>
                     </div>
-                    <div class="form-group row">
-                    <label for="" class="col-2 col-form-label">Date and time</label>
-                        <div class="col-10">
-                        <input class="form-control" type="datetime-local" v-model="newTime" id="datePicker" min="2018-01-04T08:30">
-                        </div>
+                    <div class="form-group">
+                    <label for="">Date and time</label>
+                        <input class="form-control" type="datetime-local" v-model="activity.due" id="datePicker"  :min="timeTod">
                     </div>
-                        <span v-if="activity.image != 'none' || this.img">
-                            <img :src="'http://localhost:3000/images/' + activity.image">
-                        </span>
-                        <div class="form-group">
-
-                        <label>UPDATE IMAGE</label>
-                            <input type="file" class="form-control" @change="imageChanged">
-                            {{activity.oldImage}}
-                        </div>
-                    <button @click="update" class="btn btn-success">Update</button>
+                        
+                    <button @click="update" class="btn content__button--passive content__helper pull-right">Update</button>
                 </div>
             </div>
       </div>
+  </div>
   </div>
 </template>
 <script>
@@ -47,7 +47,8 @@ export default {
                 newImage:'',
                 newTime:'',
                 oldImage:'',
-                img:''
+                img:'',
+                timeTod:''
             }
         },
         methods: {
@@ -73,15 +74,21 @@ export default {
                 .then(response => {
                     this.activity = response.body
                     this.activity.oldImage = response.body.image;
+                    this.activity.due = moment(response.body.due).format("YYYY-MM-DDTHH:mm")
+                    console.log(this.activity.due)
+                    
                 })
+                var time = new Date();
+                this.timeTod = moment(time).format("YYYY-MM-DDTHH:mm");
             },
             update () {
                 var time = new Date();
-                var checkTime = moment(time).format("YYYY-MM-DD HH:mm:ss");
-                this.activity.due = moment(this.newTime).format("YYYY-MM-DD HH:mm:ss");
+                var checkTime = moment(time).format("YYYY-MM-DD HH:mm");
+                this.activity.due = moment(this.activity.due).format("YYYY-MM-DD HH:mm");
+                
                 if(this.activity.due >= checkTime){
-                    if(this.newTime){
-                        this.activity.due = this.newTime;
+                    if(this.activity.due){
+                        this.activity.due = this.activity.due;
                         this.activity.enabled = 1;
                     }
                     this.$http.put('api/activities/update/' + this.$route.params.id, this.activity)
@@ -90,6 +97,9 @@ export default {
                                 swal("Succesfully Updated!", {
                             icon: "success",
                             });
+                            this.activity.due = moment(response.body.due).format("YYYY-MM-DDTHH:mm")
+                            this.activity.oldImage = response.body.image;
+                            this.activity.image = response.body.image;
                         //   this.$router.push('/feed')
                     })
                 }
@@ -104,6 +114,30 @@ export default {
 </script>
 <style lang="scss" scoped>
 img{
-    width: 150px;
+    width: 100%;
 }
+.edit-form{
+    display: flex;
+    justify-content: center;
+}
+.panel{
+    width: 60%;
+    background: #fff;
+    padding: 20px;
+}
+@media (max-width: 576px) {
+    .panel{
+    width: 100%;
+    }
+}
+@media (max-width: 766px) {
+    .panel{
+    width: 70%;
+}
+ }
+ @media (max-width: 991px) {
+    .panel{
+    width: 90%;
+}
+ }
 </style>

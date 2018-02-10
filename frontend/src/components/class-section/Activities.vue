@@ -22,7 +22,7 @@
                         <div class="form-group">
                             <label>Submit to this activity</label>
                             <input  type="file" accept="image/*" class="form-control content__helper" @change="imageChanged">
-                            <div v-show="authenticatedUser.prof && act_id && !eval" class="d-flex justify-content-end align-items-center pt-2">
+                            <div v-show="authenticatedUser.prof" class="d-flex justify-content-end align-items-center pt-2">
                                 
                                 <input v-model="imageport.title" type="text" placeholder="title" class="input-sm">
                                 <button class="btn content__button--passive content__helper" @click="submitImage">save</button>

@@ -44,9 +44,12 @@
             <div v-for="code in codes.images"  :class="'item h0 v1'">
               <img :src="'http://localhost:3000/images/' + code.image"  @click="pass(code)" data-toggle="modal" data-target="#preview">
             </div>
+            <div id="forPdf" v-for="code in codes.images"  :class="'item h0 v1'" style="display:none;">
+              <img :src="'http://localhost:3000/images/' + code.image"  @click="pass(code)" data-toggle="modal" data-target="#preview">
+            </div>
         </section>
         </div>
-
+<button @click="tryPrint"> try </button>
     <div class="col-12">
 
          <div class="modal fade" id="preview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -104,6 +107,18 @@
 
     },
     methods: {
+      tryPrint(){
+        html2canvas(document.querySelector('#forPdf'),{
+          onrendered: function (canvas) {
+
+            var img = canvas.toDataURL("image/png");
+            var doc = new jsPDF()
+            doc.addImage(img,'JPEG',20,20);
+
+              doc.save('resume.pdf');
+          }
+        });
+      },
       rand(){
         return Math.random();
       },

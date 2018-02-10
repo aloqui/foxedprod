@@ -2,7 +2,7 @@
     <div>
         <div class="forum-post__header text-left font--light" v-for="room in classes" v-bind:key="room">
             <router-link class="nav-item" :to="`/class/${room.id}`">
-                <a class="content__sub-title" href="">{{room.name}}</a>
+                <p class="content__sub-title" href="">{{room.name}}</p>
             </router-link>
             <ul>
                 <li v-for="act in room.class_posts">

@@ -1,10 +1,11 @@
 <template>
-  <div class="home mt-5">
+  <div class="home mt-5" id="printx">
     <div class="container">
       <div class="row d-flex justify-content-sm-center section-block mt-5">
         <div class="col-12 d-flex justify-content-center align-items-center">
           
           <avatarForm :user="user"></avatarForm>
+          <button @click="topdf"> print </button>
           <div class="" v-if="user.id === userMe.id">
             
             <router-link class="btn content__button--passive content__helper" :to="'/editor'">new code</router-link>
@@ -79,6 +80,39 @@
       fetch() {
         this.$http.get(`api/${this.$route.params.user}/user`)
           .then(this.refresh);
+      },
+      topdf() {
+        html2canvas(document.body).then(function(canvas) {
+
+            var img = canvas.toDataURL("image/png");
+            var doc = new jsPDF()
+            doc.addImage(img,'JPEG',20,20);
+
+              doc.save('resume.pdf'); 
+          
+        });
+        
+        // var print = document.querySelector('#forPdf').innerHTML;
+        // var orig = document.body.innerHTML;
+
+          //  var html="<html>";
+          //   html+= print;
+          //   html+="</html>";
+
+            //  var mywindow = window.open('', 'Print', 'height=600,width=800');
+            //  var divContents = $("#forPdf").html() +
+            //             "<script>" +
+            //             "window.onload = function() {" +
+            //             "     window.print();" +
+            //             "};" +
+            //             "<" + "/script>" + `<script src="https://cdn.jsdelivr.net/npm/vue">` +
+            //             "<" + "/script>";
+
+            //   mywindow.document.write(divContents);
+            //   mywindow.document.close();
+
+        // document.body.innerHTML = orig;
+        // window.print()
       },
       refresh(data) {
         // this.authenticatedUser = this.$auth.getAuthenticatedUser();

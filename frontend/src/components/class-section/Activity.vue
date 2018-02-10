@@ -3,7 +3,7 @@
            <div class="card">
   <div class="card-body">
       
-    <h4 class="card-title"><router-link  :to="'/activity/' + activity.id">{{ activity.title }}</router-link></h4>
+    <router-link  :to="'/activity/' + activity.id"><h4>{{ activity.title }}</h4></router-link>
     <span v-if="activity.image != 'none'">
         <img :src="'http://localhost:3000/images/' + activity.image">
     </span>
@@ -34,8 +34,8 @@
   </div>
   <hr>
   <p  v-if="activity.user_id == user.id"> 
-      <a class="btn btn-danger" role="button" @click="$emit('delete-activity')"> delete </a>
-      <router-link class="btn btn-secondary" :to="'/activity/' + activity.id + '/update'">edit</router-link>
+      <a class="btn content__button--passive content__helper" @click="$emit('delete-activity')"> delete </a>
+      <router-link class="btn content__button--passive content__helper" :to="'/activity/' + activity.id + '/update'">edit</router-link>
   </p>
 </div>
 
@@ -121,5 +121,9 @@
 <style lang="scss" scoped>
 img{
     width:100%;
+}
+h4{
+    color: #333 !important;
+    padding-bottom: 5px;
 }
 </style>

@@ -1,13 +1,10 @@
 <template>
-  <div class="row create--activity">
-    <div class="col-md-12 p-0">
+  <div class="create--activity">
+    <div class="p-0">
       <div class="panel panel-default">
         <div class="panel-body">
           <form @submit.prevent="create">
-            <div class="form-group">
-              <label>Image</label>
-              <input type="file" class="form-control" @change="imageChanged">
-            </div>
+            
             <div class="form-group">
               <label>Title</label>
               <input name="title" type="text" class="form-control" v-model="activity.title" v-validate="'required'">
@@ -22,27 +19,31 @@
                 {{errors.first('question')}}
               </div>
             </div>
-            <div class="form-group mr-0 text-left row">
-              <div class="col-4">
-                <label>Type</label><br>
+            <div class="form-group mr-0 mb-0 text-left pt-3 row">
+              <div class="col-3">
+                <label>Type</label>
                 <select v-model="activity.type">
                   <option value="code" default>Code</option>
                   <option value="image">Image</option>
                 </select>
               </div>
               
-              <div class="col-8">
+              
+              <div class="col-6">
                 <label>Date and time</label>
                 <input class="form-control" type="datetime-local" v-model="tomorrow" id="datePicker" :min="limit">
               </div>
+              <div class="col-3">
+                <label>Image</label>
+              <label for="files" class="btn content__button--passive content__helper m-0"><i class="far fa-image" aria-hidden="true"></i></label>
+              <input id="files" type="file" accept="image/*" class="form-control  content__helper pull-right" @change="imageChanged" style="visibility:hidden;">
             </div>
-            <div class="form-group row">
-              
-                <div class="col-8">
-                 
-                </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+            <input type="submit" class="btn content__button--passive content__helper pull-right m-0" value="submit">
               </div>
-            <input type="submit" class="btn btn-success" v-if="activity.title && activity.body" value="submit">
+            </div>
           </form>
         </div>
       </div>
@@ -82,6 +83,7 @@
       create() {
         var time = new Date();
         var checkTime = moment(time).format("YYYY-MM-DD HH:mm:ss");
+        
         this.activity.due = moment(this.tomorrow).format("YYYY-MM-DD HH:mm:ss");
 
         if(this.activity.due >= checkTime){
@@ -117,21 +119,19 @@
       // var dateControl = document.querySelector('input[type="datetime-local"]');
       // dateControl.value = Date.now();
       var tom = new Date();
-      this.limit = tom;
-      var calendarTom = tom.getFullYear() +'-'+ tom.getDate() +'-'+(tom.getMonth() + 1)+'T'+(tom.getHours()+ 1)+':'+(tom.getMinutes()+ 1);
-      moment(tom.getMilliseconds())
-      this.activity.due = '2017-06-01T08:30';
+      // this.limit = tom;
+      // var calendarTom = tom.getFullYear() +'-'+ tom.getDate() +'-'+(tom.getMonth() + 1)+'T'+(tom.getHours()+ 1)+':'+(tom.getMinutes()+ 1);
+      // moment(tom.getMilliseconds())
+      // this.activity.due = '2017-06-01T08:30';
 
-      console.log(tom + "asdas")
+      // console.log(tom + "asdas")
+       this.limit = moment(tom).format("YYYY-MM-DDTHH:mm")
     }
   };
 
 </script>
 <style lang="scss">
 .create--activity{
-}
-.panel{
-  padding: 10px;
 }
   .form{
     
