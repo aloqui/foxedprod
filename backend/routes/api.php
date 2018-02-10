@@ -34,6 +34,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/user/profile/', 'UserDetailsController@index');
     Route::post('/user/profile/basic', 'UserDetailsController@basicUpdate');
     Route::post('/user/email/resend-code', 'UserDetailsController@resendCode');
+    Route::post('/user/change-password', 'UserDetailsController@changePassword');
     Route::post('/community/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@store');
     Route::delete('/community/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@destroy');
     Route::resource('replies','RepliesController');

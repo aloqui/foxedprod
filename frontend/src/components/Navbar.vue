@@ -112,10 +112,14 @@
     mounted() {
       this.isAuth = this.$auth.isAuthenticated()
       this.setAuthenticatedUser()
-      this.fixPicture()
+      this.$nextTick(function () {
+        this.fixPicture()
+      })
     },
     watch: {
       $route: function () {
+        this.$nextTick(function () {
+          })
         this.isAuth = this.$auth.isAuthenticated()
         if (this.isAuth) {
           this.setAuthenticatedUser()
@@ -135,6 +139,7 @@
         this.$auth.setAuthenticatedUser(data.body)
         this.user = data.body
         console.log(this.$auth.getAuthenticatedUser())
+        this.fixPicture()
       },
       logout() {
         this.$auth.destroyToken()
