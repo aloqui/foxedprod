@@ -19,12 +19,10 @@ class Reply extends Model
     public function owner() {
         return $this->belongsTo(User::class, 'user_id');
     }
-    public function thread()
-    {
+    public function thread() {
         return $this->belongsTo(Thread::class);
     }
-    public function path()
-    {
+    public function path() {
         return $this->thread->path() . "#reply-{$this->id}";
     }
     public function favorites() {

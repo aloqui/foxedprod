@@ -9,7 +9,7 @@
                     <h2>{{act.title}}</h2>
                     <p  class="posted">{{from(act.created_at)}}</p>
                     <span v-if="act.image != 'none'">
-                        <img :src="'http://localhost:3000/images/' + act.image">
+                        <img :src="imagePath + act.image">
                     </span>
                     <p>{{act.body}}</p>
                     <p class="expire">Until: {{momentize(act.due)}}</p>
@@ -27,10 +27,12 @@ export default {
         data() {
         return {
             classes: {},
-            hasClass: false
+            hasClass: false,
+            imagePath: ''
         }
     },
         mounted() {
+            this.getImagePath()
             this.$http.get('api/showTimeline')
             .then(response => {
             this.classes = response.body
@@ -40,6 +42,11 @@ export default {
         })
     },
     methods:{
+        getImagePath() {
+        this.imagePath = `${location.protocol}//${location.hostname}/images/`
+        if (location.port)
+          this.imagePath = `${location.protocol}//${location.hostname}:${location.port}/images/`
+      },
         momentize(date){
            return moment(date).calendar()
         },

@@ -115,9 +115,9 @@
 <style scoped lang="scss">
   .picture {
     background-color: #efefef;
-    max-width: 200px;
-    max-height: 200px;
-    border-radius: 200px;
+    max-width: 130px;
+    max-height: 130px;
+    border-radius: 130px;
     overflow: hidden;
     img {
       width: 110%;

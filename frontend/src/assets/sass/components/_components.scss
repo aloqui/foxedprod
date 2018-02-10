@@ -118,6 +118,7 @@
 .content__button--passive {
     background-color: $white;
     border: 1px solid $white-contrast;
+    border-bottom: 3px solid $white-contrast;
     color: $black--light;
 }
 .content__button--danger {

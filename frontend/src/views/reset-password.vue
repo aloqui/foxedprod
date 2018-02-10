@@ -2,13 +2,18 @@
   <div class="mt-5 pt-5">
     <div class="container">
       <div class="row">
-        <div class="col d-flex flex-column">
+        <div class="col d-flex flex-column content m-auto section-block ">
           <h1 class="font--bold">Reset Password</h1>
-          <p>Please enter your email address.</p>
+          <p class="mt-3 mb-2">Please enter your email address.</p>
           <div class="form-group">
-            <input class="form-control" type="text" v-model="email" placeholder="Email Address">
+            <input class="form-control" type="text" v-model="resetData.email" placeholder="Email Address">
           </div>
-          <button class="btn btn-primary mt-2" type="submit">Submit</button>
+          <button  class="btn mb-2 form__button--register-dark" @click="resetPassword">
+            Reset Password
+            <div class="spinner p-1 d-flex align-items-center" v-if="loading">
+              <i class="animate__spin fas fa-circle-notch m-auto"></i>
+            </div>
+          </button>
         </div>
       </div>
     </div>
@@ -18,14 +23,31 @@
   export default {
     data() {
       return {
-          email: ''
+          email: '',
+          loading: false,
+          
+          resetData: {}
       }
     },
     methods: {
-      patch() {
-        this.$http.post()
-          .then()
-          .catch()
+      resetPassword() {
+        this.loading = true
+        this.$http.post(`api/passwordReset/confirm`, this.resetData) 
+          .then(response => {
+            swal(`A mail has been sent to your email!`, {
+              icon: "success",
+            });
+            console.log(response)
+            this.loading = false
+          })
+          .catch(response => {
+            this.loading = false
+            console.log(response)
+            swal(`Error.`, {
+              icon: "error",
+            });
+          })
+        
       }
     },
     mounted() {

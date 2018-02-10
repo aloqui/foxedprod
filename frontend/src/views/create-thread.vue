@@ -19,8 +19,12 @@
                   </h1>
                   <h5 class="content__helper mb-2 text-uppercase">Body</h5>
                   <wysiwyg name="body" v-model="createThread.body"></wysiwyg>
-                  <p class="help-block" v-if="inputError" v-for="error in inputError">{{error}}</p>
+                  <p class="help-block" v-if="inputError" v-for="error in inputError.body">{{error}}</p>
                   <!-- <textarea class="form-control mb-2" name="body" id="body" cols="100" rows="5" width="100%" v-model="createThread.body" placeholder="Have something to say?" required></textarea> -->
+                  <div class="form-group mt-5">
+                    <vue-recaptcha ref="recaptcha" @verify="onVerify" :sitekey="'6LdNMUQUAAAAANCzAoEF4rLP5xK4zOk-nsneku70'"></vue-recaptcha>
+                  </div>
+                  <p class="help-block mb-2 mt-2" v-if="inputError" v-for="error in inputError.recaptcha">Recaptcha Error.</p>
                   <button type="submit" class="btn form__button--register-dark mt-5">
                     <i class="fas fa-align-left"></i>
                     <span class="ml-2">Publish</span>
@@ -42,10 +46,11 @@
 
 <script>
   //import Navigation from '../components/navigation.vue';
-  import classFeedBlock from '../components/community/class-feed-block.vue';
-  import hotTopics from '../components/community/hot-topics.vue';
-  import swal from 'sweetalert';
+  import classFeedBlock from '../components/community/class-feed-block.vue'
+  import hotTopics from '../components/community/hot-topics.vue'
+  import swal from 'sweetalert'
   import Wysiwyg from '../components/community/wysiwyg.vue'
+  import VueRecaptcha from 'vue-recaptcha'
   // import forumReplies from '../components/forum-replies.vue';
   //import Thread from '../models/thread';
 
@@ -55,7 +60,8 @@
       //'nav-list': Navigation,
       'class-feed-block': classFeedBlock,
       'hot-topics': hotTopics,
-      'wysiwyg': Wysiwyg
+      'wysiwyg': Wysiwyg,
+      VueRecaptcha
       // 'forum-replies': forumReplies
     },
     // props: [
@@ -66,6 +72,7 @@
       return {
         createThread: {},
         inputError: {},
+        emailHandling: null,
         loading: false
       }
     },
@@ -75,7 +82,11 @@
       }
     },
     methods: {
+      onVerify(response) {
+        this.createThread.recaptcha = response
+      },
       addThread() {
+        this.inputError = {}
         this.loading = true;
         this.$http.post(`api/community/${this.$route.params.slug}`,
             this.createThread)
@@ -86,24 +97,20 @@
               icon: "success",
             });
           })
-          .catch(function (error) {
+          .catch(response => {
             this.loading = false;
-            this.inputError = error.body.errors.body;
-            console.log(error.body.errors.body)
+            if(response.body.errors)
+              this.inputError = response.body.errors;
           })
       }
     },
 
-    created() {
+    mounted() {
       this.$http.get(`api/currentChannel/${this.$route.params.slug}`)
         .then(function (data) {
           this.createThread.channel_id = data.body.id;
         })
     }
-    // },
-    // authenticatedUser() {
-    //     return this.$auth.getAuthenticatedUser()
-    //   }
   }
 
 </script>

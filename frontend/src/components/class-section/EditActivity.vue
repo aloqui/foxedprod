@@ -5,7 +5,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <span v-if="activity.image != 'none' || this.img">
-                            <img :src="'http://localhost:3000/images/' + activity.image">
+                            <img :src="imagePath + activity.image">
                         </span>
                         <div class="form-group ">
                         <label for="files" class="btn content__button--passive content__helper pull-right m-0">Change Image</label>
@@ -28,7 +28,11 @@
                     <button @click="update" class="btn content__button--passive content__helper pull-right">Update</button>
                 </div>
             </div>
+          </div> 
+          <button @click="update" class="btn btn-success">Update</button>
+        </div>
       </div>
+    </div>
   </div>
   </div>
 </template>
@@ -48,10 +52,19 @@ export default {
                 newTime:'',
                 oldImage:'',
                 img:'',
-                timeTod:''
-            }
-        },
-        methods: {
+                timeTod:'',
+                imagePath: ""
+      }
+    },
+    mounted() {
+      this.getImagePath()
+    },
+    methods: {
+      getImagePath() {
+        this.imagePath = `${location.protocol}//${location.hostname}/images/`
+        if (location.port)
+          this.imagePath = `${location.protocol}//${location.hostname}:${location.port}/images/`
+      },
                     imageChanged(e) {
                 console.log(e.target.files[0]);
                 var fileReader = new FileReader();

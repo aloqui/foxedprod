@@ -3,8 +3,12 @@
     <div class="p-0">
       <div class="panel panel-default">
         <div class="panel-body">
-          <form @submit.prevent="create">
-            
+           <div class="row">
+              <div class="col-12">
+            <input type="submit" class="btn content__button--passive content__helper pull-right m-0" value="Post">
+              </div>
+            </div>
+          <form @submit.prevent="create"> 
             <div class="form-group">
               <label>Title</label>
               <input name="title" type="text" class="form-control" v-model="activity.title" v-validate="'required'">
@@ -39,11 +43,7 @@
               <input id="files" type="file" accept="image/*" class="form-control  content__helper pull-right" @change="imageChanged" style="visibility:hidden;">
             </div>
             </div>
-            <div class="row">
-              <div class="col-12">
-            <input type="submit" class="btn content__button--passive content__helper pull-right m-0" value="submit">
-              </div>
-            </div>
+           
           </form>
         </div>
       </div>
@@ -93,7 +93,10 @@
               icon: "success"
             });
             this.$router.push("/activity/"+response.body.id);
-          });
+          })
+          .catch(response => {
+            console.log(response)
+          })
         }
         else{
           swal("Invalid Date", {

@@ -12,19 +12,19 @@
   export default {
     data() {
       return {
-        token: this.$route.query.token
+        token: {token: this.$route.query.token}
       }
     },
     methods: {
       fetch() {
-        this.$http.post(`api${this.$route.path}?token=${this.token}`, this.token)
+        this.$http.post(`api${this.$route.path}`, this.token)
           .then(function (response) {
             this.$router.push(`/community`);
-            swal("Account Confirmed!", {
+            swal(`Hoorray! Email is confirmed!`, {
               icon: "success",
             });
           })
-          .catch(() => {
+          .catch(response => {
             this.$router.push(`/community`);
             swal("Please contact the Administrator", {
               icon: "error",

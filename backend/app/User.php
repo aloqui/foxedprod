@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
@@ -47,8 +48,7 @@ class User extends Authenticatable
         $this->confirmation_token = null;
         $this->save();
     }
-    public function getAvatarPathAttribute($avatar)
-    {
+    public function getAvatarPathAttribute($avatar){
         return asset($avatar ? 'storage/' . $avatar : 'storage/avatars/default.jpg');
     }
     public function threads() {

@@ -1,29 +1,28 @@
 <template>
-    <div>
-        <div class="container">
+  <div>
+    <div class="container">
 
 
-  <div class="row pt-5">
-      
-            
+      <div class="row pt-5">
 
-            <div class="col-md-5">
-            <span v-if="submitted.class.image != 'none'"> <img  :src="'http://localhost:3000/images/' + submitted.class.image"> </span>
-            <span v-else> <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt=""> </span>
+
+
+        <div class="col-5">
+          <span v-if="submitted.class.image != 'none'">
+           
+            <img :src="imagePath + submitted.class.image"> 
+            </span>
+          <span v-else>
+            <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt=""> </span>
         </div>
-        <div class="col-md-7">
+        <div class="col-7">
           <h3>{{submitted.class.title}}</h3>
-            <p>{{submitted.class.body}}</p>
+          <p>{{submitted.class.body}}</p>
         </div>
-  </div>
-  </div>
-        <!-- <h1>
-            Activity : {{act}} <br>
-            Name : {{submitted.class.title}} <br>
-            About : {{submitted.class.body}}
-        </h1> -->
-        <div>
-            <table class="table">
+      </div>
+      <div class="row">
+        <div class="col-12">
+           <table class="table mt-2 pt-3 table__activities">
                 <thead>
                     <tr>
                     <th>Title</th>
@@ -63,6 +62,15 @@
                     </tr>
                 </tbody> 
             </table>
+        </div>
+      </div>
+    </div>
+    <!-- <h1>
+            Activity : {{act}} <br>
+            Name : {{submitted.class.title}} <br>
+            About : {{submitted.class.body}}
+        </h1> --> 
+           
             
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -76,14 +84,14 @@
                     <div class="modal-body">
                         <div class="art-preview">
                             <span class="image__preview" v-if="modal.image != 'none'">
-                                <img :src="'http://localhost:3000/images/' + modal.image">
+                                <img :src="imagePath + modal.image">
                             </span>
                         
                             </div>
                         <div class="collapse" id="collapseExample">
                         <table class="table table-fit">
                         <thead>
-                            <tr>
+                            <tr class="text-center">
                             <th> </th>
                             <th>5</th>
                             <th>4</th>
@@ -137,7 +145,7 @@
                         </tbody>
                         </table>
                             <div  class="d-flex justify-content-center align-items-center">
-                            {{evaluatedScores.body}}
+                            <h3 v-if="modal.evaluated">  Total Score:  {{evaluatedScores.body}} </h3>
                             <button v-show="!modal.evaluated" class="btn content__button--passive content__helper" @click="submitscore">save</button>
                         </div>
                         </div>
@@ -155,8 +163,7 @@
                     </div>
                 </div>
                 </div>
-        </div>
-    </div>
+        </div>  
 </template>
 <script>
 export default {
@@ -173,7 +180,9 @@ export default {
                 second:"",
                 third:"",
                 fourth:"",
-		},
+                
+    },
+    imagePath: '',
 		evaluation:{
 			evaluated:true,
             score_id:''
@@ -181,6 +190,7 @@ export default {
         evaluatedScores:{},
         user:""
         }
+      
     },
     mounted() {
         this.$http.get(`api/activities/${this.$route.params.id}/eval`)
@@ -190,9 +200,15 @@ export default {
             });
             this.$http.get(`api/user`)
         .then(me => this.user = me.body)
-        .catch()
+        .catch();
+        this.getImagePath()
       },
       methods: {
+      getImagePath() {
+        this.imagePath = `${location.protocol}//${location.hostname}/images/`
+        if (location.port)
+          this.imagePath = `${location.protocol}//${location.hostname}:${location.port}/images/`
+      },
           cons(ac){
               this.evaluatedScores= {};
                 this.modal = ac;
@@ -205,7 +221,7 @@ export default {
                 function getTotal(num, per){
                     return num / 5 * per;
                 }
-                this.score.body = getTotal(this.score.first,40) + getTotal(this.score.second,10) + getTotal(this.score.third,25) + getTotal(this.score.fourth,25);
+                this.score.body = getTotal(this.score.first,25) + getTotal(this.score.second,25) + getTotal(this.score.third,25) + getTotal(this.score.fourth,25);
               
               this.$http.post("api/submitScore", this.score).then(response => {
                                     console.log(response);
@@ -225,7 +241,9 @@ export default {
         .catch()
 		}
       }
-}
+    }
+  
+
 </script>
 <style lang="scss" scoped>
 .art-preview{
@@ -235,17 +253,23 @@ export default {
     align-items: center;
     .image__preview{
         width: 50%;
+        img{
+          padding-top: 10px;
+          width: 100%;
+          height: 100%;
+        }
     }
+}
+.table__activities{
+  background: #fff;
+  border-radius: 1%;
 }
 // .table-fit {
 //     width: 100%;
 // }
 h1{
     padding-top: 100px;
-}
-img{
-    width: 100%;
-}
+  }
 
 .modal {
   position: fixed;
@@ -298,13 +322,12 @@ img{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  table{
-      height: 100%;
-      flex: 1;
-  }
-  .image__preview{
-      flex: 0;
+  align-items: center; 
+  .collapse{
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 1;
   }
 }
 .modal-footer {
@@ -317,4 +340,3 @@ img{
   background: #f1f3f5;
 }
 </style>
-

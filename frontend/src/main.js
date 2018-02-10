@@ -10,7 +10,7 @@ import InstantSearch from 'vue-instantsearch'
 import VueObserveVisibility from 'vue-observe-visibility'
 import moment from 'moment'
 import proxy from 'http-proxy-middleware'
-import VueSocketIo from 'vue-socket.io' 
+import VueSocketIo from 'vue-socket.io'
 
 
 
@@ -50,11 +50,12 @@ Vue.http.interceptors.push((request, next) => {
         icon: "error",
       });
     } else if (response.status == 500)
-      swal("Succesfully Updated!", {
-        title: 'Error ' + response.status,
-        text: "There's a problem in the server",
-        icon: "error",
-      });
+      console.log("There's a problem in the server")
+    // swal("Succesfully Updated!", {
+    //   title: 'Error ' + response.status,
+    //   text: "There's a problem in the server",
+    //   icon: "error",
+    // });
   })
 })
 
@@ -63,13 +64,13 @@ Router.beforeEach(
     if (to.matched.some(record => record.meta.forVisitors)) {
       if (Vue.auth.isAuthenticated()) {
         next({
-          path: '/feed'
+          path: '/'
         })
       } else next()
     } else if (to.matched.some(record => record.meta.forAuth)) {
       if (!Vue.auth.isAuthenticated()) {
         next({
-          path: '/login'
+          path: '/discover'
         })
       } else next()
     } else next()

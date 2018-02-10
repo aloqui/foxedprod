@@ -1,11 +1,11 @@
 <template>
-    <div class="forum-post__header text-left font--light">
+    <div class="forum-post__header text-left font--light pt-4">
            <div class="card">
   <div class="card-body">
       
     <router-link  :to="'/activity/' + activity.id"><h4>{{ activity.title }}</h4></router-link>
     <span v-if="activity.image != 'none'">
-        <img :src="'http://localhost:3000/images/' + activity.image">
+        <img :src="imagePath + activity.image">
     </span>
     
     <p class="card-text">{{ activity.body }}</p>
@@ -23,10 +23,10 @@
     <span v-if="!activity.enabled && activity.user_id != user.id">
         <p>
             Closed
-        </p>
-    </span>
-    <span  v-if="!activity.enabled && activity.user_id == user.id">
-        <p>
+          </p>
+        </span>
+        <span v-if="!activity.enabled && activity.user_id == user.id">
+          <p>
             Already ended
         </p>
     </span>
@@ -39,84 +39,92 @@
   </p>
 </div>
 
-
-
-    </div>
+      </div> 
+ 
 </template>
 <script>
-    import moment from 'moment';
-    export default {
-        data() {
-            return{
-                dataTime: {
-                    enabled:''
-                },
-                imageport:{},
-                modal:{}
-                
-            }
+  import moment from 'moment';
+  export default {
+    data() {
+      return {
+        dataTime: {
+          enabled: ''
         },
-        props: [
-            'activity',
-            'authenticatedUser',
-            'datea',
-            'user'
-        ],
-        mounted(){
-            // this.activity.due = moment(this.activity.due).format('LLLL');
-            var tod = new Date();
-            var s = moment(tod).format("YYYY-MM-DD HH:mm:ss")
-            var d = moment(this.activity.due).format("YYYY-MM-DD HH:mm:ss")
-            
-                var c = moment(s).valueOf()
-                var cc = moment(d).valueOf()
-            
-                console.log(this.activity.due)
-                console.log(c + " and " + cc)
-                if (d <= s){
-                    if(this.activity.enabled){
-                        this.dataTime.enabled = 0;
-                        
-                        this.$http.put('api/activities/timesup/' + this.activity.id, this.dataTime)
-                        .then(response => {
-                            console.log(response)
-                                //     swal("Succesfully Updated!", {
-                                // icon: "success",
-                                // });
-                                location.reload();
-                        })
-                    }
-                    
-                }
-            },
-            methods:{
-                imageChanged(e) {
-                    console.log(e.target.files[0]);
-                    var fileReader = new FileReader();
+        imageport: {},
+        modal: {},
+        imagePath: ""
 
-                    fileReader.readAsDataURL(e.target.files[0]);
+      }
+    },
+    props: [
+      'activity',
+      'authenticatedUser',
+      'datea',
+      'user'
+    ],
+    mounted() {
+      // this.activity.due = moment(this.activity.due).format('LLLL');
+      this.getImagePath()
 
-                    fileReader.onload = e => {
-                    this.imageport.image = e.target.result;
-                    };
-                    console.log(this.activity);
-                },
-                submitImage(){
-                    this.imageport.submitted = true;
-                    this.imageport.activity_id = this.activity.id;
-                    this.$http.post('api/imageport/', this.imageport)
-                .then(response => {
-                    console.log(response)
-                            swal("Succesfully submitted!", {
-                        icon: "success",
-                        });  
-                })
-                },
-                momentize(date){
-                    return moment(date).calendar()
-                },
-            }
+      var tod = new Date();
+      var s = moment(tod).format("YYYY-MM-DD HH:mm:ss")
+      var d = moment(this.activity.due).format("YYYY-MM-DD HH:mm:ss")
+
+      var c = moment(s).valueOf()
+      var cc = moment(d).valueOf()
+
+      console.log(this.activity.due)
+      console.log(c + " and " + cc)
+      if (d <= s) {
+        if (this.activity.enabled) {
+          this.dataTime.enabled = 0;
+
+          this.$http.put('api/activities/timesup/' + this.activity.id, this.dataTime)
+            .then(response => {
+              console.log(response)
+              //     swal("Succesfully Updated!", {
+              // icon: "success",
+              // });
+              location.reload();
+            })
+        }
+
+      }
+    },
+    methods: {
+      getImagePath() {
+        this.imagePath = `${location.protocol}//${location.hostname}/images/`
+        if (location.port)
+          this.imagePath = `${location.protocol}//${location.hostname}:${location.port}/images/`
+      },
+      imageChanged(e) {
+        console.log(e.target.files[0]);
+        var fileReader = new FileReader();
+
+        fileReader.readAsDataURL(e.target.files[0]);
+
+        fileReader.onload = e => {
+          this.imageport.image = e.target.result;
+        };
+        console.log(this.activity);
+      },
+      submitImage() {
+        this.imageport.submitted = true;
+        this.imageport.activity_id = this.activity.id;
+        this.$http.post('api/imageport/', this.imageport)
+          .then(response => {
+            console.log(response)
+            swal("Succesfully submitted!", {
+              icon: "success",
+            });
+          })
+      },
+      momentize(date) {
+        return moment(date).calendar()
+      },
     }
+  }
+
 </script>
 <style lang="scss" scoped>
 img{

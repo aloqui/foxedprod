@@ -2277,6 +2277,7 @@ button:focus,
 .content__button--danger {
   background-color: whitesmoke;
   border: 1px solid #c2c2c2;
+  border-bottom: 3px solid #c2c2c2;
   color: #262626;
 }
 
