@@ -72,6 +72,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/activities/{Actid}/eval', 'ActivityController@evaluationCodes');
     Route::put('/activities/timesup/{id}', 'ActivityController@updateTime');
     Route::post('/submitScore','ScoreController@create');
+    Route::get('/submitScore/{id}','ScoreController@show');
     Route::post('/replies/{reply}/favorites','FavoritesController@store');
     Route::put('/activities/update/{id}', 'ActivityController@update');
     Route::get('/activities/show/{id}', 'ActivityController@show');

@@ -1,21 +1,22 @@
 <template>
-  <div class="home mt-5">
+  <div class="home mt-5" id="printx">
     <div class="container">
       <div class="row d-flex justify-content-sm-center section-block mt-5">
-        <div class="col-12 d-flex justify-content-center align-items-center">
+        <div class="col-12 d-flex justify-content-center align-items-center ">
           
-          <avatarForm :user="user"></avatarForm>
+          <avatarForm :user="user" id="toPDFS" ></avatarForm>
+          <button @click="PDFAct"> print </button>
           <div class="" v-if="user.id === userMe.id">
             
             <router-link class="btn content__button--passive content__helper" :to="'/editor'">new code</router-link>
             <!-- <router-link class="btn btn-default" :to="'/settings'">settings</router-link> -->
-            <button type="button" class="btn content__button--passive content__helper" data-toggle="modal" data-target="#imageport">
+            <button  type="button" class="btn content__button--passive content__helper" data-toggle="modal" data-target="#imageport">
               Upload Image
             </button>
             <i class="fa fa-print" aria-hidden="true"></i>
             <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
           </div>
-        </div>
+        </div> 
         <div class="col-12">
           <code-works :userMe="userMe"></code-works>
         </div>
@@ -34,11 +35,11 @@
             <img :src="image" />
             <div class="d-flex flex-column justify-content-center align-items-center">
             </div>
-            <input type="file" accept="image/*" class="form-control  content__helper" @change="imageChanged">
-                        <div  class="d-flex flex-column justify-content-center align-items-center">
-                            <input v-model="imageport.title"  type="text" placeholder="title">
-                            <button @click="submitImage">save</button>
-                        </div>
+            <input type="file" accept="image/*" class="form-control  content__helper file__remove" @change="imageChanged">
+              <div  class="d-flex justify-content-center mt-2">
+                  <input v-model="imageport.title"  type="text" class="input--default" placeholder="title">
+                  <button @click="submitImage" class="btn content__button--passive content__helper">save</button>
+              </div>
           </div>
           <!-- <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -80,6 +81,79 @@
         this.$http.get(`api/${this.$route.params.user}/user`)
           .then(this.refresh);
       },
+      
+      PDFAct() {
+    var pdf = new jsPDF('p', 'pt', 'letter');
+    // source can be HTML-formatted string, or a reference
+    // to an actual DOM element from which the text will be scraped.
+    var source = $('#toPDFS')[0];
+
+    // we support special element handlers. Register them with jQuery-style 
+    // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+    // There is no support for any other type of selectors 
+    // (class, of compound) at this time.
+     var specialElementHandlers = {
+        // element with id of "bypass" - jQuery style selector
+        '#bypassme': function (element, renderer) {
+            // true = "handled elsewhere, bypass text extraction"
+            return true
+        }
+    };
+   var margins = {
+        top: 80,
+        bottom: 60,
+        left: 40,
+        width: 522
+    };
+    // all coords and widths are in jsPDF instance's declared units
+    // 'inches' in this case
+    pdf.fromHTML(
+    source, // HTML string or DOM elem ref.
+    margins.left, // x coord
+    margins.top, { // y coord
+        'width': margins.width, // max width of content on PDF
+        'elementHandlers': specialElementHandlers
+    },
+
+    function (dispose) {
+        // dispose: object with X, Y of the last line add to the PDF 
+        //          this allow the insertion of new lines after html
+        pdf.save('Test.pdf');
+    }, margins);
+},
+      topdf() {
+        html2canvas(document.body).then(function(canvas) {
+
+            var img = canvas.toDataURL("image/png");
+            var doc = new jsPDF()
+            doc.addImage(img,'JPEG',20,20);
+
+              doc.save('resume.pdf'); 
+          
+        });
+        
+        // var print = document.querySelector('#forPdf').innerHTML;
+        // var orig = document.body.innerHTML;
+
+          //  var html="<html>";
+          //   html+= print;
+          //   html+="</html>";
+
+            //  var mywindow = window.open('', 'Print', 'height=600,width=800');
+            //  var divContents = $("#forPdf").html() +
+            //             "<script>" +
+            //             "window.onload = function() {" +
+            //             "     window.print();" +
+            //             "};" +
+            //             "<" + "/script>" + `<script src="https://cdn.jsdelivr.net/npm/vue">` +
+            //             "<" + "/script>";
+
+            //   mywindow.document.write(divContents);
+            //   mywindow.document.close();
+
+        // document.body.innerHTML = orig;
+        // window.print()
+      },
       refresh(data) {
         // this.authenticatedUser = this.$auth.getAuthenticatedUser();
         this.user = data.body;
@@ -91,15 +165,27 @@
         
       },
       imageChanged(e) {
-                    console.log(e.target.files[0]);
-                    var fileReader = new FileReader();
+                    console.log(e.target.files[0].size);
+                    if(e.target.files[0].size <= 10485760 ){
+                      var fileReader = new FileReader();
 
                     fileReader.readAsDataURL(e.target.files[0]);
 
                     fileReader.onload = e => {
                     this.image = e.target.result;
                     this.imageport.image = e.target.result;
-                    };
+                    }
+                    
+                    }
+                    else{
+                      swal("File image exceeds 10mb", {
+                        icon: "warning",
+                      }).then((value) => {
+                        location.reload()
+                      });
+                      
+
+                    }
                     console.log(this.activity);
                 },
       submitImage(){
@@ -108,8 +194,9 @@
           console.log(response)
                   swal("Succesfully submitted!", {
               icon: "success",
-              });
-              location.reload()  
+              }).then((value) => {
+                        location.reload()
+                      });
       })
       }
 
@@ -121,8 +208,9 @@
 
 </script>
 
-<style scoped>
-  form input {
+ <style lang="scss"> 
+
+  form input { 
     width: 100%;
   }
 

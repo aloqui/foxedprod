@@ -1,4 +1,6 @@
 <template>
+  <div>
+
   <div class="row">
     <div class="col-lg-4 col-sm-6 code--holder" v-for="code in codes.codes">
       <div class="card h-100">
@@ -24,30 +26,18 @@
       </div>
     </div>
 
-    <br>
-
-    <!-- <div class="col-12">
-          <div class="card" v-for="code in codes.images">
-            <span v-if="code.image != 'none'">
-                  <img :src="'http://localhost:3000/images/' + code.image"  @click="pass(code)" data-toggle="modal" data-target="#preview">
-              </span>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">{{ code.title }}</a>
-              </h4>
-            </div>
-          </div>
-        </div> -->
-
-    <div class="col-12 d-flex justify-content-center align-items-center">
-      <section class="gallery">
-        <div v-for="code in codes.images" :class="'item h0 v1'">
+    <br> 
+        <!-- <div class="col-12 d-flex justify-content-center align-items-center">
+        <section class="gallery"> 
+            <div v-for="code in codes.images" :class="'item h0 v1'">
           <img :src="imagePath + code.image" @click="pass(code)" data-toggle="modal" data-target="#preview">
         </div>
-      </section>
-    </div>
-
-    <div class="col-12">
+            <div id="forPdf" v-for="code in codes.images"  :class="'item h0 v1'" style="display:none;">
+              <img :src="imagePath + code.image" @click="pass(code)" data-toggle="modal" data-target="#preview">
+            </div> 
+        </section>
+        </div>  -->
+    <div class="col-12"> 
 
       <div class="modal fade" id="preview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -63,13 +53,14 @@
                 <img :src="imagePath + modal.image">
               </span>
 
+
             </div>
             <div class="modal-footer d-flex justify-content-center align-items-center">
               <div v-if="modal.user_id == userMe.id">
                 <input type="file" accept="image/*" class="form-control  content__helper" @change="imageChanged">
                 <div class="d-flex justify-content-center align-items-center">
-                  <input v-model="modal.title" type="text" placeholder="title">
-                  <button @click="update" class="btn content__button--passive content__helper">update</button>
+                  <input v-model="modal.title" class="input--default" type="text" placeholder="title">
+                  <button @click="update" class="btn content__button--passive content__helper">Update</button>
                   <button @click="deleteimg" class="btn content__button--passive content__helper">Delete</button>
                 </div>
               </div>
@@ -83,6 +74,21 @@
       </div>
     </div>
   </div>
+  <!-- class="col-lg-4 col-sm-6 p-0 " -->
+  <div class="row mt-3">
+    <div class="col-12 width--gallery">
+     <div class="flexbox">
+      <div class="item" v-for="code in codes.images">
+        <span class="">
+            <img  class=" " @click="pass(code)" :src="imagePath + code.image" data-toggle="modal" data-target="#preview">
+            <p class="title">{{code.title}}</p>
+        </span>
+    </div> 
+  </div>
+    </div>
+  </div>
+   
+  </div>
 </template>
 <script>
   export default {
@@ -91,7 +97,8 @@
         codes: {},
         modal: {},
         newImage: '',
-        oldImage: ''
+        oldImage: '',
+        imagePath:''
       }
     },
     props: [
@@ -104,6 +111,18 @@
 
     },
     methods: {
+      tryPrint(){
+        html2canvas(document.querySelector('#forPdf'),{
+          onrendered: function (canvas) {
+
+            var img = canvas.toDataURL("image/png");
+            var doc = new jsPDF()
+            doc.addImage(img,'JPEG',20,20);
+
+              doc.save('resume.pdf');
+          }
+        });
+      },
       getImagePath() {
         this.imagePath = `${location.protocol}//${location.hostname}/images/`
         if (location.port)
@@ -122,11 +141,10 @@
           "</head>\n\t" +
           "<body>\n\t\n\t" +
           "</body>\n" +
-          "</html>";
-
+          "</html>"; 
         var prepareSource = function () {
           var src = '',
-            js = '',
+            js = '', 
             css = '';
 
           src = base_tpl.replace('</body>', c.html + '</body>');
@@ -188,9 +206,9 @@
             console.log(response)
             swal("Succesfully Updated!", {
               icon: "success",
-            });
-            //   this.$router.push('/feed')
-            location.reload()
+            }).then((value) => {
+                        location.reload()
+                      });
           })
       },
       deleteimg() {
@@ -229,44 +247,6 @@
 </script>
 
 <style lang="scss" scoped>
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 90px);
-    grid-auto-rows: 100px;
-    grid-auto-flow: dense;
-    grid-gap: 5px;
-  }
-
-  .item {
-    overflow: hidden;
-    display: grid;
-    grid-template-columns: 1;
-    grid-template-rows: 1;
-  }
-
-  .item img {
-    grid-column: 1 / -1;
-    grid-row: 1 / -1;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .item.v0 {
-    grid-row: span 3;
-  }
-
-  .item.v1 {
-    grid-row: span 2;
-  }
-
-  .item.h0 {
-    grid-column: span 3;
-  }
-
-  .item.h1 {
-    grid-column: span 4;
-  }
 
 
   .code-card {
@@ -352,5 +332,72 @@
       -webkit-transform-origin: 0 0;
     }
   }
+  .width--gallery{
+    width: 50vw;
+    overflow-x: scroll;
+  }
+  .flexbox{
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100vh;
+  
+  &:hover{
+    img {
+      opacity:0.28;
+    }
+  }
+
+  // Each flex item
+  .item{
+    position: relative;
+    width: 33.33%;  // 3 column 
+    img{
+      width: 100%;
+      display: block;
+      transition:all .8s;
+    }
+    .title{
+      position:absolute;
+      top:48%;
+      left:0;
+      width:100%;
+      padding:0 3%;
+      font-size:30px;
+      text-shadow:0 0 8px rgba(0,0,0,0.42);
+      color:rgb(221, 221, 221);
+    }
+    &:hover{
+      img{
+        opacity:1;
+        
+      }
+    }
+  }
+}
+
+// Mediaqueries
+@media ( max-width : 860px ){
+  // set to 2 column
+  .flexbox{
+    height:220vw;
+    .item{
+      width:50%;
+    }
+  }
+}
+@media ( max-width : 667px ){
+  // set to 1 column
+  .flexbox{
+    height:auto;
+    .item{
+      width:100%;
+    }
+  }
+}
 
 </style>

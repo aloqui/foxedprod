@@ -11,6 +11,9 @@ class ImagesPortfolio extends Model
         return $this->belongsTo(User::class );
     }
     public function scores() {
-        return $this->hasMany(Score::class,'user_id');
+        return $this->hasMany(Score::class,'activity_id');
+    }
+    public function score() {
+        return $this->belongsTo(Score::class);
     }
 }

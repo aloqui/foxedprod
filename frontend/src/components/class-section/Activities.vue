@@ -1,40 +1,38 @@
 <template>
-  <div>
-    <activity v-for="activity in activities" @delete-activity="deleteActivity(activity)" @cons="conss(activity)" :authenticatedUser="authenticatedUser"
-      :activity="activity" :user="user"></activity>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title center" id="exampleModalLabel">{{modal.title}}</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <span v-if="modal.image != 'none'">
-              <img :src="imagePath + modal.image">
-            </span>
-            <div>
-              <h5>Instruction: </h5>
-              <p> &nbsp; {{modal.body}}</p>
-            </div>
-            <hr>
-            <div class="form-group">
-              <label>Submit to this activity</label>
-              <input type="file" accept="image/*" class="form-control content__helper" @change="imageChanged">
-              <div v-show="authenticatedUser.prof && act_id && !eval" class="d-flex justify-content-end align-items-center pt-2">
-
-                <input v-model="imageport.title" type="text" placeholder="title" class="input-sm">
-                <button class="btn content__button--passive content__helper" @click="submitImage">save</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
+      <div>
+        <activity v-for="activity in orederedDate" @delete-activity="deleteActivity(activity)" @cons="conss(activity)"  :authenticatedUser="authenticatedUser" :activity="activity" :user="user"></activity>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title center" id="exampleModalLabel">{{modal.title}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <span v-if="modal.image != 'none'">
+                            <img :src="imagePath + modal.image">
+                        </span>
+                        <div>
+                            <h5>Instruction: </h5>
+                            <p> &nbsp; {{modal.body}}</p>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label>Submit to this activity</label>
+                            <input  type="file" accept="image/*" class="form-control content__helper" @change="imageChanged">
+                            <div v-show="authenticatedUser.prof" class="d-flex justify-content-end align-items-center pt-2">
+                                
+                                <input v-model="imageport.title" type="text" placeholder="title" class="input--default">
+                                <button class="btn content__button--passive content__helper" @click="submitImage">save</button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div> 
+              </div>  
 </template>
 
 <script>
@@ -62,7 +60,10 @@
         var date = new Date();
         return console.log(date)
 
-      }
+      },
+      orederedDate: function () {
+                return _.orderBy(this.activities, 'created_at',['desc'])
+            }
     },
     components: {
       'activity': Activity
@@ -106,14 +107,26 @@
           });
       },
       imageChanged(e) {
-        console.log(e.target.files[0]);
-        var fileReader = new FileReader();
+        console.log(e.target.files[0].size);
+                    if(e.target.files[0].size <= 10485760 ){
+                      var fileReader = new FileReader();
 
-        fileReader.readAsDataURL(e.target.files[0]);
+                    fileReader.readAsDataURL(e.target.files[0]);
 
-        fileReader.onload = e => {
-          this.imageport.image = e.target.result;
-        };
+                    fileReader.onload = e => {
+                    this.imageport.image = e.target.result;
+                    }
+                    
+                    }
+                    else{
+                      swal("File image exceeds 10mb", {
+                        icon: "warning",
+                      }).then((value) => {
+  location.reload()
+});
+                      
+
+                    }
       },
       conss(a) {
         console.log(a)
@@ -127,7 +140,9 @@
             console.log(response)
             swal("Succesfully submitted!", {
               icon: "success",
-            });
+            }).then((value) => {
+  location.reload()
+});
           })
       }
     }
