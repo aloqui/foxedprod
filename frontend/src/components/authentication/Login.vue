@@ -3,9 +3,9 @@
     <div class="form-group m-auto  ">
       <form @submit.prevent="login" class="d-flex flex-column flex-md-row justify-content-start justify-content-md-end align-items-center ">
         
-        <input v-model="email" class="form-control m-2 content__input" type="email" placeholder="Email">
+        <input v-model="email" class="form-control m-1  content__input" type="email" placeholder="Email">
 
-        <input v-model="password" class="form-control m-2 content__input" type="password" placeholder="Password">
+        <input v-model="password" class="form-control m-1 content__input" type="password" placeholder="Password">
         <div class="d-flex align-items-center">
         <button class="btn m-2 form__button--submit font--light">
           &nbsp;
