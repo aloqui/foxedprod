@@ -8,13 +8,23 @@
     </div>
     <p class="text-left font--bold text-uppercase mt-3">Classes</p>
       
-    <div v-if="true">
+    <div v-if="hasClass">
       <div class="forum-post__header text-left font--light" v-for="room in classes" v-bind:key="room.id">
+        <div v-if="room.classroom">
+          <router-link class="nav-item content__sub-title" :to="`/class/${room.classroom.id}`">
+          <li>
+            {{room.classroom.name}}
+          </li>
+        </router-link>
+        </div>
+        <div v-else>
+
         <router-link class="nav-item content__sub-title" :to="`/class/${room.id}`">
           <li>
             {{room.name}}
           </li>
         </router-link>
+        </div>
       </div>
       <router-link :to="`/account/classes`">
       <p class="content__helper hover-pointer text-center" v-if="classes.length >= 6"><u>Browse classes</u></p>
@@ -54,7 +64,8 @@
         console.log("CLASSES")
         console.log(data)
         this.classes = data.body.data
-        if (data.body.length > 0)
+  
+        if (data.body.data.length > 0)
           this.hasClass = true;
       },
       enroll(data) {

@@ -6,8 +6,19 @@
           <h1 class="font--semi-bold">Classes</h1>
           <hr>
           <div>
-            <ais-index index-name="classrooms" app-id="TN5MR9QHP4" api-key="a933713f38f230be88643278a41c7281">
-              <!-- Add your InstantSearch components here. -->
+            <div v-for="room in classes" v-bind:key="room.id">
+              <div class="mb-4">
+
+                <router-link class="no-decoration" :to="`/class/${room.id}`">
+                  <h1 class="forum__title">{{room.name}}</h1>
+                  <p class="content__helper mt-2">About the class:</p>
+                  <p class="content--paragraph" v-text="room.body"></p>
+                <hr>
+                </router-link>
+              </div>
+            </div>
+            <!-- <ais-index index-name="classrooms" app-id="TN5MR9QHP4" api-key="a933713f38f230be88643278a41c7281">
+            
               <p class="content__helper">Search for classroom</p>
               <ais-search-box autofocus>
                 <ais-input class="" placeholder="Find a class" autofocus v-on:click="resetPage"></ais-input>
@@ -29,7 +40,7 @@
                   </div>
                 </template>
               </ais-results>
-            </ais-index>
+            </ais-index> -->
           </div>
         </div>
       </div>
@@ -40,11 +51,11 @@
   export default {
     data() {
       return {
-        // classes: {}
+        classes: {}
       }
     },
     mounted() {
-      //   this.fetch()
+      this.fetch()
     },
     methods: {
       fetch() {

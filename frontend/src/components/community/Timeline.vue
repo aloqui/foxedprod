@@ -3,8 +3,8 @@
         <div class="forum-post__header text-left font--light">
         <ul>
                 <li v-for="post in orderedUsers">
-                    <router-link class="nav-item" :to="`/class/${post.classroom_id}`">
-                <h2>{{post.title}}</h2>
+                    <router-link class="nav-item no-decoration" :to="`/class/${post.classroom_id}`">
+                    <h1 class="forum__title font--semi-bold">{{post.title}}</h1>
                     </router-link>
                         
                     <p  class="posted">{{from(post.created_at)}}</p>

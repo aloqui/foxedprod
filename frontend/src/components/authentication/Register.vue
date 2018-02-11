@@ -4,7 +4,7 @@
 
     <div class="card pl-5 pr-5 pt-3 pb-3">
       <div class="card-body">
-        <h5 class="text-center mt-2 mb-4 font--bold content__title">Create an account</h5>
+        <h5 class="mt-2 mb-4 font--bold content__title">Create an account</h5>
         <form @submit.prevent="register" >
 
           <div class="form-group" :class="{'has-error': theErrors.name }">
@@ -29,6 +29,7 @@
           </div>
           <div class="form-group" :class="{'has-error': theErrors.birth_date }">
             <input v-model="user.birth_date" class="form-control content__input--dark" type="date" placeholder="birth date">
+            <p class="content__helper text-right">Date of Birth</p>
             <p class="help-block" v-for="error in theErrors.birth_date"> {{error}}</p>
           </div>
           <div class="form-group mr-0 text-left">

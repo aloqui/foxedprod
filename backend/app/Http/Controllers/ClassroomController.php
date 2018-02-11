@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Filters\ThreadFilters;
 use App\Filters;
+use App\UserGroup;
 use Auth;
 use App\Activity;
 
@@ -24,7 +25,7 @@ class ClassroomController extends Controller
             $classroom = Classroom::where('user_id', Auth::id())->latest()->paginate(6);
             return $classroom;
         } 
-            $classroom = Classroom::where('isMember', true)->latest()->paginate(6);
+            $classroom = UserGroup::where('user_id', Auth::id())->with('classroom')->latest()->paginate(6);
             return $classroom;
         //return ['classrooms' => $user->classes()->latest()->get()->load('owner')];
     }
@@ -35,7 +36,7 @@ class ClassroomController extends Controller
             $classroom = Classroom::where('user_id', Auth::id())->latest()->get();
             return $classroom;
         } 
-            $classroom = Classroom::where('isMember', true)->latest()->get();
+            $classroom = UserGroup::where('user_id', Auth::id())->with('classroom')->latest()->get();
             return $classroom;
         //return ['classrooms' => $user->classes()->latest()->get()->load('owner')];
     }
