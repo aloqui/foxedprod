@@ -1,0 +1,121 @@
+<template>
+  <div class="mt-5 pt-5">
+    <div class="container">
+      <div class="row ">
+        <div class="col section-block">
+          <form>
+            <h1 class="font--semi-bold">EDIT PROFILE</h1>
+            <hr>
+            <div class="row">
+              <div class="col">
+                <p class="content__helper">@{{ basicInfo.username }}</p>
+                <p class="content__helper">Your Email is
+                <span class="content__helper--negative text-uppercase font--bold" v-show="!basicInfo.confirmed">not</span> confirmed.</p>
+                <p class="content__helper content__helper--positive" v-show="newEmail">A mail has been sent to your Email address.</p>
+                <div class="d-flex flex-column align-items-start">
+                  <p class="content__helper mt-2">Change Password</p>
+                  <div class="d-flex">
+                    <input class="form-control " type="password" v-model="changePasswordData.old_password" placeholder="Old Password" />
+                  </div>
+                  <div class="d-flex mt-2">
+                    <input class="form-control mr-1" type="password" v-model="changePasswordData.password" placeholder="New Password" />
+                    <input class="form-control ml-1" type="password" v-model="changePasswordData.password_confirmation" placeholder="Confirm New Password"
+                    />
+                  </div>
+                  <div class="d-flex mt-2">
+                    <button class="btn content__button--passive content__helper">Change Password</button>
+                  </div>
+                </div>
+                <div class="d-flex flex-column align-items-start">
+
+                <p class="content__helper mt-4">Change Basic Information</p>
+                  <div class="d-flex mt-2">
+                    <div class=" mr-1">
+                      <p class="help-block" v-for="error in errorHandling.name">{{error}}</p>
+                      <p class="content__helper" v-if="!errorHandling.name">Full Name</p>
+                      <input class="form-control" type="text" placeholder="Full Name" v-model="basicInfo.name" />
+                    </div>
+                    <div class=" ml-1">
+                      <p class="help-block" v-for="error in errorHandling.email">{{error}}</p>
+                      <p class="content__helper" v-if="!errorHandling.email">Email Address</p>
+                      <input class="form-control" type="email" placeholder="Email Address" v-model="basicInfo.email" />
+                    </div>
+                  </div>
+                  <div class="mt-2">
+                    <p class="help-block" v-for="error in errorHandling.username">{{error}}</p>
+                    <p class="content__helper" v-if="!errorHandling.username">Username</p>
+                    <input class="form-control" type="text" placeholder="Username" v-model="basicInfo.username" />
+                  </div>
+                  <div class="d-flex mt-2">
+                    <button class="btn content__button--passive content__helper" @click="updateBasicProfile">Update Profile</button>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col">
+
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        basicInfo: {},
+        changePasswordData: {},
+        errorHandling: {},
+        newEmail: false
+      }
+    },
+    mounted() {
+      this.fetchAuth()
+
+    },
+    methods: {
+      fetchAuth() {
+        this.$http.get(`api/user/profile/`)
+          .then(this.refreshAuth)
+      },
+      refreshAuth(data) {
+        console.log(data)
+        // this.Auth = data.body
+        // this.basicInfo.name = data.body.user.name
+        // this.basicInfo.username = data.body.user.username
+        this.basicInfo = data.body.user
+        this.basicInfo.email = data.body.email
+      },
+      postLanguages() {
+        console.log("Language request")
+      },
+      postTechnicalSkills() {
+        console.log("Technical Skills request")
+      },
+      postUserDetails() {
+        console.log("User Details request")
+      },
+      updateBasicProfile() {
+        this.errorHandling = {}
+        this.$http.post(`api/user/profile/basic`, this.basicInfo)
+          .then(response => {
+              swal(`Successfully updated your profile!`, {
+              icon: "success",
+            });
+
+            if(response.body.new_email) {
+              this.newEmail = true
+              this.basicInfo.confirmed = false
+            }
+          })
+          .catch(response => {
+            this.errorHandling = response.body.errors
+          })
+      }
+    }
+  }
+
+</script>

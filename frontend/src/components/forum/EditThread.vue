@@ -18,7 +18,6 @@
   </div>
 </template>
 <script>
-import swal from 'sweetalert'
 export default {
     created (){
         this.getThread();

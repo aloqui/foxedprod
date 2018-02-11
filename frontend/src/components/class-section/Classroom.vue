@@ -31,7 +31,7 @@
                 <div>
                   <!-- <class-feed-block></class-feed-block> -->
                   <create-activity  class="section-block" v-show="user.prof"></create-activity>
-                  <view-activities  class="section-block mt-3" :user="user"></view-activities> 
+                  <view-activities  class="section-block" :user="user"></view-activities> 
                 </div>
                 
               </div>

@@ -47,7 +47,6 @@
 </template>
 
 <script>
-  import swal from 'sweetalert'
   export default {
     data() {
       return {
@@ -88,9 +87,6 @@
             this.login();
             this.loading = false;
             console.log(this.loading)
-            // swal("Succesfully Registered!", {
-            //   icon: "success",
-            // });
           })
           .catch(error => {
             this.loading = false;

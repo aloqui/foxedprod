@@ -36,10 +36,10 @@
             <div class="d-flex flex-column justify-content-center align-items-center">
             </div>
             <input type="file" accept="image/*" class="form-control  content__helper file__remove" @change="imageChanged">
-                        <div  class="d-flex flex-column justify-content-center align-items-center">
-                            <input v-model="imageport.title"  type="text" placeholder="title">
-                            <button @click="submitImage">save</button>
-                        </div>
+              <div  class="d-flex justify-content-center mt-2">
+                  <input v-model="imageport.title"  type="text" class="input--default" placeholder="title">
+                  <button @click="submitImage" class="btn content__button--passive content__helper">save</button>
+              </div>
           </div>
           <!-- <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -154,8 +154,9 @@
           console.log(response)
                   swal("Succesfully submitted!", {
               icon: "success",
-              });
-              location.reload()  
+              }).then((value) => {
+                        location.reload()
+                      });
       })
       }
 

@@ -73,8 +73,6 @@ class ThreadController extends Controller
      */
 
     public function storeThreadOnChannel(Request $request, Channel $channel, Recaptcha $recaptcha) {
-
-        
         request()->validate([
             'title' => 'required|max:60',
             'body' => 'required|min:10|max:1600',

@@ -11,14 +11,13 @@
               <thread :attriThread="threads" inline-template>
                 <div class="content m-auto specific-thread__edit" v-if="editingThread">
                   <div class="mt-4">
-
-
-
                     <div class="trix__edit">
                       <div class="mb-4 d-flex">
                         <router-link class="no-decoration" :to="`/${attriThread.owner.username}/threads`">
                           <div class="d-flex align-items-center ">
-                            <img class="picture-placeholder mr-3" :src="attriThread.owner.avatar_path" alt="">
+                            <div class="picture-placeholder">
+                              <img class="picture mr-3" :src="attriThread.owner.avatar_path" alt="">
+                            </div>
                             <div class="d-flex flex-column">
                               <a class="m-0 content__username" href="">{{attriThread.owner.name}}</a>
                               <span class="content__helper">@{{attriThread.owner.username}} - {{attriThread.created_at | formatDate}}</span>
@@ -53,13 +52,7 @@
                           </div>
                         </button>
 
-                        <button class="btn content__helper text-uppercase" @click="editingThread = false; editThread.body = attriThread.body; editThread.title = attriThread.title"
-                          v-if="editingThread = true">
-                          <i class="fas fa-times"></i>
-                          <div class="content__helper-visual--cancel">
-                            <p class="content__helper">Cancel</p>
-                          </div>
-                        </button>
+
                       </div>
                       <div class="ml-auto">
                         <button class="btn content__helper text-uppercase " @click="deleteThread">
@@ -79,7 +72,9 @@
                       <div class="mb-4 d-flex">
                         <router-link class="no-decoration" :to="`/${attriThread.owner.username}/threads`">
                           <div class="d-flex align-items-center ">
-                            <img class="picture-placeholder mr-3" :src="attriThread.owner.avatar_path" alt="">
+                            <div class="picture-placeholder mr-3">
+                              <img class="picture " :src="attriThread.owner.avatar_path" alt="">
+                            </div>
                             <div class="d-flex flex-column">
                               <a class="m-0 content__username" href="">{{attriThread.owner.name}}</a>
                               <span class="content__helper">@{{attriThread.owner.username}} - {{attriThread.created_at | formatDate}}</span>
@@ -155,7 +150,7 @@
   import swal from 'sweetalert';
   import Thread from '../components/community/thread';
   import Replies from '../components/community/replies.vue';
-
+  
 
   // import forumReplies from '../components/forum-replies.vue';
 
@@ -169,6 +164,7 @@
       'thread': Thread
       // 'forum-replies': forumReplies
     },
+    
     // props: [
     //   'thread',
     //   'authenticatedUser'
@@ -194,6 +190,7 @@
     },
     mounted() {
       this.fetch()
+      
     }
   }
 
@@ -206,12 +203,6 @@
 
   .green {
     background-color: green;
-  }
-
-  .picture {
-    background-color: #efefef;
-    padding: 65px 30px;
-    border-radius: 50%;
   }
 
   ul {

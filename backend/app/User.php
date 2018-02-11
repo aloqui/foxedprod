@@ -54,6 +54,15 @@ class User extends Authenticatable
     public function threads() {
         return $this->hasMany(Thread::class)->latest();
     }
+    public function languages() {
+        return $this->hasMany(UserLanguagesUsed::class)->latest();
+    }
+    public function technicalSkills() {
+        return $this->hasMany(UserTechnicalSkills::class)->latest();
+    }
+    public function details() {
+        return $this->hasMany(UserDetails::class)->latest();
+    }
     public function prof() {
         return $this->hasMany(Classroom::class)->latest();
     }

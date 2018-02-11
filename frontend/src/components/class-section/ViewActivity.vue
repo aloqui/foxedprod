@@ -8,7 +8,7 @@
         <div class="col-md-7">
           <h3>{{activity.title}}</h3>
             <p>{{activity.body}}</p>
-          <router-link class="btn btn-primary" :to="'/activity/' + activity.id +'/evaluate'">evaluation</router-link>
+          <router-link v-if="userMe.prof" class="btn btn-primary" :to="'/activity/' + activity.id +'/evaluate'">evaluation</router-link>
         </div>
   </div>
   </div>
@@ -22,11 +22,15 @@ export default {
   data () {
       return {
           activity: {},
-           imagePath: ""
+           imagePath: "",
+           userMe:''
       }
   },
   mounted() {
       this.getImagePath()
+      this.$http.get(`api/user`)
+        .then(mes => this.userMe = mes.body)
+        .catch()
   },
   methods: {
       getImagePath() {

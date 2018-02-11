@@ -1,5 +1,5 @@
 <template>
-  <div class="create--activity">
+  <div class="create--activity mb-3">
     <div class="p-0">
       <div class="panel panel-default">
         <div class="panel-body">

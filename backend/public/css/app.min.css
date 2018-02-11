@@ -29,6 +29,10 @@ span.ais-highlight em {
   overflow-y: hidden;
 }
 
+.hover-pointer {
+  cursor: pointer;
+}
+
 .content {
   max-width: 680px;
 }
@@ -1361,6 +1365,14 @@ span.ais-highlight em {
           transform: translate(-26px, -40px);
 }
 
+.content__helper--positive {
+  color: #27b46d;
+}
+
+.content__helper--negative {
+  color: #e43636;
+}
+
 .content--paragraph {
   font-family: 'Crimson Text', sans-serif;
   font-size: 21px;
@@ -1441,16 +1453,44 @@ span.ais-highlight em {
   transition: all .15s ease-out;
 }
 
+.picture-placeholder--large {
+  background-color: #3f3f3f;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.picture-placeholder--large .picture {
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .picture-placeholder {
-  border-radius: 40px;
-  max-width: 40px;
-  max-height: 40px;
+  overflow: hidden;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.picture-placeholder .picture {
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .picture-placeholder--notification {
-  border-radius: 30px;
-  max-width: 30px;
-  max-height: 340px;
+  overflow: hidden;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.picture-placeholder--notification .picture {
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .section-fixed {
@@ -1803,10 +1843,9 @@ button:focus,
 }
 
 .navbar .dropdown img {
-  -webkit-transform: translateX(-4px);
-          transform: translateX(-4px);
-  width: 130%;
-  margin: 0;
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .navbar .form-group {
@@ -1928,6 +1967,12 @@ button:focus,
 
 .classroom .classroom__title {
   color: #5d5d5d;
+}
+
+.input--default {
+  padding: 5px;
+  font-size: 13px;
+  border-radius: 2%;
 }
 
 .create-category .url,

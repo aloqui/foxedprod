@@ -3,11 +3,11 @@
     <div class="container">
 
 
-      <div class="row pt-5">
+      <div class="row pt-5 mb-2">
 
 
 
-        <div class="col-5">
+        <div class="col-7 img__act">
           <span v-if="submitted.class.image != 'none'">
            
             <img :src="imagePath + submitted.class.image"> 
@@ -15,7 +15,7 @@
           <span v-else>
             <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt=""> </span>
         </div>
-        <div class="col-7">
+        <div class="col-5">
           <h3>{{submitted.class.title}}</h3>
           <p>{{submitted.class.body}}</p>
         </div>
@@ -27,6 +27,7 @@
                     <tr>
                     <th>Title</th>
                     <th>Submitted By</th>
+                    <th>Time submitted</th>
                     <th>Score</th>
                     </tr>
                 </thead>
@@ -50,6 +51,9 @@
                         <td>{{act.title}}</td>
                         <td>
                             <a @click="cons(act)"  data-toggle="modal" data-target="#exampleModal"> {{act.user.name}} </a>
+                        </td>
+                        <td>
+                            {{momentize(act.created_at)}}
                         </td>
                         <td>
                             <span v-if="act.score">
@@ -166,6 +170,7 @@
         </div>  
 </template>
 <script>
+import moment from 'moment'
 export default {
     data (){
         return {
@@ -204,6 +209,9 @@ export default {
         this.getImagePath()
       },
       methods: {
+          momentize(date){
+           return moment(date).calendar()
+        },
       getImagePath() {
         this.imagePath = `${location.protocol}//${location.hostname}/images/`
         if (location.port)
@@ -258,6 +266,11 @@ export default {
           width: 100%;
           height: 100%;
         }
+    }
+}
+.img__act{
+    img{
+        width: 100%;
     }
 }
 .table__activities{

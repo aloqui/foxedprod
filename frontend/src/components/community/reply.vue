@@ -4,8 +4,8 @@
       <div class=" d-flex">
         <!-- <p class="mb-0 ml-1"> posted this 2 minutes ago</p> -->
         <div class="d-flex">
-          <div>
-            <img class="picture-placeholder mr-3" :src="reply.owner.avatar_path" alt="">
+          <div class="picture-placeholder mr-3">
+            <img class="picture" :src="reply.owner.avatar_path" alt="">
           </div>
           <router-link :to="`/${reply.owner.username}/threads`" class="no-decoration">
           <div class="d-flex flex-column">
@@ -73,11 +73,13 @@
 <script>
   import Wysiwyg from "./wysiwyg.vue";
   import moment from 'moment';
+  import PictureMixin from '../../mixins/pictureMixin.js';
   export default {
     components: {
       'wysiwyg': Wysiwyg,
     },
     props: ['attributes', 'user'],
+    mixins: [PictureMixin],
     name: 'reply',
     data() {
       return {
@@ -85,6 +87,9 @@
         reply: this.attributes.reply,
         body: this.attributes.reply.body
       }
+    },
+     mounted() {
+       this.fixPicture()
     },
     methods: {
       update() {
@@ -138,8 +143,7 @@
         return ['btn']
       }
     },
-    mounted() {
-    },
+   
     sockets: {
       favoriteReply(response) {
         var data = JSON.parse(response)
