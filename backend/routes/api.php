@@ -39,19 +39,19 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/community/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@store');
     Route::delete('/community/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@destroy');
     Route::resource('replies','RepliesController');
-   
-   
+    
+    
     Route::post('/community/create', 'ChannelController@store')->middleware('must-be-confirmed');
     Route::get('/classroom', 'ClassroomController@index');
     
     Route::post('/community/{channel}/{thread}/replies', 'RepliesController@store');
-   // Route::post('/community', 'ThreadController@store');
+    // Route::post('/community', 'ThreadController@store');
+    Route::post('/community/{channel}', 'ThreadController@storeThreadOnChannel')->middleware('must-be-confirmed');
     Route::get('/currentChannel/{channel}', 'ThreadController@getThisChannel');
     Route::patch('/community/{channel}/{thread}', 'ThreadController@update');
     Route::delete('/community/{channel}/{thread}', 'ThreadController@destroy');
     Route::resource('codes','CodeController');
     Route::patch('/codes/{code}','CodeController@update');
-    Route::post('/community/{channel}', 'ThreadController@storeThreadOnChannel')->middleware('must-be-confirmed');
     Route::post('/classroom/{classroom}/join', 'UserGroupController@membership');
     Route::post('/classroom/create/a','ClassroomController@create');
     Route::get('/classroom/{classroom}', 'ClassroomController@show');

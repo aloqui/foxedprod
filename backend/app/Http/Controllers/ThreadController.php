@@ -79,13 +79,17 @@ class ThreadController extends Controller
             'channel_id' => 'required|exists:channels,id',
             'recaptcha' => ['required', $recaptcha]
         ]); 
-
         $postThread = Thread::Create([
             'user_id' => Auth::id(),
             'title' => request('title'),
             'channel_id' => request('channel_id') ,
             'body' => request('body')
         ]);
+        $channel = Channel::where('id', $postThread->channel_id)->firstOrFail();
+        $channel->update([
+            'threads_count' => $channel->threads_count + 1
+        ]);
+
         $postThread->subscribe();
         return $postThread;
         
@@ -155,9 +159,13 @@ class ThreadController extends Controller
     public function destroy($channel, Thread $thread)
     {
         $this->authorize('update', $thread);
+
         $thread->replies()->delete();
         $thread->delete();
-
+        $channel = Channel::where('id', $thread->channel_id)->firstOrFail();
+        $channel->update([
+            'threads_count' => $channel->threads_count - 1
+        ]);
         if ($thread->user_id != Auth::id()) {
             abort(401, 'You do not have permission to do this.');
         }
