@@ -39,7 +39,8 @@
               icon: "success",
             });
           }, function (response) {
-            this.$router.push(`/community/${this.$route.params.slug}`);
+            console.log(response)
+            
             swal("Error!", {
               icon: "error",
             });

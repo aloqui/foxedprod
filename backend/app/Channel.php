@@ -15,9 +15,9 @@ class Channel extends Model
     protected static function boot() {
         parent::boot();
 
-        static::addGlobalScope('threadCount', function ($builder) {
-            $builder->withCount('threads');
-        });
+        // static::addGlobalScope('threadCount', function ($builder) {
+        //     $builder->withCount('threads');
+        // });
     }
     public function getRouteKeyName() {
         return 'slug';
@@ -31,6 +31,7 @@ class Channel extends Model
     public function threads() {
         return $this->hasMany(Thread::class);
     }
+
     public function ownerVal() {
         return $this->owner;
     }

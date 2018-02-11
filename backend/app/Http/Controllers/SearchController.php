@@ -11,15 +11,13 @@ class SearchController extends Controller
     public function show() {
 
         $search = request('q');
-        $threads = Thread::search($search)->paginate(25);
-
-        
+        $threads = Thread::search($search);
         return $threads->load('channel', 'owner', 'replies');
     }
     public function showChannel() {
 
         $search = request('q');
-        $channels = Channel::search($search)->paginate(5);
+        $channels = Channel::search($search);
         
         return $channels;
         

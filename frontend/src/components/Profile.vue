@@ -210,7 +210,7 @@
 
  <style lang="scss"> 
 
-  form input {
+  form input { 
     width: 100%;
   }
 
