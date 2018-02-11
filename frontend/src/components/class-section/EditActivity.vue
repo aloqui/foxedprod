@@ -29,7 +29,6 @@
                 </div>
             </div>
           </div> 
-          <button @click="update" class="btn btn-success">Update</button>
         </div>
       </div>
     </div>
@@ -110,6 +109,7 @@ export default {
                                 swal("Succesfully Updated!", {
                             icon: "success",
                             });
+                            // this.activity = response.body;
                             this.activity.due = moment(response.body.due).format("YYYY-MM-DDTHH:mm")
                             this.activity.oldImage = response.body.image;
                             this.activity.image = response.body.image;

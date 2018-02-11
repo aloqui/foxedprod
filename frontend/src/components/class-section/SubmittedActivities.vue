@@ -47,10 +47,10 @@
                         </td>
                     </tr>
 
-                    <tr v-for="act in submitted.userImage">
+                    <tr v-for="act in submitted.userImage" @click="cons(act)"  data-toggle="modal" data-target="#exampleModal">
                         <td>{{act.title}}</td>
                         <td>
-                            <a @click="cons(act)"  data-toggle="modal" data-target="#exampleModal"> {{act.user.name}} </a>
+                            <a > {{act.user.name}} </a>
                         </td>
                         <td>
                             {{momentize(act.created_at)}}
@@ -112,7 +112,7 @@
                             <td>@The student did the assignment adequately, yet it shows lack of planning and little evidence that an overall composition was planned.</td>
                             <td>The student did the assignment adequately, yet it shows lack of planning and little evidence that an overall composition was planned.</td>
                             <td>The assignment was completed and turned in, but showed little evidence of any understanding of the elements and principles of art; no evidence of planning.</td>
-                            <td v-show="!modal.evaluated"><input v-model="score.first" type="number"></td>
+                            <td v-show="!modal.evaluated"><input v-model="score.first" type="number"  min="0" max="5"></td>
                             <td><h3>{{evaluatedScores.first}}</h3></td>
                             </tr>
                             <tr>
@@ -123,7 +123,7 @@
                             <td>The student tried in idea, and help out adequately, but it lacked originality; substituted "symbols" for personal observation; might have copied work.</td>
                             <td>The student fulfill the assignment, but gave no evidence of trying anything unusual.</td>
                             <td>The student showed no evidence of original thought</td>
-                            <td v-show="!modal.evaluated"><input v-model="score.second" type="number"></td>
+                            <td v-show="!modal.evaluated"><input v-model="score.second" type="number" min="0" max="5"></td>
                             <td><h3>{{evaluatedScores.second}}</h3></td>
                             </tr>
                             <tr>
@@ -133,7 +133,7 @@
                             <td>The student finished the project, but it could have been improved with more effort; adequate interpretation of the assignment, but lacking finish; chose an easy project and did it indifferently.</td>
                             <td>The project was completed with minimum effort.</td>
                             <td>The student did not finished the work adequately.</td>
-                            <td v-show="!modal.evaluated"><input v-model="score.third" type="number"></td>
+                            <td v-show="!modal.evaluated"><input v-model="score.third" type="number" min="0" max="5"></td>
                             <td><h3>{{evaluatedScores.third}}</h3></td>
                             </tr>
                             <tr>
@@ -143,7 +143,7 @@
                             <td>The student showed average craftsmanship; adequate, but not as good as it could have been, a bit careless.</td>
                             <td>The student showed below average craftsmanship, lack of pride in finished work.</td>
                             <td>The student showed poor craftsmanship; evidence of lazy this or lack of understanding.</td>
-                            <td v-show="!modal.evaluated"><input v-model="score.fourth" type="number"></td>
+                            <td v-show="!modal.evaluated"><input v-model="score.fourth" type="number" min="0" max="5"></td>
 							<td><h3>{{evaluatedScores.fourth}}</h3></td>
                             </tr>
                         </tbody>

@@ -2,21 +2,21 @@
   <div class="home mt-5" id="printx">
     <div class="container">
       <div class="row d-flex justify-content-sm-center section-block mt-5">
-        <div class="col-12 d-flex justify-content-center align-items-center">
+        <div class="col-12 d-flex justify-content-center align-items-center ">
           
-          <avatarForm :user="user"></avatarForm>
-          <button @click="topdf"> print </button>
+          <avatarForm :user="user" id="toPDFS" ></avatarForm>
+          <button @click="PDFAct"> print </button>
           <div class="" v-if="user.id === userMe.id">
             
             <router-link class="btn content__button--passive content__helper" :to="'/editor'">new code</router-link>
             <!-- <router-link class="btn btn-default" :to="'/settings'">settings</router-link> -->
-            <button type="button" class="btn content__button--passive content__helper" data-toggle="modal" data-target="#imageport">
+            <button  type="button" class="btn content__button--passive content__helper" data-toggle="modal" data-target="#imageport">
               Upload Image
             </button>
             <i class="fa fa-print" aria-hidden="true"></i>
             <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
           </div>
-        </div>
+        </div> 
         <div class="col-12">
           <code-works :userMe="userMe"></code-works>
         </div>
@@ -81,6 +81,46 @@
         this.$http.get(`api/${this.$route.params.user}/user`)
           .then(this.refresh);
       },
+      
+      PDFAct() {
+    var pdf = new jsPDF('p', 'pt', 'letter');
+    // source can be HTML-formatted string, or a reference
+    // to an actual DOM element from which the text will be scraped.
+    var source = $('#toPDFS')[0];
+
+    // we support special element handlers. Register them with jQuery-style 
+    // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+    // There is no support for any other type of selectors 
+    // (class, of compound) at this time.
+     var specialElementHandlers = {
+        // element with id of "bypass" - jQuery style selector
+        '#bypassme': function (element, renderer) {
+            // true = "handled elsewhere, bypass text extraction"
+            return true
+        }
+    };
+   var margins = {
+        top: 80,
+        bottom: 60,
+        left: 40,
+        width: 522
+    };
+    // all coords and widths are in jsPDF instance's declared units
+    // 'inches' in this case
+    pdf.fromHTML(
+    source, // HTML string or DOM elem ref.
+    margins.left, // x coord
+    margins.top, { // y coord
+        'width': margins.width, // max width of content on PDF
+        'elementHandlers': specialElementHandlers
+    },
+
+    function (dispose) {
+        // dispose: object with X, Y of the last line add to the PDF 
+        //          this allow the insertion of new lines after html
+        pdf.save('Test.pdf');
+    }, margins);
+},
       topdf() {
         html2canvas(document.body).then(function(canvas) {
 
@@ -168,7 +208,8 @@
 
 </script>
 
-<style scoped>
+ <style lang="scss"> 
+
   form input {
     width: 100%;
   }
