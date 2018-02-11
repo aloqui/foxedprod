@@ -69,7 +69,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col">
+              <!-- <div class="col">
                 <p class="content__helper mb-2">Change Your Information</p>
                 <div class="d-flex flex-column align-items-start form-group">
                   <p class="content__helper" v-if="!errorHandling.bio">Bio</p>
@@ -88,7 +88,7 @@
                   <input class="form-control mb-2" v-model="userInfo.tertiary_education" type="text" placeholder="Tertiary Education">
                   <button class="btn content__button--passive content__helper" @click="updateUserInfo">Update Information</button>
                 </div>
-              </div>
+              </div> -->
             </div>
           </form>
         </div>
