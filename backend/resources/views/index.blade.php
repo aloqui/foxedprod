@@ -20,6 +20,34 @@
 
 <body>
   <div id="app"></div>
+  <div class="footer pt-4 pb-4">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="d-flex flex-column justify-content-center">
+            <a href="" class="content__helper"><u>Developers & Researchers</u></a>
+            <h5 class="content__helper">Cueto, Chester</h5>
+            <h5 class="content__helper">Dizon, Franchette</h5>
+            <h5 class="content__helper">Lumanlan, John Anna</h5>
+            <h5 class="content__helper">Oquindo, Al</h5>
+          </div>
+        </div>
+        <div class="col">
+          <div class="d-flex flex-column justify-content-center">
+            <h5 class="content__helper">© FoxedFolio 2018</h5>
+            <h5 class="content__helper text-uppercase mt-2">'For the Foxes..'</h5>
+          </div>
+        </div>
+        <div class="col">
+          <div class="d-flex flex-column justify-content-center">
+            <a href="#" class="content__helper">Privacy Policy</a>
+            <a href="#" class="content__helper">Terms of Use</a>
+            <a href="#" class="content__helper">Site Map</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.js"></script>

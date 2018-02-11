@@ -1,20 +1,20 @@
 <template>
-  <nav class="navbar navbar__logged-in navbar-expand-md fixed-top navbar-toggleable-md navbar-light bg-faded">
+  <nav class="navbar navbar__logged-in navbar-expand-lg fixed-top navbar-toggleable-md navbar-light bg-faded">
     <div class="container d-flex justify-content-between align-items-center mt-2 mb-2">
-      <a class="navbar-brand" href="/#/">
+      <a class="navbar-brand ml-2" href="/#/">
         <span class="font--bold">Foxed</span>
         <span class="font--light">Folio</span>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
         aria-expanded="false" aria-label="Toggle navigation">
         <div class="d-flex align-items-center">
-          <user-notifications class="d-block d-md-none mr-2" v-if="isAuth" :user="user"></user-notifications>
+          <user-notifications class="d-block d-lg-none mr-2" v-if="isAuth" :user="user"></user-notifications>
           <i class="navbarger fas fa-bars"></i>
         </div>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav d-flex justify-content-end">
-          <div class="form-group m-auto d-none d-md-block " v-if="isAuth">
+          <div class="form-group m-auto d-none d-lg-block " v-if="isAuth">
             <div class="algolia-search">
               <div class="dropdown ">
                 <ais-index app-id="TN5MR9QHP4" api-key="a933713f38f230be88643278a41c7281" index-name="threads">
@@ -42,14 +42,14 @@
             </div>
           </div>
           <login v-if="! isAuth"></login>
-          <div class="d-flex flex-column flex-md-row  align-items-sm-start align-items-md-center justify-content-end nav-links " v-if="isAuth">
+          <div class="d-flex flex-column flex-lg-row  align-items-start align-items-lg-center justify-content-end nav-links " v-if="isAuth">
             <router-link class="m-2" tag="li" to="/">
               <a>Home</a>
             </router-link>
             <router-link class="m-2" tag="li" to="/community">
               <a>Community</a>
             </router-link>
-            <div class="d-flex flex-column d-block d-md-none">
+            <div class="d-flex flex-column d-block d-lg-none">
               <router-link class="" :to="'/'+user.username+'/codes'">
                 <li class="p-2">
                   <p>Profile</p>
@@ -69,8 +69,8 @@
                 <p class="hover-pointer" href="#">Logout</p>
               </li>
             </div>
-            <user-notifications class="d-none d-md-block" :user="user"></user-notifications>
-            <li class="d-none d-md-block">
+            <user-notifications class="d-none d-lg-block" :user="user"></user-notifications>
+            <li class="d-none d-lg-block">
               <div class="dropdown ml-1 d-flex flex-column align-items-end justify-content-end">
                 <div class="btn d-flex align-items-center" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <div class="round-block ">
