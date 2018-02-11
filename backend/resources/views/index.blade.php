@@ -22,7 +22,7 @@
   <div id="app"></div>
   <div class="footer pt-4 pb-4">
     <div class="container">
-      <div class="row">
+      <div class="row text-center">
         <div class="col">
           <div class="d-flex flex-column justify-content-center">
             <a href="" class="content__helper"><u>Developers & Researchers</u></a>
