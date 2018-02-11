@@ -17,7 +17,7 @@
                     <span class="content__helper--negative text-uppercase font--bold" v-show="!basicInfo.confirmed">not</span> confirmed.</p>
                   <p class="content__helper content__helper--positive" v-show="newEmail">A mail has been sent to your Email address.</p>
                   <p class="content__helper content__helper--positive" v-show="notif"> {{notif}}</p>
-                  <p class="content__helper content__helper--negative" v-show="negativeNotif"> {{negativeNotif}}</p>
+                  <p class="content__helper content__helper--negative" v-if="negativeNotif"> {{negativeNotif}}</p>
                 </div>
                 <div class="d-flex flex-column align-items-start">
                   <p class="content__helper mt-2">Change Password</p>
@@ -29,16 +29,22 @@
                     </div>
                   </div>
                   <div class="d-flex mt-2">
-                    <div>
-                      <p class="help-block" v-for="error in errorHandling.password">{{error}}</p>
-                      <p class="content__helper mt-2" v-if="!errorHandling.password">New Password</p>
-                      <input class="form-control mr-1" type="password" v-model="changePasswordData.password" placeholder="New Password" />
-                    </div>
-                    <div>
+                    <div class="d-flex flex-column">
+
                       <p class="help-block" v-for="error in errorHandling.confirm_password">{{error}}</p>
-                      <p class="content__helper mt-2" v-if="!errorHandling.confirm_password">Confirm New Password</p>
-                      <input class="form-control ml-1" type="password" v-model="changePasswordData.confirm_password" placeholder="Confirm New Password"
-                      />
+                      <p class="help-block" v-for="error in errorHandling.password">{{error}}</p>
+                      <div class="d-flex">
+
+                        <div>
+                          <p class="content__helper mt-2" v-if="!errorHandling.confirm_password">New Password</p>
+                          <input class="form-control mr-1" type="password" v-model="changePasswordData.password" placeholder="New Password" />
+                        </div>
+                        <div>
+                          <p class="content__helper mt-2" v-if="!errorHandling.confirm_password">Confirm New Password</p>
+                          <input class="form-control ml-1" type="password" v-model="changePasswordData.confirm_password" placeholder="Confirm New Password"
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="d-flex mt-2">
@@ -65,18 +71,17 @@
                     <input class="form-control" type="text" placeholder="Username" v-model="basicInfo.username" />
                   </div>
                   <div class="d-flex mt-2">
-                    <button class="btn content__button--passive content__helper" @click="updateBasicProfile">Update Profile</button>
+                    <button class="btn content__button--passive content__helper" @click.prevent="updateBasicProfile">Update Profile</button>
                   </div>
                 </div>
               </div>
               <div class="col">
-                <form>
+                <form @submit.prevent="updateUserInfo">
                   <p class="content__helper mb-2">Change Your Information</p>
                   <div class="d-flex flex-column align-items-start form-group">
                     <p class="help-block" v-for="error in errorHandling.bio">{{error}}</p>
                     <p class="content__helper" v-if="!errorHandling.bio">Bio</p>
-                    <textarea class="form-control mt-2 mb-2" name="bio" cols="30" rows="5" placeholder="Say something about yourself!"
-                      v-model="userInfo.bio"></textarea>
+                    <textarea class="form-control mt-2 mb-2" cols="30" rows="5" placeholder="Say something about yourself!" v-model="userInfo.bio"></textarea>
                     <span class="content__helper">{{charactersLeft}} characters left</span>
 
                     <p class="help-block" v-for="error in errorHandling.phone_number">{{error}}</p>
@@ -100,7 +105,7 @@
                     <p class="content__helper" v-if="!errorHandling.tertiary_education">Tertiary Education</p>
                     <input class="form-control mb-2" type="text" v-model="userInfo.tertiary_education" placeholder="Tertiary Education" />
 
-                    <button class="btn content__button--passive content__helper" @click="updateUserInfo">Update Information</button>
+                    <button class="btn content__button--passive content__helper">Update Information</button>
                   </div>
                 </form>
               </div>
@@ -131,7 +136,7 @@
     computed: {
       charactersLeft() {
         let bioCount = 0;
-        if(this.userInfo.bio)
+        if (this.userInfo.bio)
           bioCount = this.userInfo.bio.length
         let left = 280 - 0 - bioCount;
         return left;
@@ -179,9 +184,11 @@
             this.notif = response.body.response
           })
           .catch(response => {
-            this.errorHandling = response.body.errors
-            this.negativeNotif = response.body.response
-
+            if (response.body.errors)
+              this.errorHandling = response.body.errors
+            if (response.body.response)
+              this.negativeNotif = response.body.response
+            console.log(this.negativeNotif)
           })
       },
       updateUserInfo() {
@@ -193,8 +200,8 @@
             });
           })
           .catch(response => {
-
-            this.errorHandling = response.body.errors
+            if (response.body.errors)
+              this.errorHandling = response.body.errors
           })
       },
       updateBasicProfile() {
@@ -210,7 +217,8 @@
             }
           })
           .catch(response => {
-            this.errorHandling = response.body.errors
+            if (response.body.errors)
+              this.errorHandling = response.body.errors
           })
       }
     }
