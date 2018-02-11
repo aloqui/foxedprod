@@ -61,7 +61,7 @@ class User extends Authenticatable
         return $this->hasMany(UserTechnicalSkills::class)->latest();
     }
     public function details() {
-        return $this->hasMany(UserDetails::class)->latest();
+        return $this->hasOne(UserDetails::class)->latest();
     }
     public function prof() {
         return $this->hasMany(Classroom::class)->latest();

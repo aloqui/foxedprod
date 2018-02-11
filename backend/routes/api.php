@@ -31,9 +31,11 @@ Route::get('/test', function() {
 
 Route::middleware('auth:api')->group(function () {
     // Route::resource('forums','ForumsController'); 
-    Route::get('/user/profile/', 'UserDetailsController@index');
-    Route::post('/user/profile/basic', 'UserDetailsController@basicUpdate');
+    Route::get('/user/profile/basic-info', 'UserDetailsController@index');
+    Route::post('/user/profile/update-basic-info', 'UserDetailsController@basicUpdate');
+    Route::post('/user/profile/update-user-info', 'UserDetailsController@userInfoUpdate');
     Route::post('/user/email/resend-code', 'UserDetailsController@resendCode');
+    Route::post('/user/change-password', 'UserDetailsController@changePassword');
     Route::post('/community/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@store');
     Route::delete('/community/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@destroy');
     Route::resource('replies','RepliesController');

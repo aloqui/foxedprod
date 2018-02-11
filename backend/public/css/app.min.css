@@ -1463,6 +1463,7 @@ span.ais-highlight em {
 
 .picture-placeholder--large .picture {
   display: block;
+  width: 130%;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -1471,10 +1472,13 @@ span.ais-highlight em {
   overflow: hidden;
   border-radius: 50%;
   width: 40px;
+  max-width: 40px;
+  max-height: 40px;
   height: 40px;
 }
 
 .picture-placeholder .picture {
+  width: 130%;
   display: block;
   -o-object-fit: cover;
      object-fit: cover;
@@ -1484,10 +1488,13 @@ span.ais-highlight em {
   overflow: hidden;
   border-radius: 50%;
   width: 30px;
+  max-width: 30px;
   height: 30px;
+  max-height: 30px;
 }
 
 .picture-placeholder--notification .picture {
+  width: 120%;
   display: block;
   -o-object-fit: cover;
      object-fit: cover;

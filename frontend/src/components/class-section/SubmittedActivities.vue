@@ -211,7 +211,7 @@ export default {
       methods: {
           momentize(date){
            return moment(date).calendar()
-        },
+        }, 
       getImagePath() {
         this.imagePath = `${location.protocol}//${location.hostname}/images/`
         if (location.port)

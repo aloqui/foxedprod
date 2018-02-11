@@ -8,7 +8,8 @@
         <div class="d-flex flex-column justify-content-start">
           <h1 class="font--semi-bold">{{user.name}}</h1>
           <div>
-            <button type="button" class="btn content__button--passive content__helper" data-toggle="modal" data-target="#exampleModal" v-show="user.id == Auth.id">
+            <button type="button" class="btn content__button--passive content__helper" data-toggle="modal" data-target="#exampleModal"
+              v-show="user.id == Auth.id">
               Edit Profile
             </button>
           </div>
@@ -46,7 +47,7 @@
   </div>
 </template>
 <script>
-import PictureMixin from '../../mixins/pictureMixin.js';
+  import PictureMixin from '../../mixins/pictureMixin.js';
   export default {
     name: 'avatarForm',
     mixins: [PictureMixin],
@@ -59,12 +60,12 @@ import PictureMixin from '../../mixins/pictureMixin.js';
     },
     mounted() {
       this.fetchAuth()
-      this.fetchProfile()
+      this.fetchProfile() 
       this.fixPicture()
-     
+
     },
     methods: {
-     
+
       onChange(e) {
 
         if (!e.target.files.length) return;
@@ -88,7 +89,8 @@ import PictureMixin from '../../mixins/pictureMixin.js';
         data.append('avatar', avatar);
         this.$http.post(`api/${this.$route.params.user}/avatar`, data)
           .then(() => {
-            this.fixPicture()
+              this.fixPicture()
+
           })
       },
       fetchAuth() {
@@ -105,11 +107,11 @@ import PictureMixin from '../../mixins/pictureMixin.js';
       refresh(data) {
         this.user = data.body.user
         this.avatar = data.body.user.avatar_path
-    
+
       },
-      
+
     },
-    
+
     computed: {
       isAuth() {
         return this.user.id == this.Auth.id
@@ -121,6 +123,6 @@ import PictureMixin from '../../mixins/pictureMixin.js';
 
 </script>
 <style scoped lang="scss">
-  
+
 
 </style>
