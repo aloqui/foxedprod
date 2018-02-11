@@ -69,26 +69,37 @@
                   </div>
                 </div>
               </div>
-              <!-- <div class="col">
+              <div class="col">
                 <p class="content__helper mb-2">Change Your Information</p>
                 <div class="d-flex flex-column align-items-start form-group">
+                  <p class="help-block" v-for="error in errorHandling.bio">{{error}}</p>
                   <p class="content__helper" v-if="!errorHandling.bio">Bio</p>
                   <textarea class="form-control mt-2 mb-2" v-model="userInfo.bio" name="" id="" cols="30" rows="5" placeholder="Say something about yourself!"></textarea>
                   <span class="content__helper">{{charactersLeft}} characters left</span>
-                  <p class="content__helper" v-if="!errorHandling.bio">Contact Number</p>
+
+                  <p class="help-block" v-for="error in errorHandling.phone_number">{{error}}</p>
+                  <p class="content__helper" v-if="!errorHandling.phone_number">Contact Number</p>
                   <input class="form-control mb-2" v-model="userInfo.phone_number" type="text" placeholder="+63 9** **** ***">
-                  <p class="content__helper"  v-if="!errorHandling.bio">Birth Date</p>
+
+                  <p class="help-block" v-for="error in errorHandling.birth_date">{{error}}</p>
+                  <p class="content__helper" v-if="!errorHandling.birth_date">Birth Date</p>
                   <input class="form-control mb-2" v-model="userInfo.birth_date" type="date">
                   <p class="content__helper mb-2">Education</p>
-                  <p class="content__helper" v-if="!errorHandling.bio">Primary Education</p>
+
+                  <p class="help-block" v-for="error in errorHandling.primary_education">{{error}}</p>
+                  <p class="content__helper" v-if="!errorHandling.primary_education">Primary Education</p>
                   <input class="form-control mb-2" v-model="userInfo.primary_education" type="text" placeholder="Primary Education">
-                  <p class="content__helper" v-if="!errorHandling.bio">Secondary Education</p>
+
+                  <p class="help-block" v-for="error in errorHandling.secondary_education">{{error}}</p>
+                  <p class="content__helper" v-if="!errorHandling.secondary_education">Secondary Education</p>
                   <input class="form-control mb-2" v-model="userInfo.secondary_education" type="text" placeholder="Secondary Education">
-                  <p class="content__helper" v-if="!errorHandling.bio">Tertiary Education</p>
+
+                  <p class="help-block" v-for="error in errorHandling.tertiary_education">{{error}}</p>
+                  <p class="content__helper" v-if="!errorHandling.tertiary_education">Tertiary Education</p>
                   <input class="form-control mb-2" v-model="userInfo.tertiary_education" type="text" placeholder="Tertiary Education">
                   <button class="btn content__button--passive content__helper" @click="updateUserInfo">Update Information</button>
                 </div>
-              </div> -->
+              </div>
             </div>
           </form>
         </div>
@@ -167,7 +178,17 @@
           })
       },
       updateUserInfo() {
+        this.errorHandling = {}
         this.$http.post(`api/user/profile/update-user-info`, this.userInfo)
+          .then(response => {
+            swal(`Successfully updated your profile!`, {
+              icon: "success",
+            });
+          })
+          .catch(response => {
+
+            this.errorHandling = response.body.errors
+          })
       },
       updateBasicProfile() {
         this.errorHandling = {}
