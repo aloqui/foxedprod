@@ -72,10 +72,10 @@
               <div class="col">
                 <p class="content__helper mb-2">Change Your Information</p>
                 <div class="d-flex flex-column align-items-start form-group">
-                  <p class="help-block" v-for="error in errorHandling.bio">{{error}}</p>
+                  <!-- <p class="help-block" v-for="error in errorHandling.bio">{{error}}</p>
                   <p class="content__helper" v-if="!errorHandling.bio">Bio</p>
                   <textarea class="form-control mt-2 mb-2" name="" id="" cols="30" rows="5" placeholder="Say something about yourself!" v-model="userInfo.bio"></textarea>
-                  <span class="content__helper">{{charactersLeft}} characters left</span>
+                  <span class="content__helper">{{charactersLeft}} characters left</span> -->
 
                   <p class="help-block" v-for="error in errorHandling.phone_number">{{error}}</p>
                   <p class="content__helper" v-if="!errorHandling.phone_number">Contact Number</p>
@@ -97,6 +97,7 @@
                   <p class="help-block" v-for="error in errorHandling.tertiary_education">{{error}}</p>
                   <p class="content__helper" v-if="!errorHandling.tertiary_education">Tertiary Education</p>
                   <input class="form-control mb-2" type="text" v-model="userInfo.tertiary_education" placeholder="Tertiary Education" />
+
                   <button class="btn content__button--passive content__helper" @click="updateUserInfo">Update Information</button>
                 </div>
               </div>
