@@ -17,7 +17,12 @@ class CreateScoresTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('activity_id');
-            $table->text('body');
+            $table->unsignedInteger('first');
+            $table->unsignedInteger('second');
+            $table->unsignedInteger('third');
+            $table->unsignedInteger('fourth');
+            $table->unsignedInteger('body');
+            
             $table->timestamps();
         });
     }

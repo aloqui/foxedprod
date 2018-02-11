@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Filters\ThreadFilters;
 use App\Filters;
+use App\UserGroup;
 use Auth;
 use App\Activity;
 
@@ -21,13 +22,22 @@ class ClassroomController extends Controller
     {
         //
         if(Auth::user()->prof == true)  {
-            $classroom = Classroom::all()->where('user_id', Auth::id());
+            $classroom = Classroom::where('user_id', Auth::id())->latest()->paginate(6);
             return $classroom;
         } 
-            $classroom = Classroom::all()->where('isMember', true);
+            $classroom = UserGroup::where('user_id', Auth::id())->with('classroom')->latest()->paginate(6);
             return $classroom;
-        
-       
+        //return ['classrooms' => $user->classes()->latest()->get()->load('owner')];
+    }
+    public function indexAll(User $user, Classroom $classrooms)
+    {
+        //
+        if(Auth::user()->prof == true)  {
+            $classroom = Classroom::where('user_id', Auth::id())->latest()->get();
+            return $classroom;
+        } 
+            $classroom = UserGroup::where('user_id', Auth::id())->with('classroom')->latest()->get();
+            return $classroom;
         //return ['classrooms' => $user->classes()->latest()->get()->load('owner')];
     }
 
@@ -39,7 +49,7 @@ class ClassroomController extends Controller
             // $class = Activity::all()->where('classroom_id',Auth::id());
             // $classroom->classPosts->load('activities');
             $classrooms->classPosts->load('owner');
-            return $classroom;
+            return response()->json($classroom);
         }
             $classroom = Classroom::all()->where('isMember', true)->load('classPosts');
             return $classroom;

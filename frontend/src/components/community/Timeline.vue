@@ -1,46 +1,69 @@
 <template>
     <div>
-        <div class="forum-post__header text-left font--light" v-for="room in classes" v-bind:key="room">
-            <router-link class="nav-item" :to="`/class/${room.id}`">
-                <a class="content__sub-title" href="">{{room.name}}</a>
-            </router-link>
-            <ul>
-                <li v-for="act in room.class_posts">
-                    <h2>{{act.title}}</h2>
-                    <p  class="posted">{{from(act.created_at)}}</p>
-                    <span v-if="act.image != 'none'">
-                        <img :src="imagePath + act.image">
+        <div class="forum-post__header text-left font--light">
+        <ul>
+                <li v-for="post in orderedUsers">
+                    <router-link class="nav-item no-decoration" :to="`/class/${post.classroom_id}`">
+                    <h1 class="forum__title font--semi-bold">{{post.title}}</h1>
+                    </router-link>
+                        
+                    <p  class="posted">{{from(post.created_at)}}</p>
+                    <span v-if="post.image != 'none'">
+                        <img :src="imagePath + post.image">
                     </span>
-                    <p>{{act.body}}</p>
-                    <p class="expire">Until: {{momentize(act.due)}}</p>
+                    <p>{{post.body}}</p>
+                    <p class="expire">Until: {{momentize(post.due)}}</p>
                     <hr>
                 </li>
-                
             </ul>
-            <hr>
         </div>
     </div>
 </template>
 <script>
 import moment from 'moment';
-export default {    
+export default {
         data() {
         return {
             classes: {},
             hasClass: false,
-            imagePath: ''
+            imagePath: '',
+            posts:[]
         }
     },
         mounted() {
             this.getImagePath()
             this.$http.get('api/showTimeline')
-            .then(response => {
+            .then(response => { 
             this.classes = response.body
             if(response.body.length > 0)
                 this.hasClass = true;
-            console.log(response.body)
+            console.log("response")
+
+            var dateNow = new Date();
+            console.log(moment(dateNow).valueOf())
+            response.body.forEach( res => {
+                // console.log(JSON.stringify(res.class_posts))
+                // this.posts = res.class_posts;
+                for (var i=0; i < res.class_posts.length; i++) {
+                        this.posts.push( res.class_posts[i] );
+                        console.log(moment(res.class_posts[i].created_at).valueOf())
+                    }
+                console.log(this.posts)
+                
+                })
+
+                // this.posts.sort( ( a, b) => {
+                //     this.posts = moment(a.created_at).valueOf() - moment(b.created_at).valueOf();
+                // });
+
+
         })
     },
+    computed: {
+            orderedUsers: function () {
+                return _.orderBy(this.posts, 'created_at',['desc'])
+            }
+        },
     methods:{
         getImagePath() {
         this.imagePath = `${location.protocol}//${location.hostname}/images/`

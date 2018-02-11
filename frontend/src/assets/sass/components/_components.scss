@@ -114,9 +114,13 @@
     background-color:#fff;
     padding: 20px 20px;
     width: 100%;
+    border-radius: 8px;
+    border: 1px solid #ecebe1;
+    border-bottom: 3px solid #ecebe1;
 }
 .content__button--passive {
     background-color: $white;
+    
     border: 1px solid $white-contrast;
     border-bottom: 3px solid $white-contrast;
     color: $black--light;

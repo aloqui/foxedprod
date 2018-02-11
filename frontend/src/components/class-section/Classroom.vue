@@ -1,15 +1,11 @@
 <template v-cloak>
   <div class="classroom mt-5">
     <!-- <nav-list></nav-list> -->
-    <div class="container">
-      <div class="row justify-content-sm-center mt-5"  v-cloak>
-        <div >
-          <div v-if="isMember">
-            <div class="row">
-              <div class="col-2 mt-5 p-0">
-                <div class="block-full-height d-flex justify-content-center align-items-start  pop-dis">
-
-                  <div class="text-left">
+    <div class="container" v-cloak>
+      <div class="pt-4" >
+          <div v-if="isMember" class="row">
+              <div class=" col-md-3  hidden-xs hidden-sm mb-3">
+                  <div class="text-left section-block">
                     <a href="">
                       <h3 class="classroom__title">{{classDetails.name}}</h3>
                     </a>
@@ -21,37 +17,39 @@
                       <h5>Members:</h5>
                       <ul>
                         <li v-for="member in classDetails.members">
-                          <a href="" v-for="profile in member"> {{profile.name}} </a>
+                          <span href="" v-for="profile in member"> 
+                            <router-link :to="'/'+profile.username +'/codes'"><p>{{profile.name}}</p></router-link>
+                            
+                            </span>
+
+                          
                         </li>
                       </ul>
                     </div>
                   </div>
-
-                </div>
+ 
               </div>
-              <div class="col-7 mt-5">
-                <div class="block-full-height d-flex justify-content-center flex-column align-items-stretch">
+              <div class="col-xs-12 col-sm-12 col-md-6 mb-3">
+                <div>
                   <!-- <class-feed-block></class-feed-block> -->
-                  <create-activity v-show="user.prof"></create-activity>
-                  <view-activities :user="user"></view-activities>
+                  <create-activity  class="section-block" v-show="user.prof"></create-activity>
+                  <view-activities  class="section-block" :user="user"></view-activities> 
                 </div>
                 
               </div>
-              <div class="col-2 mt-5 p-0">
-                <div class="block-full-height">
-                  <div class="d-flex flex-column pop-dis">
+              <div class="col-md-3 hidden-xs hidden-sm">
+                <div class="block-full-height ">
+                  <div class="section-block">
                     <!-- <p class="">Popular discussions</p> -->
                     <forum-category></forum-category>
                   </div>
                 </div>
               </div>
-            </div>
 
           </div>
-          <div class="block-full-height d-flex" v-else>
+          <div class=" d-flex justify-content-center align-items-center not-member" v-else>
             <p class=" m-auto">{{notMember}}</p>
           </div>
-        </div>
 
       </div>
     </div>
@@ -101,8 +99,6 @@
               }
             }
           );
-
-
       }
     },
     created() {
@@ -113,6 +109,13 @@
 </script>
 
 <style scoped lang="scss">
+.not-member{
+  width: 100%;
+  height: 100vh;
+}
+.page-layout{
+
+}
   form input {
     width: 100%;
   }
@@ -131,7 +134,31 @@
     padding: 0;
     li {
       margin: 0;
+      a{
+        text-decoration: none;
+        color: #000;
+      }
     }
   }
+  @media ( max-width : 860px ){ 
+    // .pop-dis{
+    //   display: none!important;
+    // }
+    // .category--hide{
+    //   display: none !important;
+    // } 
+    .width--after{
+      // width: 100%;
+    }
+}
+@media ( max-width : 667px ){
+  
+      .pop-dis{
+      display: none!important;
+    }
+    .category--hide{
+      display: none !important;
+    } 
+}
 
 </style>

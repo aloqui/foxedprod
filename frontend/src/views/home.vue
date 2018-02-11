@@ -6,21 +6,21 @@
         <div class="col-12 mb-4" v-if="!user.confirmed">
           <confirm-account :user="user"></confirm-account>
         </div>
-        <div class="col-3">
-          <div class="block-full-height d-flex  align-items-start text-left">
+        <div class="col-md-3  hidden-xs hidden-sm mb-3">
+          <div class="  d-flex  align-items-start text-left">
             <div class="section-block">
               <classroom :user="user"></classroom>
             </div>
           </div>
         </div>
-        <div class="col-6">
-          <div class="block-full-height d-flex justify-content-center align-items-start">
+        <div class="col-xs-12 col-sm-12 col-md-6 mb-3">
+          <div class=" d-flex justify-content-center align-items-start">
             <div class="section-block">
               <timeline></timeline>
             </div>
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-md-3 hidden-xs hidden-sm">
           <div class="block-full-height d-flex align-items-start">
             <div class="section-block">
               <forum-category></forum-category>

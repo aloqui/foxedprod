@@ -42,8 +42,9 @@ Route::middleware('auth:api')->group(function () {
     
     
     Route::post('/community/create', 'ChannelController@store')->middleware('must-be-confirmed');
-    Route::get('/classroom', 'ClassroomController@index');
     
+    Route::get('/classroom/all', 'ClassroomController@indexAll');
+    Route::get('/classroom', 'ClassroomController@index');
     Route::post('/community/{channel}/{thread}/replies', 'RepliesController@store');
     // Route::post('/community', 'ThreadController@store');
     Route::post('/community/{channel}', 'ThreadController@storeThreadOnChannel')->middleware('must-be-confirmed');
@@ -71,6 +72,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/activities/{Actid}/eval', 'ActivityController@evaluationCodes');
     Route::put('/activities/timesup/{id}', 'ActivityController@updateTime');
     Route::post('/submitScore','ScoreController@create');
+    Route::get('/submitScore/{id}','ScoreController@show');
     Route::post('/replies/{reply}/favorites','FavoritesController@store');
     Route::put('/activities/update/{id}', 'ActivityController@update');
     Route::get('/activities/show/{id}', 'ActivityController@show');

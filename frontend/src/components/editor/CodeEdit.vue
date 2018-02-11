@@ -1,4 +1,7 @@
 <template>
+<div>
+
+
 <section class="editor__page">
 	
 	
@@ -27,24 +30,110 @@
 </div>
   <div class="editor__footer">
 		<h1>{{codes.title}}</h1>
-		<div v-show="authenticatedUser.id == id">
+		<div v-show="user.id == id">
 			<!-- <div> -->
 				<input type="text" v-model="codes.title">
 				<button class="btn" @click="update">Save</button>
 				<button class="btn btn--red" @click="deleteCodes">Thrash</button>
+				<span v-show="eval">
+						<button @click="getScore" class="btn"  data-toggle="modal" data-target="#exampleModal">Evaluation</button>
+				</span>
 				<!-- <div v-show="act_id && evaluated">
 					<button>resubmit</button>
 			</div> -->
 			</div>
-				<div v-show="authenticatedUser.prof && act_id && !eval">
-					<input v-model="score.body" type="number" placeholder="Score">
-					<button class="btn" @click="submitScore">save</button>
-			</div>
+				<div v-show="user.prof && act_id && !eval">
+					<!-- <input v-model="score.body" type="number" placeholder="Score">
+					<button class="btn" @click="submitScore">save</button> -->
+					<button class="btn"  data-toggle="modal" data-target="#exampleModal">Rubrics</button>
+			</div> 
+			<span v-show="eval && user.prof">
+				<button @click="getScore" class="btn"  data-toggle="modal" data-target="#exampleModal">Evaluation</button>
+			</span>	
+			
+  
   </div>
+
     <!-- <router-link class="nav-item" to="/evaluation"> <a class="nav-link" href="">Save and Submit</a> </router-link> -->
 	
 	<!-- <input type="text" v-model="codes.html"> -->
 </section>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{codes.title}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-fit">
+                        <thead>
+                            <tr>
+                            <th> </th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <th scope="row">Delivery</th>
+                            <td>Completed between 90-100% of the requirements. Delivered on time, and in correct format</td>
+                            <td>Completed between 80-90% of the requirements. Delivered on time, and in correct format</td>
+                            <td>Completed between 70-80% of the requirements. Delivered on time, and in correct format </td>
+                            <td>Completed less than 70% of the requirements and not delivered on time or not in correct format</td>
+                            <td v-show="!eval"><input v-model="score.first" type="number" min="0" max="4"></td>
+							<td><h3>{{evaluatedScores.first}}</h3></td>
+                            </tr>
+                            <tr>
+                            <tr>
+                            <th scope="row">Coding Standards</th>
+                            <td>Excellent use of white space. Creatively organized work. Excellent  use of variables (no global variables, unambiguous naming).</td>
+                            <td>Good use of white space. Organized work. Good  use of variables (no global variables, unambiguous naming)</td>
+                            <td>White space makes program fairly easy to read. Organized work. Good  use of variables (few global variables, unambiguous naming).</td>
+                            <td>Poor use of white space (indentation, blank lines). Disorganized and messy, Poor use of variables (many global variables, ambiguous naming).</td>
+                            <td v-show="!eval"><input v-model="score.second" type="number" min="0" max="4"></td>
+							<td><h3>{{evaluatedScores.second}}</h3></td>
+                            </tr>
+                            <tr>
+                            <th scope="row">Runtime</th>
+                            <td>Executes without errors excellent user prompts, good use of symbols, spacing in output. Thorough and organized testing has been completed and output from test cases is included.</td>
+                            <td>Executes without errors. User prompts are understandable, minimum use of symbols or spacing in output. Thorough testing has been completed</td>
+                            <td>Executes without errors. Some testing has been completed.</td>
+                            <td>Does not execute due to errors. User prompts are misleading or non-existent. No testing has been completed.</td>
+                            <td v-show="!eval"><input v-model="score.third" type="number" min="0" max="4"></td>
+							<td><h3>{{evaluatedScores.third}}</h3></td>
+                            </tr>
+                            <tr>
+                            <th scope="row">Efficiency</th>
+                            <td>Solution is efficient, easy to understand, and maintain.</td>
+                            <td>Solution is efficient and easy to follow (i.e. no confusing tricks). </td>
+                            <td>A logical solution that is easy to follow but it is not the most efficient.</td>
+                            <td>A difficult and inefficient solution.</td>
+                            <td v-show="!eval"><input v-model="score.fourth" type="number" min="0" max="4"></td>
+							<td><h3>{{evaluatedScores.fourth}}</h3></td>
+                            </tr>
+                        </tbody>
+                        </table>
+
+                        
+						
+                    </div>
+                    <div class="modal-footer">
+						<div v-if="eval" class="d-flex justify-content-center align-items-center pr-5">
+                            <h5>Score: {{evaluatedScores.body}}</h5>
+                        </div>
+                        <div v-if="!eval" class="d-flex justify-content-center align-items-end pr-5">
+                            <button class="btn content__button--passive content__helper" @click="submitScore">Submit</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+</div>
 </template>
 
 <script>
@@ -65,11 +154,19 @@ export default {
 		score:{
 			body:"",
 			act_id:"",
-			user_id:""
+			user_id:"",
+			first:"",
+            second:"",
+            third:"",
+            fourth:"",
 		},
 		evaluation:{
-			evaluated:true
-			}
+			evaluated:true,
+            score_id:''
+			},
+		user:{},
+		evaluatedScores:{},
+		evaluatedId:""
 		}
 	},
     created (){
@@ -80,17 +177,20 @@ export default {
   
   methods: {
 		submitScore() {
-          this.$http.post("api/submitScore", this.score).then(response => {
+			function getTotal(num, per){
+                    return num / 4 * per;
+                };
+				this.score.body = getTotal(this.score.first,25) + getTotal(this.score.second,25) + getTotal(this.score.third,25) + getTotal(this.score.fourth,25);
+        	    this.$http.post("api/submitScore", this.score).then(response => {
 						console.log(response);
-
+						this.evaluation.score_id = response.body.id;
 								this.$http.put("api/eval/codescore/" + this.$route.params.id, this.evaluation).then(response => {
 								console.log(response);
 									swal("Succesfully created!", {
 										icon: "success"
 									});
+									location.reload()
 							});
-
-            
           });
       },
 		update () {
@@ -127,7 +227,12 @@ export default {
             }
             });
             
-        }
+        },
+		getScore () {
+			this.$http.get(`api/submitScore/`+this.evaluatedId)
+        .then(response => this.evaluatedScores = response.body)
+        .catch()
+		}
   },
     computed: {
         authenticatedUser() {
@@ -135,6 +240,10 @@ export default {
         }
     },
   mounted: function() {
+    	this.$http.get(`api/user`)
+        .then(me => this.user = me.body)
+        .catch()
+
 		Split(['#html', '#css','#js'], {
     sizes: [33.3, 33.3,33.4],
     minSize: 30
@@ -257,6 +366,9 @@ Split(['#code_editors','#output'], {
 								}
 								if(response.body[0].evaluated){
 									this.eval = response.body[0].evaluated;
+								}
+								if(response.body[0].score_id){
+									this.evaluatedId = response.body[0].score_id;
 								}
 							}
           })
@@ -401,6 +513,67 @@ Split(['#code_editors','#output'], {
 #output iframe {
 	width: 100%; height: 100%;
 	border: 0;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+.modal-dialog {
+  position: fixed;
+  margin: 0;
+  width: 100vw;
+  height: 100%;
+  padding: 0;
+}
+.modal-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; 
+  border-radius: 0;
+  box-shadow: none;
+  width: 100vw;
+}
+.modal-header {
+	padding: 8px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 50px;
+  padding: 10px; 
+  border: 0;
+}
+.modal-title {
+  font-weight: 300;
+  font-size: 2em; 
+  line-height: 30px;
+}
+.modal-body {
+  position: absolute;
+  top: 50px;
+  bottom: 60px;
+  width: 100%;
+  font-weight: 300;
+  overflow: auto;
+	  th{
+		  text-align: center;
+	  }
+  
+}
+.modal-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 60px;
+  padding: 10px;
+  background: #f1f3f5;
 }
 
 </style>

@@ -133,7 +133,11 @@ class ActivityController extends Controller
 
         // $codes->CodesSubmitted->load('user');
         // $codes->ScoresSubmitted->load('user');
-        return ['userAct' => $codes->CodesSubmitted->load('user'),'userImage' => $codes->ImageSubmitted->load('user'), 'score' => $codes->ScoresSubmitted->load('user'),'class'=> $codes];
+        return [
+        'userAct' => $codes->CodesSubmitted->load('user','score'),
+        'score' => $codes->ScoresSubmitted->load('user'),
+        'userImage' => $codes->ImageSubmitted->load('user','score'), 
+        'class'=> $codes];
         // return $codes->ScoresSubmitted->load('owner');
         return $codes;
     }

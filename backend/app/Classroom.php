@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Classroom;
+use Laravel\Scout\Jobs\MakeSearchable;
+use Laravel\Scout\Searchable;
 use Auth;
 class Classroom extends Model
 {
+    use Searchable;
     //
     protected $guarded = [];
     protected $appends = ['isMember', 'isOwner'];
