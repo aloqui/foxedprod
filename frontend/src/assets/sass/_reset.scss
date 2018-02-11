@@ -47,6 +47,13 @@ p {
       color: $white;
     }
   }
+  .navbar-nav {
+    width: 100% !important;
+  }
+  .navbarger {
+    color: $white;
+    vertical-align: middle;
+  }
 }
 
 a {
@@ -101,8 +108,6 @@ a {
   }
 }
 
-
-
 button,
 .btn {
   &:active,
@@ -131,7 +136,8 @@ button,
 }
 
 .forums,
-.topics {
+.topics,
+.all-classes {
   .ais-input,
   .ais-input[value] {
     border: none;
@@ -148,9 +154,17 @@ button,
       border: none;
       outline: none; // border-bottom: 1px solid rgba($black--light, 0.6);
     }
-     ::placeholder {
+    ::placeholder {
       font-size: 30px;
       color: $white-contrast;
+    }
+  }
+  .ais-results {
+    div {
+      &:hover> a .d-flex .forum__title {
+        transform: translateX(5px);
+        opacity: 0.8;
+      }
     }
   }
 }
@@ -201,6 +215,7 @@ button,
     trix-toolbar .trix-button {}
   }
 }
+
 .pagination {
   .content__helper {
     &:hover,

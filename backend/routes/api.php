@@ -42,8 +42,9 @@ Route::middleware('auth:api')->group(function () {
     
     
     Route::post('/community/create', 'ChannelController@store')->middleware('must-be-confirmed');
-    Route::get('/classroom', 'ClassroomController@index');
     
+    Route::get('/classroom/all', 'ClassroomController@indexAll');
+    Route::get('/classroom', 'ClassroomController@index');
     Route::post('/community/{channel}/{thread}/replies', 'RepliesController@store');
     // Route::post('/community', 'ThreadController@store');
     Route::post('/community/{channel}', 'ThreadController@storeThreadOnChannel')->middleware('must-be-confirmed');
