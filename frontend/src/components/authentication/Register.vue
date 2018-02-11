@@ -27,6 +27,10 @@
             <input v-model="user.password_confirmation" class="form-control content__input--dark" type="password" placeholder="Confirm Password">
             <p class="help-block" v-for="error in theErrors.password_confirmation"> {{error}}</p>
           </div>
+          <div class="form-group" :class="{'has-error': theErrors.birth_date }">
+            <input v-model="user.birth_date" class="form-control content__input--dark" type="date" placeholder="birth date">
+            <p class="help-block" v-for="error in theErrors.birth_date"> {{error}}</p>
+          </div>
           <div class="form-group mr-0 text-left">
             <select v-model="user.prof">
               <option value="0" default>Student</option>
@@ -47,7 +51,6 @@
 </template>
 
 <script>
-  import swal from 'sweetalert'
   export default {
     data() {
       return {
@@ -58,6 +61,7 @@
           password: null,
           username: null,
           password_confirmation: null,
+          birth_date: null,
           prof: '0'
         },
         theErrors: {
@@ -65,6 +69,7 @@
           email: [],
           username: [],
           password: [],
+          birth_date: [],
           password_confirmation: [],
           prof: []
         },
@@ -88,9 +93,6 @@
             this.login();
             this.loading = false;
             console.log(this.loading)
-            // swal("Succesfully Registered!", {
-            //   icon: "success",
-            // });
           })
           .catch(error => {
             this.loading = false;

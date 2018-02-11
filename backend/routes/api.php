@@ -31,22 +31,27 @@ Route::get('/test', function() {
 
 Route::middleware('auth:api')->group(function () {
     // Route::resource('forums','ForumsController'); 
+    Route::get('/user/profile/basic-info', 'UserDetailsController@index');
+    Route::post('/user/profile/update-basic-info', 'UserDetailsController@basicUpdate');
+    Route::post('/user/profile/update-user-info', 'UserDetailsController@userInfoUpdate');
+    Route::post('/user/email/resend-code', 'UserDetailsController@resendCode');
+    Route::post('/user/change-password', 'UserDetailsController@changePassword');
     Route::post('/community/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@store');
     Route::delete('/community/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@destroy');
     Route::resource('replies','RepliesController');
-   
-   
+    
+    
     Route::post('/community/create', 'ChannelController@store')->middleware('must-be-confirmed');
     Route::get('/classroom', 'ClassroomController@index');
     
     Route::post('/community/{channel}/{thread}/replies', 'RepliesController@store');
-   // Route::post('/community', 'ThreadController@store');
+    // Route::post('/community', 'ThreadController@store');
+    Route::post('/community/{channel}', 'ThreadController@storeThreadOnChannel')->middleware('must-be-confirmed');
     Route::get('/currentChannel/{channel}', 'ThreadController@getThisChannel');
     Route::patch('/community/{channel}/{thread}', 'ThreadController@update');
     Route::delete('/community/{channel}/{thread}', 'ThreadController@destroy');
     Route::resource('codes','CodeController');
     Route::patch('/codes/{code}','CodeController@update');
-    Route::post('/community/{channel}', 'ThreadController@storeThreadOnChannel')->middleware('must-be-confirmed');
     Route::post('/classroom/{classroom}/join', 'UserGroupController@membership');
     Route::post('/classroom/create/a','ClassroomController@create');
     Route::get('/classroom/{classroom}', 'ClassroomController@show');
@@ -58,6 +63,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/activities/{id}/show/', 'ActivityController@showActivities');
     Route::get('/profiles/{user}/notifications/', 'UserNotificationsController@index');
     Route::delete('/profiles/{user}/notifications/{notification}', 'UserNotificationsController@destroy');
+    Route::post('/profiles/language','UserLanguagesController@store');
     Route::post('/{user}/avatar', 'UserAvatarController@store');
     Route::resource('/community/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController');
 
@@ -65,6 +71,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/activities/{Actid}/eval', 'ActivityController@evaluationCodes');
     Route::put('/activities/timesup/{id}', 'ActivityController@updateTime');
     Route::post('/submitScore','ScoreController@create');
+    Route::get('/submitScore/{id}','ScoreController@show');
     Route::post('/replies/{reply}/favorites','FavoritesController@store');
     Route::put('/activities/update/{id}', 'ActivityController@update');
     Route::get('/activities/show/{id}', 'ActivityController@show');

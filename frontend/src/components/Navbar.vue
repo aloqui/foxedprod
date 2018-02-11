@@ -49,7 +49,7 @@
           <div class="dropdown ml-1 d-flex flex-column align-items-end justify-content-end">
             <div class="btn d-flex align-items-center" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="round-block mr-2 ">
-                <img class="" :src="user.avatar_path" alt="">
+                <img class="picture" :src="user.avatar_path" alt="" id="picture">
               </div>
             </div>
             <ul class="dropdown-menu font--light  mr-auto" aria-labelledby="dropdownMenuButton">
@@ -71,6 +71,11 @@
                 </li>
               </router-link>
               <div class="dropdown-divider"></div>
+              <router-link class="" :to="'/account'">
+                <li class="p-2">
+                  <p>Settings</p>
+                </li>
+              </router-link>
               <li class="p-2" @click="logout">
                 <p class="" href="#">Logout</p>
               </li>
@@ -84,12 +89,14 @@
 
 <script>
   import Login from './authentication/Login.vue';
+  import PictureMixin from '../mixins/pictureMixin.js';
   import UserNotifications from './community/UserNotifications.vue'
   export default {
     components: {
       'login': Login,
       'user-notifications': UserNotifications
     },
+    mixins: [PictureMixin],
     data() {
       return {
         isAuth: null,
@@ -104,9 +111,15 @@
     // },
     mounted() {
       this.isAuth = this.$auth.isAuthenticated()
+      this.setAuthenticatedUser()
+      this.$nextTick(function () {
+        this.fixPicture()
+      })
     },
     watch: {
       $route: function () {
+        this.$nextTick(function () {
+          })
         this.isAuth = this.$auth.isAuthenticated()
         if (this.isAuth) {
           this.setAuthenticatedUser()
@@ -124,8 +137,9 @@
       },
       refresh(data) {
         this.$auth.setAuthenticatedUser(data.body)
-        this.user = this.$auth.getAuthenticatedUser()
+        this.user = data.body
         console.log(this.$auth.getAuthenticatedUser())
+        this.fixPicture()
       },
       logout() {
         this.$auth.destroyToken()

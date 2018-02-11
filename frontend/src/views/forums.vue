@@ -40,7 +40,6 @@
                             </div>
                             <p class="content__helper text-uppercase">Description:</p>
                             <p class="content--paragraph">
-
                             <ais-highlight :result="result" attribute-name="description">
                             </ais-highlight>
                             </p>

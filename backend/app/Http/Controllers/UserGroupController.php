@@ -13,7 +13,7 @@ class UserGroupController extends Controller {
   }
   public function index() {
     $classrooms = UserGroup::with('classroom')->where('user_id', Auth::id())->get();
-  return $classrooms;
+    return $classrooms;
   }
   public function show(Classroom $classroom) {
  

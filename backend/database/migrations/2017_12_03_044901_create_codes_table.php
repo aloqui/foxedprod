@@ -23,6 +23,7 @@ class CreateCodesTable extends Migration
             $table->unsignedInteger('activity_id')->nullable();
             $table->boolean('submitted')->default(false);
             $table->boolean('evaluated')->nullable();
+            $table->unsignedInteger('score_id')->nullable();
             $table->timestamps();
         });
     }

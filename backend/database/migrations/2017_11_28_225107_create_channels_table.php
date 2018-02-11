@@ -19,6 +19,7 @@ class CreateChannelsTable extends Migration
             $table->string('name', 30);
             $table->string('slug', 30);
             $table->string('description', 80);
+            $table->unsignedInteger('threads_count')->default(0);
             $table->timestamps();
         });
     }

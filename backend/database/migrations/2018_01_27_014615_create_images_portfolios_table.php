@@ -19,6 +19,7 @@ class CreateImagesPortfoliosTable extends Migration
             $table->string('image');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('activity_id')->nullable();
+            $table->unsignedInteger('score_id')->nullable();
             $table->boolean('submitted')->default(false);
             $table->boolean('evaluated')->nullable();
             $table->timestamps();

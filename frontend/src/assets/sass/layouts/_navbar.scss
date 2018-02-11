@@ -1,38 +1,36 @@
 .navbar {
-  padding: 0;
-
-  .dropdown {
-    .round-block {
-      width: 30px;
-      height: 30px;
-      overflow: hidden;
-      border-radius: 50%;
-      border: 1px solid $white;
+    padding: 0;
+    .dropdown {
+        .round-block {
+            width: 30px;
+            height: 30px;
+            overflow: hidden;
+            border-radius: 50%;
+            border: 1px solid $white;
+        }
+        img {
+            display: block;
+            object-fit: cover;
+        }
     }
-    img {
-      transform: translateX(-4px);
-      width: 130%;
-      margin: 0;
-    }
-  }
-  .form-group {
-    width: 40%;
-  }
-  input,
-  .form-control {
-    background-color: $black--light;
-    border: $black--light;
-    &:active {
-      background-color: $black--light;
-      border: $black--light;
-    }
-     ::placeholder {
-      font-style: 90%;
-    }
-  }
-  .login {
     .form-group {
-      width: 100%;
+        width: 40%;
     }
-  }
+    input,
+    .form-control {
+        background-color: $black--light;
+        border: $black--light;
+        &:active {
+            background-color: $black--light;
+            border: $black--light;
+        }
+         ::placeholder {
+            font-style: 90%;
+        }
+    }
+    .login {
+        .form-group {
+            width: 100%;
+        }
+    }
 }

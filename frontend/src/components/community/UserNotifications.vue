@@ -5,7 +5,7 @@
         <i class="far fa-bell"></i>
         <p class="notification-count" v-if="notifications.length">{{notifications.length}}</p>
       </a>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <ul class="dropdown-menu ml-auto mt-2" aria-labelledby="dropdownMenuButton">
         <div v-if="notifications.length">
           <div class="" v-for="notification in notifications">
             <div @click="markAsRead(notification)">

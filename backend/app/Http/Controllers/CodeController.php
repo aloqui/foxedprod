@@ -53,7 +53,8 @@ class CodeController extends Controller
         $code = Code::find($id);
         
         $code->update([
-            'evaluated' => 1
+            'evaluated' => 1,
+            'score_id' =>  request('score_id')
         ]);
         
      return $code;
