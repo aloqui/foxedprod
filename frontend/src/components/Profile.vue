@@ -4,20 +4,21 @@
       <div class="row d-flex justify-content-sm-center section-block mt-5">
         <div class="col-12 d-flex justify-content-center align-items-center ">
           
-          <avatarForm :user="user" id="toPDFS" ></avatarForm>
-          <button @click="PDFAct"> print </button>
-          <div class="" v-if="user.id === userMe.id">
+          <avatarForm :user="user"></avatarForm>
+          
+          
+        </div> 
+        <div class="col-12">
+          <div class="mt-5 mb-2 d-flex justify-content-center align-items-center" v-if="user.id === userMe.id">
             
             <router-link class="btn content__button--passive content__helper" :to="'/editor'">new code</router-link>
             <!-- <router-link class="btn btn-default" :to="'/settings'">settings</router-link> -->
             <button  type="button" class="btn content__button--passive content__helper" data-toggle="modal" data-target="#imageport">
               Upload Image
             </button>
-            <i class="fa fa-print" aria-hidden="true"></i>
-            <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+            <!-- <i class="fa fa-print" aria-hidden="true"></i>
+            <i class="fa fa-file-pdf-o" aria-hidden="true"></i> -->
           </div>
-        </div> 
-        <div class="col-12">
           <code-works :userMe="userMe"></code-works>
         </div>
       </div>

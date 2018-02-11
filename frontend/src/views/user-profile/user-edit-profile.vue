@@ -7,7 +7,11 @@
         </div>
         <div class="col section-block">
           <form>
-            <h1 class="font--semi-bold">EDIT PROFILE</h1>
+            <span class="d-flex justify-content-center">
+              <h1 class="font--semi-bold">EDIT PROFILE </h1>
+              <i class="fa fa-print" aria-hidden="true"  @click="PDFAct"></i>
+            </span>
+            
             <hr>
             <div class="row">
               <div class="col">
@@ -106,14 +110,58 @@
                     <input class="form-control mb-2" type="text" v-model="userInfo.tertiary_education" placeholder="Tertiary Education" />
 
                     <button class="btn content__button--passive content__helper">Update Information</button>
+                    
                   </div>
                 </form>
+                <button @click="PDFAct"> print </button>
               </div>
             </div>
           </form>
         </div>
+        
+        
       </div>
     </div>
+
+    <div  id="forPrint" style="display:none;">
+                      <div class="whole-page">
+                        <div class="person">
+                        <h2 class=" ">{{basicInfo.name}}</h2>
+                        <i class="">{{basicInfo.email}}</i>
+                        <p>{{userInfo.phone_number}}</p>
+
+                      </div> <span>______________________________________________________________________________</span>
+                      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                      
+                      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                      
+                      <hr>
+                      <h5>BIO</h5>
+                      <p>{{userInfo.bio}}</p>
+                      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                      <span>______________________________________________________________________________</span>
+                      <h5>EDUCATION</h5>
+                      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                      <p>{{userInfo.primary_education}}</p> 
+                      <i>Primary</i>
+                      <br><br><br><br><br><br><br><br><br>
+                      <p>{{userInfo.secondary_education}}</p>
+                      <i>Secondary</i>
+                      <br><br><br><br><br><br><br><br><br>
+                      <p>{{userInfo.tertiary_education}}</p>
+                      <i>tertiary</i>  
+                      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                      
+                      <p>foxedfolio.com/{{basicInfo.username}}</p>
+                      <i>view my profile with this link</i>
+                    </div>
+                    
+                  </div>
   </div>
 </template>
 <script>
@@ -142,11 +190,55 @@
         return left;
       }
     },
+    
     mounted() {
       this.fetchBasicInfo()
 
     },
     methods: {
+      PDFAct() {
+//         var pr = document.querySelector('#forPrint')
+// html2canvas(pr).then(
+//     function(canvas){
+
+//       var img=canvas.toDataURL("image/png");
+//       var doc = new jsPDF();
+
+
+//       doc.addImage(img,'JPEG',20,20);
+//       doc.save('test.pdf'); 
+//       }
+// );
+//       }
+
+    var pdf = new jsPDF('p', 'pt', 'letter');
+    var source = $('#forPrint')[0];
+// pdf.text(10, 13, 'foxedfolio.com')
+     var specialElementHandlers = {
+        // element with id of "bypass" - jQuery style selector
+        '#bypassme': function (element, renderer) {
+            // true = "handled elsewhere, bypass text extraction"
+            return true
+        }
+    };
+   var margins = {
+        top: 80,
+        bottom: 60,
+        left: 40,
+        width: 522
+    };
+    pdf.fromHTML(
+    source, // HTML string or DOM elem ref.
+    margins.left, // x coord
+    margins.top, { // y coord
+        'width': margins.width, // max width of content on PDF
+        'elementHandlers': specialElementHandlers
+    },
+
+    function (dispose) {
+        pdf.save('Test.pdf');
+    }, margins);
+},
       fetchBasicInfo() {
         this.$http.get(`api/user/profile/basic-info`)
           .then(this.refreshBasicInfo)
@@ -197,7 +289,7 @@
           .then(response => {
             swal(`Successfully updated your profile!`, {
               icon: "success",
-            });
+            }); 
           })
           .catch(response => {
             if (response.body.errors)
@@ -225,3 +317,19 @@
   }
 
 </script>
+<style lang="scss" scoped>
+@media print {
+    /* Your styles here */
+    #forPrint{
+      .person{
+        float: right;
+        h2{
+          font-size:60px;
+        }
+      }
+      h6{
+        font-size: 20px;
+      }
+    }
+}
+</style>
