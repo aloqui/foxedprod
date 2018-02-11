@@ -20,6 +20,7 @@ class UserDetailsController extends Controller
         $email = User::where('id', auth()->id())->firstOrFail()->email;
         return ['user' => $response , 'email' => $email];
     }
+
     public function changePassword(Request $request) {
         $response = $this->validate($request, [
             'old_password' => 'required|string|min:6',
@@ -36,6 +37,25 @@ class UserDetailsController extends Controller
         else {
             return response()->json(['response' => 'Old password does not match our data.'], 401);
         }
+    }
+    public function userInfoUpdate(Request $request) {
+        $this->validate($request, [
+            'bio' => 'max:280',
+            'phone_number' => 'max:15',
+            'primary_education' => 'max:80',
+            'secondary_education' => 'max:80',
+            'tertiary_education' => 'max:80',
+            'birth_date' => 'required|date'
+        ]);
+        $userInfo = UserDetails::where('user_id', auth()->id())->firstOrFail();
+        $userInfo->bio = $request['bio'];
+        $userInfo->birth_date = $request['birth_date'];
+        $userInfo->phone_number = $request['phone_number'];
+        $userInfo->primary_education = $request['primary_education'];
+        $userInfo->secondary_education = $request['secondary_education'];
+        $userInfo->tertiary_education = $request['tertiary_education'];
+        $userInfo->save();
+        return [$userInfo];
     }
     public function basicUpdate(Request $request) {
         $user = User::where('id', auth()->id())->firstOrFail();
@@ -99,9 +119,8 @@ class UserDetailsController extends Controller
      * @param  \App\UserDetails  $userDetails
      * @return \Illuminate\Http\Response
      */
-    public function show(UserDetails $userDetails)
+    public function show()
     {
-        //
     }
 
     /**
