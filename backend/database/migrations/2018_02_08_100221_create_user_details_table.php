@@ -17,11 +17,11 @@ class CreateUserDetailsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->date('birth_date');
-            $table->string('phone_number')->nullable();;
-            $table->string('bio')->nullable();;
-            $table->string('primary_education')->nullable();;
-            $table->string('secondary_education')->nullable();;
-            $table->string('tertiary_education')->nullable();;
+            $table->string('phone_number')->nullable();
+            $table->string('bio', 270)->nullable();
+            $table->string('primary_education', 80)->nullable();
+            $table->string('secondary_education', 80)->nullable();
+            $table->string('tertiary_education', 80)->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')

@@ -20,7 +20,6 @@ class RegisterController extends Controller
      */
     protected function create(RegisterRequest $request)
     {
-        event(new Registered(
         $user = User::forceCreate([
             'name' => $request['name'],
             'email' => $request['email'],
@@ -29,11 +28,15 @@ class RegisterController extends Controller
             'prof' => $request['prof'],
             'confirmation_token' => str_limit(md5($request['email'] . str_random()), 6, ''),
             'reset_password_token' => null
-        ])));
-        UserDetails::forceCreate([
-            'user_id' => $user->id,
-            'birth_date' => $request['birth_date']
         ]);
+        $userDet = UserDetails::forceCreate([
+            'user_id' => $user->id,
+            'birth_date' => $request['birth_date'],
+            'bio' => "Hi there! I'm " . $user->name
+        ]);
+        return $userDet;
+        // event(new Registered($user));
+       
         // return response()->json([
         //     'success' => true,
         //     'message' => 'succesfully registered',

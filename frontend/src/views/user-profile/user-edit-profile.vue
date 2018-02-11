@@ -130,7 +130,10 @@
     },
     computed: {
       charactersLeft() {
-        let left = 280 - this.userInfo.bio.length;
+        let bioCount = 0;
+        if(this.userInfo.bio)
+          bioCount = this.userInfo.bio.length
+        let left = 280 - 0 - bioCount;
         return left;
       }
     },
