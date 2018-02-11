@@ -5,7 +5,7 @@
         <div class="col-12 mb-4" v-if="!basicInfo.confirmed">
           <confirm-account :user="basicInfo"></confirm-account>
         </div>
-        <div class="col section-block">
+        <div class="col section-block mb-5">
           <form>
             <span class="d-flex justify-content-center">
               <h1 class="font--semi-bold">EDIT PROFILE </h1>
@@ -14,7 +14,7 @@
             
             <hr>
             <div class="row">
-              <div class="col">
+              <div class="col-lg">
                 <div>
                   <p class="content__helper">@{{ basicInfo.username }}</p>
                   <p class="content__helper">Your Email is
@@ -37,8 +37,7 @@
 
                       <p class="help-block" v-for="error in errorHandling.confirm_password">{{error}}</p>
                       <p class="help-block" v-for="error in errorHandling.password">{{error}}</p>
-                      <div class="d-flex">
-
+                      <div class="d-flex flex-column flex-md-row">
                         <div>
                           <p class="content__helper mt-2" v-if="!errorHandling.confirm_password">New Password</p>
                           <input class="form-control mr-1" type="password" v-model="changePasswordData.password" placeholder="New Password" />
@@ -57,7 +56,7 @@
                 </div>
                 <div class="d-flex flex-column align-items-start">
                   <p class="content__helper mt-4">Change Basic Information</p>
-                  <div class="d-flex mt-2">
+                  <div class="d-flex flex-column flex-md-row mt-2">
                     <div class=" m r-1">
                       <p class="help-block" v-for="error in errorHandling.name">{{error}}</p>
                       <p class="content__helper" v-if="!errorHandling.name">Full Name</p>
@@ -79,7 +78,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col">
+              <div class="col-lg">
                 <form @submit.prevent="updateUserInfo">
                   <p class="content__helper mb-2">Change Your Information</p>
                   <div class="d-flex flex-column align-items-start form-group">
@@ -156,7 +155,7 @@
                       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                      
+                       
                       <p>foxedfolio.com/{{basicInfo.username}}</p>
                       <i>view my profile with this link</i>
                     </div>

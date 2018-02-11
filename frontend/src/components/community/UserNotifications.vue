@@ -1,6 +1,6 @@
 <template>
   <div class="user-notifications">
-    <div class="dropdown ml-2">
+    <div class="dropdown m-2">
       <a href="#" class="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="far fa-bell"></i>
         <p class="notification-count" v-if="notifications.length">{{notifications.length}}</p>

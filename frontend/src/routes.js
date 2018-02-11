@@ -33,6 +33,7 @@ import SearchThreads from './views/search-threads.vue'
 import PasswordReset from './views/reset-password.vue'
 import PasswordResetOn from './views/reset/reset-password-on.vue'
 import ProfileEdit from './views/user-profile/user-edit-profile.vue'
+import SeeAllClasses from './views/see-mores/all-classes.vue'
 
 
 Vue.use(VueRouter)
@@ -250,6 +251,13 @@ const router = new VueRouter({
         {
             path: "/account",
             component: ProfileEdit,
+            meta: {
+                forAuth: true
+            }
+        },
+        {
+            path: "/account/classes",
+            component: SeeAllClasses,
             meta: {
                 forAuth: true
             }

@@ -93,7 +93,7 @@
         </div>
       </div>
     </div>
-    <div class="registration">
+    <div class="registration pt-3 pb-3">
       <div class="container-fluid">
         <div class="row justify-content-sm-center">
           <div class="col-10">
@@ -106,7 +106,7 @@
                 <div class="content text-center">
                   <register></register>
                 </div>
-              </div>
+              </div> 
             </div>
           </div>
         </div>
@@ -168,7 +168,7 @@
   }
   p{
     font-size: 13px;
-  }
+  } 
 }
 
 @media (max-width: 766px) {

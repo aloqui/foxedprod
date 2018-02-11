@@ -1,19 +1,20 @@
 <template>
   <div class="login">
-
     <div class="form-group m-auto  ">
-      <form @submit.prevent="login" class="d-flex align-items-center ">
+      <form @submit.prevent="login" class="d-flex flex-column flex-md-row justify-content-start justify-content-md-end align-items-center ">
+        
+        <input v-model="email" class="form-control m-1  content__input" type="email" placeholder="Email">
 
-      <input v-model="email" class="form-control mr-2 content__input" type="email" placeholder="Email">
-
-      <input v-model="password" class="form-control mr-2 content__input" type="password" placeholder="Password">
-
-      <button class="btn pull-right form__button--submit font--light">
-        &nbsp;<span class="ml-1">Login</span>
-      </button>
-      <router-link to="/account/forgot_password">
-        <a class="btn">Forgot Password?</a>
-      </router-link>
+        <input v-model="password" class="form-control m-1 content__input" type="password" placeholder="Password">
+        <div class="d-flex align-items-center">
+        <button class="btn m-2 form__button--submit font--light">
+          &nbsp;
+          <span class="">Login</span>
+        </button>
+        <router-link to="/account/forgot_password">
+          <a class="btn">Forgot Password?</a>
+        </router-link>
+        </div>
 
       </form>
 
@@ -40,7 +41,7 @@
         this.$http.post("api/auth/login", data)
           .then(response => {
             this.$auth.setToken(response.body.access_token, response.body.expires_in + Date.now())
-            location.reload()            
+            location.reload()
             this.$router.push("/")
 
             console.log(response)

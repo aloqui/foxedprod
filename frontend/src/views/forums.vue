@@ -7,14 +7,14 @@
             <div>
               <ais-index app-id="TN5MR9QHP4" api-key="a933713f38f230be88643278a41c7281" :query="q" index-name="channels" :query-parameters="{'page': page} ">
                 <!-- <ais-results-per-page-selector :options="[10, 20, 30]"></ais-results-per-page-selector> -->
-                <div class="section-block mt-2 mb-2">
-                  <router-link to="/community/create" v-if="isAuth">
+                <div class="d-flex flex-column flex-md-row align-items-center section-block mt-2 mb-2">
+                  <router-link class="m-1" to="/community/create" v-if="isAuth">
                     <button class="btn form__button--positive-dark ml-1 mr-1" type="submit">
                       <i class="fas fa-expand"></i>
                       <span class="ml-2">Create a room</span>
                     </button>
                   </router-link>
-                  <router-link :to="`/${user.username}/threads`" v-if="isAuth">
+                  <router-link class="m-1" :to="`/${user.username}/threads`" v-if="isAuth">
                     <button class="btn form__button--passive-dark " type="submit">View posted topics</button>
                   </router-link>
                   <!-- <router-link :to="`/threads/search`">

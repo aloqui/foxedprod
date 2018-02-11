@@ -1567,7 +1567,7 @@ span.ais-highlight em {
 }
 
 body {
-  background-color: #ebebeb;
+  background-color: #f0eee8;
 }
 
 span.ais-highlight em {
@@ -1608,6 +1608,15 @@ p {
 
 .navbar .algolia-search input {
   color: whitesmoke;
+}
+
+.navbar .navbar-nav {
+  width: 100% !important;
+}
+
+.navbar .navbarger {
+  color: whitesmoke;
+  vertical-align: middle;
 }
 
 a p {
@@ -1691,7 +1700,9 @@ button:focus,
 .forums .ais-input,
 .forums .ais-input[value],
 .topics .ais-input,
-.topics .ais-input[value] {
+.topics .ais-input[value],
+.all-classes .ais-input,
+.all-classes .ais-input[value] {
   border: none;
   padding: 10px;
   padding-left: 0;
@@ -1714,7 +1725,13 @@ button:focus,
 .topics .ais-input:focus,
 .topics .ais-input[value]:hover,
 .topics .ais-input[value]:active,
-.topics .ais-input[value]:focus {
+.topics .ais-input[value]:focus,
+.all-classes .ais-input:hover,
+.all-classes .ais-input:active,
+.all-classes .ais-input:focus,
+.all-classes .ais-input[value]:hover,
+.all-classes .ais-input[value]:active,
+.all-classes .ais-input[value]:focus {
   border: none;
   outline: none;
 }
@@ -1722,7 +1739,9 @@ button:focus,
 .forums .ais-input ::-webkit-input-placeholder,
 .forums .ais-input[value] ::-webkit-input-placeholder,
 .topics .ais-input ::-webkit-input-placeholder,
-.topics .ais-input[value] ::-webkit-input-placeholder {
+.topics .ais-input[value] ::-webkit-input-placeholder,
+.all-classes .ais-input ::-webkit-input-placeholder,
+.all-classes .ais-input[value] ::-webkit-input-placeholder {
   font-size: 30px;
   color: #c2c2c2;
 }
@@ -1730,7 +1749,9 @@ button:focus,
 .forums .ais-input :-ms-input-placeholder,
 .forums .ais-input[value] :-ms-input-placeholder,
 .topics .ais-input :-ms-input-placeholder,
-.topics .ais-input[value] :-ms-input-placeholder {
+.topics .ais-input[value] :-ms-input-placeholder,
+.all-classes .ais-input :-ms-input-placeholder,
+.all-classes .ais-input[value] :-ms-input-placeholder {
   font-size: 30px;
   color: #c2c2c2;
 }
@@ -1738,7 +1759,9 @@ button:focus,
 .forums .ais-input ::-ms-input-placeholder,
 .forums .ais-input[value] ::-ms-input-placeholder,
 .topics .ais-input ::-ms-input-placeholder,
-.topics .ais-input[value] ::-ms-input-placeholder {
+.topics .ais-input[value] ::-ms-input-placeholder,
+.all-classes .ais-input ::-ms-input-placeholder,
+.all-classes .ais-input[value] ::-ms-input-placeholder {
   font-size: 30px;
   color: #c2c2c2;
 }
@@ -1746,9 +1769,19 @@ button:focus,
 .forums .ais-input ::placeholder,
 .forums .ais-input[value] ::placeholder,
 .topics .ais-input ::placeholder,
-.topics .ais-input[value] ::placeholder {
+.topics .ais-input[value] ::placeholder,
+.all-classes .ais-input ::placeholder,
+.all-classes .ais-input[value] ::placeholder {
   font-size: 30px;
   color: #c2c2c2;
+}
+
+.forums .ais-results div:hover > a .d-flex .forum__title,
+.topics .ais-results div:hover > a .d-flex .forum__title,
+.all-classes .ais-results div:hover > a .d-flex .forum__title {
+  -webkit-transform: translateX(5px);
+          transform: translateX(5px);
+  opacity: 0.8;
 }
 
 .topics .topic__results:hover > div .content__helper .content__helper-highlight,
@@ -2323,6 +2356,9 @@ button:focus,
   background-color: #fff;
   padding: 20px 20px;
   width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ecebe1;
+  border-bottom: 3px solid #ecebe1;
 }
 
 .content__button--passive,
