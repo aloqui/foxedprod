@@ -21,13 +21,22 @@ class ClassroomController extends Controller
     {
         //
         if(Auth::user()->prof == true)  {
-            $classroom = Classroom::all()->where('user_id', Auth::id());
+            $classroom = Classroom::where('user_id', Auth::id())->latest()->paginate(6);
             return $classroom;
         } 
-            $classroom = Classroom::all()->where('isMember', true);
+            $classroom = Classroom::where('isMember', true)->latest()->paginate(6);
             return $classroom;
-        
-       
+        //return ['classrooms' => $user->classes()->latest()->get()->load('owner')];
+    }
+    public function indexAll(User $user, Classroom $classrooms)
+    {
+        //
+        if(Auth::user()->prof == true)  {
+            $classroom = Classroom::where('user_id', Auth::id())->latest()->get();
+            return $classroom;
+        } 
+            $classroom = Classroom::where('isMember', true)->latest()->get();
+            return $classroom;
         //return ['classrooms' => $user->classes()->latest()->get()->load('owner')];
     }
 

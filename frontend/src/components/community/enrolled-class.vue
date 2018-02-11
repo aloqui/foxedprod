@@ -16,6 +16,9 @@
           </li>
         </router-link>
       </div>
+      <router-link :to="`/account/classes`">
+      <p class="content__helper hover-pointer text-center" v-if="classes.length >= 6"><u>Browse classes</u></p>
+      </router-link>
     </div>
     <div v-else>
       <p class="content__helper">You have 0 enrolled class.</p>
@@ -48,11 +51,11 @@
           .then(this.refresh)
       },
       refresh(data) {
-        this.classes = data.body
+        console.log("CLASSES")
+        console.log(data)
+        this.classes = data.body.data
         if (data.body.length > 0)
           this.hasClass = true;
-        console.log("res:")
-        console.log(data.body)
       },
       enroll(data) {
         console.log(data)
