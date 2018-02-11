@@ -2,18 +2,23 @@
   <div class="mt-5 pt-5">
     <div class="container">
       <div class="row ">
+        <div class="col-12 mb-4" v-if="!basicInfo.confirmed">
+          <confirm-account :user="basicInfo"></confirm-account>
+        </div>
         <div class="col section-block">
           <form>
             <h1 class="font--semi-bold">EDIT PROFILE</h1>
             <hr>
             <div class="row">
               <div class="col">
-                <p class="content__helper">@{{ basicInfo.username }}</p>
-                <p class="content__helper">Your Email is
-                  <span class="content__helper--negative text-uppercase font--bold" v-show="!basicInfo.confirmed">not</span> confirmed.</p>
-                <p class="content__helper content__helper--positive" v-show="newEmail">A mail has been sent to your Email address.</p>
-                <p class="content__helper content__helper--positive" v-show="notif"> {{notif}}</p>
-                <p class="content__helper content__helper--negative" v-show="negativeNotif"> {{negativeNotif}}</p>
+                <div>
+                  <p class="content__helper">@{{ basicInfo.username }}</p>
+                  <p class="content__helper">Your Email is
+                    <span class="content__helper--negative text-uppercase font--bold" v-show="!basicInfo.confirmed">not</span> confirmed.</p>
+                  <p class="content__helper content__helper--positive" v-show="newEmail">A mail has been sent to your Email address.</p>
+                  <p class="content__helper content__helper--positive" v-show="notif"> {{notif}}</p>
+                  <p class="content__helper content__helper--negative" v-show="negativeNotif"> {{negativeNotif}}</p>
+                </div>
                 <div class="d-flex flex-column align-items-start">
                   <p class="content__helper mt-2">Change Password</p>
                   <div class="d-flex">
@@ -41,7 +46,6 @@
                   </div>
                 </div>
                 <div class="d-flex flex-column align-items-start">
-
                   <p class="content__helper mt-4">Change Basic Information</p>
                   <div class="d-flex mt-2">
                     <div class=" m r-1">
@@ -64,10 +68,26 @@
                     <button class="btn content__button--passive content__helper" @click="updateBasicProfile">Update Profile</button>
                   </div>
                 </div>
-
               </div>
               <div class="col">
-
+                <p class="content__helper mb-2">Change Your Information</p>
+                <div class="d-flex flex-column align-items-start form-group">
+                  <p class="content__helper" v-if="!errorHandling.bio">Bio</p>
+                  <textarea class="form-control mt-2 mb-2" v-model="userInfo.bio" name="" id="" cols="30" rows="5" placeholder="Say something about yourself!"></textarea>
+                  <span class="content__helper">{{charactersLeft}} characters left</span>
+                  <p class="content__helper" v-if="!errorHandling.bio">Contact Number</p>
+                  <input class="form-control mb-2" v-model="userInfo.phone_number" type="text" placeholder="+63 9** **** ***">
+                  <p class="content__helper"  v-if="!errorHandling.bio">Birth Date</p>
+                  <input class="form-control mb-2" v-model="userInfo.birth_date" type="date">
+                  <p class="content__helper mb-2">Education</p>
+                  <p class="content__helper" v-if="!errorHandling.bio">Primary Education</p>
+                  <input class="form-control mb-2" v-model="userInfo.primary_education" type="text" placeholder="Primary Education">
+                  <p class="content__helper" v-if="!errorHandling.bio">Secondary Education</p>
+                  <input class="form-control mb-2" v-model="userInfo.secondary_education" type="text" placeholder="Secondary Education">
+                  <p class="content__helper" v-if="!errorHandling.bio">Tertiary Education</p>
+                  <input class="form-control mb-2" v-model="userInfo.tertiary_education" type="text" placeholder="Tertiary Education">
+                  <button class="btn content__button--passive content__helper" @click="updateUserInfo">Update Information</button>
+                </div>
               </div>
             </div>
           </form>
@@ -77,10 +97,15 @@
   </div>
 </template>
 <script>
+  import ConfirmAccount from '../../components/community/confirm-account.vue';
   export default {
+    components: {
+      'confirm-account': ConfirmAccount
+    },
     data() {
       return {
         basicInfo: {},
+        userInfo: {},
         changePasswordData: {},
         errorHandling: {},
         newEmail: false,
@@ -88,23 +113,36 @@
         negativeNotif: null
       }
     },
+    computed: {
+      charactersLeft() {
+        let left = 280 - this.userInfo.bio.length;
+        return left;
+      }
+    },
     mounted() {
-      this.fetchAuth()
+      this.fetchBasicInfo()
 
     },
     methods: {
-      fetchAuth() {
-        this.$http.get(`api/user/profile/`)
-          .then(this.refreshAuth)
+      fetchBasicInfo() {
+        this.$http.get(`api/user/profile/basic-info`)
+          .then(this.refreshBasicInfo)
       },
-      refreshAuth(data) {
+      fetchUserDetails() {
+        this.$http.get(`api/user/profile/user-info`)
+          .then(this.refreshUserDetails)
+      },
+      refreshBasicInfo(data) {
         console.log(data)
         // this.Auth = data.body
         // this.basicInfo.name = data.body.user.name
         // this.basicInfo.username = data.body.user.username
         this.basicInfo = data.body.user
         this.basicInfo.email = data.body.email
+        this.userInfo = data.body.user.details
+        console.log(this.userInfo)
       },
+
       postLanguages() {
         console.log("Language request")
       },
@@ -128,9 +166,12 @@
 
           })
       },
+      updateUserInfo() {
+        this.$http.post(`api/user/profile/update-user-info`, this.userInfo)
+      },
       updateBasicProfile() {
         this.errorHandling = {}
-        this.$http.post(`api/user/profile/basic`, this.basicInfo)
+        this.$http.post(`api/user/profile/update-basic-info`, this.basicInfo)
           .then(response => {
             swal(`Successfully updated your profile!`, {
               icon: "success",

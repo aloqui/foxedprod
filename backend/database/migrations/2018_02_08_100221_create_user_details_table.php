@@ -16,12 +16,12 @@ class CreateUserDetailsTable extends Migration
         Schema::create('user_details', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->string('birth_date');
-            $table->string('phone_number');
-            $table->string('bio');
-            $table->string('primary_education');
-            $table->string('secondary_education');
-            $table->string('tertiary_education');
+            $table->date('birth_date');
+            $table->string('phone_number')->nullable();;
+            $table->string('bio')->nullable();;
+            $table->string('primary_education')->nullable();;
+            $table->string('secondary_education')->nullable();;
+            $table->string('tertiary_education')->nullable();;
             $table->timestamps();
 
             $table->foreign('user_id')
