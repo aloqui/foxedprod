@@ -22,14 +22,21 @@
   <div id="app"></div>
   <div class="footer pt-4 pb-4">
     <div class="container">
-      <div class="row text-center">
+      <div class="row">
         <div class="col">
           <div class="d-flex flex-column justify-content-center">
-            <a href="" class="content__helper"><u>Developers & Researchers</u></a>
+            <a href="" class="content__helper mb-2"><u>Developers & Researchers</u></a>
             <h5 class="content__helper">Cueto, Chester</h5>
             <h5 class="content__helper">Dizon, Franchette</h5>
             <h5 class="content__helper">Lumanlan, John Anna</h5>
             <h5 class="content__helper">Oquindo, Al</h5>
+          </div>
+        </div>
+        <div class="col">
+          <div class="d-flex flex-column justify-content-center">
+            <h5 class="content__helper"><u>Contact Us</u></h5>
+            <h5 class="content__helper text-uppercase mt-2">+63 917 869 1802</h5>
+            <h5 class="content__helper">al.oquindooff@gmail.com</h5>
           </div>
         </div>
         <div class="col">
