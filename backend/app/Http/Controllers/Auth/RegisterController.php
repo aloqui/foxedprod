@@ -35,12 +35,12 @@ class RegisterController extends Controller
             'bio' => "Hi there! I'm " . $user->name
         ]);
         return $userDet;
-        // event(new Registered($user));
+        event(new Registered($user));
        
-        // return response()->json([
-        //     'success' => true,
-        //     'message' => 'succesfully registered',
-        // ]);
+        return response()->json([
+            'success' => true,
+            'message' => 'succesfully registered',
+        ]);
         
     }
     
