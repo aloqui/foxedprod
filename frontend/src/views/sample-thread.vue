@@ -15,7 +15,7 @@
                       <div class="mb-4 d-flex">
                         <router-link class="no-decoration" :to="`/${attriThread.owner.username}/threads`">
                           <div class="d-flex align-items-center ">
-                            <div class="picture-placeholder">
+                            <div class="picture-placeholder mr-3">
                               <img class="picture mr-3" :src="attriThread.owner.avatar_path" alt="">
                             </div>
                             <div class="d-flex flex-column">
@@ -40,15 +40,18 @@
                       <a href="#" class="content__helper">{{attriThread.created_at | formatDateFormal}}</a>
                       <hr>
                     </div>
-
-
-
                     <div class="level d-flex">
                       <div>
                         <button class="btn content__helper text-uppercase" @click="update">
                           <i class="fas fa-check"></i>
                           <div class="content__helper-visual--update">
                             <p class="content__helper">Update</p>
+                          </div>
+                        </button>
+                        <button class="btn content__helper text-uppercase" @click="editingThread = false; editThread.title = attriThread.title; editThread.body = attriThread.body">
+                          <i class="fas fa-times"></i>
+                          <div class="content__helper-visual--cancel">
+                            <p class="content__helper">Cancel</p>
                           </div>
                         </button>
 

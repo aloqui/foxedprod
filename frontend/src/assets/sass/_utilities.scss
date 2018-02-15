@@ -265,7 +265,11 @@
   border-radius: 10px;
   font-size: 18px;
 }
-
+.activity {
+  .activity__owner {
+    min-width: 140px;
+  }
+}
 .forums,
 .topics {
   .ais-results div .d-flex {

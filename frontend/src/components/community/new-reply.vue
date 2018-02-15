@@ -43,8 +43,9 @@
           .then(({
             data
           }) => {
+            this.newReply.body = "0"
             this.$router.push(`${this.$route.path}?page=${this.dataSet.last_page}`)
-            this.completed = true
+            this.completed = !this.completed
             swal("Replied!", {
               icon: "success",
             });
