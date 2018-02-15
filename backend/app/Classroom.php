@@ -41,7 +41,7 @@ class Classroom extends Model
             ->exists();
     }
     public function owner() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
     public function members() {
         return $this->hasMany(UserGroup::class);

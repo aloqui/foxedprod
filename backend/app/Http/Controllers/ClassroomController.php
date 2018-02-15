@@ -45,13 +45,13 @@ class ClassroomController extends Controller
     {
         //
         if(Auth::user()->prof == true)  {
-            $classroom = Classroom::all()->where('user_id', Auth::id())->load('classPosts');
+            $classroom = Classroom::where('user_id', Auth::id())->get();
             // $class = Activity::all()->where('classroom_id',Auth::id());
             // $classroom->classPosts->load('activities');
-            $classrooms->classPosts->load('owner');
+            $classroom->load('classPosts', 'owner');
             return response()->json($classroom);
         }
-            $classroom = Classroom::all()->where('isMember', true)->load('classPosts');
+            $classroom = Classroom::all()->where('isMember', true)->load('classPosts', 'owner');
             return $classroom;
         
         
@@ -103,7 +103,7 @@ class ClassroomController extends Controller
     public function showActs($Actid)
     {
         $class = Classroom::find($Actid);
-        return $class->classPosts;
+        return $class->load('owner', 'classPosts');
     }
     
 
