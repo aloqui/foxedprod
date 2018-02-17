@@ -1,6 +1,6 @@
 <template v-cloak>
   <div class="new-reply">
-    <div v-if="authenticatedUser" class="">
+    <div v-if="isAuth" class="">
       <div class="forum-post__form">
         <form @submit.prevent="addReply">
           <div class="form-group">
@@ -11,9 +11,10 @@
         </form>
       </div>
     </div>
-
-    <p class="text-center pb-2 pt-2" v-else>Please
-      <a href="#/login">sign in</a> to participate in this discussion.</p>
+    <div v-else>
+      <p class="text-center pb-2 pt-2">Please
+        <a href="#/login">sign in</a> to participate in this discussion.</p>
+    </div>
   </div>
 </template>
 <script>
@@ -27,12 +28,13 @@
       return {
         newReply: {},
         endpoint: '',
-        completed: false
+        completed: false,
+        
       }
     },
     computed: {
-      authenticatedUser() {
-        return this.$auth.getAuthenticatedUser()
+      isAuth() {
+        return this.$auth.isAuthenticated()
       }
     },
     methods: {
@@ -40,24 +42,21 @@
         this.$http.post(`api/community/${this.$route.params.slug}/${this.$route.params.id}/replies`,
             this.newReply
           )
-          .then(({
-            data
-          }) => {
-            this.newReply.body = "0"
+          .then(response => {
             this.$router.push(`${this.$route.path}?page=${this.dataSet.last_page}`)
             this.completed = !this.completed
             swal("Replied!", {
-              icon: "success",
-            });
-
-          }, function (response) { // do something t
-            swal("Error!", {
-              icon: "error",
-            });
-          });
+              icon: "success"
+            })
+          })
+          .catch(response => {
+            swal("Replied!", {
+              icon: "success"
+            })
+          })
       },
-
     },
+
     sockets: {
       message(response) {
         this.$emit('created', this.newReply)

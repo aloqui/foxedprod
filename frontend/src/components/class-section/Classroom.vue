@@ -14,15 +14,19 @@
               <p class="font--normal">{{classDetails.body}}</p>
               <hr>
               <div class="mb-2 d-flex flex-column">
-              <p class="content__helper mb-2">Actions</p>
-              <!-- <class-feed-block></class-feed-block> -->
-              <button type="button" class="btn form__button--positive-dark mb-2" data-toggle="modal" data-target="#createActivity">
-                Add Activity
-              </button>
-              <button type="button" class="btn form__button--positive-dark" data-toggle="modal" data-target="#createDiscussion">
-                Add Discussion
-              </button>
-            </div>
+                <p class="content__helper mb-2">Navigation</p>
+                <p class="hover-pointer content__sub-title" @click="discussionView = true; activityView = false">Discussions</p>
+                <p class="hover-pointer content__sub-title" @click="activityView = true; discussionView = false;">Activities</p>
+                <hr>
+                <p class="content__helper mb-2">Actions</p>
+                <!-- <class-feed-block></class-feed-block> -->
+                <button type="button" class="btn form__button--positive-dark mb-2" data-toggle="modal" data-target="#createActivity">
+                  Add Activity
+                </button>
+                <button type="button" class="btn form__button--positive-dark" data-toggle="modal" data-target="#createDiscussion">
+                  Add Discussion
+                </button>
+              </div>
               <br>
               <div>
                 <p class="content__helper">Members:</p>
@@ -39,8 +43,11 @@
             </div>
 
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 mb-3 section-block">
-              <view-activities class="" :user="user"></view-activities>
+          <div class="col-xs-12 col-sm-12 col-md-6 mb-3 section-block" v-if="activityView == true">
+            <view-activities class="" :user="user"></view-activities>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 mb-3 section-block" v-if="discussionView == true">
+            <view-discussions :classDetails="classDetails"></view-discussions>
           </div>
           <div class="col-md-3 hidden-xs hidden-sm">
             <div class="block-full-height ">
@@ -52,8 +59,8 @@
           </div>
 
         </div>
-        <div class=" d-flex justify-content-center align-items-center not-member" v-else>
-          <p class=" m-auto">{{notMember}}</p>
+        <div class=" d-flex justify-content-center align-items-center not-member " v-else>
+          <p class="section-block m-auto text-center content content__helper">{{notMember}}</p>
         </div>
 
       </div>
@@ -68,7 +75,7 @@
             </button>
           </div>
           <div class="modal-body">
-             <create-activity v-show="user.prof"></create-activity>
+            <create-activity v-show="user.prof"></create-activity>
           </div>
         </div>
       </div>
@@ -83,12 +90,9 @@
             </button>
           </div>
           <div class="modal-body">
-             <create-activity  class="section-block" v-show="user.prof"></create-activity>
+            <add-discussion :classDetails="classDetails"></add-discussion>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Create</button>
-          </div>
+
         </div>
       </div>
     </div>
@@ -102,15 +106,18 @@
   import forumCategories from '../community/forum-category.vue';
   import Activities from './Activities.vue';
   import CreateAct from './CreateActivity.vue';
+  import AddDiscussion from './actions/add-discussion.vue';
+  import ViewDiscussions from './view-discussions.vue';
   export default {
     data() {
       return {
-
         classDetails: {},
         isMember: false,
         authenticatedUser: this.$auth.getAuthenticatedUser(),
         notMember: 'You are not a member of this class.',
-        user: {}
+        user: {},
+        discussionView: true,
+        activityView: false
       }
     },
     components: {
@@ -118,7 +125,9 @@
       'class-feed-block': classFeedBlock,
       'forum-category': forumCategories,
       'view-activities': Activities,
-      'create-activity': CreateAct
+      'create-activity': CreateAct,
+      'add-discussion': AddDiscussion,
+      'view-discussions': ViewDiscussions
       //'related-topics': relatedTopics
     },
     mounted() {

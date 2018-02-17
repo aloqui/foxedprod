@@ -17,7 +17,7 @@
           <div class="form-group m-auto d-none d-lg-block " v-if="isAuth">
             <div class="algolia-search">
               <div class="dropdown ">
-                <ais-index app-id="TN5MR9QHP4" api-key="a933713f38f230be88643278a41c7281" index-name="threads">
+                <ais-index app-id="TN5MR9QHP4" api-key="a933713f38f230be88643278a41c7281" index-name="threads" :query-parameters="{'filters': `classroom_id: 0`}">
                   <ais-search-box id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     <ais-input class="form-control" placeholder="Search for threads..." autofocus></ais-input>
                   </ais-search-box>

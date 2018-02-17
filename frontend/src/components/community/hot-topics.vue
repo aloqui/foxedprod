@@ -8,7 +8,7 @@
             <h1 class="font--semi-bold text-uppercase">{{channel.name}}</h1>
             <p class="content__helper">{{channel.description}}</p>
           </div>
-          <ais-index app-id="TN5MR9QHP4" api-key="a933713f38f230be88643278a41c7281" :query="q" :query-parameters="{'filters': `(channel.slug: ${endpoint})`,'page': 1}"
+          <ais-index app-id="TN5MR9QHP4" api-key="a933713f38f230be88643278a41c7281" :query="q" :query-parameters="{'filters': `(channel.slug: ${endpoint}) AND classroom_id: 0`,'page': 1}"
             index-name="threads">
             <div class="section-block mb-2 d-flex align-items-center">
               <div>

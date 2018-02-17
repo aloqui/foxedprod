@@ -1,20 +1,19 @@
 <template>
   <div class="timeline">
-
     <div class="mt-0" v-for="post in orderedUsers" :key="post.id">
-      <p class="content__helper">Activity ID #{{post.id}}</p>
       <router-link class="nav-item no-decoration" :to="`/class/${post.classroom_id}`">
+      <p class="content__helper">Activity ID #{{post.id}}</p>
         <h1 class="forum__title font--semi-bold">{{post.title}}</h1>
-      </router-link>
       <p class="posted content__helper">{{from(post.created_at)}}</p>
       <div v-if="post.image != 'none'">
         <img class="activity__image mt-3" :src="imagePath + post.image">
       </div>
-      <p class="content__helper content__helper--negative mt-2">Instructions:</p>
-      <div class="section-block mt-2">
+      <p class="content__helper text-uppercase mt-2">Instructions</p>
+      <div class="section-block mt-1">
         <p>{{post.body}}</p>
         <p class="expire content__helper">Due {{ momentize(post.due) | formatDate }}</p>
       </div>
+      </router-link>
       <hr>
     </div>
   </div>

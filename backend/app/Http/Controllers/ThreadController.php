@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Channel;
 use App\Thread;
+use App\Classroom;
+use App\UserGroup;
 use App\Filters\ThreadFilters;
 use App\Filters;
 use Illuminate\Http\Request;
@@ -51,7 +53,6 @@ class ThreadController extends Controller
         return $channel;
     }
     public function showOwnThreads(Channel $channel, User $user) {
-       
         return [$profileUser = $user, 'threads' => $user->threads()->latest()->get()];
     }
 
@@ -82,7 +83,7 @@ class ThreadController extends Controller
         $postThread = Thread::Create([
             'user_id' => Auth::id(),
             'title' => request('title'),
-            'channel_id' => request('channel_id') ,
+            'channel_id' => request('channel_id'),
             'body' => request('body')
         ]);
         $channel = Channel::where('id', $postThread->channel_id)->firstOrFail();
@@ -94,28 +95,48 @@ class ThreadController extends Controller
         return $postThread;
         
     }
+    public function storeThreadOnClassroom(Request $request, UserGroup $usergroup, Classroom $classroom, Recaptcha $recaptcha) {
+        request()->validate([
+            'title' => 'required|max:60',
+            'body' => 'required|min:4|max:1600',
+            // 'recaptcha' => ['required', $recaptcha]
+        ]); 
+        
+        $postThread = Thread::Create([
+            'user_id' => Auth::id(),
+            'title' => $request['title'],
+            'classroom_id' => $classroom->id,
+            'body' => $request['body']
+        ]);
+        return $classroom->id;
+    }
     
     public function getThisChannel(Request $request, Channel $channel, Thread $thread) {
         return $channel;
     }
-
+    public function getThisClassroomDiscussions(Request $request, Classroom $classroom, Thread $thread) {
+        $getThread = Thread::where('classroom_id', $classroom->id)->get();
+        return $getThread;
+    }
     /**
      * Display the specified resource.
      *
      * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function show($channelId, Thread $thread)
-    {
+    public function show(Channel $channel, Thread $thread)
+    {   
         
-        $thread->load('owner', 'subscriptions', 'channel');
-
-        // Redis::zincryby('threading_threads', 1, json_encode([
-        //     'title' => $thread->title,
-        //     'path' => $thread->path()
-        // ]));
-
-        return $thread;
+        if($thread->channel_id == $channel->id ) {
+            $thread->load('owner', 'subscriptions', 'channel')->get();
+            // Redis::zincryby('threading_threads', 1, json_encode([
+                //     'title' => $thread->title,
+                //     'path' => $thread->path()
+                // ]));
+                return $thread;
+            }
+        else
+            return abort(403, 'Unauthorized');
         //
     }
 

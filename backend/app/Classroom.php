@@ -55,11 +55,13 @@ class Classroom extends Model
     public function assignments() {
         return $this->hasMany(UserGroup::class);
     }
+    public function discussions() {
+        return $this->hasMany(Thread::class);
+    }
     public function files() {
         return $this->hasMany(UserGroup::class);
     }
     public function classPosts() {
         return $this->hasMany(Activity::class);
     }
-    
 }

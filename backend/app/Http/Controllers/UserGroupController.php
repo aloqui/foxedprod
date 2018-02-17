@@ -20,9 +20,7 @@ class UserGroupController extends Controller {
   return $classroom;
   }
   public function membership(User $user, Classroom $classroom) {
-    
       $classroom->subscribe();
-    
   }
 
 

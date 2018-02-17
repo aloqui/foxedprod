@@ -44,7 +44,7 @@
                     <input class="form-control section-block" type="datetime-local" v-model="tomorrow" id="datePicker" :min="limit">
                   </div>
                   <div class="col-12 mt-2">
-                    <input type="submit" class="btn content__button--passive content__helper pull-right m-0"  data-toggle="modal" data-target="#createActivity" value="Post Activity">
+                    <input type="submit" class="btn content__button--passive content__helper pull-right m-0"  data-toggle="modal" data-target="#createActivity"  value="Post Activity">
                   </div>
                 </div>
 
