@@ -88,6 +88,7 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/imageport/update/{id}', 'ImagesPortfolioController@update');
     
     Route::get('/class/{classroom}/{thread}/replies', 'RepliesController@indexClassroom');
+    Route::get('/class/{classroom}/{thread}/discussions', 'ThreadController@showOnClassroom');
 });
 Route::get('/community/{channel}/{thread}/replies', 'RepliesController@index');
 

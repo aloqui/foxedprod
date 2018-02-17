@@ -2,9 +2,11 @@
   <div class="section-block mt-2">
     <div class="content m-auto">
       <span class="content__helper text-uppercase mb-4">Responses</span>
-      <div v-for="(reply, index) in replies" :key="reply.id">
+      <hr>
+      <div v-for="(reply, index) in replies" :key="reply.id" >
         <reply :attributes="{reply}" v-cloak @deleted="remove(index)" :user="user"></reply>
       </div>
+
       <paginator :dataSet="dataSet" @changed="fetch"></paginator>
       
       <div class="" v-if="user.id">
@@ -46,7 +48,7 @@
     },
     methods: {
       fetch(page) {
-        this.$http.get(this.url(page)).then(this.refresh);
+        this.$http.get(this.url(page)).then(this.refresh)
       },
       url(page) {
         if (!page) {
@@ -60,6 +62,7 @@
         this.user = this.$auth.getAuthenticatedUser();
         this.dataSet = data.body;
         this.replies = data.body.data;
+
       }
 
     },

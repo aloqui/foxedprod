@@ -14,7 +14,13 @@ io.on('connection', function(socket) {
     redisClient.subscribe('favoriteReply');
     redisClient.subscribe('notify');
     redisClient.subscribe('removeNotification');
+    redisClient.subscribe('addThread');
 
+    redisClient.on('addThread', function(channel, message) {
+        console.log("----");
+        console.log('New event sent');
+        socket.emit(channel, message)
+    })
     redisClient.on('message', function(channel, message) {
         console.log("----");
         console.log('New event sent');
