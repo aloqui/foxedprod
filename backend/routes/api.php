@@ -91,7 +91,6 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/class/{classroom}/{thread}/discussions', 'ThreadController@showOnClassroom');
 });
 Route::get('/community/{channel}/{thread}/replies', 'RepliesController@index');
-
 Route::get('/community/{channel}/{thread}', 'ThreadController@show');
 // Route::middleware('auth:api')->get('/user', function () {
 //     Route::resource('forum','ForumsController'); 

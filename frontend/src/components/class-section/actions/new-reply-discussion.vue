@@ -21,7 +21,7 @@
     components: {
       'wysiwyg': Wysiwyg
     },
-    props: ['classDetails', 'discussion', 'dataSet'],
+    props: ['classDetails', 'dataSet'],
     data() {
       return {
         newReply: {},
@@ -36,7 +36,7 @@
     },
     methods: {
       addReply() {
-        this.$http.post(`api/classroom/${this.classDetails.id}/${this.discussion.id}/replies`, this.newReply)
+        this.$http.post(`api/classroom/${this.$route.params.id}/${this.$route.params.discussionId}/replies`, this.newReply)
           .then(response => {
             this.newReply.body = ''
             this.completed = !this.completed

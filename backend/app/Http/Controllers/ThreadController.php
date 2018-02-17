@@ -91,7 +91,6 @@ class ThreadController extends Controller
         $channel->update([
             'threads_count' => $channel->threads_count + 1
         ]);
-
         $postThread->subscribe();
         return $postThread;
         
@@ -118,7 +117,7 @@ class ThreadController extends Controller
         return $channel;
     }
     public function getThisClassroomDiscussions(Request $request, Classroom $classroom, Thread $thread) {
-        $getThread = Thread::where('classroom_id', $classroom->id)->latest()->get();
+        $getThread = Thread::where('classroom_id', $classroom->id)->load('owner', 'replies')->latest()->get();
         return $getThread;
     }
     /**

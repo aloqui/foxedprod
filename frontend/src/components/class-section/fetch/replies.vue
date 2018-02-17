@@ -11,7 +11,7 @@
       <paginator :dataSet="dataSet" @changed="fetch"></paginator>
 
       <div class="mt-3" v-if="user.id">
-        <new-reply-discussion class="" :dataSet="dataSet" :classDetails="classDetails" :discussion="discussion" @created="add" @changed="fetch"></new-reply-discussion>
+        <new-reply-discussion class="" :classDetails="classDetails" :dataSet="dataSet"  @created="add" @changed="fetch"></new-reply-discussion>
         <!-- <new-reply :dataSet="dataSet" @created="add" @changed="fetch"></new-reply> -->
       </div>
       <div v-else>
@@ -35,13 +35,13 @@
       'paginator': Paginator
     },
     mixins: [collection],
-    props: ['classDetails', 'discussion'],
+    props: ['classDetails'],
     name: 'replies',
     data() {
       return {
         dataSet: false,
         pageQuery: this.$route.query.page,
-        endpoint: `api/class/${this.classDetails.id}/${this.discussion.id}/replies`,
+        endpoint: `api/class/${this.$route.params.id}/${this.$route.params.discussionId}/replies`,
         user: {}
       }
 

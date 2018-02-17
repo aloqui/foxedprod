@@ -83,12 +83,12 @@
   </div>
 </template>
 <script>
-  import Replies from './fetch/replies.vue';
+  
   export default {
     props: ['classDetails', 'discussions', 'hasDiscussion'],
-    components: {
-      'replies': Replies
-    },
+    // components: {
+    //   'replies': Replies
+    // },
     data() {
       return {
 
