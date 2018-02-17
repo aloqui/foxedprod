@@ -97,8 +97,8 @@ class ClassroomController extends Controller
         $classroom->with('members');
         $classroom->members->load('user');
         return $classroom;
+        }
     }
-}
 
     public function showActs($Actid)
     {

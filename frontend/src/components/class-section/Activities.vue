@@ -1,5 +1,7 @@
 <template>
   <div>
+    <p class="content__helper text-uppercase">Activities</p>
+    <hr>
     <div v-if="hasAct">
     <activity v-for="activity in orederedDate" @delete-activity="deleteActivity(activity)" @cons="conss(activity)" :authenticatedUser="authenticatedUser"
       :activity="activity" :user="user" :classOwner="classOwner"></activity>

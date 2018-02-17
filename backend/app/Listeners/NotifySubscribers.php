@@ -27,6 +27,6 @@ class NotifySubscribers
      */
     public function handle(ThreadReceivedNewReply $event)
     {
-        //
+
     }
 }

@@ -185,7 +185,32 @@ button,
 .ais-powered-by {
   transform: scale(0.8);
 }
-
+.trix__editor {
+  .trix-button-row {
+    transform: scale(0.9) translateX(-30px);
+  }
+}
+.reply-discussion {
+  .reply-discussion__response {
+    // background-color: $btn-positive;
+    // color: $white;
+    @extend .content--paragraph;
+    // color: $black !important;
+    border-radius: 15px;
+    border-top-left-radius: 0;
+    max-width: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    pre {
+      background-color: lighten($btn-positive, 4%);
+      padding: 5px;
+      @extend .content__helper;
+    }
+  }
+  .btn {
+    background-color: transparent;
+  }
+}
 .specific-thread__edit {
   .trix__editor,
   .trix__edit {

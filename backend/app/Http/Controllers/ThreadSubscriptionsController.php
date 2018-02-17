@@ -12,7 +12,6 @@ class ThreadSubscriptionsController extends Controller
 
         public function store($channelId, Thread $thread)
         {
-            
             $response = $thread->subscribe();
             $redis = Redis::connection();
             $redis->publish('subscribe', $response);

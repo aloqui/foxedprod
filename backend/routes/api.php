@@ -46,8 +46,11 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/classroom/all', 'ClassroomController@indexAll');
     Route::get('/classroom', 'ClassroomController@index');
     Route::post('/community/{channel}/{thread}/replies', 'RepliesController@store');
+    Route::post('/classroom/{classroom}/{thread}/replies', 'RepliesController@storeToClassroom');
     // Route::post('/community', 'ThreadController@store');
     Route::post('/community/{channel}', 'ThreadController@storeThreadOnChannel')->middleware('must-be-confirmed');
+    Route::post('/classroom/discussion/{classroom}', 'ThreadController@storeThreadOnClassroom');
+    Route::get('/classroom/discussion/{classroom}', 'ThreadController@getThisClassroomDiscussions');
     Route::get('/currentChannel/{channel}', 'ThreadController@getThisChannel');
     Route::patch('/community/{channel}/{thread}', 'ThreadController@update');
     Route::delete('/community/{channel}/{thread}', 'ThreadController@destroy');
@@ -84,6 +87,7 @@ Route::middleware('auth:api')->group(function () {
     Route::resource('imageport','ImagesPortfolioController');
     Route::put('/imageport/update/{id}', 'ImagesPortfolioController@update');
     
+    Route::get('/class/{classroom}/{thread}/replies', 'RepliesController@indexClassroom');
 });
 Route::get('/community/{channel}/{thread}/replies', 'RepliesController@index');
 

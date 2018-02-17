@@ -7,6 +7,7 @@
           <div class="section-block">
             <!-- <div v-for="thread in threads" v-bind:thread="thread" :key="thread.id"> -->
             <!-- Editing Thread -->
+            <p class="content__helper text-center" v-if="!toShow">404 Not Found :(</p>
             <div v-bind:threads="threads" :key="threads.id">
               <thread :attriThread="threads" inline-template>
                 <div class="content m-auto specific-thread__edit" v-if="editingThread">
@@ -131,7 +132,7 @@
           <!-- reply -->
           <!-- <replies > -->
           <div>
-            <replies></replies>
+            <replies v-show="toShow"></replies>
           </div>
           <!-- </replies> -->
 
@@ -153,7 +154,7 @@
   import swal from 'sweetalert';
   import Thread from '../components/community/thread';
   import Replies from '../components/community/replies.vue';
-  
+
 
   // import forumReplies from '../components/forum-replies.vue';
 
@@ -167,7 +168,7 @@
       'thread': Thread
       // 'forum-replies': forumReplies
     },
-    
+
     // props: [
     //   'thread',
     //   'authenticatedUser'
@@ -178,23 +179,31 @@
         threads: {},
         pageQuery: this.$route.query.page,
         endpoint: `api${this.$route.path}`,
-        active: false
+        active: false,
+        errorHandling: {},
+        toShow: false
       }
+    },
+    mounted() {
+      this.fetch()
     },
     methods: {
       fetch() {
         this.$http.get(this.endpoint)
           .then(this.refresh)
+          .catch(response => {
+            if(response.body.message) {
+              this.toShow = false
+              this.errorHandling = response.body
+            }
+          })
       },
       refresh(data) {
+        this.toShow = true
         this.threads = data.body
 
       }
     },
-    mounted() {
-      this.fetch()
-      
-    }
   }
 
 </script>

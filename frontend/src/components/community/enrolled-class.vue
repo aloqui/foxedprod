@@ -18,7 +18,6 @@
         </router-link>
         </div>
         <div v-else>
-
         <router-link class="nav-item content__sub-title" :to="`/class/${room.id}`">
           <li>
             {{room.name}}

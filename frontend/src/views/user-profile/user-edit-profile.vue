@@ -7,9 +7,8 @@
         </div>
         <div class="col section-block mb-5">
           <form>
-            <span class="d-flex justify-content-center">
+            <span class="d-flex justify-content-start">
               <h1 class="font--semi-bold">EDIT PROFILE </h1>
-              <i class="fa fa-print" aria-hidden="true"  @click="PDFAct"></i>
             </span>
             
             <hr>
@@ -112,7 +111,7 @@
                     
                   </div>
                 </form>
-                <button @click="PDFAct"> print </button>
+                <!-- <button @click="PDFAct"> print </button> -->
               </div>
             </div>
           </form>
