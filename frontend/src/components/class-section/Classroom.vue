@@ -46,8 +46,8 @@
           <div class="col-xs-12 col-sm-12 col-md-6 mb-3 section-block" v-if="activityView == true">
             <view-activities class="" :user="user"></view-activities>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 mb-3 section-block" v-if="discussionView == true">
-            <view-discussions :classDetails="classDetails"></view-discussions>
+          <div class="col-xs-12 col-sm-12 col-md-6 mb-3 " v-if="discussionView == true">
+            <view-discussions :classDetails="classDetails" :discussions="discussions" :hasDiscussion="hasDiscussion"></view-discussions>
           </div>
           <div class="col-md-3 hidden-xs hidden-sm">
             <div class="block-full-height ">
@@ -90,7 +90,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <add-discussion :classDetails="classDetails"></add-discussion>
+            <add-discussion :classDetails="classDetails" @discussionCreated="fetch"></add-discussion>
           </div>
 
         </div>
@@ -117,7 +117,9 @@
         notMember: 'You are not a member of this class.',
         user: {},
         discussionView: true,
-        activityView: false
+        activityView: false,
+        discussions: {},
+        hasDiscussion: false
       }
     },
     components: {
@@ -131,12 +133,14 @@
       //'related-topics': relatedTopics
     },
     mounted() {
-      this.getData();
+      this.getData()
+
       this.$http.get(`api/user`)
         .then(mes => this.user = mes.body)
         .catch()
     },
     methods: {
+      
       getData() {
         this.$http.get(`api/classroom/${this.$route.params.id}`)
           .then(
@@ -145,9 +149,19 @@
               if (data.body.isMember == true || data.body.isOwner == true) {
                 this.isMember = true;
               }
+              this.fetch()
             }
           );
-      }
+      },
+      fetch() {
+        this.$http.get(`api/classroom/discussion/${this.classDetails.id}`)
+          .then(this.refresh)
+      },
+      refresh(data) {
+        this.discussions = data.body
+        if (data.body.length > 0)
+          this.hasDiscussion = true
+      },
     },
     created() {
 

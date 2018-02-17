@@ -34,7 +34,6 @@ class RegisterController extends Controller
             'birth_date' => $request['birth_date'],
             'bio' => "Hi there! I'm " . $user->name
         ]);
-        return $userDet;
         event(new Registered($user));
        
         return response()->json([

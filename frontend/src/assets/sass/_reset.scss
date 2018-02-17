@@ -137,12 +137,14 @@ button,
 
 .forums,
 .topics,
-.all-classes {
+.all-classes,
+.classroom {
   .ais-input,
   .ais-input[value] {
     border: none;
     padding: 10px;
     padding-left: 0;
+    width: 100%;
     font-size: 34px;
     font-weight: 900;
     color: lighten($black--light, 8%);

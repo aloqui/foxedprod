@@ -42,7 +42,19 @@
       },
       addDiscussion() {
         this.$http.post(`api/classroom/discussion/${this.classDetails.id}`, this.discussionData)
+          .then(response => {
+            swal(`Successfully created a Discussion!`, {
+              icon: "success",
+            }); 
+            this.$router.push(`/class/${this.classDetails.id}/discussion/${response.body.id}`)
+          })
         
+      }
+    },
+    sockets: {
+      addThread(response) {
+        this.$emit('discussionCreated', this.discussionData)
+        console.log('Thread Added')
       }
     }
   }
