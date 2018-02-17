@@ -140,7 +140,6 @@
         .catch()
     },
     methods: {
-      
       getData() {
         this.$http.get(`api/classroom/${this.$route.params.id}`)
           .then(
@@ -149,7 +148,7 @@
               if (data.body.isMember == true || data.body.isOwner == true) {
                 this.isMember = true;
               }
-              this.fetch()
+              // this.fetch()
             }
           );
       },
