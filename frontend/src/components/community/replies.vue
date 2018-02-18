@@ -62,7 +62,6 @@
         this.user = this.$auth.getAuthenticatedUser();
         this.dataSet = data.body;
         this.replies = data.body.data;
-
       }
 
     },
