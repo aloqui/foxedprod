@@ -55,27 +55,49 @@
 
 
             </div>
-            <div class="modal-footer d-flex justify-content-center align-items-center">
-              <div v-if="modal.user_id == userMe.id">
+            <div class="modal-footer">
+              <div v-if="modal.user_id == userMe.id" class="w-100 pt-3">
                 <input type="file" accept="image/*" class="form-control  content__helper" @change="imageChanged">
-                <div class="d-flex justify-content-center align-items-center">
-                  <input v-model="modal.title" class="input--default" type="text" placeholder="title">
+                <div class="d-flex flex-column mt-2">
+                  <input v-model="modal.title" class="form-control section-block content__helper" type="text" placeholder="title">
+                  <textarea v-model="modal.description" class="form-control section-block content__helper" type="text" placeholder="Description"></textarea>
+                  <span class="mt-4">
                   <button @click="update" class="btn content__button--passive content__helper">Update</button>
                   <button @click="deleteimg" class="btn content__button--passive content__helper">Delete</button>
+                  </span>
                 </div>
               </div>
-              <div v-else>
-                <h1>{{modal.title}}</h1>
+              <div v-else class="d-flex flex-column justify-content-center align-items-center w-100">
+                <h1 class="font--normal">{{modal.title}}</h1>
+                <p class="content__helper">{{modal.description}}</p>
               </div>
-
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+    <div class="row mt-3">
+    <div class="col-lg-4 col-sm-6 mb-3" v-for="code in codes.images">
+      <div class="card h-100">
+        <div class="holder-img" >
+          <div class="item--image" >
+              <img  class="img" @click="pass(code)" v-bind:style="{ backgroundImage :`url(` + imagePath + code.image+`)`}" data-toggle="modal" data-target="#preview">
+            <div class=""></div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <h4 class="card-title">
+            <a href="#">{{ code.title }}</a>
+          </h4>
+        </div>
+      </div>
+    </div>
+    </div>
   <!-- class="col-lg-4 col-sm-6 p-0 " -->
-  <div class="row mt-3">
+  <!-- <div class="row mt-3">
     <div class="col-12 width--gallery">
      <div class="flexbox">
       <div class="item" v-for="code in codes.images">
@@ -86,7 +108,7 @@
     </div> 
   </div>
     </div>
-  </div>
+  </div> -->
    
   </div>
 </template>
@@ -291,14 +313,31 @@
       }
     }
   }
+  
 
   img {
     width: 100%;
+    
   }
 
   .holder {
     max-height: 300px;
     max-width: 500px;
+    
+  }
+  .holder-img{
+    max-height: 600px;
+    max-width: 500px;
+    overflow: hidden;
+      .img {
+      position: relative;
+      float: left;
+      width:  100%;
+      height: 400px;
+      background-position: 50% 50%;
+      background-repeat:   no-repeat;
+      background-size:     cover;
+  }
   }
 
   .spaceWrap {

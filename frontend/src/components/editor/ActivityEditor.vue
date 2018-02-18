@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="modal-wrap">
 <section class="editor__page">
   <div id="wrap">
 
@@ -374,6 +374,9 @@ Split(['#code_editors','#output'], {
 	width: 100%; height: 100%;
 	border: 0;
 }
+
+.modal-wrap{
+
 .modal {
   position: fixed;
   top: 0;
@@ -434,6 +437,7 @@ Split(['#code_editors','#output'], {
   height: 60px;
   padding: 10px;
   background: #f1f3f5;
+}
 }
 
 

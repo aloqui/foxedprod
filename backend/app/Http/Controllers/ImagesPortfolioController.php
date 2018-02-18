@@ -83,7 +83,8 @@ class ImagesPortfolioController extends Controller
 
                 $imageportfolio->update( $request->except('image','oldImage','newImage') + [
                         'title' => request('title'),
-                        'image' => $fileName
+                        'image' => $fileName,
+                        'description' => request('description')
                     ]
                 );
                 return response()->json($imageportfolio);

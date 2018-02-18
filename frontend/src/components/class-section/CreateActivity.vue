@@ -1,5 +1,5 @@
 <template>
-  <div class="create--activity mb-3">
+  <div class="create--activity mb-3 modal--cover">
     <div class="p-0">
       <div class="">
         <div class="">
@@ -481,7 +481,8 @@
     }
     .btn {}
   }
-  
+.modal--cover{
+
 .modal {
   position: fixed;
   top: 0;
@@ -608,5 +609,7 @@
   padding: 10px;
   background: #f1f3f5;
 }
+}
+  
 
 </style>

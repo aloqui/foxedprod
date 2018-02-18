@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="modal--wrap">
     <div class="container">
 
 
@@ -307,6 +307,7 @@ export default {
 h1{
     padding-top: 100px;
   }
+  .modal--wrap{
 
 .modal {
   position: fixed;
@@ -376,4 +377,5 @@ h1{
   padding: 10px;
   background: #f1f3f5;
 }
+  }
 </style>
