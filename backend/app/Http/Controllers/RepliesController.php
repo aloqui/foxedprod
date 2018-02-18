@@ -33,13 +33,13 @@ class RepliesController extends Controller
     public function store(Channel $channel, Thread $thread, Request $request) {
         
         if($thread->channel_id == $channel->id ) {
+        $redis = \LRedis::connection();
         $this->validate($request, ['body' => 'required|max:800']);
         $response = $thread->addReply([
             'body' => request('body'),
             'user_id' => Auth::id()
         ])->load('owner');
         $user = auth()->user();
-        $redis = \LRedis::connection();
         $res = $redis->publish('message', $response);
         return $res;
         }
