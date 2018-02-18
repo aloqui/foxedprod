@@ -17,7 +17,6 @@ io.on('connection', function (socket) {
     redisClient.subscribe('addThread');
 
     redisClient.on('message', function (channel, message) {
-        console.log("----");
         console.log('New event sent');
         socket.emit(channel, message)
     })
