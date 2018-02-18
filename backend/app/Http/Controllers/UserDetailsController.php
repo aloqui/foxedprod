@@ -20,7 +20,7 @@ class UserDetailsController extends Controller
         $email = User::where('id', auth()->id())->firstOrFail()->email;
         return ['user' => $response , 'email' => $email];
     }
-
+    
     public function changePassword(Request $request) {
         $response = $this->validate($request, [
             'old_password' => 'required|string|min:6',
@@ -119,8 +119,9 @@ class UserDetailsController extends Controller
      * @param  \App\UserDetails  $userDetails
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(User $user)
     {
+        return $user->details;
     }
 
     /**

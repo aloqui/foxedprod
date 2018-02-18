@@ -24,32 +24,33 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <div class="d-flex flex-column justify-content-center">
-            <a href="" class="content__helper mb-2"><u>Developers & Researchers</u></a>
-            <h5 class="content__helper">Cueto, Chester</h5>
-            <h5 class="content__helper">Dizon, Franchette</h5>
-            <h5 class="content__helper">Lumanlan, John Anna</h5>
-            <h5 class="content__helper">Oquindo, Al</h5>
-          </div>
-        </div>
-        <div class="col">
-          <div class="d-flex flex-column justify-content-center">
-            <h5 class="content__helper"><u>Contact Us</u></h5>
-            <h5 class="content__helper text-uppercase mt-2">+63 917 869 1802</h5>
-            <h5 class="content__helper">al.oquindooff@gmail.com</h5>
-          </div>
-        </div>
-        <div class="col">
-          <div class="d-flex flex-column justify-content-center">
-            <h5 class="content__helper">© FoxedFolio 2018</h5>
-            <h5 class="content__helper text-uppercase mt-2">'For the Foxes..'</h5>
-          </div>
-        </div>
-        <div class="col">
-          <div class="d-flex flex-column justify-content-center">
-            <a href="#" class="content__helper">Privacy Policy</a>
-            <a href="#" class="content__helper">Terms of Use</a>
-            <a href="#" class="content__helper">Site Map</a>
+
+          <div class="d-flex flex-column flex-md-row justify-content-center justify-content-md-between align-items-start align-items-md-start">
+            <div class="d-flex flex-column justify-content-center mb-3">
+              <a href="" class="content__helper mb-2">
+                <u>Developers & Researchers</u>
+              </a>
+              <h5 class="content__helper">Cueto, Chester</h5>
+              <h5 class="content__helper">Dizon, Franchette</h5>
+              <h5 class="content__helper">Lumanlan, John Anna</h5>
+              <h5 class="content__helper">Oquindo, Al</h5>
+            </div>
+            <div class="d-flex flex-column justify-content-center mb-3">
+              <h5 class="content__helper">
+                <u>Contact Us</u>
+              </h5>
+              <h5 class="content__helper text-uppercase mt-2">+63 917 869 1802</h5>
+              <h5 class="content__helper">al.oquindooff@gmail.com</h5>
+            </div>
+            <div class="d-flex flex-column justify-content-center mb-3">
+              <h5 class="content__helper">© FoxedFolio 2018</h5>
+              <h5 class="content__helper text-uppercase mt-2">'For the Foxes..'</h5>
+            </div>
+            <div class="d-flex flex-column justify-content-center mb-3">
+              <a href="#" class="content__helper">Privacy Policy</a>
+              <a href="#" class="content__helper">Terms of Use</a>
+              <a href="#" class="content__helper">Site Map</a>
+            </div>
           </div>
         </div>
       </div>

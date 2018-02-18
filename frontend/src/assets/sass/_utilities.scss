@@ -127,7 +127,7 @@
   font-family: 'Crimson Text', sans-serif;
   font-size: 21px;
   font-weight: 400;
-  color: $black;
+  color: lighten($black, 20%);
   pre {
     @extend .content__helper;
     color: darken($white, 38%);

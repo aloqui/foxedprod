@@ -62,7 +62,7 @@
                 </div>
               </template>
             </ais-results>
-            <ais-no-results class="text-center"></ais-no-results>
+            <ais-no-results class="text-center section-block mt-2"></ais-no-results>
           </ais-index>
 
         </div>

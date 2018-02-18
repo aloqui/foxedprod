@@ -1,15 +1,15 @@
 <template>
 
-  <div class="home">
+  <div class="home pt-4">
     <!-- BELONGS TO -->
     <div class="container">
-      <div class="row ">
-        <div class="col-12 section-block mt-5">
-          <avatarForm :user="user"></avatarForm>
+      <div class="row section-block  ">
+        <div class="col-12 ">
+          <avatarForm :user="user" :userInfo="userInfo"></avatarForm>
         </div>
-        <div class="section-block topic__results">
+        <div class="topic__results mt-5">
           <span class="content__helper text-uppercase">Threads posted</span>
-          <div class="topic__results-block" v-for="thread in threads">
+          <div class="topic__results-block" v-for="thread in threads" :key="thread.id">
             <router-link class="nav-item no-decoration" :to="`/community/${thread.channel.slug}/${thread.id}`">
               <a class="forum__title" href="">{{thread.title}}</a>
               <p class="content__helper">Replies: {{thread.replies.length}}</p>
@@ -37,13 +37,26 @@
       return {
         user: {},
         threads: {},
-        avatar: ''
+        avatar: '',
+        userInfo: {}
       }
+    },
+    mounted() {
+      this.fetch()
+      this.fetchImage()
+      this.fetchDetails()
     },
     methods: {
       fetch() {
         this.$http.get(`api/${this.$route.params.user}/threads`)
           .then(this.refresh);
+      },
+      fetchDetails() {
+        this.$http.get(`api/${this.$route.params.user}/profile/info`)
+          .then(this.refreshDetails)
+      },
+      refreshDetails(data) {
+        this.userInfo = data.body
       },
       fetchImage() {
         this.avatar = this.$auth.getAuthenticatedUser().avatar_path;
@@ -54,10 +67,6 @@
         this.user = data.body.user
       }
     },
-    mounted() {
-      this.fetch()
-      this.fetchImage()
-    }
 
   }
 

@@ -60,8 +60,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/classroom/{classroom}/join', 'UserGroupController@membership');
     Route::post('/classroom/create/a','ClassroomController@create');
     Route::get('/classroom/{classroom}', 'ClassroomController@show');
-
- 
+    
+    
     Route::get('/enrolledClass', 'ClassroomController@index');
     Route::get('/showTimeline', 'ClassroomController@showTimeline');
     Route::resource('activity','ActivityController');
@@ -71,7 +71,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/profiles/language','UserLanguagesController@store');
     Route::post('/{user}/avatar', 'UserAvatarController@store');
     Route::resource('/community/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController');
-
+    
     Route::get('/activities/{Actid}', 'ClassroomController@showActs');
     Route::get('/activities/{Actid}/eval', 'ActivityController@evaluationCodes');
     Route::put('/activities/timesup/{id}', 'ActivityController@updateTime');
@@ -81,10 +81,10 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/activities/update/{id}', 'ActivityController@update');
     Route::get('/activities/show/{id}', 'ActivityController@show');
     Route::put('/eval/codescore/{id}', 'CodeController@updateEval');
-
+    
     Route::put('/eval/imagecore/{id}', 'ImagesPortfolioController@updateEval');
     
-
+    
     Route::resource('imageport','ImagesPortfolioController');
     Route::put('/imageport/update/{id}', 'ImagesPortfolioController@update');
     
@@ -93,26 +93,27 @@ Route::middleware('auth:api')->group(function () {
 });
 Route::get('/community/{channel}/{thread}/replies', 'RepliesController@index');
 Route::get('/community/{channel}/{thread}', 'ThreadController@show');
+Route::get('/{user}/profile/info', 'UserDetailsController@show');
 // Route::middleware('auth:api')->get('/user', function () {
-//     Route::resource('forum','ForumsController'); 
-//     // restricted api sht Protected
-// });
-
-//Route::get('/community', 'ThreadController@index');
-//Route::get('/community/{thread}', 'ThreadController@show');
-Route::post('/register/confirm', 'Api\RegisterConfirmationController@index');
-Route::post('/register', 'Auth\RegisterController@create');
-Route::post('/passwordReset/confirm', 'Auth\ResetPasswordController@index');
-Route::post('/passwordReset', 'ResetPasswordConfirmationController@reset');
-Route::get('/threads/search', 'SearchController@show');
-Route::get('/channel/search', 'SearchController@showChannel');
-Route::get('/community', 'ThreadController@index');
-Route::get('/{user}/threads', 'ProfilesController@showOwnThreads');
-Route::get('/community?by={name}', 'ThreadController@index');
-Route::get('/channels', 'ThreadController@showChannels');
-Route::get('/community/create', 'ThreadController@create');
-Route::get('/community/{channel}', 'ThreadController@index');
-Route::get('/{user}/codes/', 'CodeController@showCodes');
+    //     Route::resource('forum','ForumsController'); 
+    //     // restricted api sht Protected
+    // });
+    
+    //Route::get('/community', 'ThreadController@index');
+    //Route::get('/community/{thread}', 'ThreadController@show');
+    Route::post('/register/confirm', 'Api\RegisterConfirmationController@index');
+    Route::post('/register', 'Auth\RegisterController@create');
+    Route::post('/passwordReset/confirm', 'Auth\ResetPasswordController@index');
+    Route::post('/passwordReset', 'ResetPasswordConfirmationController@reset');
+    Route::get('/threads/search', 'SearchController@show');
+    Route::get('/channel/search', 'SearchController@showChannel');
+    Route::get('/community', 'ThreadController@index');
+    Route::get('/{user}/threads', 'ProfilesController@showOwnThreads');
+    Route::get('/community?by={name}', 'ThreadController@index');
+    Route::get('/channels', 'ThreadController@showChannels');
+    Route::get('/community/create', 'ThreadController@create');
+    Route::get('/community/{channel}', 'ThreadController@index');
+    Route::get('/{user}/codes/', 'CodeController@showCodes');
 Route::get('/{user}/works/', 'ProfilesController@show');
 Route::get('/{user}/user', 'UserAvatarController@show');
 Route::post('/auth/login', 'ProfilesController@authenticate');
