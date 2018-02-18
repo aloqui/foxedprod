@@ -16,6 +16,9 @@
                   <button type="button" class="btn content__button--passive content__helper ml-1" data-toggle="modal" data-target="#imageport">
                     Upload Image
                   </button>
+                  <button type="button" class="btn content__button--passive content__helper ml-1" data-toggle="modal" data-target="#video">
+                    Upload Video Link
+                  </button>
                 </div>
                 <!-- <i class="fa fa-print" aria-hidden="true"></i>
             <i class="fa fa-file-pdf-o" aria-hidden="true"></i> -->
@@ -48,6 +51,35 @@
             <input type="file" accept="image/*" class="form-control section-block content__helper file__remove mt-2 " @change="imageChanged">
 
             <button @click="submitImage" class="btn content__button--passive content__helper mt-2 ">Upload Image</button>
+          </div>
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" @click="onChange">Save changes</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+        <div class="modal fade" id="video" tabindex="-1" role="dialog" aria-labelledby="videoLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content section-block">
+          <div class="modal-header">
+            <h5 class="modal-title font--semi-bold" id="videoLabel">Upload Video</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <img :src="image" />
+            <div class="d-flex flex-column justify-content-center align-items-center">
+            </div>
+            <div class="d-flex flex-column justify-content-center mt-2">
+              <input v-model="imageport.title" type="text" class="mb-2 section-block" placeholder="Video Link">
+            </div>
+            <p class="content__helper mt-2">Choose image or Thumbnail for your link</p>
+            <input type="file" accept="image/*" class="form-control section-block content__helper file__remove mt-2 " @change="imageChanged">
+
+            <button @click="submitImage" class="btn content__button--passive content__helper mt-2 ">Upload Video Link</button>
           </div>
           <!-- <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
