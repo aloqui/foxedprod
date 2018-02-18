@@ -56,7 +56,6 @@
           })
       },
     },
-
     sockets: {
       message(response) {
         this.$emit('created', this.newReply)
