@@ -95,28 +95,35 @@ class ThreadController extends Controller
         return $postThread;
         
     }
-    public function storeThreadOnClassroom(Request $request, UserGroup $usergroup, Classroom $classroom, Recaptcha $recaptcha) {
+    public function storeThreadOnClassroom($classroomId, Request $request, Recaptcha $recaptcha) {
         request()->validate([
             'title' => 'required|max:60',
             'body' => 'required|min:4|max:1600',
             'recaptcha' => ['required', $recaptcha]
         ]); 
-        
-        $postThread = Thread::Create([
-            'user_id' => Auth::id(),
-            'title' => $request['title'],
-            'classroom_id' => $classroom->id,
-            'body' => $request['body']
-        ]);
-        $redis = Redis::connection();
-        $redis->publish('addThread', $postThread);
-        return $postThread;
+        $matchThese = ['classroom_id' => $classroomId, 'user_id' => auth()->id()];
+        $member = UserGroup::where($matchThese)->exists();
+        $classroom = Classroom::where('id', $classroomId)->firstOrFail();
+        if($member || $classroom->user_id == auth()->id()) {
+
+            $postThread = Thread::Create([
+                'user_id' => Auth::id(),
+                'title' => $request['title'],
+                'classroom_id' => $classroom->id,
+                'body' => $request['body']
+                ]);
+                $redis = Redis::connection();
+                $redis->publish('addThread', $postThread);
+                return $postThread;
+            }
+            else
+                abort(403, 'Unauthenticated');
     }
     
     public function getThisChannel(Request $request, Channel $channel, Thread $thread) {
         return $channel;
     }
-    public function getThisClassroomDiscussions(Request $request, Classroom $classroom, Thread $thread) {
+    public function getThisClassroomDiscussions($channelId) {
         $getThread = Thread::where('classroom_id', $classroom->id)->load('owner', 'replies')->latest()->get();
         return $getThread;
     }
@@ -139,12 +146,18 @@ class ThreadController extends Controller
             }
         else
             return abort(403, 'Unauthorized');
+        
+
         //
     }
-    public function showOnClassroom(Classroom $classroom, Thread $thread)
+    public function showOnClassroom($classroomId, Thread $thread)
     {   
         
-        if($thread->classroom_id == $classroom->id ) {
+        
+        $matchThese = ['classroom_id' => $classroomId, 'user_id' => auth()->id()];
+        $member = UserGroup::where($matchThese)->exists();
+        $classroom = Classroom::where('id', $classroomId)->firstOrFail();
+        if($member || $classroom->user_id == auth()->id()) {
             $thread->load('owner', 'subscriptions', 'channel')->get();
             // Redis::zincryby('threading_threads', 1, json_encode([
                 //     'title' => $thread->title,

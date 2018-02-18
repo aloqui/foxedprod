@@ -54,6 +54,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/currentChannel/{channel}', 'ThreadController@getThisChannel');
     Route::patch('/community/{channel}/{thread}', 'ThreadController@update');
     Route::delete('/community/{channel}/{thread}', 'ThreadController@destroy');
+    Route::delete('/classroom/{classroom}/{user}/remove', 'UserGroupController@removeMember');
     Route::resource('codes','CodeController');
     Route::patch('/codes/{code}','CodeController@update');
     Route::post('/classroom/{classroom}/join', 'UserGroupController@membership');
