@@ -3,8 +3,10 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var redis = require('redis');
 
-server.listen(8082, 'localhost');
-console.log('Server running at http://localhost:8082/');
+server.listen(3000, 'localhost', function() {
+    console.log('Server running at http://localhost:3000/');
+});
+
 
 io.on('connection', function(socket) {
     console.log('Client connected.');
