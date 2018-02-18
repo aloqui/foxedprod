@@ -58,7 +58,6 @@
     },
     sockets: {
       message(response) {
-        alert("new thang")
         console.log('replied ')
         var responseData = JSON.parse(response)
         console.log("response")

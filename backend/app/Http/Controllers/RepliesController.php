@@ -41,7 +41,7 @@ class RepliesController extends Controller
         ])->load('owner');
         $user = auth()->user();
         $res = $redis->publish('message', $response);
-        return $res;
+        return $response;
         }
         else
             return abort(403, 'Unauthorized');
