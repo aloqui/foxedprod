@@ -22,6 +22,9 @@ class UserGroupController extends Controller {
   public function membership(User $user, Classroom $classroom) {
       $classroom->subscribe();
   }
+  public function removeMember(User $user, Classroom $classroom) {
+      $classroom->subscribe();
+  }
 
 
 

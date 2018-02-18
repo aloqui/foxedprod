@@ -39,7 +39,7 @@ class RepliesController extends Controller
         ])->load('owner');
         if($thread->channel_id == $channel->id ) {
         $user = auth()->user();
-        $redis = Redis::connection();
+        $redis = \LRedis::connection();
         $redis->publish('message', $response);
         return $response;
         }
