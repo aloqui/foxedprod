@@ -58,12 +58,12 @@
     },
     sockets: {
       message(response) {
+        console.log('replied ')
         var responseData = JSON.parse(response)
         console.log("response")
         console.log(response)
         this.$emit('created', responseData)
         this.$emit('changed', this.dataSet.last_page)
-        console.log('replied ')
       }
     },
     created() {

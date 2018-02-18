@@ -32,16 +32,16 @@ class RepliesController extends Controller
     }
     public function store(Channel $channel, Thread $thread, Request $request) {
         
+        if($thread->channel_id == $channel->id ) {
         $this->validate($request, ['body' => 'required|max:800']);
         $response = $thread->addReply([
             'body' => request('body'),
             'user_id' => Auth::id()
         ])->load('owner');
-        if($thread->channel_id == $channel->id ) {
         $user = auth()->user();
         $redis = \LRedis::connection();
-        $redis->publish('message', $response);
-        return $response;
+        $res = $redis->publish('message', $response);
+        return $res;
         }
         else
             return abort(403, 'Unauthorized');
