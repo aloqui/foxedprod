@@ -38,8 +38,11 @@
                             <router-link  :to="'/'+act.user.username +'/codes/' + act.id"><span>{{act.user.name}}</span></router-link>
                         </td>
                         <td>
+                            {{momentize(act.created_at)}}
+                        </td>
+                        <td>
                             <span v-if="act.score">
-                                    {{act.score.body}}
+                                    {{act.score.totalScore}}
                             </span> 
                             <span v-else>
                                     Not scored
@@ -57,7 +60,7 @@
                         </td>
                         <td>
                             <span v-if="act.score">
-                                    {{act.score.body}}
+                                    {{act.score.totalScore}}
                             </span> 
                             <span v-else>
                                     Not scored
@@ -95,62 +98,32 @@
                         <div class="collapse" id="collapseExample">
                         <table class="table table-fit">
                         <thead>
-                            <tr class="text-center">
-                            <th> </th>
-                            <th>5</th>
-                            <th>4</th>
-                            <th>3</th>
-                            <th>2</th>
-                            <th>1</th>
+                            <tr>
+								<th>{{rubric.title}}</th>
+                            	<th v-for="question in totalCol">{{question.col_num}}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <th scope="row">Elements of design:</th>
-                            <td>Planned carefully, made several sketches, and showed an awareness of the elements and principles of design; chose color scheme carefully, used space effectively.</td>
-                            <td>The artwork shows that the student applied the principles of design while using one or more elements effectively; showed an awareness of filling the space adequately</td>
-                            <td>@The student did the assignment adequately, yet it shows lack of planning and little evidence that an overall composition was planned.</td>
-                            <td>The student did the assignment adequately, yet it shows lack of planning and little evidence that an overall composition was planned.</td>
-                            <td>The assignment was completed and turned in, but showed little evidence of any understanding of the elements and principles of art; no evidence of planning.</td>
-                            <td v-show="!modal.evaluated"><input v-model="score.first" type="number"  min="0" max="5"></td>
-                            <td><h3>{{evaluatedScores.first}}</h3></td>
-                            </tr>
-                            <tr>
-                            <tr>
-                            <th scope="row">Creativity/Originality</th>
-                            <td>The student explored several choices before selecting one; generating many ideas; tried unusual combinations or changes on several ideas; made connections to previous knowledge; demonstrated understanding problem solving skills.</td>
-                            <td>The student tried a few ideas for selecting one; or based his or her work on someone else's idea; made decisions after referring to one source; solve the problem in logical way.</td>
-                            <td>The student tried in idea, and help out adequately, but it lacked originality; substituted "symbols" for personal observation; might have copied work.</td>
-                            <td>The student fulfill the assignment, but gave no evidence of trying anything unusual.</td>
-                            <td>The student showed no evidence of original thought</td>
-                            <td v-show="!modal.evaluated"><input v-model="score.second" type="number" min="0" max="5"></td>
-                            <td><h3>{{evaluatedScores.second}}</h3></td>
-                            </tr>
-                            <tr>
-                            <th scope="row">Effort/Perseverance</th>
-                            <td>The project was continued until it was complete as the student could make it; gave it effort far beyond that required; to pride in going well beyond the requirement.</td>
-                            <td>The student work hard and completed the project, but with a loom or effort it might have been outstanding.</td>
-                            <td>The student finished the project, but it could have been improved with more effort; adequate interpretation of the assignment, but lacking finish; chose an easy project and did it indifferently.</td>
-                            <td>The project was completed with minimum effort.</td>
-                            <td>The student did not finished the work adequately.</td>
-                            <td v-show="!modal.evaluated"><input v-model="score.third" type="number" min="0" max="5"></td>
-                            <td><h3>{{evaluatedScores.third}}</h3></td>
-                            </tr>
-                            <tr>
-                            <th scope="row">Craftsmanship/Skill/Consistency</th>
-                            <td>The artwork was beautiful and patiently done; it was as good as hard work could make it.</td>
-                            <td>With a little more effort, the work could have been outstanding; lacks the finishing touches.</td>
-                            <td>The student showed average craftsmanship; adequate, but not as good as it could have been, a bit careless.</td>
-                            <td>The student showed below average craftsmanship, lack of pride in finished work.</td>
-                            <td>The student showed poor craftsmanship; evidence of lazy this or lack of understanding.</td>
-                            <td v-show="!modal.evaluated"><input v-model="score.fourth" type="number" min="0" max="5"></td>
-							<td><h3>{{evaluatedScores.fourth}}</h3></td>
-                            </tr>
+                            <tr  v-for="(criteria, index) in rubric.row" :key="criteria">
+
+                            <th scope="row">{{criteria.criteria}} ({{criteria.percent}}%)</th>
+                            <td v-for="quest in criteria.col">
+                                <p>{{quest.description}}</p> 
+                            </td>
+                            <td v-show="!modal.evaluated">
+								<input v-model="criteria.raw" type="number" min="0">
+								
+							</td>
+                            <td v-if="modal.evaluated">
+								<p class="text-dark">{{evaluatedScores.raw[index].raw}} <span> ({{evaluatedScores.raw[index].computed}})</span></p>
+							</td>
+
+                            </tr>  
                         </tbody>
                         </table>
                             <div  class="d-flex justify-content-center align-items-center">
-                            <h3 v-if="modal.evaluated">  Total Score:  {{evaluatedScores.body}} </h3>
-                            <button v-show="!modal.evaluated" class="btn content__button--passive content__helper" @click="submitscore">save</button>
+                            <h3 v-if="modal.evaluated">  Total Score:  {{evaluatedScores.totalScore}} </h3>
+                            <button v-show="!modal.evaluated" class="btn content__button--passive content__helper" @click="scoreThis">save</button>
                         </div>
                         </div>
 
@@ -175,18 +148,20 @@ export default {
     data (){
         return {
             act: JSON.parse(this.$route.params.id),
+            rubric:{},
+            totalCol:{},
             submitted: [],
             modal:{},
             score:{
                 body:"",
                 act_id:"",
                 user_id:"",
-                first:"",
-                second:"",
-                third:"",
-                fourth:"",
                 
     },
+		rawScore:{
+			scores:[],
+			totalScore:''
+		},
     imagePath: '',
 		evaluation:{
 			evaluated:true,
@@ -207,31 +182,80 @@ export default {
         .then(me => this.user = me.body)
         .catch();
         this.getImagePath()
-      },
-      methods: {
-          momentize(date){
-           return moment(date).calendar()
+    },
+    methods: {
+        getTotal(rawScore, totalCriteria, percent){
+                    return rawScore / totalCriteria * percent;
+                },
+        scoreThis(){
+            this.rawScore.act_id = this.modal.id;
+            this.rawScore.user_id = this.modal.user_id;
+            var arrayLength = this.rubric.row.length ;
+            this.rawScore.scores=[];
+            var computedScore = 0;
+            var num = 0;
+            for(var i=0; i<arrayLength; i++){
+					
+						computedScore = this.getTotal(this.rubric.row[i].raw, this.rubric.row[i].col.length, this.rubric.row[i].percent).toFixed(2)
+						console.log(computedScore)
+						this.rawScore.scores.push({criteria_num : i+1 , computed : JSON.parse(computedScore), raw : JSON.parse(this.rubric.row[i].raw)})
+						
+                    }
+            for(var i=0; i<this.rawScore.scores.length; i++){
+                        num += this.rawScore.scores[i].computed;
+                    }
+            this.rawScore.totalScore = num;
+            this.$http.post("api/submitScore", this.rawScore).then(response => {
+						console.log(response);
+						this.evaluation.score_id = response.body.id;
+								this.$http.put("api/eval/imagecore/" + this.modal.id, this.evaluation).then(response => {
+								console.log(response);
+									swal("Succesfully Evaluated!", {
+										icon: "success"
+									}).then(value => location.reload());
+							});
+        });
+
+        },
+        getRubric(){
+			this.$http.get(`api/rubrics/certain/`+ this.modal.rubric_set_id)
+				.then(response => {
+					this.rubric = response.body.rubric;
+					this.totalCol = response.body.rubric.row[0].col
+                    console.log(response.body)
+                    
+                    var arrayLength = response.body.rubric.row.length -1;
+					
+						for(var i=0; i<=arrayLength; i++){
+
+							this.$set(this.rubric.row[i], 'raw', 0)
+						}
+				});
+		},
+            momentize(date){
+            return moment(date).calendar()
         }, 
-      getImagePath() {
+        getImagePath() {
         this.imagePath = `${location.protocol}//${location.hostname}/images/`
         if (location.port)
-          this.imagePath = `${location.protocol}//${location.hostname}:${location.port}/images/`
-      },
-          cons(ac){
-              this.evaluatedScores= {};
+        this.imagePath = `${location.protocol}//${location.hostname}:${location.port}/images/`
+    },
+        cons(ac){
+            this.evaluatedScores= {};
                 this.modal = ac;
                 $('.collapse').collapse('hide');
-          },
-          submitscore(){
-              this.score.act_id = this.act;
+                this.getRubric()
+            },
+        submitscore(){
+            this.score.act_id = this.act;
                 this.score.user_id = this.modal.user.id;
                 // JSON.parse(this.score)
                 function getTotal(num, per){
                     return num / 5 * per;
                 }
                 this.score.body = getTotal(this.score.first,25) + getTotal(this.score.second,25) + getTotal(this.score.third,25) + getTotal(this.score.fourth,25);
-              
-              this.$http.post("api/submitScore", this.score).then(response => {
+            
+            this.$http.post("api/submitScore", this.score).then(response => {
                                     console.log(response);
                                     this.evaluation.score_id = response.body.id;
 								this.$http.put("api/eval/imagecore/" + this.modal.id, this.evaluation).then(response => {
@@ -241,8 +265,8 @@ export default {
                                     });
                                     // location.reload()
 							});
-          });
-          },
+        });
+        },
           getScore () {
 			this.$http.get(`api/submitScore/`+this.modal.score.id)
         .then(response => this.evaluatedScores = response.body)

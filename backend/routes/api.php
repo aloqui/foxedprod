@@ -83,6 +83,18 @@ Route::middleware('auth:api')->group(function () {
 
     Route::resource('imageport','ImagesPortfolioController');
     Route::put('/imageport/update/{id}', 'ImagesPortfolioController@update');
+
+    Route::get('/rubrics/owned/{user}','RubricsController@showRubricOwn');
+    Route::resource('rubrics','RubricsController');
+    Route::get('/rubrics/{id}','RubricsController@show');
+    
+
+    
+    
+    Route::get('/rubrics/show/{name}','RubricsController@showRubrics');
+    Route::post('/rubrics/row/{id}','RubricsController@storeRow');
+    Route::put('/rubrics/column/{id}','RubricsController@updateColumn');
+    Route::put('/rubrics/row/update/{id}','RubricsController@updateRow');
     
 });
 Route::get('/community/{channel}/{thread}/replies', 'RepliesController@index');
@@ -113,3 +125,5 @@ Route::get('/{user}/user', 'UserAvatarController@show');
 Route::post('/auth/login', 'ProfilesController@authenticate');
 //Route::resource('threads', 'ThreadsController');
 Route::get('/{name}/codes/{id}','CodeController@showCertainCode');
+Route::get('/activities/rubric/{id}', 'ActivityController@getCertRubric');
+Route::get('/rubrics/certain/{id}','RubricsController@showCertRubric');

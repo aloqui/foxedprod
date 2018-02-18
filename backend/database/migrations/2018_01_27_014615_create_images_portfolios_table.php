@@ -16,8 +16,10 @@ class CreateImagesPortfoliosTable extends Migration
         Schema::create('images_portfolios', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->text('description')->nullable();
             $table->string('image');
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('rubric_set_id')->nullable();
             $table->unsignedInteger('activity_id')->nullable();
             $table->unsignedInteger('score_id')->nullable();
             $table->boolean('submitted')->default(false);

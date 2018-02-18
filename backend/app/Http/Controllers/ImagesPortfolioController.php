@@ -33,6 +33,7 @@ class ImagesPortfolioController extends Controller
         $activity = ImagesPortfolio::create( $request->except('image') + [
             'user_id' => Auth::id(),
             'title' => request('title'),
+            'rubric_set_id' => request('rubric_set_id'),
             'image' => $fileName
         ]);
 

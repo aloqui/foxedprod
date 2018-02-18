@@ -32,7 +32,7 @@
               <div class="col-xs-12 col-sm-12 col-md-6 mb-3">
                 <div>
                   <!-- <class-feed-block></class-feed-block> -->
-                  <create-activity  class="section-block" v-show="user.prof"></create-activity>
+                  <create-activity  class="section-block"  v-show="user.prof" :user="user"></create-activity>
                   <view-activities  class="section-block" :user="user"></view-activities> 
                 </div>
                 

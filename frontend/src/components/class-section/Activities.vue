@@ -22,12 +22,38 @@
                         <div class="form-group">
                             <label>Submit to this activity</label>
                             <input  type="file" accept="image/*" class="form-control content__helper" @change="imageChanged">
-                            <div v-show="authenticatedUser.prof" class="d-flex justify-content-end align-items-center pt-2">
+                            
+                        </div>
+                        <div class="collapse" id="collapseExample">
+                        <table class="table table-fit">
+                        <thead>
+                            <tr>
+															<th>{{rubric.title}}</th>
+                            	<th v-for="question in totalCol">{{question.col_num}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr  v-for="criteria in rubric.row">
+                            <th scope="row">{{criteria.criteria}} ({{criteria.percent}}%)</th>
+                            <td v-for="quest in criteria.col">
+                                      <p>{{quest.description}}</p> 
+                                    </td>
+							<td><h3> </h3></td>
+                            </tr> 
+                        </tbody>
+                        </table>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button @click="getRubric" class="btn content__button--passive content__helper" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            show rubric
+                        </button>
+                        
                                 
                                 <input v-model="imageport.title" type="text" placeholder="title" class="input--default">
                                 <button class="btn content__button--passive content__helper" @click="submitImage">save</button>
-                            </div>
-                        </div>
+                            
                     </div>
                     </div>
                 </div>
@@ -45,7 +71,9 @@
         activities: [],
         modal: {},
         imageport: {},
-        imagePath: ''
+        imagePath: '',
+        rubric:{},
+        totalCol:{}
       }
     },
 
@@ -56,6 +84,9 @@
       authenticatedUser() {
         return this.$auth.getAuthenticatedUser()
       },
+      closeCol(){
+                $('.collapse').collapse('hide');
+          },
       datea() {
         var date = new Date();
         return console.log(date)
@@ -77,6 +108,15 @@
         })
     },
     methods: {
+      getRubric(){
+			this.$http.get(`api/rubrics/certain/`+ this.modal.rubric_set_id)
+				.then(response => {
+					this.rubric = response.body.rubric;
+					this.totalCol = response.body.rubric.row[0].col
+					console.log(response.body)
+				})
+				;
+		},
       getImagePath() {
         this.imagePath = `${location.protocol}//${location.hostname}/images/`
         if (location.port)
@@ -130,11 +170,13 @@
       },
       conss(a) {
         console.log(a)
+        $('.collapse').collapse('hide');
         this.modal = a;
       },
       submitImage() {
         this.imageport.submitted = true;
         this.imageport.activity_id = this.modal.id;
+        this.imageport.rubric_set_id = this.modal.rubric_set_id;
         this.$http.post('api/imageport/', this.imageport)
           .then(response => {
             console.log(response)
@@ -154,6 +196,13 @@
     width: 100%;
   }
 
-  .modal-body {}
+  .modal-body {
+      .collapse{
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 1;
+  }
+  }
 
 </style>

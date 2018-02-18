@@ -8,6 +8,7 @@ use App\Classroom;
 use App\Code;
 use App\Score;
 use App\ImagesPortfolio;
+use App\RubricSet;
 use Auth;
 
 class ActivityController extends Controller
@@ -45,6 +46,7 @@ class ActivityController extends Controller
             'user_id' => Auth::id(),
             'title' => request('title'),
             'body' => request('body'),
+            'rubric_set_id' => request('body'),
             'image' => $fileName
         ]);
 
@@ -57,6 +59,18 @@ class ActivityController extends Controller
             return response()->json(Activity::find($id));
 
         return response()->json(['error' => 'resource not found'],404);
+    }
+
+    public function getCertRubric($id){
+        $activity = Activity::find($id);
+        
+        $act = $activity->id;
+        
+        $rub = RubricSet::find($act);
+
+        $rubric = $rub->load('row','row.col');
+        
+        return $rubric;
     }
 
     public function update(Request $request, $id){
@@ -134,9 +148,9 @@ class ActivityController extends Controller
         // $codes->CodesSubmitted->load('user');
         // $codes->ScoresSubmitted->load('user');
         return [
-        'userAct' => $codes->CodesSubmitted->load('user','score'),
+        'userAct' => $codes->CodesSubmitted->load('user','score.raw'),
         'score' => $codes->ScoresSubmitted->load('user'),
-        'userImage' => $codes->ImageSubmitted->load('user','score'), 
+        'userImage' => $codes->ImageSubmitted->load('user','score.raw'), 
         'class'=> $codes];
         // return $codes->ScoresSubmitted->load('owner');
         return $codes;
