@@ -66,15 +66,6 @@
         this.$emit('changed', this.dataSet.last_page)
       }
     },
-    created() {
-
-      // this.$http.get(`api/community/${this.$route.params.slug}/${this.$route.params.id}`)
-      //   .then(data => {
-      //     this.reply = data.body.replies
-      //     console.log(data);
-      //   });
-
-    }
   }
 
 </script>

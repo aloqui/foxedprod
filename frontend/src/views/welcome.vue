@@ -134,7 +134,15 @@
       'register': Register
     },
 
-
+  sockets: {
+        connection() {
+            console.log('socket connected')
+            console.log('socket connected')
+            console.log('socket connected')
+            console.log('socket connected')
+            console.log('socket connected')
+        }
+    },
   }
 
 </script>
