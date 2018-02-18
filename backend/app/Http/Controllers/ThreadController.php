@@ -152,8 +152,6 @@ class ThreadController extends Controller
     }
     public function showOnClassroom($classroomId, Thread $thread)
     {   
-        
-        
         $matchThese = ['classroom_id' => $classroomId, 'user_id' => auth()->id()];
         $member = UserGroup::where($matchThese)->exists();
         $classroom = Classroom::where('id', $classroomId)->firstOrFail();

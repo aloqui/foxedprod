@@ -40,8 +40,8 @@
                             </div>
                             <p class="content__helper text-uppercase">Description:</p>
                             <p class="content--paragraph">
-                            <ais-highlight :result="result" attribute-name="description">
-                            </ais-highlight>
+                              <ais-highlight :result="result" attribute-name="description">
+                              </ais-highlight>
                             </p>
                           </div>
                           <div class="ml-auto category__owner">
@@ -62,9 +62,11 @@
                   </div>
                 </div>
                 <div v-else v-cloak class="">
-                  <p class="content__helper text-center section-block" >I'm sorry, I can't give you more..</p>
+                  <p class="content__helper text-center section-block">I'm sorry, I can't give you more..</p>
                 </div>
-                <ais-no-results class="text-center"></ais-no-results>
+
+                  <ais-no-results class="text-center section-block mt-2"></ais-no-results>
+
               </ais-index>
             </div>
           </div>
