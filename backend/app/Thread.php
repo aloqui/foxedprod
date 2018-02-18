@@ -45,6 +45,9 @@ class Thread extends Model
     public function channel() {
         return $this->belongsTo(Channel::class, 'channel_id');
     }
+    public function classroom() {
+        return $this->belongsTo(Classroom::class, 'classroom_id');
+    }
     public function owner() {
         return $this->belongsTo(User::class, 'user_id');
     }
@@ -52,16 +55,16 @@ class Thread extends Model
         return $this->hasMany(ThreadSubscription::class);
     }
     public function getIsSubscribedToAttribute(){
-       
         return $this->subscriptions()
         ->where('user_id', Auth::guard('api')->id())
         ->exists();
-            
     }
-
-    //
     public function path() {
-        return "/community/{$this->channel->slug}/{$this->id}";
+        if($this->channel_id)
+            return "/community/{$this->channel->slug}/{$this->id}";
+        else 
+            return "/class/{$this->classroom->id}/{$this->id}";
+
     }
 
     public function channelVal() {

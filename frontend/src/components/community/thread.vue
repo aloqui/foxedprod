@@ -44,7 +44,6 @@
             swal("Error!", {
               icon: "error",
             });
-
           });
       },
       update() {

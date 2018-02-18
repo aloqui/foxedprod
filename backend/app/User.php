@@ -66,6 +66,9 @@ class User extends Authenticatable
     public function prof() {
         return $this->hasMany(Classroom::class)->latest();
     }
+    public function member() {
+        return $this->hasMany(UserGroup::class)->latest();
+    }
     public function channel() {
         return $this->hasMany(Channel::class);
     }
@@ -86,5 +89,4 @@ class User extends Authenticatable
             ->where('user_id', auth()->id())
             ->exists();
     }
-    
 }

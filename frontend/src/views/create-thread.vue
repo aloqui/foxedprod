@@ -5,12 +5,12 @@
       <div class="row mt-2">
         <div class="col-12 ">
           <div class="">
-            <div class="block-full-height d-flex flex-column  section-block mt-4 mb-3 ">
+            <div class="block-full-height d-flex flex-column section-block mt-4 mb-3 ">
               <div class="m-5">
                 <h2 class="content__title text-center font--bold">Create a Discussion</h2>
                 <p class="content__sub-title text-center">Explore and learn from other developers around you.</p>
               </div>
-              <form class="content ml-auto mr-auto card box-shadow p-5" @submit.prevent="addThread">
+              <form class="content ml-auto mr-auto card section-block  box-shadow p-5" @submit.prevent="addThread">
                 <div class="form-group mt-2 p-3 trix__edit ">
                   <h5 class="content__helper mb-2 text-uppercase">Title</h5>
                   <h1 class="mb-5">
@@ -42,6 +42,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -99,7 +100,7 @@
           })
           .catch(response => {
             this.loading = false;
-            if(response.body.errors)
+            if (response.body.errors)
               this.inputError = response.body.errors;
           })
       }

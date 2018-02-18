@@ -6,11 +6,13 @@
           <img :src="avatar" class="picture" alt="" id="picture">
         </div>
         <div class="d-flex flex-column justify-content-start">
-          <h1 class="font--semi-bold">{{user.name}}</h1>
+          <h1 class="forum__title font--semi-bold pb-2">{{user.name}}</h1>
+          <p class="content__helper mt-2">Bio</p>
+          <p class="content--paragraph">{{ userInfo.bio }}</p>
           <div>
-            <button type="button" class="btn content__button--passive content__helper" data-toggle="modal" data-target="#exampleModal"
+            <button type="button" class="btn content__button--passive content__helper mt-2" data-toggle="modal" data-target="#exampleModal"
               v-show="user.id == Auth.id">
-              Edit Profile
+              Change Profile Image
             </button>
           </div>
           <!-- <button type="submit" class="btn">Add Avatar</button> -->
@@ -51,6 +53,7 @@
   export default {
     name: 'avatarForm',
     mixins: [PictureMixin],
+    props:['userInfo'],
     data() {
       return {
         avatar: '',

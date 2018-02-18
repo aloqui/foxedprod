@@ -7,6 +7,7 @@
           <div class="section-block">
             <!-- <div v-for="thread in threads" v-bind:thread="thread" :key="thread.id"> -->
             <!-- Editing Thread -->
+            <p class="content__helper text-center" v-if="!toShow">404 Not Found :(</p>
             <div v-bind:threads="threads" :key="threads.id">
               <thread :attriThread="threads" inline-template>
                 <div class="content m-auto specific-thread__edit" v-if="editingThread">
@@ -15,7 +16,7 @@
                       <div class="mb-4 d-flex">
                         <router-link class="no-decoration" :to="`/${attriThread.owner.username}/threads`">
                           <div class="d-flex align-items-center ">
-                            <div class="picture-placeholder">
+                            <div class="picture-placeholder mr-3">
                               <img class="picture mr-3" :src="attriThread.owner.avatar_path" alt="">
                             </div>
                             <div class="d-flex flex-column">
@@ -40,15 +41,18 @@
                       <a href="#" class="content__helper">{{attriThread.created_at | formatDateFormal}}</a>
                       <hr>
                     </div>
-
-
-
                     <div class="level d-flex">
                       <div>
                         <button class="btn content__helper text-uppercase" @click="update">
                           <i class="fas fa-check"></i>
                           <div class="content__helper-visual--update">
                             <p class="content__helper">Update</p>
+                          </div>
+                        </button>
+                        <button class="btn content__helper text-uppercase" @click="editingThread = false; editThread.title = attriThread.title; editThread.body = attriThread.body">
+                          <i class="fas fa-times"></i>
+                          <div class="content__helper-visual--cancel">
+                            <p class="content__helper">Cancel</p>
                           </div>
                         </button>
 
@@ -128,7 +132,7 @@
           <!-- reply -->
           <!-- <replies > -->
           <div>
-            <replies></replies>
+            <replies v-show="toShow"></replies>
           </div>
           <!-- </replies> -->
 
@@ -150,7 +154,7 @@
   import swal from 'sweetalert';
   import Thread from '../components/community/thread';
   import Replies from '../components/community/replies.vue';
-  
+
 
   // import forumReplies from '../components/forum-replies.vue';
 
@@ -164,7 +168,7 @@
       'thread': Thread
       // 'forum-replies': forumReplies
     },
-    
+
     // props: [
     //   'thread',
     //   'authenticatedUser'
@@ -175,23 +179,31 @@
         threads: {},
         pageQuery: this.$route.query.page,
         endpoint: `api${this.$route.path}`,
-        active: false
+        active: false,
+        errorHandling: {},
+        toShow: false
       }
+    },
+    mounted() {
+      this.fetch()
     },
     methods: {
       fetch() {
         this.$http.get(this.endpoint)
           .then(this.refresh)
+          .catch(response => {
+            if(response.body.message) {
+              this.toShow = false
+              this.errorHandling = response.body
+            }
+          })
       },
       refresh(data) {
+        this.toShow = true
         this.threads = data.body
 
       }
     },
-    mounted() {
-      this.fetch()
-      
-    }
   }
 
 </script>

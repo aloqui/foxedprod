@@ -20,9 +20,20 @@ class UserGroupController extends Controller {
   return $classroom;
   }
   public function membership(User $user, Classroom $classroom) {
-    
       $classroom->subscribe();
+  }
+  public function removeMember($classroomId, $userId) {
     
+    $classroom = Classroom::where('id', $classroomId)->firstOrFail();
+    if($classroom->user_id == auth()->id()) {
+
+      $matchThese = ['classroom_id' => $classroomId, 'user_id' => $userId];
+      $deleteUser = UserGroup::where($matchThese)->firstOrFail();
+      $deleteUser->delete();
+      return response([], 204);
+    }
+    else 
+      abort(403, "Unauthenticated.");
   }
 
 
