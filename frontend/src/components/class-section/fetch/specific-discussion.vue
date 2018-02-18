@@ -3,7 +3,7 @@
     <div class="container section-block ">
       <div class="row">
         <div class="col">
-          <div class="content m-auto">
+          <div class="content m-auto" v-if="authenticated">
             <h1 class="content__helper">Specific Discussion</h1>
             <div class="mb-4 mt-4 d-flex">
               <router-link class="no-decoration" :to="`/${specificData.owner.username}/threads`">
@@ -24,6 +24,9 @@
             <p class="content--paragraph">{{ specificData.body }}</p>
             <replies :classDetails="classDetails"></replies>
           </div>
+          <div v-else>
+            <p class="content__helper text-center">404 Not Found :(</p>
+          </div>
         </div>
       </div>
     </div>
@@ -39,6 +42,7 @@
       return {
         specificData: {},
         classDetails: {},
+        authenticated: false
       }
     },
     mounted() {
@@ -62,10 +66,15 @@
       fetch() {
         this.$http.get(`api/class/${this.$route.params.id}/${this.$route.params.discussionId}/discussions`)
           .then(this.refresh)
+          .catch(response => {
+            if (response.body.message )
+              this.authenticated = false
+          })
       },
       refresh(data) {
         console.log(data)
         this.specificData = data.body
+        this.authenticated = true
       },
 
     }

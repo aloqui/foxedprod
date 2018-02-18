@@ -27,7 +27,7 @@
                     <ais-input class="" placeholder="Need help?" autofocus v-on:click="resetPage"></ais-input>
                   </ais-search-box>
                 </div>
-                <ais-results class="section-block mb-5" :results-per-page="5" :stack="true">
+                <ais-results class="section-block mb-2" :results-per-page="5" :stack="true">
                   <template slot-scope="{ result }">
                     <div>
                       <router-link class="no-decoration" :to="result.path">
@@ -54,15 +54,15 @@
                     </div>
                   </template>
                 </ais-results>
-                <div class="" v-if="page < last_page && !searchQuery">
+                <div class="mb-2" v-if="page < last_page && !searchQuery">
 
-                  <div class="text-center m-5 pb-5" v-observe-visibility="loadMore">
+                  <div class="text-center m-auto section-block" v-observe-visibility="loadMore">
                     <i class="animate__spin animate__spin--dark fas fa-circle-notch m-auto"></i>
                     <p class="font--light">Loding..</p>
                   </div>
                 </div>
-                <div v-else v-cloak>
-                  <p class="text-center m-5">I'm sorry, I can't give you more..</p>
+                <div v-else v-cloak class="">
+                  <p class="content__helper text-center section-block" >I'm sorry, I can't give you more..</p>
                 </div>
                 <ais-no-results class="text-center"></ais-no-results>
               </ais-index>

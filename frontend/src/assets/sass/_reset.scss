@@ -264,3 +264,12 @@ button,
     width: 100%;
   }
 }
+.list-of-students {
+  .list-of-students__student {
+    padding: 10px 5px;
+  }
+  .list-of-students__student:nth-of-type(even) {
+    background-color: $white;
+   
+  }
+}

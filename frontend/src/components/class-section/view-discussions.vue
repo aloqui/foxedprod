@@ -1,14 +1,15 @@
 <template>
   <div class="classroom">
-    <div class="section-block mb-2">
+    <div class=" mb-2">
       <p class="content__helper text-uppercase">Discussions</p>
+      <hr>
     </div>
     <ais-index app-id="TN5MR9QHP4" api-key="a933713f38f230be88643278a41c7281" :query="q" :query-parameters="{'filters': `(classroom_id: ${classDetails.id})`,'page': 1}"
       index-name="threads">
-      <div class="section-block mb-2 d-flex align-items-center">
+      <div class=" mb-2 d-flex align-items-center">
         <div>
           <p class="content__helper text-uppercase">Search</p>
-          <ais-search-box autofocus >
+          <ais-search-box autofocus>
             <ais-input class="" placeholder="Search..." autofocus></ais-input>
           </ais-search-box>
         </div>
@@ -16,7 +17,8 @@
           <ais-powered-by></ais-powered-by>
         </div>
       </div>
-      <div class="section-block mb-2" v-if="isAuth">
+      <hr>
+      <div class=" mb-2" v-if="isAuth">
         <p class="content__helper text-uppercase">Actions</p>
         <router-link :to="`/community/${endpoint}/create`">
           <button class="btn form__button--positive-dark ml-2 mt-2" type="submit">
@@ -25,7 +27,7 @@
           </button>
         </router-link>
       </div>
-      <ais-results class="section-block mb-5" :results-per-page="5" :stack="true">
+      <ais-results class=" mb-5" :results-per-page="5" :stack="true">
         <template slot-scope="{ result }">
           <div>
             <router-link class="no-decoration" :to="`/class/${classDetails.id}/discussion/${result.id}`">
@@ -83,7 +85,6 @@
   </div>
 </template>
 <script>
-  
   export default {
     props: ['classDetails', 'discussions', 'hasDiscussion'],
     // components: {

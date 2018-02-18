@@ -5,18 +5,31 @@
       <div class="pt-4">
         <div v-if="isMember" class="row">
           <div class=" col-md-3  hidden-xs hidden-sm mb-3">
+            
             <div class="text-left section-block">
+
               <p class="content__helper">Classroom Name</p>
               <a href="#">
                 <h3 class="forum__title">{{classDetails.name}}</h3>
               </a>
-              <p class="content__helper">Summary</p>
+              <p class="content__helper mt-2">Summary</p>
               <p class="font--normal">{{classDetails.body}}</p>
+
               <hr>
               <div class="mb-2 d-flex flex-column">
                 <p class="content__helper mb-2">Navigation</p>
-                <p class="hover-pointer content__sub-title" @click="discussionView = true; activityView = false">Discussions</p>
-                <p class="hover-pointer content__sub-title" @click="activityView = true; discussionView = false;">Activities</p>
+                <div class="hover-pointer d-flex align-items-center content__sub-title" @click="discussionView = true; activityView = false; listStudentsView = false">
+                  <i class="fas fa-code-branch  mr-2 ml-1"></i>
+                  <p class="">Discussions</p>
+                </div>
+                <div class="hover-pointer d-flex align-items-center content__sub-title" @click="activityView = true; discussionView = false; listStudentsView = false">
+                  <i class="fas fa-code  mr-2"></i>
+                  <p class="">Activities</p>
+                </div>
+                <div class="hover-pointer d-flex align-items-center content__sub-title" @click="listStudentsView = true; discussionView = false; activityView = false">
+                  <i class="fas fa-ellipsis-v ml-2 mr-2"></i>
+                  <p class="">List of Students</p>
+                </div>
                 <hr>
                 <p class="content__helper mb-2">Actions</p>
                 <!-- <class-feed-block></class-feed-block> -->
@@ -43,13 +56,23 @@
             </div>
 
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 mb-3 section-block" v-if="activityView == true">
-            <view-activities class="" :user="user"></view-activities>
+          <div class="col-xs-12 col-sm-12 col-md-6 mb-3 " v-if="activityView == true">
+            <view-activities class="section-block" :user="user"></view-activities>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-6 mb-3 " v-if="discussionView == true">
-            <view-discussions :classDetails="classDetails" :discussions="discussions" :hasDiscussion="hasDiscussion"></view-discussions>
+            <view-discussions class="section-block" :classDetails="classDetails" :discussions="discussions" :hasDiscussion="hasDiscussion"></view-discussions>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 mb-3 " v-if="listStudentsView == true">
+            <view-list-of-students class="section-block" :classDetails="classDetails" :discussions="discussions"></view-list-of-students>
           </div>
           <div class="col-md-3 hidden-xs hidden-sm">
+            <div class="mb-2 confirm-account">
+              <div class="confirm-account-block d-flex flex-column flex-sm-row flex-md-column flex-lg-row justify-content-between">
+                <p class="font--semi-bold">Classroom Code </p>
+                <p class="font--semi-bold">
+                  <span class="font--normal">#</span>{{ classDetails.id }}</p>
+              </div>
+            </div>
             <div class="block-full-height ">
               <div class="section-block">
                 <!-- <p class="">Popular discussions</p> -->
@@ -82,9 +105,9 @@
     </div>
     <div class="modal fade" id="createDiscussion" tabindex="-1" role="dialog" aria-labelledby="createDiscussion" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content section-block">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Create An Activity</h5>
+            <h5 class="forum__title" id="exampleModalLabel">Create A Discussion Room</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -108,6 +131,7 @@
   import CreateAct from './CreateActivity.vue';
   import AddDiscussion from './actions/add-discussion.vue';
   import ViewDiscussions from './view-discussions.vue';
+  import ViewListOfStudents from './view-list-of-students.vue';
   export default {
     data() {
       return {
@@ -118,6 +142,7 @@
         user: {},
         discussionView: true,
         activityView: false,
+        listStudentsView: false,
         discussions: {},
         hasDiscussion: false
       }
@@ -129,7 +154,8 @@
       'view-activities': Activities,
       'create-activity': CreateAct,
       'add-discussion': AddDiscussion,
-      'view-discussions': ViewDiscussions
+      'view-discussions': ViewDiscussions,
+      'view-list-of-students': ViewListOfStudents,
       //'related-topics': relatedTopics
     },
     mounted() {
