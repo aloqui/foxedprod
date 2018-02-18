@@ -20,7 +20,7 @@ Vue.use(VeeValidate)
 Vue.use(BootstrapVue)
 Vue.use(InstantSearch)
 Vue.use(VueObserveVisibility)
-Vue.use(VueSocketIo, `${location.origin}/nodesocket`);
+Vue.use(VueSocketIo, `${location.origin}/Socket`);
 // Vue.use(VueSocketIo, `${location.protocol}//${location.hostname}:8000`);
 // Vue.use('/api/*', proxy({target: 'http://localhost:8000', secure: false, changeOrigin: true}))
 
