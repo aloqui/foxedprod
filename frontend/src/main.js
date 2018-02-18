@@ -20,10 +20,7 @@ Vue.use(VeeValidate)
 Vue.use(BootstrapVue)
 Vue.use(InstantSearch)
 Vue.use(VueObserveVisibility)
-    // Vue.use(VueSocketIo, `${location.host}/socket`);
-Vue.use(VueSocketIo, `https://foxedfolio.com/app2`);
-// Vue.use(VueSocketIo, `${location.protocol}//${location.hostname}:8082`);
-// Vue.use(VueSocketIo, `http://localhost:8081`);   
+Vue.use(VueSocketIo, `${location.protocol}//${location.hostname}/app2`);
 // Vue.use('/api/*', proxy({target: 'http://localhost:8000', secure: false, changeOrigin: true}))
 
 
@@ -84,7 +81,7 @@ Vue.filter('formatDate', function(value) {
     if (value) {
         return moment(String(value)).fromNow()
     }
-});
+})
 Vue.filter('formatDateFormal', function(value) {
     if (value) {
         return moment(String(value)).format('MM/DD/YYYY hh:mm')
@@ -95,10 +92,5 @@ Vue.filter('formatDateFormal', function(value) {
 new Vue({
     el: '#app',
     render: h => h(App),
-    router: Router,
-    sockets: {
-        connection: function() {
-            console.log('socket connected')
-        }
-    },
+    router: Router
 })
