@@ -3,8 +3,8 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var redis = require('redis');
 
-server.listen(8000, 'localhost', function() {
-    console.log('Server running at http://localhost:8000/');
+server.listen(8001, 'localhost', function() {
+    console.log('Server running at http://localhost:8001/');
 });
 
 
