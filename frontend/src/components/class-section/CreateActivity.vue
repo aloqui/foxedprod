@@ -1,5 +1,5 @@
 <template>
-  <div class="create--activity mb-3 modal--cover">
+  <div class="create--activity mb-3">
     <div class="p-0">
       <div class="">
         <div class="">
@@ -32,9 +32,9 @@
                       <option value="image">Image</option>
                     </select>
                     <span >
-                  <label>Rubric</label>
+                  <label class="content__helper">Rubric</label>
                   <br>
-                  <select @change="setRubricId($event.target.value)">
+                  <select class="section-block hover-pointer" @change="setRubricId($event.target.value)">
                         <option v-for="title in choices" :value="title.id">{{title.title}}</option>
                   </select>
                 </span>
@@ -61,7 +61,7 @@
               </form>
             </div>
 
-            <div class="row">
+            <div class="row  modal--cover">
               <div class="col-12">
                 <div class="modal fade" id="imageport" tabindex="-1" role="dialog" aria-labelledby="imageportLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
@@ -78,17 +78,17 @@
                             <div class="row">
                               <div class="col-12 container--flex">
 
-                                  <div v-if="newss" class="rubric--header">
-                                    <div class="d-flex flex-column">
+                                  <div v-if="newss" class="rubric--header w-75">
+                                    <div class="d-flex flex-column text-left w-50">
                                       <label>Name</label>
                                       <input v-model="all.title" name="title" type="text" class="form-control">
                                     </div>
 
-                                    <div class="d-flex flex-column">
-                                      <label class="">how many columns</label>
+                                    <div class="d-flex flex-column text-center mt-4 w-25">
+                                      <label class="">How many descriptors?</label>
                                       
                                         <input  class="form-control" type="number" min="0" v-model="columnNum">
-                                        <button class="btn content__button--passive content__helper w-25 pull-right" @click="addTextArea(columnNum)">ok</button>
+                                        <button class="btn content__button--passive content__helper w-25 pull-right mt-2" @click="addTextArea(columnNum)">ok</button>
                                       
                                     </div>
                                   <!-- <div class="d-flex flex-column">
@@ -136,7 +136,7 @@
                                   </span>
                                   </div>
                                 </div>
-                                <button class="btn content__button--passive content__helper pull-right mb-3" v-if="currentR.row" @click="addRow()">add new cri</button>
+                                <button class="btn content__button--passive content__helper pull-right mb-3" v-if="currentR.row" @click="addRow()">add new criteria</button>
                                 <button class="btn content__button--passive content__helper pull-right mb-3" v-if="!currentR.row" @click="submitAll()">save</button>
                                 </div> 
                                 
@@ -251,10 +251,16 @@
             if (willDelete) {
                 this.$http.delete('api/rubrics/' + id)
                 .then(response => {
-                    swal(" Deleted!", {
-                icon: "success",
-                }).then(value => this.rubricsView(rub));
+                      swal(" Deleted!", {
+                  icon: "success",
+                  }).then(value => this.rubricsView(rub));
                 })
+                .catch(response => {
+             swal("Error Updating", {
+                  icon: "error",
+                  text: 'You already used this rubric to evaluate a student.',
+                })
+              })
                 
             } else {
                 swal("not deleted");
@@ -262,10 +268,12 @@
             });
       },
       newRubric(){
-        this.currentC = {}
-        this.currentR = {}
-        this.chooseRubric ='';
         this.newss = true;
+        this.currentC = []
+        this.currentR = []
+        this.chooseRubric ='';
+        this.all[0] = []
+        
       },
       editRow(id,per,cri){
         this.rowEdit.criteria = cri;
@@ -273,11 +281,14 @@
         this.$http.put("api/rubrics/row/update/" +id, this.rowEdit).then(response => {
             console.log(response); 
             swal("Succesfully Edited!", {
-              icon: "success"
+              icon: "success",
             });
           })
           .catch(response => {
-            console.log(response)
+             swal("Error Updating", {
+              icon: "error",
+              text: 'You already used this rubric to evaluate a student.',
+            })
           })
       },
       editColumn(id,q){
@@ -314,10 +325,15 @@
               colArray.push({col_num : i , description : " "})
             }
             this.currentC.col = colArray;
-
+            swal("Succesfully created!", {
+              icon: "success"
+            }).then(response => this.rubricsView(this.currentR.id));
+            
           })
           .catch(response => {
-            console.log(response)
+            swal("Please check your inputs", {
+              icon: "warning",
+            })
           })
       },
       rubricsView(a){
@@ -354,23 +370,32 @@
       },
       addRow(){
         this.currentC.rubric_set_id = this.currentR.id;
-        var colArray = []; 
+        // this.currentC.col = [];
+         
         this.$http.post("api/rubrics/row/" + this.currentR.id, this.currentC).then(response => {
             console.log(response); 
             this.currentR = response.body;
-            
-            
-            for(var i=1; i<=response.body.rubric.row[0].col.length; i++){
+            swal("Succesfully created!", {
+              icon: "success"
+            });
+            var colArray = [];
+            // this.currentC.col = colArray;
+
+            for(var i=1; i<= this.currentR.row[0].col.length; i++){
               colArray.push({col_num : i , description : " "})
             }
+            this.currentC.col = colArray;
             this.currentC.percent = '';
             this.currentC.criteria = '';
-            this.currentC.col = colArray;
+            this.currentC.rubric_set_id = this.currentR.id;
+            
+          }).catch(response => {
+            
             this.rubricsView(this.currentR.id)
-          })
-          .catch(response => {
             console.log(response)
           })
+          
+
       },
       
       addColumn(){
@@ -562,6 +587,7 @@
     span{
       display: block;
     }
+    
   }
 }
 .update--question{

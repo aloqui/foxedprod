@@ -124,6 +124,7 @@
                             <div  class="d-flex justify-content-center align-items-center">
                             <h3 v-if="modal.evaluated">  Total Score:  {{evaluatedScores.totalScore}} </h3>
                             <button v-show="!modal.evaluated" class="btn content__button--passive content__helper" @click="scoreThis">save</button>
+                            
                         </div>
                         </div>
 
@@ -168,7 +169,10 @@ export default {
             score_id:''
 			},
         evaluatedScores:{},
-        user:""
+        user:"",
+        used:{
+            used:true
+        }
         }
       
     },
@@ -212,7 +216,18 @@ export default {
 								console.log(response);
 									swal("Succesfully Evaluated!", {
 										icon: "success"
-									}).then(value => location.reload());
+									}).then(response => {
+                                        if(this.rubric.used === 0){
+                                            this.$http.put('api/rubrics/row/used/' + this.rubric.id, this.used)
+                                                .then(response => {
+                                                console.log(response)
+                                                location.reload();
+                                            })
+                                        }
+                                        else{
+                                            location.reload();
+                                        }
+                                    });
 							});
         });
 
@@ -259,10 +274,12 @@ export default {
                                     console.log(response);
                                     this.evaluation.score_id = response.body.id;
 								this.$http.put("api/eval/imagecore/" + this.modal.id, this.evaluation).then(response => {
-								console.log(response);
+
+                                console.log(response);
+                                
 									swal("Succesfully created!", {
 										icon: "success"
-                                    });
+                                    })
                                     // location.reload()
 							});
         });

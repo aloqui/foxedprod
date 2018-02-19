@@ -147,7 +147,10 @@ export default {
 		user:{},
 		evaluatedScores:{},
 		evaluatedId:"",
-		currentScorePerRow:{}
+		currentScorePerRow:{},
+		used:{
+			used:true
+		}
 		}
 	},
     created (){
@@ -218,7 +221,18 @@ export default {
 								console.log(response);
 									swal("Succesfully Evaluated!", {
 										icon: "success"
-									}).then(value => location.reload());
+									}).then(response => {
+                                        if(this.rubric.used === 0){
+                                            this.$http.put('api/rubrics/row/used/' + this.rubric.id, this.used)
+                                                .then(response => {
+                                                console.log(response)
+                                                location.reload();
+                                            })
+                                        }
+                                        else{
+                                            location.reload();
+                                        }
+                                    });
 							});
         });
 		},

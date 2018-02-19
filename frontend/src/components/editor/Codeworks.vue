@@ -68,7 +68,7 @@
                 </div>
               </div>
               <div v-else class="d-flex flex-column justify-content-center align-items-center w-100">
-                <h1 class="font--normal">{{modal.title}}</h1>
+                
                 <p class="content__helper">{{modal.description}}</p>
               </div>
             </div>
@@ -90,7 +90,7 @@
 
         <div class="card-body">
           <h4 class="card-title">
-            <a href="#">{{ code.title }}</a>
+            <!-- <a href="#">{{ code.title }}</a> -->
           </h4>
         </div>
       </div>

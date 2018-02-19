@@ -114,23 +114,52 @@ class RubricsController extends Controller
     }
 
     public function destroy($id){
-        try {
+        $row = Rubrics::find($id);
+        $rub = RubricSet::find($row->rubric_set_id);
+        if(Auth::user()->prof == true && $rub->used == false){
+
+            try {
             Rubrics::destroy($id);
             return response([],204);
+            }
+            catch(\Exeption $e){
+                return response([ 'Problem deleting the criteria' ],500);
+            }
+            
         }
-        catch(\Exeption $e){
-            return response([ 'Problem deleting the thread' ],500);
+        else{
+            return response([ 'you already used this rubric' ],500);
         }
+        
     }
 
     public function updateRow(Request $request,$id)
     {
         $row = Rubrics::find($id);
+        $rub = RubricSet::find($row->rubric_set_id);
 
-        if(Auth::user()->prof == true){
+        if(Auth::user()->prof == true && $rub->used == false){
             $row->update([
             'percent' => request('percent'),
             'criteria' => request('criteria') 
+            ]);
+        }
+        
+        else{
+            return response([ 'you already used this rubric' ],500);
+        }
+        
+        
+        return response()->json($row);
+    }
+
+    public function updateUse(Request $request,$id)
+    {
+        $row = RubricSet::find($id);
+
+        if(Auth::user()->prof == true){
+            $row->update([
+            'used' => request('used')
             ]);
         }
         

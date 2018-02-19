@@ -16,8 +16,8 @@ class CreateRubricSetsTable extends Migration
         Schema::create('rubric_sets', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
+            $table->boolean('used')->default(false);
             $table->text('title');
-            $table->text('for')->nullable();
             $table->timestamps();
         });
     }

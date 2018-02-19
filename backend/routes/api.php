@@ -99,6 +99,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/rubrics/row/{id}','RubricsController@storeRow');
     Route::put('/rubrics/column/{id}','RubricsController@updateColumn');
     Route::put('/rubrics/row/update/{id}','RubricsController@updateRow');
+    Route::put('/rubrics/row/used/{id}','RubricsController@updateUse');
     
     Route::get('/class/{classroom}/{thread}/replies', 'RepliesController@indexClassroom');
     Route::get('/class/{classroom}/{thread}/discussions', 'ThreadController@showOnClassroom');

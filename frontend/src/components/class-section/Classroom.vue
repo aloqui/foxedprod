@@ -88,7 +88,7 @@
 
       </div>
     </div>
-    <div class="modal fade" id="createActivity" tabindex="-1" role="dialog" aria-labelledby="createActivity" aria-hidden="true">
+    <div class="modal fade modal--cover" id="createActivity" tabindex="-1" role="dialog" aria-labelledby="createActivity" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content section-block">
           <div class="modal-header">
@@ -251,5 +251,69 @@
       display: none !important;
     }
   }
+.modal--cover{
 
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+.modal-dialog {
+  position: fixed;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+.modal-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 2px solid #3c7dcf;
+  border-radius: 0;
+  box-shadow: none;
+  width: 100vw;
+}
+.modal-header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 50px;
+  padding: 10px;
+  border: 0;
+}
+.modal-title {
+  font-weight: 300;
+  font-size: 2em;
+  color: rgb(68, 68, 68);
+  line-height: 30px;
+}
+.modal-body {
+  position: absolute;
+  top: 50px;
+  bottom: 60px;
+  width: 100%;
+  font-weight: 300;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: center; 
+}
+.modal-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 60px;
+  padding: 10px;
+  background: #f1f3f5;
+}
+}
 </style>
