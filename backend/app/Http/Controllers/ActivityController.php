@@ -56,7 +56,7 @@ class ActivityController extends Controller
         $activity = Activity::find($id);
         
         if(count($activity) > 0)
-            return response()->json(Activity::find($id));
+            return response()->json(Activity::find($id)->load('ScoresSubmitted'));
 
         return response()->json(['error' => 'resource not found'],404);
     }
