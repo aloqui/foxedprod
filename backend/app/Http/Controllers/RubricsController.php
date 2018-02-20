@@ -179,8 +179,11 @@ class RubricsController extends Controller
  
     } 
     public function showCertRubric($id){
-        $user = RubricSet::find($id);
 
+        $activity = Activity::find($id);
+        
+        $act = $activity->rubric_set_id;
+        $user = RubricSet::find($act);
         $col = $user->load('row','row.col');
  
         return ['rubric' => $col];
