@@ -9,6 +9,6 @@ class RubricSet extends Model
     protected $guarded = [];
     
     public function row() {
-        return $this->hasMany(rubrics::class);
+        return $this->hasMany(rubrics::class, 'rubric_set_id');
     }
 }

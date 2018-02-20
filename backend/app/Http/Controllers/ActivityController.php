@@ -64,7 +64,7 @@ class ActivityController extends Controller
     public function getCertRubric($id){
         $activity = Activity::find($id);
         
-        $act = $activity->id;
+        $act = $activity->rubric_set_id;
         
         $rub = RubricSet::find($act);
 

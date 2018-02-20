@@ -11,7 +11,7 @@ class Rubrics extends Model
     public function col() {
         return $this->hasMany(RubricDetails::class,'rubric_id');
     }
-    public function set() {
-        return $this->belongsTo(RubricSet::class, 'rubric_set_id');
-    }
+    // public function set() {
+    //     return $this->belongsTo(RubricSet::class, 'rubric_set_id');
+    // }
 }
