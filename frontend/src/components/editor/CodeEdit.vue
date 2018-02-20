@@ -45,7 +45,7 @@
 				<div v-show="user.prof && act_id && !eval">
 					<!-- <input v-model="score.body" type="number" placeholder="Score">
 					<button class="btn" @click="submitScore">save</button> -->
-					<button class="btn"  data-toggle="modal" data-target="#exampleModal">Rubrics</button>
+					<button  @click="getRubric" class="btn"  data-toggle="modal" data-target="#exampleModal">Rubrics</button>
 			</div> 
 			<span v-show="eval && user.prof">
 				<button @click="getScore" class="btn"  data-toggle="modal" data-target="#exampleModal">Evaluation</button>
@@ -71,52 +71,28 @@
                         <table class="table table-fit">
                         <thead>
                             <tr>
-                            <th> </th>
-                            <th>4</th>
-                            <th>3</th>
-                            <th>2</th>
-                            <th>1</th>
+                            <th>{{rubric.title}}</th>
+                            	<th v-for="question in totalCol">{{question.col_num}}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <th scope="row">Delivery</th>
-                            <td>Completed between 90-100% of the requirements. Delivered on time, and in correct format</td>
-                            <td>Completed between 80-90% of the requirements. Delivered on time, and in correct format</td>
-                            <td>Completed between 70-80% of the requirements. Delivered on time, and in correct format </td>
-                            <td>Completed less than 70% of the requirements and not delivered on time or not in correct format</td>
-                            <td v-show="!eval"><input v-model="score.first" type="number" min="0" max="4"></td>
-							<td><h3>{{evaluatedScores.first}}</h3></td>
-                            </tr>
-                            <tr>
-                            <tr>
-                            <th scope="row">Coding Standards</th>
-                            <td>Excellent use of white space. Creatively organized work. Excellent  use of variables (no global variables, unambiguous naming).</td>
-                            <td>Good use of white space. Organized work. Good  use of variables (no global variables, unambiguous naming)</td>
-                            <td>White space makes program fairly easy to read. Organized work. Good  use of variables (few global variables, unambiguous naming).</td>
-                            <td>Poor use of white space (indentation, blank lines). Disorganized and messy, Poor use of variables (many global variables, ambiguous naming).</td>
-                            <td v-show="!eval"><input v-model="score.second" type="number" min="0" max="4"></td>
-							<td><h3>{{evaluatedScores.second}}</h3></td>
-                            </tr>
-                            <tr>
-                            <th scope="row">Runtime</th>
-                            <td>Executes without errors excellent user prompts, good use of symbols, spacing in output. Thorough and organized testing has been completed and output from test cases is included.</td>
-                            <td>Executes without errors. User prompts are understandable, minimum use of symbols or spacing in output. Thorough testing has been completed</td>
-                            <td>Executes without errors. Some testing has been completed.</td>
-                            <td>Does not execute due to errors. User prompts are misleading or non-existent. No testing has been completed.</td>
-                            <td v-show="!eval"><input v-model="score.third" type="number" min="0" max="4"></td>
-							<td><h3>{{evaluatedScores.third}}</h3></td>
-                            </tr>
-                            <tr>
-                            <th scope="row">Efficiency</th>
-                            <td>Solution is efficient, easy to understand, and maintain.</td>
-                            <td>Solution is efficient and easy to follow (i.e. no confusing tricks). </td>
-                            <td>A logical solution that is easy to follow but it is not the most efficient.</td>
-                            <td>A difficult and inefficient solution.</td>
-                            <td v-show="!eval"><input v-model="score.fourth" type="number" min="0" max="4"></td>
-							<td><h3>{{evaluatedScores.fourth}}</h3></td>
-                            </tr>
+                            <tr  v-for="(criteria, index) in rubric.row" :key="criteria">
+
+                            <th scope="row">{{criteria.criteria}} ({{criteria.percent}}%)</th>
+                            <td v-for="quest in criteria.col">
+                                <p>{{quest.description}}</p> 
+                            </td>
+                            <td v-show="!eval">
+								<input v-model="criteria.raw" type="number" min="0">
+								
+							</td>
+							<td v-if="eval">
+								<p class="text-dark">{{evaluatedScores.raw[index].raw}} <span> ({{evaluatedScores.raw[index].computed}})</span></p>
+							</td>
+
+                            </tr> 
                         </tbody>
+						<!-- <button @click="scoreThis()">s</button> -->
                         </table>
 
                         
@@ -124,10 +100,10 @@
                     </div>
                     <div class="modal-footer">
 						<div v-if="eval" class="d-flex justify-content-center align-items-center pr-5">
-                            <h5>Score: {{evaluatedScores.body}}</h5>
+                            <h5>Score: {{evaluatedScores.totalScore}}</h5>
                         </div>
                         <div v-if="!eval" class="d-flex justify-content-center align-items-end pr-5">
-                            <button class="btn content__button--passive content__helper" @click="submitScore">Submit</button>
+                            <button class="btn content__button--passive content__helper" @click="scoreThis()">Submit</button>
                         </div>
                     </div>
                     </div>
@@ -148,6 +124,13 @@ export default {
 				css:"",
 				js: ""
 			},
+		rawScore:{
+			scores:[],
+			totalScore:''
+		},
+		totalCol:{},
+		rubric:{},
+		rubricId:"",
 		id:"",
 		act_id:"",
 		eval:"",
@@ -156,9 +139,6 @@ export default {
 			act_id:"",
 			user_id:"",
 			first:"",
-            second:"",
-            third:"",
-            fourth:"",
 		},
 		evaluation:{
 			evaluated:true,
@@ -166,16 +146,96 @@ export default {
 			},
 		user:{},
 		evaluatedScores:{},
-		evaluatedId:""
+		evaluatedId:"",
+		currentScorePerRow:{},
+		used:{
+			used:true
+		}
 		}
 	},
     created (){
-		// this.getCode();
-		// this.submitCodes();
+		
 
     },
   
   methods: {
+	  getRubric(){
+			this.$http.get(`api/rubrics/certain/` + this.rubricId)
+				.then(response => {
+					this.rubric = response.body.rubric;
+					this.totalCol = response.body.rubric.row[0].col;
+					
+					var score;
+					var colArray = []; 
+					var arrayLength = response.body.rubric.row.length -1;
+					
+						for(var i=0; i<=arrayLength; i++){
+							// colArray = [{criteria_num : i , raw : "0"}];
+							// this.rawScore = colArray;
+							// this.rubric.row[i].push(this.rawScore)
+							// console.log(this.rubric.row[0]);
+
+							this.$set(this.rubric.row[i], 'raw', 0)
+						}
+						// this.rawScore.raw = colArray;
+						// this.rubric.row.push(this.rawScore);
+
+					// console.log(response.body.rubric.row.length)
+				});
+		},
+		getTotal(rawScore, totalCriteria, percent){
+                    return rawScore / totalCriteria * percent;
+                },
+			
+		scoreThis(){
+			var arrayScore = [];
+			console.log(this.rubric)
+			var arrayLength = this.rubric.row.length ;
+			var computedScore = 0;
+			var num = 0;
+			this.rawScore.scores = arrayScore;
+					for(var i=0; i<arrayLength; i++){
+					
+						computedScore = this.getTotal(this.rubric.row[i].raw, this.rubric.row[i].col.length, this.rubric.row[i].percent).toFixed(2)
+						console.log(computedScore)
+						this.rawScore.scores.push({criteria_num : i+1 , computed : JSON.parse(computedScore), raw : JSON.parse(this.rubric.row[i].raw)})
+						
+						// this.rawScore.scores = Object.assign({},this.rawScore.scores,
+						// {
+						// 	criteria_num : i+1 , 
+						// 	computed : JSON.parse(computedScore), 
+						// 	raw : JSON.parse(this.rubric.row[i].raw)
+						// })
+					}
+					
+			// this.rawScore.scores = arrayScore;
+					for(var i=0; i<this.rawScore.scores.length; i++){
+								num += this.rawScore.scores[i].computed;
+							}
+			this.rawScore.totalScore = num;
+
+			this.$http.post("api/submitScore", this.rawScore).then(response => {
+						console.log(response);
+						this.evaluation.score_id = response.body.id;
+								this.$http.put("api/eval/codescore/" + this.$route.params.id, this.evaluation).then(response => {
+								console.log(response);
+									swal("Succesfully Evaluated!", {
+										icon: "success"
+									}).then(response => {
+                                        if(this.rubric.used === 0){
+                                            this.$http.put('api/rubrics/row/used/' + this.rubric.id, this.used)
+                                                .then(response => {
+                                                console.log(response)
+                                                location.reload();
+                                            })
+                                        }
+                                        else{
+                                            location.reload();
+                                        }
+                                    });
+							});
+        });
+		},
 		submitScore() {
 			function getTotal(num, per){
                     return num / 4 * per;
@@ -229,6 +289,7 @@ export default {
             
         },
 		getScore () {
+			this.getRubric()
 			this.$http.get(`api/submitScore/`+this.evaluatedId)
         .then(response => this.evaluatedScores = response.body)
         .catch()
@@ -236,7 +297,8 @@ export default {
   },
     computed: {
         authenticatedUser() {
-        return this.$auth.getAuthenticatedUser()
+		return this.$auth.getAuthenticatedUser()
+			
         }
     },
   mounted: function() {
@@ -360,15 +422,18 @@ Split(['#code_editors','#output'], {
 							this.id = response.body[0].user_id;
 							if(response.body[0].activity_id){
 								this.act_id = response.body[0].user_id;
-								this.score.act_id = response.body[0].activity_id;
+								this.rawScore.act_id = response.body[0].activity_id;
 								if(response.body[0].user_id){
-									this.score.user_id = response.body[0].user_id;
+									this.rawScore.user_id = response.body[0].user_id;
 								}
 								if(response.body[0].evaluated){
 									this.eval = response.body[0].evaluated;
 								}
 								if(response.body[0].score_id){
 									this.evaluatedId = response.body[0].score_id;
+								}
+								if(response.body[0].rubric_set_id){
+									this.rubricId = response.body[0].rubric_set_id;
 								}
 							}
           })
@@ -383,7 +448,7 @@ Split(['#code_editors','#output'], {
 	for (i = 0; i < cms.length; i++) {
 		cms[i].style.height = '100%';
 	}
-			
+	
 }
 
 }

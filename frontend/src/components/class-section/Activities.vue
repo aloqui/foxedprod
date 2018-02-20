@@ -10,36 +10,62 @@
       <p class="text-uppercase content__helper">0 Activities Found.</p>
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title center" id="exampleModalLabel">{{modal.title}}</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <span v-if="modal.image != 'none'">
-              <img :src="imagePath + modal.image">
-            </span>
-            <div>
-              <h5>Instruction: </h5>
-              <p> &nbsp; {{modal.body}}</p>
-            </div>
-            <hr>
-            <div class="form-group">
-              <label>Submit to this activity</label>
-              <input type="file" accept="image/*" class="form-control content__helper" @change="imageChanged">
-              <div v-show="authenticatedUser.prof" class="d-flex justify-content-end align-items-center pt-2">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title center" id="exampleModalLabel">{{modal.title}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <span v-if="modal.image != 'none'">
+                            <img :src="imagePath + modal.image">
+                        </span>
+                        <div>
+                            <h5>Instruction: </h5>
+                            <p> &nbsp; {{modal.body}}</p>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label>Submit to this activity</label>
+                            <input  type="file" accept="image/*" class="form-control content__helper" @change="imageChanged">
+                            
+                        </div>
+                        <div class="collapse" id="collapseExample">
+                        <table class="table table-fit">
+                        <thead>
+                            <tr>
+															<th>{{rubric.title}}</th>
+                            	<th v-for="question in totalCol">{{question.col_num}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr  v-for="criteria in rubric.row">
+                            <th scope="row">{{criteria.criteria}} ({{criteria.percent}}%)</th>
+                            <td v-for="quest in criteria.col">
+                                      <p>{{quest.description}}</p> 
+                                    </td>
+							<td><h3> </h3></td>
+                            </tr> 
+                        </tbody>
+                        </table>
 
-                <input v-model="imageport.title" type="text" placeholder="title" class="input--default">
-                <button class="btn content__button--passive content__helper" @click="submitImage">save</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button @click="getRubric" class="btn content__button--passive content__helper" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            show rubric
+                        </button>
+                        
+                                
+                                <input v-model="imageport.title" type="text" placeholder="title" class="input--default">
+                                <button class="btn content__button--passive content__helper" @click="submitImage">save</button>
+                            
+                    </div>
+                    </div>
+                </div>
+                </div> 
   </div>
 </template>
 
@@ -54,6 +80,8 @@
         modal: {},
         imageport: {},
         imagePath: '',
+        rubric:{},
+        totalCol:{},
         classOwner: {},
         hasAct: false
       }
@@ -66,6 +94,9 @@
       authenticatedUser() {
         return this.$auth.getAuthenticatedUser()
       },
+      closeCol(){
+                $('.collapse').collapse('hide');
+          },
       datea() {
         var date = new Date();
         return console.log(date)
@@ -90,6 +121,15 @@
         })
     },
     methods: {
+      getRubric(){
+			this.$http.get(`api/rubrics/certain/`+ this.modal.rubric_set_id)
+				.then(response => {
+					this.rubric = response.body.rubric;
+					this.totalCol = response.body.rubric.row[0].col
+					console.log(response.body)
+				})
+				;
+		},
       getImagePath() {
         this.imagePath = `${location.protocol}//${location.hostname}/images/`
         if (location.port)
@@ -142,11 +182,13 @@
       },
       conss(a) {
         console.log(a)
+        $('.collapse').collapse('hide');
         this.modal = a;
       },
       submitImage() {
         this.imageport.submitted = true;
         this.imageport.activity_id = this.modal.id;
+        this.imageport.rubric_set_id = this.modal.rubric_set_id;
         this.$http.post('api/imageport/', this.imageport)
           .then(response => {
             console.log(response)
@@ -166,6 +208,13 @@
     width: 100%;
   }
 
-  .modal-body {}
+  .modal-body {
+      .collapse{
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 1;
+  }
+  }
 
 </style>

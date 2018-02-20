@@ -16,10 +16,12 @@ class CreateCodesTable extends Migration
         Schema::create('codes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->text('description')->nullable();
             $table->text('css')->nullable();
             $table->text('js')->nullable();
             $table->text('html')->nullable();
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('rubric_set_id')->nullable();
             $table->unsignedInteger('activity_id')->nullable();
             $table->boolean('submitted')->default(false);
             $table->boolean('evaluated')->nullable();

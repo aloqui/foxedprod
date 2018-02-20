@@ -33,6 +33,7 @@ class ImagesPortfolioController extends Controller
         $activity = ImagesPortfolio::create( $request->except('image') + [
             'user_id' => Auth::id(),
             'title' => request('title'),
+            'rubric_set_id' => request('rubric_set_id'),
             'image' => $fileName
         ]);
 
@@ -82,7 +83,8 @@ class ImagesPortfolioController extends Controller
 
                 $imageportfolio->update( $request->except('image','oldImage','newImage') + [
                         'title' => request('title'),
-                        'image' => $fileName
+                        'image' => $fileName,
+                        'description' => request('description')
                     ]
                 );
                 return response()->json($imageportfolio);

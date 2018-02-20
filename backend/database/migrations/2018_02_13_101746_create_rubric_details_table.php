@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGlobalactivitiesTable extends Migration
+class CreateRubricDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateGlobalactivitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('globalactivities', function (Blueprint $table) {
-            $table->increments('id'); 
+        Schema::create('rubric_details', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('rubric_id');
+            $table->unsignedInteger('col_num')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateGlobalactivitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('globalactivities');
+        Schema::dropIfExists('rubric_details');
     }
 }

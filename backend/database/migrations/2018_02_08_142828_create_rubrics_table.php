@@ -15,14 +15,10 @@ class CreateRubricsTable extends Migration
     {
         Schema::create('rubrics', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('title');
-            $table->text('first');
-            $table->text('second');
-            $table->text('third');
-            $table->text('fourth');
-            $table->text('fifth');
             $table->integer('percent');
-            $table->unsignedInteger('score_id');
+            $table->text('criteria');
+            $table->unsignedInteger('rubric_set_id');
+            $table->unsignedInteger('score_id')->nullable();
             $table->timestamps();
         });
     }

@@ -81,6 +81,9 @@ class User extends Authenticatable
     public function imagesport() {
         return $this->hasMany(ImagesPortfolio::class)->latest();
     }
+    public function rubs() {
+        return $this->hasMany(RubricSet::class)->latest();
+    }
     public function getIsProfAttribute() {
         return $this->prof()
             ->where('user_id', auth()->id())

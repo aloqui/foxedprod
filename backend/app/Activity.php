@@ -25,6 +25,9 @@ class Activity extends Model
     public function activities(){
         return $this->hasMany(Classroom::class);
     }
+    public function rubricAct(){
+        return $this->hasOne(RubricSet::class, 'rubic_set_id');
+    }
     // public function teacher() {
     //     return $this->belongsTo(User::class, 'user_id');
     // }

@@ -1,4 +1,5 @@
 <template>
+<div class="modal-wrap">
 <section class="editor__page">
   <div id="wrap">
 
@@ -27,9 +28,50 @@
 
 	<input type="text" v-model="codes.title">
 	<button class="btn btn-info" @click="submitCodes">Submit</button>
+	<button class="btn"  data-toggle="modal" data-target="#exampleModal" @click="getRubric">Rubrics</button>
 	</div>
 	<!-- <input type="text" v-model="codes.html"> -->
 </section>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"> </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-fit">
+                        <thead>
+                            <tr>
+															<th>{{rubric.title}}</th>
+                            	<th v-for="question in totalCol">{{question.col_num}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr  v-for="criteria in rubric.row">
+                            <th scope="row">{{criteria.criteria}} ({{criteria.percent}}%)</th>
+                            <td v-for="quest in criteria.col">
+                                      <p>{{quest.description}}</p> 
+                                    </td>
+							<td><h3> </h3></td>
+                            </tr> 
+                        </tbody>
+                        </table>
+
+                        
+						
+                    </div>
+                    <div class="modal-footer">
+                        <div class="d-flex justify-content-center align-items-end pr-5">
+                            	
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+</div>
 </template>
 
 <script>
@@ -44,16 +86,13 @@ export default {
 				css:"",
 				js: "",
 				activity_id: JSON.parse(this.$route.params.id),
-				submitted: true
-			}
+				submitted: true,
+				rubric_set_id:""
+			},
+			rubric:{},
+			totalCol:{}
 		}
 	},
-    created (){
-		// this.getCode();
-		// this.submitCodes();
-
-    },
-  
   methods: {
       getCode (){
           this.$http.get('api/forums/')
@@ -67,6 +106,7 @@ export default {
 					this.codes.html = x.html
 					this.codes.css = x.css
 					this.codes.js = x.js
+					
 				  this.$http.post('api/codes/', this.codes)
                 .then(response => {
                     console.log(response)
@@ -76,8 +116,23 @@ export default {
 												this.$router.push(`/${response.body[1]}/codes/${response.body[0].id}`)
                 })
 		},
+		getRubric(){
+			this.$http.get(`api/activities/rubric/`+this.$route.params.id)
+				.then(response => {
+					this.rubric = response.body;
+					this.totalCol = response.body.row[0].col
+					this.codes.rubric_set_id = response.body.id
+					console.log(response.body)
+				})
+				;
+		}
   },
+	created(){
+      this.getRubric()
+ },
   mounted: function() {
+		
+
 	Split(['#html', '#css','#js'], {
     sizes: [33.3, 33.3,33.4],
     minSize: 30
@@ -189,6 +244,7 @@ Split(['#code_editors','#output'], {
 	for (i = 0; i < cms.length; i++) {
 		cms[i].style.height = '100%';
 	}
+	
 }
 
 }
@@ -318,5 +374,71 @@ Split(['#code_editors','#output'], {
 	width: 100%; height: 100%;
 	border: 0;
 }
+
+.modal-wrap{
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+.modal-dialog {
+  position: fixed;
+  margin: 0;
+  width: 100vw;
+  height: 100%;
+  padding: 0;
+}
+.modal-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; 
+  border-radius: 0;
+  box-shadow: none;
+  width: 100vw;
+}
+.modal-header {
+	padding: 8px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 50px;
+  padding: 10px; 
+  border: 0;
+}
+.modal-title {
+  font-weight: 300;
+  font-size: 2em; 
+  line-height: 30px;
+}
+.modal-body {
+  position: absolute;
+  top: 50px;
+  bottom: 60px;
+  width: 100%;
+  font-weight: 300;
+  overflow: auto;
+	  th{
+		  text-align: center;
+	  }
+  
+}
+.modal-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 60px;
+  padding: 10px;
+  background: #f1f3f5;
+}
+}
+
 
 </style>
