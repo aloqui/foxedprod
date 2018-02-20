@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class RawScore extends Model
 {
     protected $guarded = [];
+
     public function score() {
-        return $this->belongsTo(Score::class);
+        return $this->belongsTo(Score::class, 'score_id');
     }
 }

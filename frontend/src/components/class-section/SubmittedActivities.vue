@@ -286,7 +286,7 @@ export default {
         },
           getScore () {
 			this.$http.get(`api/submitScore/`+this.modal.score.id)
-        .then(response => this.evaluatedScores = response.body)
+        .then(response => {this.evaluatedScores = response.body})
         .catch()
 		}
       }
