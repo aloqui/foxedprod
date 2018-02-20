@@ -9,6 +9,6 @@ class RubricDetails extends Model
     protected $guarded = [];
 
     public function user() {
-        return $this->belongsTo(rubrics::class);
+        return $this->belongsTo(Rubrics::class);
     }
 }
