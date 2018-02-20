@@ -132,7 +132,7 @@
         },
         totalCol: {},
         rubric: {},
-        rubricId: null,
+        rubricId: "",
         id: "",
         act_id: "",
         eval: "",
@@ -162,7 +162,7 @@
 
     methods: {
       getRubric() {
-        this.$http.get(`api/rubrics/certain/` + 18)
+        this.$http.get(`api/rubrics/certain/` + this.rubricId)
           .then(response => {
             this.rubric = response.body.rubric;
             this.totalCol = response.body.rubric.row[0].col;
