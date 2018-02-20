@@ -162,7 +162,7 @@
 
     methods: {
       getRubric() {
-        this.$http.get(`api/rubrics/certain/` + this.rubricId)
+        this.$http.get(`api/rubrics/certain/` + 18)
           .then(response => {
             this.rubric = response.body.rubric;
             this.totalCol = response.body.rubric.row[0].col;
