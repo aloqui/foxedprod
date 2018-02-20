@@ -43,8 +43,8 @@ class ProfilesController extends Controller
         return [$profileUser = $user, 'threads' => $user->threads()->latest()->get()];
     }
     public function showOwnThreads(User $user, Channel $channel) {
-
-        return ['user' => $user, $user->threads()->latest()->get()->load('channel', 'replies')];
+         
+        return ['user' => $user, 'threads' => $user->threads()->where('classroom_id', 0)->latest()->get()->load('channel', 'replies')];
     }
 
     
