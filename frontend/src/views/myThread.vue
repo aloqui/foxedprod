@@ -63,7 +63,7 @@
       },
       refresh(data) {
         console.log(data)
-        this.threads = data.body[0]
+        this.threads = data.body
         this.user = data.body.user
       }
     },
