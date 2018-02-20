@@ -7,7 +7,7 @@ use Auth;
 use App\Activity;
 use App\RubricDetails;
 use App\User;
-use App\Rubrics;
+use App\rubrics;
 use App\RubricSet;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
