@@ -27,6 +27,7 @@ class CodeController extends Controller
             'js' => request('js'),
             'css' => request('css'),
             'activity_id' => request('activity_id'),
+            'rubric_set_id' => request('rubric_set_id'),
             'submitted' => request('submitted')
         ]);
         $user = User::find($code->user_id);

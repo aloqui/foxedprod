@@ -21,6 +21,12 @@ class CreateChannelsTable extends Migration
             $table->string('description', 80);
             $table->unsignedInteger('threads_count')->default(0);
             $table->timestamps();
+
+
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
         });
     }
 

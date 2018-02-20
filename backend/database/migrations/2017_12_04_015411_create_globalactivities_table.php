@@ -14,7 +14,7 @@ class CreateGlobalactivitiesTable extends Migration
     public function up()
     {
         Schema::create('globalactivities', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id'); 
             $table->timestamps();
         });
     }

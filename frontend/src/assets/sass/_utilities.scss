@@ -71,6 +71,9 @@
   line-height: 35px;
   word-spacing: 1px;
   color: darken($white, 28%);
+  &:hover {
+    color: $primary-color;
+}
 }
 
 .content__helper {
@@ -124,6 +127,7 @@
   font-family: 'Crimson Text', sans-serif;
   font-size: 21px;
   font-weight: 400;
+  color: lighten($black, 20%);
   pre {
     @extend .content__helper;
     color: darken($white, 38%);
@@ -265,9 +269,14 @@
   border-radius: 10px;
   font-size: 18px;
 }
-
+.activity {
+  .activity__owner {
+    min-width: 140px;
+  }
+}
 .forums,
-.topics {
+.topics,
+.classroom {
   .ais-results div .d-flex {
     &:hover {
       &>div .forum__title {

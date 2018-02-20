@@ -8,7 +8,7 @@
             <h1 class="font--semi-bold text-uppercase">{{channel.name}}</h1>
             <p class="content__helper">{{channel.description}}</p>
           </div>
-          <ais-index app-id="TN5MR9QHP4" api-key="a933713f38f230be88643278a41c7281" :query="q" :query-parameters="{'filters': `(channel.slug: ${endpoint})`,'page': 1}"
+          <ais-index app-id="TN5MR9QHP4" api-key="a933713f38f230be88643278a41c7281" :query="q" :query-parameters="{'filters': `(channel.slug: ${endpoint}) AND classroom_id: 0`,'page': 1}"
             index-name="threads">
             <div class="section-block mb-2 d-flex align-items-center">
               <div>
@@ -62,7 +62,7 @@
                 </div>
               </template>
             </ais-results>
-            <ais-no-results class="text-center"></ais-no-results>
+            <ais-no-results class="text-center section-block mt-2"></ais-no-results>
           </ais-index>
 
         </div>
@@ -70,23 +70,26 @@
       </div>
     </div>
 
-    <div class="d-flex flex-column block-half-height" v-else>
-      <div class="m-auto text-center">
-        <h2 v-cloak class="content m-3 font--light ">There are no current discussions in this category.
+    <div class="d-flex flex-column block-half-height mt-4" v-else>
+      <div class="m-auto text-center ">
+        <h2 v-cloak class="content m-auto font--semi-bold section-block">There are no current discussions in this category.
           <br>Start a new one.</h2>
-        <router-link class="" :to="`/community/${endpoint}/create`">
-          <button class="btn form__button--positive-dark">
-            <i class="fab fa-wpforms"></i>
-            <span class="ml-2">Start a Discussion</span>
-          </button>
-        </router-link>
-        <p class="text-uppercase m-2 content__helper font--bold">or</p>
-        <router-link class="" :to="`/community`">
-          <button class="btn form__button--positive-dark">
-            <i class="fas fa-chevron-circle-left"></i>
-            <span class="ml-2">Go back</span>
-          </button>
-        </router-link>
+        <div class="section-block mt-2">
+
+          <router-link class="" :to="`/community/${endpoint}/create`">
+            <button class="btn form__button--positive-dark">
+              <i class="fab fa-wpforms"></i>
+              <span class="ml-2">Start a Discussion</span>
+            </button>
+          </router-link>
+          <p class="text-uppercase m-2 content__helper font--bold">or</p>
+          <router-link class="" :to="`/community`">
+            <button class="btn form__button--positive-dark">
+              <i class="fas fa-chevron-circle-left"></i>
+              <span class="ml-2">Go back</span>
+            </button>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>

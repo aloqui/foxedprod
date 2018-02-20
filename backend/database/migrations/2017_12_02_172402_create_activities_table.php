@@ -20,6 +20,7 @@ class CreateActivitiesTable extends Migration
             $table->string('title');
             $table->text('body');
             $table->string('type');
+            $table->unsignedInteger('rubric_set_id')->nullable();
             $table->boolean('enabled')->default(true);
             $table->string('image')->nullable();
             $table->dateTime('due');

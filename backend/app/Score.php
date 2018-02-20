@@ -13,4 +13,7 @@ class Score extends Model
         public function ScoresSubmitted() {
             return $this->belongsTo(Activity::class);
         }
+        public function raw() {
+            return $this->hasMany(RawScore::class);
+        }
 }

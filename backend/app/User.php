@@ -66,6 +66,9 @@ class User extends Authenticatable
     public function prof() {
         return $this->hasMany(Classroom::class)->latest();
     }
+    public function member() {
+        return $this->hasMany(UserGroup::class)->latest();
+    }
     public function channel() {
         return $this->hasMany(Channel::class);
     }
@@ -78,10 +81,12 @@ class User extends Authenticatable
     public function imagesport() {
         return $this->hasMany(ImagesPortfolio::class)->latest();
     }
+    public function rubs() {
+        return $this->hasMany(RubricSet::class)->latest();
+    }
     public function getIsProfAttribute() {
         return $this->prof()
             ->where('user_id', auth()->id())
             ->exists();
     }
-    
 }

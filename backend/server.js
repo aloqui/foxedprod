@@ -3,11 +3,12 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var redis = require('redis');
 
-server.listen(8000, function() {
-    console.log("port 8000")
+server.listen(8001, 'localhost', function() {
+    console.log('Server running at http://localhost:8001/');
 });
 
-io.on('connection', function (socket) {
+
+io.on('connection', function(socket) {
     console.log('Client connected.');
     var redisClient = redis.createClient();
 
@@ -15,27 +16,32 @@ io.on('connection', function (socket) {
     redisClient.subscribe('favoriteReply');
     redisClient.subscribe('notify');
     redisClient.subscribe('removeNotification');
+    redisClient.subscribe('addThread');
 
-    redisClient.on('message', function (channel, message) {
-        console.log("----");
+    redisClient.on('message', function(channel, message) {
         console.log('New event sent');
         socket.emit(channel, message)
     })
-    redisClient.on('favoriteReply', function (channel, message) {
+    redisClient.on('favoriteReply', function(channel, message) {
         console.log('Favorited: ' + channel + message);
         socket.emit(channel, message)
     })
-    redisClient.on('notify', function (channel, notification) {
+    redisClient.on('notify', function(channel, notification) {
         console.log('New Notification: ' + channel + notification);
         socket.emit(channel, notification)
     })
-    redisClient.on('removeNotification', function (channel, message) {
+    redisClient.on('removeNotification', function(channel, message) {
         console.log('Seen Notification: ' + channel + message);
         socket.emit(channel, message)
     })
 
-    redisClient.on('disconnect', function () {
+    redisClient.on('disconnect', function() {
         console.log('Client disconnected.');
         redisClient.quit();
+    })
+    redisClient.on('addThread', function(channel, message) {
+        console.log("----");
+        console.log('Thread Added');
+        socket.emit(channel, message)
     })
 })

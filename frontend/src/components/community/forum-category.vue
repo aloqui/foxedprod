@@ -1,11 +1,9 @@
 <template>
   <div class="forum-category">
-    <p class="font--bold mb-2">Community</p>
+    <p class="font--bold mb-2">New Communities</p>
     <div class="" v-for="category in categories" v-bind:key="category">
-
       <router-link class="no-decoration" :to="`/community/${category.slug}`">
         <div class="mb-3">
-
           <p class="font--bold">
             {{category.name}}
           </p>
@@ -14,7 +12,6 @@
           </p>
         </div>
       </router-link>
-
     </div>
   </div>
 </template>

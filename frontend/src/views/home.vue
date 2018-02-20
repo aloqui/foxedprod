@@ -83,7 +83,12 @@
       refresh(data) {
         this.user = data.body;
       }
-    }
+    },
+    sockets: {
+        connection: function() {
+            console.log('socket connected')
+        }
+    },
   }
 
 </script>

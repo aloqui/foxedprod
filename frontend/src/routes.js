@@ -34,6 +34,7 @@ import PasswordReset from './views/reset-password.vue'
 import PasswordResetOn from './views/reset/reset-password-on.vue'
 import ProfileEdit from './views/user-profile/user-edit-profile.vue'
 import SeeAllClasses from './views/see-mores/all-classes.vue'
+import SpecificDiscussion from './components/class-section/fetch/specific-discussion.vue'
 
 
 Vue.use(VueRouter)
@@ -202,6 +203,13 @@ const router = new VueRouter({
         {
             path: "/class/:id",
             component: Class,
+            meta: {
+                forAuth: true
+            }
+        },
+        {
+            path: "/class/:id/discussion/:discussionId",
+            component: SpecificDiscussion,
             meta: {
                 forAuth: true
             }
