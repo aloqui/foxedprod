@@ -119,7 +119,7 @@ class RubricsController extends Controller
         if(Auth::user()->prof == true && $rub->used == false){
 
             try {
-            Rubrics::destroy($id);
+            rubrics::destroy($id);
             return response([],204);
             }
             catch(\Exeption $e){
