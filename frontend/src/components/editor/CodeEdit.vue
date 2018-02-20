@@ -132,7 +132,7 @@
         },
         totalCol: {},
         rubric: {},
-        rubricId: "",
+        rubricId: null,
         id: "",
         act_id: "",
         eval: "",
