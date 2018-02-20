@@ -38,7 +38,7 @@ class RubricsController extends Controller
                 'title' => request('title')
                 ]);
 
-                $criteria = Rubrics::create([
+                $criteria = rubrics::create([
                 'rubric_set_id' => $rubric->id,
                 'criteria' => request('criteria'),
                 'percent' => request('percent') 
@@ -76,7 +76,7 @@ class RubricsController extends Controller
     {
         if(Auth::user()->prof == true){
 
-            $criteria = Rubrics::create(  [
+            $criteria = rubrics::create(  [
             'rubric_set_id' => request('rubric_set_id'),
             'criteria' => request('criteria'),
             'percent' => request('percent')
@@ -114,7 +114,7 @@ class RubricsController extends Controller
     }
 
     public function destroy($id){
-        $row = Rubrics::find($id);
+        $row = rubrics::find($id);
         $rub = RubricSet::find($row->rubric_set_id);
         if(Auth::user()->prof == true && $rub->used == false){
 
@@ -135,7 +135,7 @@ class RubricsController extends Controller
 
     public function updateRow(Request $request,$id)
     {
-        $row = Rubrics::find($id);
+        $row = rubrics::find($id);
         $rub = RubricSet::find($row->rubric_set_id);
 
         if(Auth::user()->prof == true && $rub->used == false){
@@ -188,7 +188,7 @@ class RubricsController extends Controller
     } 
 
     public function show($id){
-        $rubric = Rubrics::find($id);
+        $rubric = rubrics::find($id);
         
         if(count($rubric) > 0)
             return response()->json(Rubrics::find($id)->load('details'));
