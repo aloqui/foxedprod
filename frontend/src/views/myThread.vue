@@ -10,7 +10,7 @@
         <div class="topic__results mt-5">
           <span class="content__helper text-uppercase">Threads posted</span>
           <div class="topic__results-block" v-for="thread in threads" :key="thread.id">
-            <router-link class="nav-item no-decoration" :to="`/community/${thread.channel.slug}/${thread[0].id}`">
+            <router-link class="nav-item no-decoration" :to="`/community/${thread.channel.slug}/${thread.id}`">
               <a class="forum__title" href="">{{thread.title}}</a>
               <p class="content__helper">Replies: {{thread.replies.length}}</p>
               <p class="content__limit-characters  content--paragraph" v-html="thread.body"></p>
