@@ -9,7 +9,7 @@ class RubricSetController extends Controller
     public function store(Request $request)
     {
         if(Auth::user()->prof == true) 
-        $rubric = Rubrics::create(  [
+        $rubric = rubrics::create(  [
             'user_id' => Auth::id(),
             'title' => request('title'),
             'for' => request('for')
