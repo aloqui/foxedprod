@@ -7,7 +7,7 @@ use Auth;
 use App\Activity;
 use App\RubricDetails;
 use App\User;
-use App\Rubrics;
+use App\rubrics;
 use App\RubricSet;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -38,7 +38,7 @@ class RubricsController extends Controller
                 'title' => request('title')
                 ]);
 
-                $criteria = Rubrics::create([
+                $criteria = rubrics::create([
                 'rubric_set_id' => $rubric->id,
                 'criteria' => request('criteria'),
                 'percent' => request('percent') 
@@ -76,7 +76,7 @@ class RubricsController extends Controller
     {
         if(Auth::user()->prof == true){
 
-            $criteria = Rubrics::create(  [
+            $criteria = rubrics::create(  [
             'rubric_set_id' => request('rubric_set_id'),
             'criteria' => request('criteria'),
             'percent' => request('percent')
@@ -114,12 +114,12 @@ class RubricsController extends Controller
     }
 
     public function destroy($id){
-        $row = Rubrics::find($id);
+        $row = rubrics::find($id);
         $rub = RubricSet::find($row->rubric_set_id);
         if(Auth::user()->prof == true && $rub->used == false){
 
             try {
-            Rubrics::destroy($id);
+                rubrics::destroy($id);
             return response([],204);
             }
             catch(\Exeption $e){
@@ -135,7 +135,7 @@ class RubricsController extends Controller
 
     public function updateRow(Request $request,$id)
     {
-        $row = Rubrics::find($id);
+        $row = rubrics::find($id);
         $rub = RubricSet::find($row->rubric_set_id);
 
         if(Auth::user()->prof == true && $rub->used == false){
@@ -188,10 +188,10 @@ class RubricsController extends Controller
     }
 
     public function show($id){
-        $rubric = Rubrics::find($id);
+        $rubric = rubrics::find($id);
         
         if(count($rubric) > 0)
-            return response()->json(Rubrics::find($id)->load('col'));
+            return response()->json(rubrics::find($id)->load('details'));
 
         return response()->json(['error' => 'resource not found'],404);
     }
