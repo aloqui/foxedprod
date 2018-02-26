@@ -111,7 +111,7 @@
                                 <p>{{quest.description}}</p> 
                             </td>
                             <td v-show="!modal.evaluated">
-								<input v-model="criteria.raw" type="number" min="0">
+								<input @change="checkMax(criteria.raw, index)" v-model="criteria.raw" type="number" min="0">
 								
 							</td>
                             <td v-if="modal.evaluated">
@@ -188,6 +188,15 @@ export default {
         this.getImagePath()
     },
     methods: {
+        checkMax(val,index){
+            if(this.rubric.row[0].col.length+1 <= val){
+                swal("Must be a valid score", {
+                        icon: "warning"
+                    }).then(response => {
+                        this.rubric.row[index].raw = "0"
+                    })
+            }
+        },
         getTotal(rawScore, totalCriteria, percent){
                     return rawScore / totalCriteria * percent;
                 },

@@ -45,7 +45,7 @@
                         <table class="table table-fit">
                         <thead>
                             <tr>
-															<th>{{rubric.title}}</th>
+															<th>{{rubric.title}} ({{totalPercent}}%)</th>
                             	<th v-for="question in totalCol">{{question.col_num}}</th>
                             </tr>
                         </thead>
@@ -87,13 +87,25 @@ export default {
 				js: "",
 				activity_id: JSON.parse(this.$route.params.id),
 				submitted: true,
-				rubric_set_id:""
+				rubric_set_id:"",
+				
 			},
 			rubric:{},
-			totalCol:{}
+			totalCol:{},
+			totalPercent:''
 		}
 	},
   methods: {
+		getTotalPercentage(){
+        this.totalPercent = 0;
+        JSON.parse(this.totalPercent)
+        var totalPercentCount = 0;
+        for(var i=0; i<=this.rubric.row.length-1; i++){
+              totalPercentCount += JSON.parse(this.rubric.row[i].percent);
+              console.log(this.rubric.row[i].percent)
+            }
+            this.totalPercent = JSON.parse(totalPercentCount);
+      },
       getCode (){
           this.$http.get('api/forums/')
           .then(response => {
@@ -123,6 +135,7 @@ export default {
 					this.totalCol = response.body.row[0].col
 					this.codes.rubric_set_id = response.body.id
 					console.log(response.body)
+					this.getTotalPercentage()
 				})
 				;
 		}

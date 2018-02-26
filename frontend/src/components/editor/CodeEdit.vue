@@ -83,7 +83,7 @@
                                 <p>{{quest.description}}</p> 
                             </td>
                             <td v-show="!eval">
-								<input v-model="criteria.raw" type="number" min="0">
+								<input @change="checkMax(criteria.raw, index)" v-model="criteria.raw" type="number" min="0">
 								
 							</td>
 							<td v-if="eval">
@@ -159,6 +159,15 @@ export default {
     },
   
   methods: {
+	  checkMax(val,index){
+            if(this.rubric.row[0].col.length+1 <= val){
+                swal("Must be a valid score", {
+                        icon: "warning"
+                    }).then(response => {
+                        this.rubric.row[index].raw = "0"
+                    })
+            }
+        },
 	  getRubric(){
 			this.$http.get(`api/rubrics/certain/` + this.rubricId)
 				.then(response => {

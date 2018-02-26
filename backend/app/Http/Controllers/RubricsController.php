@@ -184,14 +184,14 @@ class RubricsController extends Controller
         $col = $user->load('row','row.col');
  
         return ['rubric' => $col];
- 
-    } 
+
+    }
 
     public function show($id){
         $rubric = Rubrics::find($id);
         
         if(count($rubric) > 0)
-            return response()->json(Rubrics::find($id)->load('details'));
+            return response()->json(Rubrics::find($id)->load('col'));
 
         return response()->json(['error' => 'resource not found'],404);
     }
