@@ -1,15 +1,13 @@
 <template>
   <div class="create--activity mb-3">
     <div class="p-0">
-      <div class="">
-        <div class="">
           <div class="row">
             <div class="col-12 d-flex justify-content-center align-items-center">
-              <div class="w-50 ">
+              <div class=" ">
 
-              <button  @click="getRubrics()"  type="button" class="btn content__button--passive content__helper" data-toggle="modal" data-target="#imageport">
+              <!-- <button  @click="getRubrics()"  type="button" class="btn content__button--passive content__helper" data-toggle="modal" data-target="#imageport">
                   Manage Rubrics
-                </button>
+                </button> -->
               <img :src="image" class="" />
               <form @submit.prevent="create">
                 <div class="form-group">
@@ -36,7 +34,7 @@
                     <span >
                   <label class="content__helper">Rubric</label>
                   <br>
-                  <select class="section-block hover-pointer" @change="setRubricId($event.target.value)">
+                  <select class="section-block hover-pointer" @click="getRubrics()" @change="setRubricId($event.target.value)">
                         <option v-for="title in choices" :value="title.id">{{title.title}}</option>
                   </select>
                 </span>
@@ -67,7 +65,11 @@
 
             <div class="row  modal--cover">
               <div class="col-12">
-                <div class="modal fade" id="imageport" tabindex="-1" role="dialog" aria-labelledby="imageportLabel" aria-hidden="true">
+
+              </div>
+            </div>
+    </div>
+                    <div class="modal fade" id="imageport" tabindex="-1" role="dialog" aria-labelledby="imageportLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header text-center">
@@ -198,11 +200,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 <script>

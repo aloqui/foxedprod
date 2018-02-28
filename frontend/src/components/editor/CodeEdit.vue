@@ -58,54 +58,56 @@
 
       <!-- <input type="text" v-model="codes.html"> -->
     </section>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">{{codes.title}}</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <table class="table table-fit">
-              <thead>
-                <tr>
-                  <th>{{rubric.title}}</th>
-                  <th v-for="question in totalCol">{{question.col_num}}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(criteria, index) in rubric.row" :key="criteria">
-
-                  <th scope="row">{{criteria.criteria}} ({{criteria.percent}}%)</th>
-                  <td v-for="quest in criteria.col">
-                    <p>{{quest.description}}</p>
-                  </td>
-                  <td v-show="!eval">
-                    <input v-model="criteria.raw" type="number" min="0">
-
-                  </td>
-                  <td v-if="eval">
-                    <p class="text-dark">{{evaluatedScores.raw[index].raw}}
-                      <span> ({{evaluatedScores.raw[index].computed}})</span>
-                    </p>
-                  </td>
-
-                </tr>
-              </tbody>
-              <!-- <button @click="scoreThis()">s</button> -->
-            </table>
-
-
-
-          </div>
-          <div class="modal-footer">
-            <div v-if="eval" class="d-flex justify-content-center align-items-center pr-5">
-              <h5>Score: {{evaluatedScores.totalScore}}</h5>
+    <div class="modal--fullscreen">
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">{{codes.title}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-            <div v-if="!eval" class="d-flex justify-content-center align-items-end pr-5">
-              <button class="btn content__button--passive content__helper" @click="scoreThis()">Submit</button>
+            <div class="modal-body">
+              <table class="table table-fit">
+                <thead>
+                  <tr>
+                    <th>{{rubric.title}}</th>
+                    <th v-for="question in totalCol">{{question.col_num}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(criteria, index) in rubric.row" :key="criteria">
+
+                    <th scope="row">{{criteria.criteria}} ({{criteria.percent}}%)</th>
+                    <td v-for="quest in criteria.col">
+                      <p>{{quest.description}}</p>
+                    </td>
+                    <td v-show="!eval">
+                      <input v-model="criteria.raw" type="number" min="0">
+
+                    </td>
+                    <td v-if="eval">
+                      <p class="text-dark">{{evaluatedScores.raw[index].raw}}
+                        <span> ({{evaluatedScores.raw[index].computed}})</span>
+                      </p>
+                    </td>
+
+                  </tr>
+                </tbody>
+                <!-- <button @click="scoreThis()">s</button> -->
+              </table>
+
+
+
+            </div>
+            <div class="modal-footer">
+              <div v-if="eval" class="d-flex justify-content-center align-items-center pr-5">
+                <h5>Score: {{evaluatedScores.totalScore}}</h5>
+              </div>
+              <div v-if="!eval" class="d-flex justify-content-center align-items-end pr-5">
+                <button class="btn content__button--passive content__helper" @click="scoreThis()">Submit</button>
+              </div>
             </div>
           </div>
         </div>
@@ -602,7 +604,7 @@
     height: 100%;
     border: 0;
   }
-
+.modal--fullscreen{
   .modal {
     position: fixed;
     top: 0;
@@ -670,5 +672,6 @@
     padding: 10px;
     background: #f1f3f5;
   }
+}
 
 </style>

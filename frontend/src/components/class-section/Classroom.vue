@@ -17,6 +17,7 @@
 
               <hr>
               <div class="mb-2 d-flex flex-column">
+                <rubric v-show="user.prof" :user="user" @load="getRubrics()"></rubric>
                 <p class="content__helper mb-2">Navigation</p>
                 <div class="hover-pointer d-flex align-items-center content__sub-title" @click="discussionView = true; activityView = false; listStudentsView = false">
                   <i class="fas fa-code-branch  mr-2 ml-1"></i>
@@ -30,15 +31,18 @@
                   <i class="fas fa-ellipsis-v ml-2 mr-2"></i>
                   <p class="">List of Students</p>
                 </div>
+                  
                 <hr>
                 <p class="content__helper mb-2">Actions</p>
                 <!-- <class-feed-block></class-feed-block> -->
-                <button type="button" class="btn form__button--positive-dark mb-2" data-toggle="modal" data-target="#createActivity">
+                <button v-show="user.prof" type="button" class="btn form__button--positive-dark mb-2" data-toggle="modal" data-target="#createActivity">
                   Add Activity
                 </button>
                 <button type="button" class="btn form__button--positive-dark" data-toggle="modal" data-target="#createDiscussion">
                   Add Discussion
                 </button>
+               
+                
               </div>
               <br>
               <div>
@@ -88,7 +92,7 @@
 
       </div>
     </div>
-    <div class="modal fade modal--cover" id="createActivity" tabindex="-1" role="dialog" aria-labelledby="createActivity" aria-hidden="true">
+    <div class="modal fade" id="createActivity" tabindex="-1" role="dialog" aria-labelledby="createActivity" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content section-block">
           <div class="modal-header">
@@ -119,6 +123,7 @@
         </div>
       </div>
     </div>
+    
   </div>
 </template>
 
@@ -132,6 +137,7 @@
   import AddDiscussion from './actions/add-discussion.vue';
   import ViewDiscussions from './view-discussions.vue';
   import ViewListOfStudents from './view-list-of-students.vue';
+  import Rubric from './RubricsManage.vue';
   export default {
     data() {
       return {
@@ -156,6 +162,7 @@
       'add-discussion': AddDiscussion,
       'view-discussions': ViewDiscussions,
       'view-list-of-students': ViewListOfStudents,
+      'rubric': Rubric,
       //'related-topics': relatedTopics
     },
     mounted() {

@@ -8,7 +8,7 @@
               <avatarForm :user="user" :userInfo="userInfo"></avatarForm>
             </div>
             <div class="">
-              <div class="mb-2 d-flex flex-column" v-if="user.id === userMe.id">
+              <div class="mb-2 d-flex flex-column" v-show="user.id === userMe.id">
                 <p class="content__helper">Actions</p>
                 <div class="d-flex justify-content-start align-items-center">
                   <router-link class="btn content__button--passive content__helper mr-1" :to="'/editor'">New Foxed Code</router-link>
