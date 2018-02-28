@@ -1,8 +1,13 @@
 <template>
 <div>
-                <button type="button" class="btn content__button--passive content__helper" data-toggle="modal" data-target="#rubric" @click="getRubrics()">
+                <!-- <button type="button" class="btn content__button--passive content__helper" data-toggle="modal" data-target="#rubric" @click="getRubrics()">
                   Manage Rubrics
-                </button>
+                </button> -->
+                <div class="hover-pointer d-flex align-items-center content__sub-title" data-toggle="modal" data-target="#rubric" @click="getRubrics()">
+                  <i class="fas fa-columns  mr-2 ml-1"></i>
+                  <p class="">Manage Rubrics</p>
+                  <hr>
+                </div>
 
               <div class="modal--cover">
                 <div class="modal fade" id="rubric" tabindex="-1" role="dialog" aria-labelledby="rubricLabel" aria-hidden="true">

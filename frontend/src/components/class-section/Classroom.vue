@@ -18,6 +18,7 @@
               <hr>
               <div class="mb-2 d-flex flex-column">
                 <rubric v-show="user.prof" :user="user" @load="getRubrics()"></rubric>
+                <hr>
                 <p class="content__helper mb-2">Navigation</p>
                 <div class="hover-pointer d-flex align-items-center content__sub-title" @click="discussionView = true; activityView = false; listStudentsView = false">
                   <i class="fas fa-code-branch  mr-2 ml-1"></i>

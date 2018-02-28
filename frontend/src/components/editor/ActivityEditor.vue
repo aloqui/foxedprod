@@ -410,7 +410,7 @@ Split(['#code_editors','#output'], {
 }
 .modal-content {
   position: absolute;
-  top: 0;
+  top: 8vh;
   right: 0;
   bottom: 0;
   left: 0; 
