@@ -39,7 +39,7 @@ class CodeController extends Controller
         $code = Code::find($id);
         
         if(count($code) > 0)
-            return response()->json(Code::find($id));
+            return response()->json(Code::find($id)->get());
 
         return response()->json(['error' => 'resource not found'],404);
     }

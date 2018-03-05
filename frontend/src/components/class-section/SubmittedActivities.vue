@@ -106,16 +106,16 @@
                         <tbody>
                             <tr  v-for="(criteria, index) in rubric.row" :key="criteria">
 
-                            <th scope="row">{{criteria.criteria}} ({{criteria.percent}}%)</th>
+                            <th class="titleArea" scope="row">{{criteria.criteria}} ({{criteria.percent}}%)</th>
                             <td v-for="quest in criteria.col">
                                 <p>{{quest.description}}</p> 
                             </td>
                             <td v-show="!modal.evaluated">
-								<input v-model="criteria.raw" type="number" min="0">
+								<input @change="checkMax(criteria.raw, index)" v-model="criteria.raw" type="number" min="0">
 								
 							</td>
-                            <td v-if="modal.evaluated">
-								<p class="text-dark">{{evaluatedScores.raw[index].raw}} <span> ({{evaluatedScores.raw[index].computed}})</span></p>
+                            <td class="scoreArea d-flex flex-column justify-content-center align-items-center" v-if="modal.evaluated">
+								<h6 class="text-dark">{{evaluatedScores.raw[index].raw}}</h6>  ({{evaluatedScores.raw[index].computed}})
 							</td>
 
                             </tr>  
@@ -188,6 +188,15 @@ export default {
         this.getImagePath()
     },
     methods: {
+        checkMax(val,index){
+            if(this.rubric.row[0].col.length+1 <= val){
+                swal("Must be a valid score", {
+                        icon: "warning"
+                    }).then(response => {
+                        this.rubric.row[index].raw = "0"
+                    })
+            }
+        },
         getTotal(rawScore, totalCriteria, percent){
                     return rawScore / totalCriteria * percent;
                 },
@@ -286,7 +295,7 @@ export default {
         },
           getScore () {
 			this.$http.get(`api/submitScore/`+this.modal.score.id)
-        .then(response => this.evaluatedScores = response.body)
+        .then(response => {this.evaluatedScores = response.body})
         .catch()
 		}
       }
@@ -384,6 +393,14 @@ h1{
     background: #fff;
     z-index: 1;
   }
+  
+    .scoreArea{
+      width: 150px;
+    }
+    .titleArea{
+      min-width: 150px;
+    }
+    
 }
 .modal-footer {
   position: absolute;

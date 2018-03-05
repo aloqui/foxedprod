@@ -1,13 +1,13 @@
 <template>
   <div class="create--activity mb-3">
     <div class="p-0">
-      <div class="">
-        <div class="">
           <div class="row">
-            <div class="col-12">
-              <button  @click="getRubrics()"  type="button" class="btn content__button--passive content__helper" data-toggle="modal" data-target="#imageport">
+            <div class="col-12 d-flex justify-content-center align-items-center">
+              <div class=" ">
+
+              <!-- <button  @click="getRubrics()"  type="button" class="btn content__button--passive content__helper" data-toggle="modal" data-target="#imageport">
                   Manage Rubrics
-                </button>
+                </button> -->
               <img :src="image" class="" />
               <form @submit.prevent="create">
                 <div class="form-group">
@@ -34,7 +34,7 @@
                     <span >
                   <label class="content__helper">Rubric</label>
                   <br>
-                  <select class="section-block hover-pointer" @change="setRubricId($event.target.value)">
+                  <select class="section-block hover-pointer" @click="getRubrics()" @change="setRubricId($event.target.value)">
                         <option v-for="title in choices" :value="title.id">{{title.title}}</option>
                   </select>
                 </span>
@@ -60,35 +60,44 @@
 
               </form>
             </div>
+              </div>
+          </div>
 
             <div class="row  modal--cover">
               <div class="col-12">
-                <div class="modal fade" id="imageport" tabindex="-1" role="dialog" aria-labelledby="imageportLabel" aria-hidden="true">
+
+              </div>
+            </div>
+    </div>
+                    <div class="modal fade" id="imageport" tabindex="-1" role="dialog" aria-labelledby="imageportLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="imageportLabel">Create Rubrics</h5>
+                      <div class="modal-header text-center">
+                        <!-- <h5 class="modal-title" id="imageportLabel">Create Rubrics</h5> -->
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body">
-                       <div class="container">
+                        <div class="container">
 
                             <div class="row">
                               <div class="col-12 container--flex">
-
-                                  <div v-if="newss" class="rubric--header w-75">
-                                    <div class="d-flex flex-column text-left w-50">
-                                      <label>Name</label>
-                                      <input v-model="all.title" name="title" type="text" class="form-control">
+                                <div v-if="newss" class="image__logo--title">
+                                <img class="img" :src="imagePath + 'assets/foxedlogo.png'">
+                                </div>
+                                  <h1 class=" content__title">FoxedFolio Rubric</h1>
+                                  <div v-if="newss" class="rubric--header w-25 d-flex">
+                                    <div class="d-flex flex-column text-left w-75">
+                                      <label class=" font-weight-bold">Name *</label>
+                                      <input v-model="all.title" name="title" type="text" class="form-control " placeholder="Rubric Name">
                                     </div>
 
-                                    <div class="d-flex flex-column text-center mt-4 w-25">
-                                      <label class="">How many descriptors?</label>
+                                    <div class="d-flex flex-column mt-4 text-left w-75">
+                                      <label class=" font-weight-bold">How many descriptors?</label>
                                       
-                                        <input  class="form-control" type="number" min="0" v-model="columnNum">
-                                        <button class="btn content__button--passive content__helper w-25 pull-right mt-2" @click="addTextArea(columnNum)">ok</button>
+                                        <input placeholder="total descriptors"  class="form-control" type="number" min="0" v-model="columnNum">
+                                        <button class="btn content__button--passive content__helper w-50 pull-left mt-2" @click="addTextArea(columnNum)">ok</button>
                                       
                                     </div>
                                   <!-- <div class="d-flex flex-column">
@@ -112,15 +121,17 @@
                                   <div class="form-group">
                                   <div v-if="!currentR.row">
                                     <span v-if="all.col[0]"  class="d-flex flex-column criteria__small">
-                                          <label>Criteria</label>
+                                          <label>Criteria 1</label>
+                                            <!-- <p v-if="all.col[0]" class=" content__helper font--semi-bold font-italic">Maximum percentage varies on users intended total percentage</p> -->
                                           <span class="row">
                                           <input class="form-control col-8" v-model="all.criteria"  name="title" type="text" > 
                                           <input class="form-control col-3" v-model="all.percent" type="number" name="number" max="100" min="0" placeholder="%">
                                           </span>
                                     </span>
                                       <span class="d-flex">
-                                          <textarea v-for="textareaCol in all.col" type="text" class="form-control" v-model="textareaCol.description"></textarea>
+                                          <textarea v-for="textareaCol in all.col" type="text" class="form-control" v-model="textareaCol.description" :placeholder="textareaCol.col_num"></textarea>
                                       </span>
+                                      <p v-if="all.col[0]" class=" content__helper font--semi-bold font-italic">the order of these descriptors are ( 1 - nth ) which is 1 being the lowest </p>
                                     
                                   </div>
                                   <div v-else>
@@ -132,20 +143,24 @@
                                     </span>
                                   </span>
                                   <span class="d-flex ">
-                                    <textarea v-for="textareaCol in currentC.col" type="text" class="form-control" v-model="textareaCol.description"></textarea>
+                                    <textarea v-for="textareaCol in currentC.col" type="text" class="form-control" v-model="textareaCol.description" :placeholder="textareaCol.col_num"></textarea>
                                   </span>
                                   </div>
                                 </div>
                                 <button class="btn content__button--passive content__helper pull-right mb-3" v-if="currentR.row" @click="addRow()">add new criteria</button>
-                                <button class="btn content__button--passive content__helper pull-right mb-3" v-if="!currentR.row" @click="submitAll()">save</button>
+                                <button class="btn content__button--passive content__helper pull-right mb-3" v-if="all.col[0] && !currentR.row" @click="submitAll()">save</button>
                                 </div> 
                                 
                                 <div class="col-12">
                                       <table class="table rubric--table">
                                       <thead>
                                         <tr>
-                                          <th>Rubrics</th>
-                                          <!-- <th  v-for="textareaCol in all.col">{{textareaCol.col_num}}</th> -->
+                                          <th v-if="currentR.title">
+                                            {{currentR.title}}
+                                            <p class=" font-weight-light">total percentage ({{totalPercent}}%)</p>
+                                          </th>
+
+                                          <!-- <th v-if="currentC.col" v-for="textareaCol in all.col">{{textareaCol.col_num}}</th> -->
                                           <th v-for="textareaCol in currentC.col">{{textareaCol.col_num}}</th>
                                         </tr>
                                       </thead>
@@ -174,8 +189,9 @@
                           </div> 
                       </div>
                       <div class="modal-footer pb-3 ">
-                              <select v-model="chooseRubric"  @change="rubricsView($event.target.value)">
-                                  <option v-for="title in choices" :value="title.id">{{title.title}}</option>
+                              <label for="">Your Rubrics</label>
+                              <select class="hover-pointer" v-model="chooseRubric"  @change="rubricsView($event.target.value)">
+                                  <option class="content__helper" v-for="title in choices" :value="title.id">{{title.title}}</option>
                             </select>
                             <button class="btn content__button--passive content__helper" @click="newRubric()">
                                 New
@@ -184,12 +200,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
   </div>
 </template>
 <script>
@@ -232,7 +242,9 @@
         columnEdit:{},
         rowEdit:{},
         deleteU:{},
-        newss:true
+        newss:true,
+        totalPercent:'',
+        imagePath: '',
       };
     }, 
     props:[
@@ -272,8 +284,10 @@
         this.currentC = []
         this.currentR = []
         this.chooseRubric ='';
-        this.all[0] = []
+        this.all[0] = [];
         
+        this.addTextArea(0)
+        this.columnNum='';
       },
       editRow(id,per,cri){
         this.rowEdit.criteria = cri;
@@ -282,7 +296,7 @@
             console.log(response); 
             swal("Succesfully Edited!", {
               icon: "success",
-            });
+            }).then(response => this.getTotalPercentage());
           })
           .catch(response => {
              swal("Error Updating", {
@@ -306,6 +320,7 @@
       editPart(){
         this.column.rubric_id = this.currentR.rowId;
         this.$http.post("api/rubrics/column/" + this.currentR.id, this.column).then(response => {
+          this.getTotalPercentage()
             console.log(response); 
           })
           .catch(response => {
@@ -322,7 +337,7 @@
 
             var colArray = []; 
             for(var i=1; i<=response.body.row[0].col.length; i++){
-              colArray.push({col_num : i , description : " "})
+              colArray.push({col_num : i , description : ""})
             }
             this.currentC.col = colArray;
             swal("Succesfully created!", {
@@ -336,16 +351,34 @@
             })
           })
       },
+      getTotalPercentage(){
+        this.totalPercent = 0;
+        JSON.parse(this.totalPercent)
+        var totalPercentCount = 0;
+        for(var i=0; i<=this.currentR.row.length-1; i++){
+              totalPercentCount += JSON.parse(this.currentR.row[i].percent);
+              console.log(this.currentR.row[i].percent)
+            }
+            this.totalPercent = JSON.parse(totalPercentCount);
+      },
+        getImagePath() {
+        this.imagePath = `${location.protocol}//${location.hostname}/images/`
+        if (location.port)
+        this.imagePath = `${location.protocol}//${location.hostname}:${location.port}/images/`
+    },
       rubricsView(a){
         this.$http.get("api/rubrics/certain/" +  a ).then(response => {
             console.log(response); 
             // this.displayRubric = response.body.rubric;
             this.currentR = response.body.rubric;
-
+            
             var colArray = []; 
             for(var i=1; i<=response.body.rubric.row[0].col.length; i++){
-              colArray.push({col_num : i , description : " "})
+              colArray.push({col_num : i , description : ""})
             }
+            this.getTotalPercentage();
+            
+            
             this.currentC.percent = '';
             this.currentC.criteria = '';
             this.currentC.col = colArray;
@@ -382,12 +415,13 @@
             // this.currentC.col = colArray;
 
             for(var i=1; i<= this.currentR.row[0].col.length; i++){
-              colArray.push({col_num : i , description : " "})
+              colArray.push({col_num : i , description : ""})
             }
             this.currentC.col = colArray;
             this.currentC.percent = '';
             this.currentC.criteria = '';
             this.currentC.rubric_set_id = this.currentR.id;
+            
             
           }).catch(response => {
             
@@ -422,7 +456,7 @@
       addTextArea(a){
             var colArray = [];
             for(var i=1; i<=a; i++){ 
-              colArray.push({col_num : i , description : " "})
+              colArray.push({col_num : i , description : ""})
             }
             this.all.col = colArray;
             
@@ -474,6 +508,7 @@
     mounted(){
       var tom = new Date();
        this.limit = moment(tom).format("YYYY-MM-DDTHH:mm")
+       this.getImagePath()
       //  this.getRubrics()
        
         
@@ -507,7 +542,7 @@
     .btn {}
   }
 .modal--cover{
-
+background-color: #eeeeee;
 .modal {
   position: fixed;
   top: 0;
@@ -539,9 +574,10 @@
   top: 0;
   right: 0;
   left: 0;
-  height: 50px;
+  height: 20px;
   padding: 10px;
   border: 0;
+
 }
 .modal-title {
   font-weight: 300;
@@ -560,7 +596,10 @@
   flex-direction: column;
   justify-content: stretch;
   align-items: center; 
-  
+    .image__logo--title{
+      width: 200px;
+      height: 150px;
+  }
   .criteria__small{
     width: 20%;
     margin-bottom: 10px;
@@ -570,14 +609,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%
+    width: 100%;
+    height: 300px;
+    background-color: #fcc5a1;
+    padding: 5px 0 5px 0;
+      border-radius: 2px;
     }
     .container--flex {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  .rubric--table{
-    overflow-x: scroll;
-  }
+  background-color: none !important;
+  
 }
 .update--criteria{
   span{
@@ -612,8 +656,9 @@
   
   textarea{
     overflow-x: hidden;
+    min-height: 120px;
     &:focus{
-      
+      height: 160px;
     }
   }
   span{
@@ -625,6 +670,13 @@
       }
   }
 }
+
+.row{
+    .rubric--table{
+      overflow-x: scroll;
+      background: #fff;
+    }
+  }
 }
 .modal-footer {
   position: absolute;

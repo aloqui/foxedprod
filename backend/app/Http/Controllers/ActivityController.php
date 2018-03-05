@@ -56,7 +56,7 @@ class ActivityController extends Controller
         $activity = Activity::find($id);
         
         if(count($activity) > 0)
-            return response()->json(Activity::find($id));
+            return response()->json(Activity::find($id)->load('ScoresSubmitted'));
 
         return response()->json(['error' => 'resource not found'],404);
     }
@@ -64,7 +64,7 @@ class ActivityController extends Controller
     public function getCertRubric($id){
         $activity = Activity::find($id);
         
-        $act = $activity->id;
+        $act = $activity->rubric_set_id;
         
         $rub = RubricSet::find($act);
 

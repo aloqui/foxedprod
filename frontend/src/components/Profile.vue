@@ -8,7 +8,7 @@
               <avatarForm :user="user" :userInfo="userInfo"></avatarForm>
             </div>
             <div class="">
-              <div class="mb-2 d-flex flex-column" v-if="user.id === userMe.id">
+              <div class="mb-2 d-flex flex-column" v-show="user.id === userMe.id">
                 <p class="content__helper">Actions</p>
                 <div class="d-flex justify-content-start align-items-center">
                   <router-link class="btn content__button--passive content__helper mr-1" :to="'/editor'">New Foxed Code</router-link>
@@ -45,12 +45,15 @@
             <div class="d-flex flex-column justify-content-center align-items-center">
             </div>
             <div class="d-flex flex-column justify-content-center mt-2">
+              <p class="content__helper mt-2">Title</p>
               <input v-model="imageport.title" type="text" class="mb-2 section-block" placeholder="Image Title">
             </div>
             <p class="content__helper mt-2">Choose image</p>
             <input type="file" accept="image/*" class="form-control section-block content__helper file__remove mt-2 " @change="imageChanged">
 
-            <button @click="submitImage" class="btn content__button--passive content__helper mt-2 ">Upload Image</button>
+            <button @click="submitImage" class="btn content__button--passive content__helper mt-4 ">Upload Image</button>
+            <p class=" content__helper font--semi-bold font-italic">Maximum image size is 10Mb and only accepts *.png and *.jpeg file extension.</p>
+            
           </div>
           <!-- <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
