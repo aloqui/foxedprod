@@ -69,28 +69,29 @@
               </button>
             </div>
             <div class="modal-body">
-              <table class="table table-fit">
+              <table class="table">
                 <thead>
                   <tr>
                     <th>{{rubric.title}}</th>
                     <th v-for="question in totalCol">{{question.col_num}}</th>
+                    <th>Score</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="(criteria, index) in rubric.row" :key="criteria">
 
-                    <th scope="row">{{criteria.criteria}} ({{criteria.percent}}%)</th>
+                    <th class="titleArea d-flex flex-column justify-content-center align-items-center h-100" scope="row"><h6> {{criteria.criteria}}</h6>  ({{criteria.percent}}%)</th>
                     <td v-for="quest in criteria.col">
                       <p>{{quest.description}}</p>
                     </td>
                     <td v-show="!eval">
-                      <input v-model="criteria.raw" type="number" min="0">
+                      <input @change="checkMax(criteria.raw, index)" v-model="criteria.raw" type="number" min="0">
 
                     </td>
-                    <td v-if="eval">
-                      <p class="text-dark">{{evaluatedScores.raw[index].raw}}
-                        <span> ({{evaluatedScores.raw[index].computed}})</span>
-                      </p>
+                    <td class="scoreArea" v-if="eval">
+                      <h5 class="text-dark">{{evaluatedScores.raw[index].raw}}
+                        <span> ({{evaluatedScores.raw[index].computed}}%)</span>
+                      </h5>
                     </td>
 
                   </tr>
@@ -163,6 +164,15 @@
     },
 
     methods: {
+      checkMax(val,index){
+            if(this.rubric.row[0].col.length+1 <= val){
+                swal("Must be a valid score", {
+                        icon: "warning"
+                    }).then(response => {
+                        this.rubric.row[index].raw = "0"
+                    })
+            }
+        },
       getRubric() {
         this.$http.get(`api/rubrics/certain/` + this.rubricId)
           .then(response => {
@@ -660,6 +670,14 @@
     th {
       text-align: center;
     }
+      
+    .scoreArea{
+      width: 150px;
+    }
+    .titleArea{
+      min-width: 150px;
+    }
+    
 
   }
 

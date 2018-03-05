@@ -106,7 +106,7 @@
                         <tbody>
                             <tr  v-for="(criteria, index) in rubric.row" :key="criteria">
 
-                            <th scope="row">{{criteria.criteria}} ({{criteria.percent}}%)</th>
+                            <th class="titleArea" scope="row">{{criteria.criteria}} ({{criteria.percent}}%)</th>
                             <td v-for="quest in criteria.col">
                                 <p>{{quest.description}}</p> 
                             </td>
@@ -114,8 +114,8 @@
 								<input @change="checkMax(criteria.raw, index)" v-model="criteria.raw" type="number" min="0">
 								
 							</td>
-                            <td v-if="modal.evaluated">
-								<p class="text-dark">{{evaluatedScores.raw[index].raw}} <span> ({{evaluatedScores.raw[index].computed}})</span></p>
+                            <td class="scoreArea d-flex flex-column justify-content-center align-items-center" v-if="modal.evaluated">
+								<h6 class="text-dark">{{evaluatedScores.raw[index].raw}}</h6>  ({{evaluatedScores.raw[index].computed}})
 							</td>
 
                             </tr>  
@@ -393,6 +393,14 @@ h1{
     background: #fff;
     z-index: 1;
   }
+  
+    .scoreArea{
+      width: 150px;
+    }
+    .titleArea{
+      min-width: 150px;
+    }
+    
 }
 .modal-footer {
   position: absolute;

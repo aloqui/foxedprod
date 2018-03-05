@@ -97,7 +97,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content section-block">
           <div class="modal-header">
-            <h5 class="forum__title" id="exampleModalLabel">Create An Activity</h5>
+            <h5 class="forum__title" id="exampleModalLabel">Create an activity</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -112,7 +112,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content section-block">
           <div class="modal-header">
-            <h5 class="forum__title" id="exampleModalLabel">Create A Discussion Room</h5>
+            <h5 class="forum__title" id="exampleModalLabel">Create a discussion room</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
