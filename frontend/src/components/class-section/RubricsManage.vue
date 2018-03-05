@@ -93,6 +93,7 @@
                                 </div> 
                                 
                                 <div class="col-12">
+                                  <p v-if="totalPercent != 100" class=" content__helper font--semi-bold font-italic"><span class="font--red">* </span> To use this Rubric, Create criterias that will sum up to a 100%</p>
                                       <table class="table rubric--table">
                                       <thead>
                                         <tr>
