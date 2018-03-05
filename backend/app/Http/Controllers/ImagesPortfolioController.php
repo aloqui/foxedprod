@@ -9,6 +9,7 @@ use Auth;
 class ImagesPortfolioController extends Controller
 {
     public function store(Request $request){
+        $this->validate($request, ['description' => 'required|max:280']);
         if($request->image){
 
 
@@ -33,6 +34,7 @@ class ImagesPortfolioController extends Controller
         $activity = ImagesPortfolio::create( $request->except('image') + [
             'user_id' => Auth::id(),
             'title' => request('title'),
+            'description' => request('description'),
             'rubric_set_id' => request('rubric_set_id'),
             'image' => $fileName
         ]);
