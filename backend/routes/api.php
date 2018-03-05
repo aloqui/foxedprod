@@ -121,7 +121,7 @@ Route::get('/{user}/profile/info', 'UserDetailsController@show');
     Route::get('/threads/search', 'SearchController@show');
     Route::get('/channel/search', 'SearchController@showChannel');
     Route::get('/community', 'ThreadController@index');
-    Route::get('/{user}/threads', 'ProfilesController@showOwnThreads');
+    Route::get('/{user}/threads', 'ProfilesController@showOwnThreads'); 
     Route::get('/community?by={name}', 'ThreadController@index');
     Route::get('/channels', 'ThreadController@showChannels');
     Route::get('/community/create', 'ThreadController@create');
