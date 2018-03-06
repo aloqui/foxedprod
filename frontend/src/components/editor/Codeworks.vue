@@ -1,33 +1,49 @@
 <template>
-  <div>
-
-  <div class="row">
-    <div class="col-lg-4 col-sm-6 code--holder" v-for="code in codes.codes">
-      <div class="card h-100">
-        <div class="holder">
-          <section :id="'output'+code.id" class="spaceWrap">
-            <iframe class="viewPort" @load="show(code)"></iframe>
-            <div class="iframeBlocker"></div>
-          </section>
-        </div>
-
-        <div class="card-body">
-          <h4 class="card-title">
-            <a href="#">{{ code.title }}</a>
-          </h4>
-          <p v-if="code.user_id == userMe.id">
-            <!-- <a class="btn btn-danger" role="button" @click="$emit('delete-code')"> delete </a> -->
-            <router-link class="btn" :to="'codes/' + code.id">edit</router-link>
-          </p>
-          <p v-else>
-            <router-link class="btn" :to="'codes/' + code.id">view</router-link>
-          </p>
+  <div class="mt-5">
+    <p class="content__helper text-uppercase">Codes</p>
+    <div class="row">
+      <div class="col-lg-4 col-sm-6 code--holder" v-for="code in codes.codes">
+        <div class="d-flex flex-column">
+          <div class="mb-4 d-flex">
+            <router-link class="no-decoration" :to="`/${userMe.username}/threads`">
+              <div class="d-flex align-items-center ">
+                <div class="picture-placeholder mr-3">
+                  <img class="picture mr-3" :src="userMe.avatar_path" alt="">
+                </div>
+                <div class="d-flex flex-column">
+                  <a class="m-0 content__username" href="">{{userMe.name}}</a>
+                  <span class="content__helper">@{{userMe.username}} - {{code.created_at | formatDate}}</span>
+                  <!-- <p5 class="mb-0 ml-1"> posted this 2 minutes ago</p> -->
+                </div>
+              </div>
+            </router-link>
+          </div>
+          <div class="card h-100">
+            <div class="holder">
+              <section :id="'output'+code.id" class="spaceWrap">
+                <iframe class="viewPort" @load="show(code)"></iframe>
+                <div class="iframeBlocker"></div>
+              </section>
+            </div>
+            <div class="card-body d-flex align-items-center p-3">
+              <h4 class="card-title mb-0">
+                <a href="#" class="card__title font--semi-bold ">{{ code.title }}</a>
+              </h4>
+              <p class="card__sub-title font--normal">{{ code.description }}</p>
+              <p v-if="code.user_id == userMe.id">
+                <!-- <a class="btn btn-danger" role="button" @click="$emit('delete-code')"> delete </a> -->
+                <router-link class="btn mb-0" :to="'codes/' + code.id">Edit</router-link>
+              </p>
+              <p v-else>
+                <router-link class="btn mb-0" :to="'codes/' + code.id">View</router-link>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <br> 
-        <!-- <div class="col-12 d-flex justify-content-center align-items-center">
+      <br>
+      <!-- <div class="col-12 d-flex justify-content-center align-items-center">
         <section class="gallery"> 
             <div v-for="code in codes.images" :class="'item h0 v1'">
           <img :src="imagePath + code.image" @click="pass(code)" data-toggle="modal" data-target="#preview">
@@ -37,67 +53,101 @@
             </div> 
         </section>
         </div>  -->
-    <div class="col-12"> 
+      <div class="col-12">
 
-      <div class="modal fade" id="preview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">{{modal.title}}</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <span v-if="modal.image != 'none'">
-                <img :src="imagePath + modal.image">
-              </span>
+        <div class="modal fade" id="preview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <div class="d-flex flex-column">
+                  <div class="d-flex">
+                    <router-link class="no-decoration" :to="`/${userMe.username}/threads`">
+                      <div class="d-flex align-items-center ">
+                        <div class="picture-placeholder mr-3">
+                          <img class="picture mr-3" :src="userMe.avatar_path" alt="">
+                        </div>
+                        <div class="d-flex flex-column">
+                          <a class="m-0 content__username" href="">{{userMe.name}}</a>
+                          <span class="content__helper">@{{modal.username}} - {{modal.created_at | formatDate}}</span>
+                          <!-- <p5 class="mb-0 ml-1"> posted this 2 minutes ago</p> -->
+                        </div>
+                      </div>
+                    </router-link>
+                  </div>
+                  
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <span v-if="modal.image != 'none'">
+                  <img :src="imagePath + modal.image">
+                </span>
+                <h5 class="modal-title mt-3" id="exampleModalLabel">{{modal.title}}</h5>
 
-
-            </div>
-            <div class="modal-footer">
-              <div v-if="modal.user_id == userMe.id" class="w-100 pt-3">
-                <input type="file" accept="image/*" class="form-control  content__helper" @change="imageChanged">
-                <div class="d-flex flex-column mt-2">
-                  <input v-model="modal.title" class="form-control section-block content__helper" type="text" placeholder="title">
-                  <textarea v-model="modal.description" class="form-control section-block content__helper" type="text" placeholder="Description"></textarea>
-                  <span class="mt-4">
-                  <button @click="update" class="btn content__button--passive content__helper">Update</button>
-                  <button @click="deleteimg" class="btn content__button--passive content__helper">Delete</button>
-                  </span>
+              </div>
+              <div class="modal-footer">
+                <div v-if="userMe.id = authUser.id" class="w-100 pt-3">
+                  <input type="file" accept="image/*" class="form-control  content__helper" @change="imageChanged">
+                  <div class="d-flex flex-column mt-2">
+                    <input v-model="modal.title" class="form-control section-block content__helper mb-2" type="text" placeholder="title">
+                    <textarea v-model="modal.description" class="form-control section-block content__helper" type="text" placeholder="Description"></textarea>
+                    <span class="mt-4">
+                      <button @click="update" class="btn content__button--passive content__helper">Update</button>
+                      <button @click="deleteimg" class="btn content__button--passive content__helper">Delete</button>
+                    </span>
+                  </div>
+                </div>
+                <div v-else class="d-flex flex-column justify-content-center align-items-start w-100">
+                  <p class="content__helper">{{modal.description}}</p>
                 </div>
               </div>
-              <div v-else class="d-flex flex-column justify-content-center align-items-center w-100">
-                
-                <p class="content__helper">{{modal.description}}</p>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
+    <p class="content__helper text-uppercase mt-5">Images</p>
     <div class="row mt-3">
-    <div class="col-lg-4 col-sm-6 mb-3" v-for="code in codes.images">
-      <div class="card h-100">
-        <div class="holder-img" >
-          <div class="item--image" >
-              <img  class="img" @click="pass(code)" v-bind:style="{ backgroundImage :`url(` + imagePath + code.image+`)`}" data-toggle="modal" data-target="#preview">
-            <div class=""></div>
+      <div class="col-lg-4 col-sm-6 mb-5" v-for="code in codes.images">
+        <div class="d-flex flex-column">
+          <div class="mb-4 d-flex">
+            <router-link class="no-decoration" :to="`/${userMe.username}/threads`">
+              <div class="d-flex align-items-center ">
+                <div class="picture-placeholder mr-3">
+                  <img class="picture mr-3" :src="userMe.avatar_path" alt="">
+                </div>
+                <div class="d-flex flex-column">
+                  <a class="m-0 content__username" href="">{{userMe.name}}</a>
+                  <span class="content__helper">@{{userMe.username}} - {{code.created_at | formatDate}}</span>
+                  <!-- <p5 class="mb-0 ml-1"> posted this 2 minutes ago</p> -->
+                </div>
+              </div>
+            </router-link>
           </div>
-        </div>
-
-        <div class="card-body">
-          <h4 class="card-title">
-            <a href="#">{{ code.title }}</a>
-          </h4>
+          <div class="card h-100 hover-pointer">
+            <div class="holder-img">
+              <div class="item--image">
+                <img class="img" @click="pass(code)" v-bind:style="{ backgroundImage :`url(` + imagePath + code.image+`)`}" data-toggle="modal"
+                  data-target="#preview">
+                <div class=""></div>
+              </div>
+            </div>
+            <div class="card-body d-flex flex-column align-items-start justify-content-center p-3 ">
+              <div class="">
+                <h4 class="card-title mb-1">
+                  <a href="#" class="card__title font--semi-bold line-height--zero ">{{ code.title }}</a>
+                </h4>
+              </div>
+              <p class="card__sub-title font--normal">{{ code.description }}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    </div>
-  <!-- class="col-lg-4 col-sm-6 p-0 " -->
-  <!-- <div class="row mt-3">
+    <!-- class="col-lg-4 col-sm-6 p-0 " -->
+    <!-- <div class="row mt-3">
     <div class="col-12 width--gallery">
      <div class="flexbox">
       <div class="item" v-for="code in codes.images">
@@ -109,7 +159,7 @@
   </div>
     </div>
   </div> -->
-   
+
   </div>
 </template>
 <script>
@@ -120,11 +170,12 @@
         modal: {},
         newImage: '',
         oldImage: '',
-        imagePath:''
+        imagePath: ''
       }
     },
     props: [
-      'userMe'
+      'userMe',
+      'authUser'
     ],
 
     mounted() {
@@ -133,15 +184,15 @@
 
     },
     methods: {
-      tryPrint(){
-        html2canvas(document.querySelector('#forPdf'),{
+      tryPrint() {
+        html2canvas(document.querySelector('#forPdf'), {
           onrendered: function (canvas) {
 
             var img = canvas.toDataURL("image/png");
             var doc = new jsPDF()
-            doc.addImage(img,'JPEG',20,20);
+            doc.addImage(img, 'JPEG', 20, 20);
 
-              doc.save('resume.pdf');
+            doc.save('resume.pdf');
           }
         });
       },
@@ -163,10 +214,10 @@
           "</head>\n\t" +
           "<body>\n\t\n\t" +
           "</body>\n" +
-          "</html>"; 
+          "</html>";
         var prepareSource = function () {
           var src = '',
-            js = '', 
+            js = '',
             css = '';
 
           src = base_tpl.replace('</body>', c.html + '</body>');
@@ -229,8 +280,8 @@
             swal("Succesfully Updated!", {
               icon: "success",
             }).then((value) => {
-                        location.reload()
-                      });
+              location.reload()
+            });
           })
       },
       deleteimg() {
@@ -269,8 +320,6 @@
 </script>
 
 <style lang="scss" scoped>
-
-
   .code-card {
     width: 100%;
     display: flex;
@@ -300,12 +349,18 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+
+      .card__title {
+        font-size: 18px;
+      }
+      .card__sub-title {
+        font-size: 14px;
+      }
       a {
         text-decoration: none;
         color: rgb(48, 48, 48);
         font-size: 14px;
-        font-weight: bolder;
-        text-transform: uppercase;
+
       }
       .btn {
         background: none;
@@ -313,31 +368,32 @@
       }
     }
   }
-  
+
 
   img {
     width: 100%;
-    
+
   }
 
   .holder {
     max-height: 300px;
     max-width: 500px;
-    
+
   }
-  .holder-img{
+
+  .holder-img {
     max-height: 600px;
     max-width: 500px;
     overflow: hidden;
-      .img {
+    .img {
       position: relative;
       float: left;
-      width:  100%;
+      width: 100%;
       height: 400px;
       background-position: 50% 50%;
-      background-repeat:   no-repeat;
-      background-size:     cover;
-  }
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
   }
 
   .spaceWrap {
@@ -371,72 +427,71 @@
       -webkit-transform-origin: 0 0;
     }
   }
-  .width--gallery{
+
+  .width--gallery {
     width: 50vw;
     overflow-x: scroll;
   }
-  .flexbox{
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-  -webkit-flex-wrap: wrap;
-  flex-wrap: wrap;
-  width: 100%;
-  height: 100vh;
-  
-  &:hover{
-    img {
-      opacity:0.28;
-    }
-  }
 
-  // Each flex item
-  .item{
-    position: relative;
-    width: 33.33%;  // 3 column 
-    img{
-      width: 100%;
-      display: block;
-      transition:all .8s;
+  .flexbox {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100vh;
+
+    &:hover {
+      img {
+        opacity: 0.28;
+      }
+    } // Each flex item
+    .item {
+      position: relative;
+      width: 33.33%; // 3 column 
+      img {
+        width: 100%;
+        display: block;
+        transition: all .8s;
+      }
+      .title {
+        position: absolute;
+        top: 48%;
+        left: 0;
+        width: 100%;
+        padding: 0 3%;
+        font-size: 30px;
+        text-shadow: 0 0 8px rgba(0, 0, 0, 0.42);
+        color: rgb(221, 221, 221);
+      }
+      &:hover {
+        img {
+          opacity: 1;
+
+        }
+      }
     }
-    .title{
-      position:absolute;
-      top:48%;
-      left:0;
-      width:100%;
-      padding:0 3%;
-      font-size:30px;
-      text-shadow:0 0 8px rgba(0,0,0,0.42);
-      color:rgb(221, 221, 221);
-    }
-    &:hover{
-      img{
-        opacity:1;
-        
+  } // Mediaqueries
+  @media ( max-width: 860px) {
+    // set to 2 column
+    .flexbox {
+      height: 220vw;
+      .item {
+        width: 50%;
       }
     }
   }
-}
 
-// Mediaqueries
-@media ( max-width : 860px ){
-  // set to 2 column
-  .flexbox{
-    height:220vw;
-    .item{
-      width:50%;
+  @media ( max-width: 667px) {
+    // set to 1 column
+    .flexbox {
+      height: auto;
+      .item {
+        width: 100%;
+      }
     }
   }
-}
-@media ( max-width : 667px ){
-  // set to 1 column
-  .flexbox{
-    height:auto;
-    .item{
-      width:100%;
-    }
-  }
-}
 
 </style>

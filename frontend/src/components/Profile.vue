@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="col">
-            <code-works :userMe="userMe"></code-works>
+            <code-works :userMe="userMe" :authUser="authUser"></code-works>
           </div>
         </div>
       </div>
@@ -46,7 +46,8 @@
             </div>
             <div class="d-flex flex-column justify-content-center mt-2">
               <p class="content__helper mt-2">Title</p>
-              <input v-model="imageport.title" type="text" class="mb-2 section-block" placeholder="Image Title">
+              <input v-model="imageport.title" type="text" class="mb-2 section-block" placeholder="Your project is awesome! Give it a title.">
+              <input v-model="imageport.description" type="text" class="mb-2 section-block" placeholder="Describe your project!">
             </div>
             <p class="content__helper mt-2">Choose image</p>
             <input type="file" accept="image/*" class="form-control section-block content__helper file__remove mt-2 " @change="imageChanged">
@@ -77,7 +78,8 @@
             <div class="d-flex flex-column justify-content-center align-items-center">
             </div>
             <div class="d-flex flex-column justify-content-center mt-2">
-              <input v-model="imageport.title" type="text" class="mb-2 section-block" placeholder="Video Link">
+              <input v-model="imageport.title" type="text" class="mb-2 section-block" placeholder="Your project is awesome! Give it a title.">
+              <input v-model="imageport.description" type="text" class="mb-2 section-block" placeholder="Description">
             </div>
             <p class="content__helper mt-2">Choose image or Thumbnail for your link</p>
             <input type="file" accept="image/*" class="form-control section-block content__helper file__remove mt-2 " @change="imageChanged">
@@ -111,7 +113,8 @@
         imageport: {},
         image: "",
         userMe: '',
-        userInfo: {}
+        userInfo: {},
+        authUser: {}
       }
     },
     computed: {
@@ -122,8 +125,16 @@
     mounted() {
       this.fetch()
       this.fetchDetails()
+      this.getAuth()
     },
     methods: {
+      getAuth() {
+        this.$http.get(`api/user`)
+          .then(this.refreshAuth);
+      },
+      refreshAuth(data) {
+        this.authUser = data.body
+      },
       fetch() {
         this.$http.get(`api/${this.$route.params.user}/user`)
           .then(this.refresh);
@@ -213,7 +224,7 @@
         this.user = data.body;
         console.log(data.body.id)
 
-        this.$http.get(`api/user`)
+        this.$http.get(`api/${this.$route.params.user}/user`)
           .then(mes => this.userMe = mes.body)
           .catch()
 
